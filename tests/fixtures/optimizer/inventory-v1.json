@@ -1,0 +1,48 @@
+{
+  "schemaId": "e7.optimizer.inventory",
+  "schemaVersion": 1,
+  "inventoryId": "inventory.synthetic.001",
+  "importedAt": "2026-07-20T10:05:00Z",
+  "source": {
+    "sourceName": "Fribbels gear.txt synthetic fixture",
+    "sourceVersion": null,
+    "sourceRevision": "fixture-revision-1",
+    "unknownFields": {
+      "account": {"region": "fixture", "slotCount": 2},
+      "formatMarker": 7
+    }
+  },
+  "characterCatalogId": "catalog.synthetic.2026-07-20",
+  "items": [
+    {
+      "itemId": "gear.synthetic.weapon.001",
+      "denseId": 0,
+      "slot": "slot.weapon",
+      "set": "set.speed",
+      "itemLevel": 85,
+      "enhance": 15,
+      "mainStat": {"type": "item_stat.flat_attack", "value": 525},
+      "substats": [
+        {"type": "item_stat.speed", "value": 14},
+        {"type": "item_stat.critical_hit_chance_percent", "value": 12}
+      ],
+      "equippedHeroId": "hero.synthetic.knight",
+      "locked": true
+    },
+    {
+      "itemId": "gear.synthetic.ring.001",
+      "denseId": 1,
+      "slot": "slot.ring",
+      "set": "set.critical",
+      "itemLevel": 85,
+      "enhance": 15,
+      "mainStat": {"type": "item_stat.attack_percent", "value": 65},
+      "substats": [
+        {"type": "item_stat.speed", "value": 9},
+        {"type": "item_stat.flat_health", "value": 320}
+      ],
+      "equippedHeroId": null,
+      "locked": false
+    }
+  ]
+}

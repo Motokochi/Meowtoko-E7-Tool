@@ -1,0 +1,54 @@
+{
+  "schemaId": "e7.optimizer.run-manifest",
+  "schemaVersion": 1,
+  "runId": "run.synthetic.001",
+  "createdAt": "2026-07-20T10:15:00Z",
+  "completedAt": "2026-07-20T10:15:02.5Z",
+  "completionState": "completed",
+  "source": {
+    "sourceName": "E7 Optimizer",
+    "sourceVersion": "0.6.0",
+    "sourceRevision": "fixture-revision-1",
+    "unknownFields": {"device": {"backend": "synthetic-cpu"}}
+  },
+  "requestSnapshot": {
+    "requestId": "request.synthetic.001",
+    "heroId": "hero.synthetic.knight",
+    "baseProfileId": "profile.synthetic.knight.60.6",
+    "modifiers": {
+      "artifactId": "artifact.synthetic.sword",
+      "artifactLevel": 30,
+      "imprintLevel": null,
+      "imprintBonuses": {},
+      "exclusiveEquipmentId": null,
+      "exclusiveEquipmentBonuses": {},
+      "customBonuses": {},
+      "skillOptions": []
+    },
+    "setPattern": {"sets": ["set.speed", "set.critical"]},
+    "statRanges": {"final_stat.attack": {"minimum": 3000, "maximum": null}},
+    "statPriorities": {"final_stat.attack": 3},
+    "derivedMetricRanges": {},
+    "includeEquipped": true,
+    "nearSetTolerance": 0.1,
+    "targetDefense": 1200,
+    "resultCap": 5000000,
+    "executionPreference": "execution.cpu"
+  },
+  "summary": {
+    "requestId": "request.synthetic.001",
+    "evaluatedPermutations": 125000,
+    "exactCount": 3,
+    "oneAwayCount": 7,
+    "twoAwayCount": 11,
+    "resultCount": 21,
+    "durationSeconds": 2.5,
+    "executionPreference": "execution.cpu",
+    "overflowed": false,
+    "cancelled": false
+  },
+  "resultStore": {
+    "reference": "results/run.synthetic.001.jsonl",
+    "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+  }
+}

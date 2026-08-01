@@ -1,0 +1,85 @@
+{
+  "items": [
+    {
+      "id": 700000001,
+      "code": "fixture_weapon_001",
+      "ct": 0,
+      "e": 15,
+      "f": "set_speed",
+      "g": 5,
+      "l": true,
+      "mg": 0,
+      "op": [["att", 525], ["speed", 12], ["att_rate", 0.14]],
+      "p": 91001,
+      "s": "fixture-source-weapon",
+      "type": "weapon",
+      "mainStatBaseValue": 525,
+      "mainStatId": "att",
+      "mainStatType": "Attack",
+      "mainStatValue": 525,
+      "statMultiplier": 1,
+      "tierMultiplier": 1,
+      "gear": "Weapon",
+      "rank": "Epic",
+      "set": "SpeedSet",
+      "enhance": 15,
+      "level": 85,
+      "name": "Fixture Scanner Blade",
+      "main": {"type": "Attack", "value": 525},
+      "substats": [
+        {"type": "Speed", "value": 12, "rolls": 3},
+        {"type": "AttackPercent", "value": 14, "rolls": 3, "modified": false},
+        {"type": "CriticalHitChancePercent", "value": 8, "rolls": 2}
+      ],
+      "ingameId": 700000001,
+      "ingameEquippedId": "91001"
+    },
+    {
+      "id": 700000002,
+      "code": "fixture_ring_002",
+      "ct": 0,
+      "e": 12,
+      "f": "set_health",
+      "g": 4,
+      "l": true,
+      "mg": 0,
+      "op": [["hp_rate", 0.5], ["def_rate", 0.11], ["speed", 8]],
+      "s": "fixture-source-ring",
+      "type": "ring",
+      "mainStatBaseValue": 50,
+      "mainStatId": "hp_rate",
+      "mainStatType": "HealthPercent",
+      "mainStatValue": 50,
+      "statMultiplier": 1,
+      "tierMultiplier": 1,
+      "gear": "Ring",
+      "rank": "Heroic",
+      "set": "HealthSet",
+      "enhance": 12,
+      "level": 85,
+      "name": "Fixture Scanner Ring",
+      "main": {"type": "HealthPercent", "value": 50},
+      "substats": [
+        {"type": "DefensePercent", "value": 11, "rolls": 3},
+        {"type": "Speed", "value": 8, "rolls": 2}
+      ],
+      "ingameId": 700000002,
+      "ingameEquippedId": "undefined"
+    }
+  ],
+  "heroes": [
+    {
+      "id": 91001,
+      "name": "Fixture Knight",
+      "code": "fixture_hero_knight",
+      "ct": 0,
+      "exp": 0,
+      "g": 6,
+      "z": 6,
+      "stars": 6,
+      "awaken": 6,
+      "fixtureFutureHeroField": {"preserve": true}
+    }
+  ],
+  "fixtureFutureRootField": "preserve-me"
+}

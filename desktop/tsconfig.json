@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowArbitraryExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022",
+    "types": ["node", "react", "react-dom"]
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./*.ts"]
+}

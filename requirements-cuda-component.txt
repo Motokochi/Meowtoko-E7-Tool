@@ -1,0 +1,1 @@
+cupy-cuda13x[ctk]==14.1.1

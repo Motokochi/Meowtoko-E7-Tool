@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "gear": "Helmet",
+      "rank": "Epic",
+      "set": "CriticalSet",
+      "enhance": 9,
+      "level": 75,
+      "name": "Fixture Legacy Helm",
+      "main": {"type": "Health", "value": 1234},
+      "substats": [
+        {"type": "CriticalHitChancePercent", "value": 7, "rolls": 2},
+        {"type": "AttackPercent", "value": 9, "rolls": 2, "modified": true}
+      ],
+      "fixtureLegacyUnknown": ["preserve", 1]
+    }
+  ]
+}

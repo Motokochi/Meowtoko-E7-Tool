@@ -1,0 +1,58 @@
+# IDE and editor state
+/.idea/
+/.vscode/
+*.code-workspace
+
+# Python caches, coverage, and local environments
+__pycache__/
+*.py[cod]
+/.pytest_cache/
+/.mypy_cache/
+/.ruff_cache/
+/.coverage
+/htmlcov/
+/.venv/
+/venv/
+
+# Package-manager stores and installed dependencies
+/.pnpm-store/
+/node_modules/
+/desktop/node_modules/
+
+# Repository-local application state
+/.local/
+/user_data/
+
+# Private developer planning and benchmark evidence
+/benchmarks/
+/phases/
+
+# Generated build, package, and release output
+/.build/
+/.aws-sam/
+/build/
+/dist/
+/releases/
+/desktop/.webpack/
+/desktop/.vite/
+/desktop/.test-dist/
+/desktop/out/
+/desktop/out-*/
+
+# Runtime logs, screenshots, databases, and optimizer result stores
+*.log
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.result-store
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# Permanent repository artwork is intentionally versioned.
+!/assets/**/*.png
+!/assets/**/*.jpg
+!/assets/**/*.jpeg
+!/assets/**/*.webp

@@ -1,0 +1,120 @@
+{
+  "items": [
+    {
+      "id": "fixture-item-enriched-equipped",
+      "ingameId": "fixture-ingame-enriched-equipped",
+      "ingameEquippedId": "fixture-hero-guardian",
+      "equippedById": "fixture-hero-guardian",
+      "equippedByName": "Fixture Guardian",
+      "locked": true,
+      "material": "Hunt",
+      "modId": null,
+      "gear": "Armor",
+      "rank": "Epic",
+      "set": "DefenseSet",
+      "enhance": 15,
+      "level": 85,
+      "name": "Fixture Enriched Armor",
+      "main": {"type": "Defense", "value": 310, "reforgedValue": 310},
+      "substats": [
+        {"type": "HealthPercent", "value": 18, "rolls": 4, "ingameRolls": 4, "reforgedValue": 22},
+        {"type": "EffectResistancePercent", "value": 12, "rolls": 3, "modified": false, "reforgedValue": 15}
+      ],
+      "augmentedStats": {
+        "Attack": 0,
+        "AttackPercent": 0,
+        "Defense": 0,
+        "DefensePercent": 0,
+        "Health": 0,
+        "HealthPercent": 18,
+        "Speed": 0,
+        "CriticalHitChancePercent": 0,
+        "CriticalHitDamagePercent": 0,
+        "EffectivenessPercent": 0,
+        "EffectResistancePercent": 12,
+        "mainType": "Defense",
+        "mainValue": 310
+      },
+      "reforgedStats": {
+        "Attack": 0,
+        "AttackPercent": 0,
+        "Defense": 0,
+        "DefensePercent": 0,
+        "Health": 0,
+        "HealthPercent": 22,
+        "Speed": 0,
+        "CriticalHitChancePercent": 0,
+        "CriticalHitDamagePercent": 0,
+        "EffectivenessPercent": 0,
+        "EffectResistancePercent": 15,
+        "mainType": "Defense",
+        "mainValue": 310
+      },
+      "allowedMods": "|Attack|AttackPercent|Health|Speed|CriticalHitChancePercent|CriticalHitDamagePercent|EffectivenessPercent|",
+      "upgradeable": 1,
+      "reforgeable": 1,
+      "fixtureEnrichedUnknown": {"version": 1}
+    },
+    {
+      "id": "fixture-item-enriched-unequipped",
+      "ingameId": null,
+      "ingameEquippedId": null,
+      "equippedById": null,
+      "equippedByName": null,
+      "locked": false,
+      "material": null,
+      "modId": "fixture-mod-source-id",
+      "gear": "Boots",
+      "rank": "Heroic",
+      "set": "SpeedSet",
+      "enhance": 12,
+      "level": 85,
+      "name": "Fixture Enriched Boots",
+      "main": {"type": "Speed", "value": 35, "reforgedValue": 40},
+      "substats": [
+        {"type": "Health", "value": 250, "rolls": 2, "reforgedValue": 300}
+      ],
+      "augmentedStats": {
+        "Attack": 0,
+        "AttackPercent": 0,
+        "Defense": 0,
+        "DefensePercent": 0,
+        "Health": 250,
+        "HealthPercent": 0,
+        "Speed": 0,
+        "CriticalHitChancePercent": 0,
+        "CriticalHitDamagePercent": 0,
+        "EffectivenessPercent": 0,
+        "EffectResistancePercent": 0,
+        "mainType": "Speed",
+        "mainValue": 35
+      },
+      "reforgedStats": {
+        "Attack": 0,
+        "AttackPercent": 0,
+        "Defense": 0,
+        "DefensePercent": 0,
+        "Health": 300,
+        "HealthPercent": 0,
+        "Speed": 0,
+        "CriticalHitChancePercent": 0,
+        "CriticalHitDamagePercent": 0,
+        "EffectivenessPercent": 0,
+        "EffectResistancePercent": 0,
+        "mainType": "Speed",
+        "mainValue": 40
+      },
+      "allowedMods": "|Attack|AttackPercent|Defense|DefensePercent|HealthPercent|CriticalHitChancePercent|CriticalHitDamagePercent|EffectivenessPercent|EffectResistancePercent|",
+      "upgradeable": 1,
+      "reforgeable": 1
+    }
+  ],
+  "heroes": [
+    {
+      "id": "fixture-hero-guardian",
+      "name": "Fixture Guardian",
+      "stars": 6,
+      "awaken": 5
+    }
+  ]
+}

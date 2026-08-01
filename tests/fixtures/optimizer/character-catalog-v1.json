@@ -1,0 +1,53 @@
+{
+  "schemaId": "e7.optimizer.character-catalog",
+  "schemaVersion": 1,
+  "catalogId": "catalog.synthetic.2026-07-20",
+  "generatedAt": "2026-07-20T10:00:00Z",
+  "source": {
+    "sourceName": "Synthetic Fribbels character data",
+    "sourceVersion": "1.0",
+    "sourceRevision": "fixture-revision-1",
+    "unknownFields": {
+      "upstreamFlags": ["synthetic", {"retained": true}],
+      "upstreamLocale": "en"
+    }
+  },
+  "heroes": [
+    {
+      "heroId": "hero.synthetic.knight",
+      "denseId": 0,
+      "name": "Synthetic Knight",
+      "baseProfiles": [
+        {
+          "profileId": "profile.synthetic.knight.60.6",
+          "denseId": 0,
+          "label": "Level 60 / 6 star",
+          "level": 60,
+          "stars": 6,
+          "finalStats": {
+            "final_stat.attack": 1200,
+            "final_stat.health": 6500,
+            "final_stat.defense": 700,
+            "final_stat.speed": 105,
+            "final_stat.critical_hit_chance": 15,
+            "final_stat.critical_hit_damage": 150,
+            "final_stat.effectiveness": 0,
+            "final_stat.effect_resistance": 0
+          }
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "artifactId": "artifact.synthetic.sword",
+      "denseId": 0,
+      "name": "Synthetic Sword",
+      "maxLevel": 30,
+      "baseAttack": 21,
+      "baseHealth": 32,
+      "maxAttack": 273,
+      "maxHealth": 416
+    }
+  ]
+}

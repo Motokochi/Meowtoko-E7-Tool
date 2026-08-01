@@ -1,0 +1,85 @@
+{
+  "fixtureSetId": "fribbels-gear-txt-synthetic-v1",
+  "sourceRepository": "https://github.com/RexQian/Fribbels-Epic-7-Optimizer",
+  "sourceRevision": "f49b0676c27d893ae4aa1b69920e4c98f37eb3fb",
+  "privacy": "Entirely synthetic; no player export values are included.",
+  "files": [
+    {
+      "name": "valid-scanner-export-utf8.txt",
+      "status": "valid",
+      "variant": "scanner",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "items-and-heroes"
+    },
+    {
+      "name": "valid-scanner-export-bom.txt",
+      "status": "valid",
+      "variant": "scanner",
+      "encoding": "utf-8-sig",
+      "bom": true,
+      "rootShape": "items-and-heroes"
+    },
+    {
+      "name": "valid-items-only-utf8.txt",
+      "status": "valid",
+      "variant": "items-only",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "items-only"
+    },
+    {
+      "name": "valid-enriched-export-utf8.txt",
+      "status": "valid",
+      "variant": "enriched",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "items-and-heroes"
+    },
+    {
+      "name": "invalid-malformed-json.txt",
+      "status": "invalid",
+      "variant": "error",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "unparseable",
+      "errorCategory": "malformed-json"
+    },
+    {
+      "name": "invalid-root-array.txt",
+      "status": "invalid",
+      "variant": "error",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "array",
+      "errorCategory": "wrong-root"
+    },
+    {
+      "name": "invalid-missing-items.txt",
+      "status": "invalid",
+      "variant": "error",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "heroes-only",
+      "errorCategory": "missing-items"
+    },
+    {
+      "name": "invalid-items-object.txt",
+      "status": "invalid",
+      "variant": "error",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "items-object",
+      "errorCategory": "invalid-items-container"
+    },
+    {
+      "name": "invalid-heroes-object.txt",
+      "status": "invalid",
+      "variant": "error",
+      "encoding": "utf-8",
+      "bom": false,
+      "rootShape": "heroes-object",
+      "errorCategory": "invalid-heroes-container"
+    }
+  ]
+}

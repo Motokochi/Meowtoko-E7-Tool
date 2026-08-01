@@ -1,0 +1,47 @@
+{
+  "schemaId": "e7.optimizer.optimizer-profile",
+  "schemaVersion": 1,
+  "profileId": "optimizer-profile.synthetic.001",
+  "name": "Synthetic bruiser target",
+  "description": "A small schema-only fixture.",
+  "savedAt": "2026-07-20T10:10:00Z",
+  "source": {
+    "sourceName": "E7 Optimizer",
+    "sourceVersion": "0.6.0",
+    "sourceRevision": null,
+    "unknownFields": {"ui": {"collapsedSections": ["derived"]}}
+  },
+  "characterCatalogId": "catalog.synthetic.2026-07-20",
+  "configuration": {
+    "heroId": "hero.synthetic.knight",
+    "baseProfileId": "profile.synthetic.knight.60.6",
+    "modifiers": {
+      "artifactId": "artifact.synthetic.sword",
+      "artifactLevel": 30,
+      "imprintLevel": null,
+      "imprintBonuses": {},
+      "exclusiveEquipmentId": null,
+      "exclusiveEquipmentBonuses": {},
+      "customBonuses": {},
+      "skillOptions": []
+    },
+    "setPattern": {"sets": ["set.speed", "set.critical"]},
+    "statRanges": {
+      "final_stat.attack": {"minimum": 3000, "maximum": null},
+      "final_stat.speed": {"minimum": 190, "maximum": 230}
+    },
+    "statPriorities": {
+      "final_stat.attack": 3,
+      "final_stat.speed": 2,
+      "final_stat.effectiveness": -1
+    },
+    "derivedMetricRanges": {
+      "metric.ehp": {"minimum": 50000, "maximum": null}
+    },
+    "includeEquipped": true,
+    "nearSetTolerance": 0.1,
+    "targetDefense": 1200,
+    "resultCap": 5000000,
+    "executionPreference": "execution.auto"
+  }
+}

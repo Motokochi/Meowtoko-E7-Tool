@@ -1,0 +1,42 @@
+{
+  "schemaId": "e7.test.migration-recovery-corpus",
+  "schemaVersion": 1,
+  "fixtureId": "migration-recovery.synthetic.v1",
+  "privacy": "entirely-synthetic-no-user-data",
+  "settings": {
+    "versions": [0, 1],
+    "futureVersion": 99,
+    "recoveryArtifacts": ["settings.json.bak", "settings.json.corrupt"]
+  },
+  "inventoryRepository": {
+    "versions": [0, 1],
+    "versionAuthorities": ["pragma-user-version", "repository-metadata"],
+    "backupKind": "adjacent-integrity-checked-sqlite"
+  },
+  "optimizerProfile": {
+    "versions": [1, 2, 3, 4, 5, 6, 7],
+    "currentVersion": 7,
+    "historicalFieldIntroductions": {
+      "2": ["artifactLimitBreaks", "artifactAttackOverride", "artifactHealthOverride", "artifactDefenseOverride"],
+      "3": ["imprintContribution", "exclusiveEquipmentContribution", "exclusiveEquipmentSkillOptionId"],
+      "4": ["customContributions", "skillContexts"],
+      "5": ["itemProjectionMode"],
+      "6": ["gearFilters"],
+      "7": ["maximumReplacementDistance"]
+    }
+  },
+  "runManifest": {
+    "versions": [1, 2, 3, 4, 5, 6, 7],
+    "currentVersion": 7,
+    "requestMigrationMatchesOptimizerProfile": true
+  },
+  "resultStore": {
+    "formatVersion": 1,
+    "cases": [
+      "completed-with-reproducibility",
+      "stale-owned-incomplete",
+      "corrupt-completed-preserved",
+      "unknown-artifact-preserved"
+    ]
+  }
+}

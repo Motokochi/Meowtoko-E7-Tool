@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "backend": {
+    "name": "e7-core",
+    "version": "0.6.0",
+    "protocolVersion": 1,
+    "layout": "backend/e7-core.exe"
+  },
+  "runtimeMetadata": "Generated from the exact build interpreter and hash-pinned resource manifests into dist/runtime/manifest.json.",
+  "assetPolicy": {
+    "frozenCode": "backend/e7-core.exe and backend/_internal",
+    "immutableBundledData": "Character/artifact snapshot under the frozen backend",
+    "appOwnedMutableData": "%APPDATA%/E7 Hub (preserved compatibility path; never bundled)",
+    "approvedRedistributable": "Hash-pinned CPython/pip CUDA installer helper",
+    "optionalDownloadable": "Pinned CuPy/CUDA sidecar under app-owned user data",
+    "externalUserInstalled": "Ollama, Tesseract OCR, and ADB"
+  },
+  "bundledExecutables": [],
+  "bundledData": [],
+  "migrationAuthorities": [],
+  "optionalComponents": [
+    {
+      "id": "cuda",
+      "classification": "optional-downloadable-component",
+      "package": "cupy-cuda13x[ctk]==14.1.1",
+      "source": "https://pypi.org/simple",
+      "destination": "%APPDATA%/E7 Hub/components/cuda-cupy13",
+      "reason": "The standard CPU package excludes CuPy and NVIDIA wheels. Health Center can install or atomically repair the exact sidecar with its bundled trusted helper.",
+      "downloadNote": "Potentially over 1 GB; installed size can be several GB. A compatible NVIDIA driver is required; CUDA Toolkit and nvcc are not."
+    }
+  ],
+  "externalCapabilities": [
+    {
+      "id": "ollama",
+      "classification": "external-user-installed-capability",
+      "reason": "Ollama remains an independently installed and managed service.",
+      "sourceUrl": "https://github.com/ollama/ollama"
+    },
+    {
+      "id": "tesseract",
+      "classification": "external-user-installed-capability",
+      "reason": "The Tesseract project provides no official modern Windows installer. No arbitrary local or third-party binary is copied into this reproducible release.",
+      "sourceUrl": "https://tesseract-ocr.github.io/tessdoc/Downloads.html"
+    },
+    {
+      "id": "adb",
+      "classification": "external-user-installed-capability",
+      "reason": "Google's Android SDK terms do not grant general redistribution rights for Platform Tools.",
+      "sourceUrl": "https://developer.android.com/tools/releases/platform-tools"
+    }
+  ]
+}

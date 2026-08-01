@@ -1,0 +1,5 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# This lock is authenticated by its byte-level SHA-256 at runtime.
+/requirements-cuda-component-lock.txt text eol=lf

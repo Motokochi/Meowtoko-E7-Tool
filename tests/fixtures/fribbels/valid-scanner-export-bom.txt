@@ -1,0 +1,37 @@
+﻿{
+  "items": [
+    {
+      "id": "fixture-bom-item-id",
+      "code": "fixture_necklace_bom",
+      "ct": 0,
+      "e": 6,
+      "f": "set_hit",
+      "g": 4,
+      "l": true,
+      "mg": 0,
+      "op": [["cri_dmg", 0.4], ["cri", 0.07]],
+      "s": "fixture-bom-source-id",
+      "type": "necklace",
+      "mainStatBaseValue": 40,
+      "mainStatId": "cri_dmg",
+      "mainStatType": "CriticalHitDamagePercent",
+      "mainStatValue": 40,
+      "statMultiplier": 1,
+      "tierMultiplier": 1,
+      "gear": "Necklace",
+      "rank": "Heroic",
+      "set": "HitSet",
+      "enhance": 6,
+      "level": 70,
+      "name": "Fixture BOM Necklace",
+      "main": {"type": "CriticalHitDamagePercent", "value": 40},
+      "substats": [
+        {"type": "CriticalHitChancePercent", "value": 7, "rolls": 2}
+      ],
+      "ingameId": "fixture-bom-item-id",
+      "ingameEquippedId": "undefined",
+      "fixtureUnknownItemField": "preserve-me"
+    }
+  ],
+  "heroes": []
+}

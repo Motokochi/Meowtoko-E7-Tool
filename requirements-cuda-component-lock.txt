@@ -1,0 +1,11 @@
+cupy-cuda13x==14.1.1
+numpy==2.4.4
+cuda-pathfinder==1.5.6
+nvidia-cublas==13.6.0.2
+nvidia-cuda-runtime==13.3.29
+nvidia-cufft==12.3.0.29
+nvidia-curand==10.4.3.29
+nvidia-cusolver==12.2.6.9
+nvidia-cusparse==12.8.2.51
+nvidia-cuda-nvrtc==13.3.33
+nvidia-nvjitlink==13.3.33
