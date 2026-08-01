@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import { rmdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
 
 export const APP_USER_MODEL_ID = 'com.squirrel.E7Hub.E7Hub';
@@ -28,6 +29,28 @@ export interface SquirrelLifecycleOptions {
   spawnDetached?: (command: string, args: readonly string[], options: SpawnOptions) => DetachedProcess;
   scheduleQuit?: (callback: () => void, delayMs: number) => unknown;
   quit?: () => void;
+}
+
+export function retireLegacyShortcuts(appDataPath: string, desktopPath: string): void {
+  const legacyStartMenuDirectory = path.join(
+    appDataPath,
+    'Microsoft',
+    'Windows',
+    'Start Menu',
+    'Programs',
+    'E7 Hub contributors',
+  );
+  try {
+    rmSync(path.join(legacyStartMenuDirectory, 'E7 Hub.lnk'), { force: true });
+    rmSync(path.join(desktopPath, 'E7 Hub.lnk'), { force: true });
+  } catch {
+    // Shortcut retirement must never prevent the application from launching.
+  }
+  try {
+    rmdirSync(legacyStartMenuDirectory);
+  } catch {
+    // Preserve the legacy folder if it contains anything besides the retired shortcut.
+  }
 }
 
 /**

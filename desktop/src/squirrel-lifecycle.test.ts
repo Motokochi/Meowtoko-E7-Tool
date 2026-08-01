@@ -1,11 +1,52 @@
 import assert from 'node:assert/strict';
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
 
-import { APP_USER_MODEL_ID, handleSquirrelLifecycle } from './squirrel-lifecycle';
+import { APP_USER_MODEL_ID, handleSquirrelLifecycle, retireLegacyShortcuts } from './squirrel-lifecycle';
 
 test('uses the stable Squirrel application identity', () => {
   assert.equal(APP_USER_MODEL_ID, 'com.squirrel.E7Hub.E7Hub');
+});
+
+test('retires only the legacy E7 Hub shortcuts', () => {
+  const root = mkdtempSync(path.join(tmpdir(), 'e7-shortcut-migration-'));
+  try {
+    const appDataPath = path.join(root, 'Roaming');
+    const desktopPath = path.join(root, 'Desktop');
+    const legacyDirectory = path.join(
+      appDataPath,
+      'Microsoft',
+      'Windows',
+      'Start Menu',
+      'Programs',
+      'E7 Hub contributors',
+    );
+    const currentDirectory = path.join(
+      appDataPath,
+      'Microsoft',
+      'Windows',
+      'Start Menu',
+      'Programs',
+      'Meowtoko E7 Tool contributors',
+    );
+    mkdirSync(legacyDirectory, { recursive: true });
+    mkdirSync(currentDirectory, { recursive: true });
+    mkdirSync(desktopPath, { recursive: true });
+    writeFileSync(path.join(legacyDirectory, 'E7 Hub.lnk'), 'legacy');
+    writeFileSync(path.join(desktopPath, 'E7 Hub.lnk'), 'legacy');
+    writeFileSync(path.join(currentDirectory, 'Meowtoko E7 Tool.lnk'), 'current');
+
+    retireLegacyShortcuts(appDataPath, desktopPath);
+
+    assert.equal(existsSync(path.join(legacyDirectory, 'E7 Hub.lnk')), false);
+    assert.equal(existsSync(path.join(desktopPath, 'E7 Hub.lnk')), false);
+    assert.equal(existsSync(legacyDirectory), false);
+    assert.equal(existsSync(path.join(currentDirectory, 'Meowtoko E7 Tool.lnk')), true);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 
 for (const event of ['--squirrel-install', '--squirrel-updated'] as const) {

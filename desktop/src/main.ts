@@ -79,7 +79,7 @@ import {
   type SettingsPreview,
   type SettingsSnapshot,
 } from './shared/settings';
-import { APP_USER_MODEL_ID, handleSquirrelLifecycle } from './squirrel-lifecycle';
+import { APP_USER_MODEL_ID, handleSquirrelLifecycle, retireLegacyShortcuts } from './squirrel-lifecycle';
 import { CHARACTER_ARTWORK_SCHEME } from './shared/character-artwork';
 import { focusPrimaryWindow } from './window-lifecycle';
 import {
@@ -619,9 +619,15 @@ if (app.isPackaged && !process.argv.some((argument) => argument.startsWith('--us
   app.setPath('userData', path.join(app.getPath('appData'), 'E7 Hub'));
 }
 
+if (process.platform === 'win32') {
+  retireLegacyShortcuts(app.getPath('appData'), app.getPath('desktop'));
+}
+
 const squirrelMaintenance = handleSquirrelLifecycle({ quit: () => app.quit() });
 if (!squirrelMaintenance) {
-  if (process.platform === 'win32') app.setAppUserModelId(APP_USER_MODEL_ID);
+  if (process.platform === 'win32') {
+    app.setAppUserModelId(APP_USER_MODEL_ID);
+  }
   // Electron's Windows process singleton stores its lock beneath userData. Ensure the
   // isolated profile exists before requesting it (fresh installs and smoke profiles do
   // not have this directory yet).
