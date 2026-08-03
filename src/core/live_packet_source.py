@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import threading
 import time
-from collections import OrderedDict
+from collections import Counter, OrderedDict
 from dataclasses import dataclass, field
 from typing import Any, Callable, Sequence
 
@@ -85,13 +85,15 @@ class LivePacketSource:
         self._packets_seen = 0
         self._game_packets_seen = 0
         self._decoded_messages = 0
+        self._adapter_packets: Counter[str] = Counter()
+        self._tcp_source_ports: Counter[int] = Counter()
         self.last_error: str | None = None
 
     def start(self) -> None:
         if self._sniffer is not None:
             return
         try:
-            from scapy.all import AsyncSniffer, IP, IPv6, Raw, TCP, get_if_list
+            from scapy.all import AsyncSniffer, IP, IPv6, Raw, TCP, get_working_ifaces
         except ImportError as error:
             raise PacketCaptureUnavailable(
                 "Packet capture components are missing. Reinstall Meowtoko E7 Tool, then install Npcap."
@@ -103,7 +105,7 @@ class LivePacketSource:
         self._tcp_layer = TCP
         self._raw_layer = Raw
         try:
-            interfaces = [name for name in get_if_list() if str(name).strip()]
+            interfaces = list(get_working_ifaces())
             if not interfaces:
                 raise PacketCaptureUnavailable("Npcap did not expose any network adapters.")
             self._sniffer = AsyncSniffer(
@@ -205,6 +207,11 @@ class LivePacketSource:
         with self._condition:
             groups = len(self._groups)
             capture_bytes = self._capture_bytes
+            adapters = len(self._adapter_packets)
+            source_ports = [
+                {"port": port, "packets": count}
+                for port, count in self._tcp_source_ports.most_common(8)
+            ]
         return {
             "running": bool(sniffer is not None and getattr(sniffer, "running", False)),
             "packetsSeen": self._packets_seen,
@@ -212,16 +219,24 @@ class LivePacketSource:
             "decodedMessages": self._decoded_messages,
             "capturedGroups": groups,
             "capturedBytes": capture_bytes,
+            "activeAdapters": adapters,
+            "observedTcpSourcePorts": source_ports,
             "lastError": self.last_error,
         }
 
     def _on_packet(self, packet: Any) -> None:
         try:
             self._packets_seen += 1
+            adapter = str(getattr(packet, "sniffed_on", "") or "").strip()
+            if adapter:
+                with self._condition:
+                    self._adapter_packets[adapter] += 1
             if not packet.haslayer(self._tcp_layer) or not packet.haslayer(self._raw_layer):
                 return
             tcp = packet[self._tcp_layer]
             source_port = int(tcp.sport)
+            with self._condition:
+                self._tcp_source_ports[source_port] += 1
             if source_port not in GAME_PORTS:
                 return
             payload = bytes(packet[self._raw_layer].load)

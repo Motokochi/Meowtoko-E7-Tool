@@ -458,9 +458,32 @@ class OptimizerInventoryService:
                 "in Health Center before reopening Epic Seven."
             )
         if game_packets == 0:
+            adapters = int(status.get("activeAdapters") or 0)
+            raw_ports = status.get("observedTcpSourcePorts")
+            ports = []
+            if isinstance(raw_ports, Sequence) and not isinstance(raw_ports, (str, bytes)):
+                for value in raw_ports[:5]:
+                    if not isinstance(value, Mapping):
+                        continue
+                    try:
+                        port = int(value.get("port") or 0)
+                        count = int(value.get("packets") or 0)
+                    except (TypeError, ValueError):
+                        continue
+                    if 0 < port <= 65_535 and count > 0:
+                        ports.append(f"{port} ({count:,})")
+            evidence = (
+                f" Capture received packets on {adapters:,} adapter"
+                f"{'s' if adapters != 1 else ''}."
+                if adapters
+                else ""
+            )
+            if ports:
+                evidence += f" TCP payload source ports observed: {', '.join(ports)}."
             return (
                 f"Packet capture is running and saw {packets:,} network packets, but no "
-                "supported game response traffic. Fully exit the game instead of minimizing "
+                f"supported game response traffic.{evidence} Fully exit the game instead "
+                "of minimizing "
                 "it, reopen it to the main screen, then start a new capture."
             )
         return (

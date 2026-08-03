@@ -86,8 +86,9 @@ class EnhancementPacketTests(unittest.TestCase):
 
         self.assertEqual(group.reassembled(), b"payload")
 
-    def test_live_capture_uses_every_adapter_without_a_fragile_bpf(self):
+    def test_live_capture_uses_validated_adapter_objects_without_a_fragile_bpf(self):
         observed = []
+        interfaces = [object(), object()]
 
         class FakeSniffer:
             running = False
@@ -110,7 +111,7 @@ class EnhancementPacketTests(unittest.TestCase):
         scapy_all.IPv6 = object()
         scapy_all.Raw = object()
         scapy_all.TCP = object()
-        scapy_all.get_if_list = lambda: ["Ethernet", "LDPlayer"]
+        scapy_all.get_working_ifaces = lambda: interfaces
         scapy.all = scapy_all
 
         with patch.dict(sys.modules, {"scapy": scapy, "scapy.all": scapy_all}):
@@ -119,7 +120,7 @@ class EnhancementPacketTests(unittest.TestCase):
             source.stop()
 
         self.assertNotIn("filter", observed[0])
-        self.assertEqual(observed[0]["iface"], ["Ethernet", "LDPlayer"])
+        self.assertEqual(observed[0]["iface"], interfaces)
 
     def test_live_capture_accepts_port_5222_ipv6_responses(self):
         source = self._source_with_layers()
@@ -130,10 +131,23 @@ class EnhancementPacketTests(unittest.TestCase):
 
     def test_live_capture_ignores_unrelated_server_ports(self):
         source = self._source_with_layers()
-        source._on_packet(self._packet(source, sport=443, payload=b"private-web-data"))
+        source._on_packet(
+            self._packet(
+                source,
+                sport=443,
+                payload=b"private-web-data",
+                sniffed_on="Ethernet",
+            )
+        )
 
         self.assertEqual(source.captured_payloads(), [])
-        self.assertEqual(source.capture_status()["gamePacketsSeen"], 0)
+        status = source.capture_status()
+        self.assertEqual(status["gamePacketsSeen"], 0)
+        self.assertEqual(status["activeAdapters"], 1)
+        self.assertEqual(
+            status["observedTcpSourcePorts"],
+            [{"port": 443, "packets": 1}],
+        )
 
     def test_enhancer_reads_only_payloads_after_its_action_boundary(self):
         received = []
@@ -166,13 +180,16 @@ class EnhancementPacketTests(unittest.TestCase):
         return source
 
     @staticmethod
-    def _packet(source, *, sport, payload, ack=1, ipv6=False):
+    def _packet(source, *, sport, payload, ack=1, ipv6=False, sniffed_on=None):
         tcp = SimpleNamespace(sport=sport, dport=50000, seq=100, ack=ack)
         ip = SimpleNamespace(src="2001:db8::1" if ipv6 else "198.51.100.7", dst="192.0.2.2")
         raw = SimpleNamespace(load=payload)
         ip_layer = source._ipv6_layer if ipv6 else source._ip_layer
 
         class Packet:
+            def __init__(self):
+                self.sniffed_on = sniffed_on
+
             def haslayer(self, layer):
                 return layer in {source._tcp_layer, ip_layer, source._raw_layer}
 

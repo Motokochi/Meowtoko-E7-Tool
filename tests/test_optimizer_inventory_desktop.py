@@ -249,8 +249,13 @@ class OptimizerInventoryDesktopServiceTests(unittest.TestCase):
                     "packetsSeen": 50,
                     "gamePacketsSeen": 0,
                     "decodedMessages": 0,
+                    "activeAdapters": 2,
+                    "observedTcpSourcePorts": [
+                        {"port": 443, "packets": 30},
+                        {"port": 853, "packets": 5},
+                    ],
                 },
-                "no supported game response traffic",
+                "TCP payload source ports observed: 443 (30), 853 (5)",
             ),
             (
                 {
