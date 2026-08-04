@@ -1,29 +1,46 @@
+import struct
+import tempfile
 import unittest
+import urllib.error
+from pathlib import Path
+from unittest.mock import patch
 
 from PIL import Image
 
 from scripts.build_packaged_character_assets import validate_visible_image
-from scripts.download_e7codex_character_assets import ASSET_DIRECTORY_OVERRIDES
+from scripts.download_e7codex_character_assets import (
+    Character,
+    DownloadTask,
+    PNG_SIGNATURE,
+    _download_task,
+)
 
 
 class CharacterAssetPipelineTests(unittest.TestCase):
-    def test_revisioned_e7_codex_asset_directories_are_pinned(self) -> None:
-        self.assertEqual(
-            ASSET_DIRECTORY_OVERRIDES,
-            {
-                "c1180": "c1180_1",
-                "c1183": "c1183_1",
-                "c2076": "c2076_1",
-                "c2148": "c2148_1",
-                "c2181": "c2181_1",
-                "c2184": "c2184_1",
-                "c2185": "c2185_1",
-                "c5069": "c5069_1",
-                "c5147": "c5147_1",
-                "c5190": "c5190_1",
-                "c6024": "c6024_1",
-            },
-        )
+    def test_revisioned_asset_falls_back_to_the_base_asset_on_404(self) -> None:
+        character = Character("c1234", "c1234", "Example", "example", "Example")
+        with tempfile.TemporaryDirectory() as temporary:
+            task = DownloadTask(
+                character,
+                "pose",
+                ("https://example/c1234_1/pose.png", "https://example/c1234/pose.png"),
+                Path(temporary) / "pose.png",
+            )
+            png = PNG_SIGNATURE + b"\x00\x00\x00\rIHDR" + struct.pack(">II", 1, 1)
+            calls = []
+
+            def download(url: str, _timeout: float) -> bytes:
+                calls.append(url)
+                if "c1234_1" in url:
+                    raise urllib.error.HTTPError(url, 404, "missing", {}, None)
+                return png
+
+            with patch("scripts.download_e7codex_character_assets._download_bytes", download):
+                result = _download_task(task, force=True, retries=1, timeout=1)
+
+        self.assertEqual(calls, list(task.source_urls))
+        self.assertEqual(result["status"], "available")
+        self.assertEqual(result["sourceUrl"], task.source_urls[-1])
 
     def test_fully_transparent_artwork_is_rejected(self) -> None:
         image = Image.new("RGBA", (4, 4), (0, 0, 0, 0))

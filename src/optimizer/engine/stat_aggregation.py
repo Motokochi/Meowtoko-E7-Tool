@@ -34,6 +34,8 @@ FRIBBELS_STAT_CALCULATOR_PATH = (
 FRIBBELS_STAT_CALCULATOR_GIT_BLOB_SHA1 = "dfd9b1e363905a0aef3a2fca2e3369acde8d020e"
 FRIBBELS_GPU_KERNEL_PATH = "backend/src/main/java/com/fribbels/gpu/GpuOptimizerKernel.java"
 FRIBBELS_GPU_KERNEL_GIT_BLOB_SHA1 = "80d34477fd0548be8f63f4086884756febac5425"
+FRIBBELS_REFORGE_PATH = "app/js/lib/reforge.js"
+FRIBBELS_REFORGE_GIT_BLOB_SHA1 = "085ebd7f0d55b497e7467fd111a5e85a20adba02"
 
 
 Number = int | float
@@ -148,6 +150,87 @@ def _raise_invalid_fribbels_evidence(value: object) -> ItemProjectionEvidence:
         "item.projection.evidence",
         f"Unsupported Fribbels projection evidence state {value!r}.",
     )
+
+
+_REFORGED_MAIN_VALUES = {
+    ItemStatType.FLAT_ATTACK: 525,
+    ItemStatType.FLAT_HEALTH: 2835,
+    ItemStatType.FLAT_DEFENSE: 310,
+    ItemStatType.ATTACK_PERCENT: 65,
+    ItemStatType.HEALTH_PERCENT: 65,
+    ItemStatType.DEFENSE_PERCENT: 65,
+    ItemStatType.SPEED: 45,
+    ItemStatType.CRITICAL_HIT_CHANCE_PERCENT: 60,
+    ItemStatType.CRITICAL_HIT_DAMAGE_PERCENT: 70,
+    ItemStatType.EFFECTIVENESS_PERCENT: 65,
+    ItemStatType.EFFECT_RESISTANCE_PERCENT: 65,
+}
+_PLAIN_REFORGE_BONUS = {1: 1, 2: 3, 3: 4, 4: 5, 5: 7, 6: 8}
+_CRIT_DAMAGE_REFORGE_BONUS = {1: 1, 2: 2, 3: 3, 4: 4, 5: 6, 6: 7}
+_SPEED_REFORGE_BONUS = {1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 4}
+_PLAIN_PERCENT_STATS = frozenset({
+    ItemStatType.ATTACK_PERCENT,
+    ItemStatType.HEALTH_PERCENT,
+    ItemStatType.DEFENSE_PERCENT,
+    ItemStatType.EFFECTIVENESS_PERCENT,
+    ItemStatType.EFFECT_RESISTANCE_PERCENT,
+})
+
+
+def _predicted_reforge(item: object) -> tuple[StatTotals, Number] | None:
+    gear = item.gear_item
+    if gear.item_level != 85 or (
+        isinstance(item.name, str) and "gaveleet" in item.name.casefold()
+    ):
+        return None
+
+    totals = dict(item.projection.current_totals)
+    raw_main = item.source_metadata.get("main")
+    supplied_main = raw_main.get("reforgedValue") if isinstance(raw_main, Mapping) else None
+    reforged_main = (
+        supplied_main
+        if isinstance(supplied_main, Real)
+        and not isinstance(supplied_main, bool)
+        and math.isfinite(supplied_main)
+        and supplied_main >= 0
+        else _REFORGED_MAIN_VALUES[gear.main_stat]
+    )
+    totals[gear.main_stat] += reforged_main - gear.main_stat_value
+
+    for stat, value, raw in item.source_substat_rows():
+        if raw is None:
+            return None
+        supplied = raw.get("reforgedValue")
+        if (
+            isinstance(supplied, Real)
+            and not isinstance(supplied, bool)
+            and math.isfinite(supplied)
+            and supplied >= 0
+        ):
+            reforged_value = supplied
+        else:
+            rolls = raw.get("rolls")
+            if isinstance(rolls, bool) or not isinstance(rolls, int):
+                rolls = raw.get("ingameRolls")
+            if isinstance(rolls, bool) or not isinstance(rolls, int) or rolls not in range(1, 7):
+                return None
+            if stat in _PLAIN_PERCENT_STATS:
+                reforged_value = value + _PLAIN_REFORGE_BONUS[rolls]
+            elif stat is ItemStatType.CRITICAL_HIT_CHANCE_PERCENT:
+                reforged_value = value + rolls
+            elif stat is ItemStatType.CRITICAL_HIT_DAMAGE_PERCENT:
+                reforged_value = value + _CRIT_DAMAGE_REFORGE_BONUS[rolls]
+            elif stat is ItemStatType.FLAT_ATTACK:
+                reforged_value = value + 11 * rolls
+            elif stat is ItemStatType.FLAT_DEFENSE:
+                reforged_value = value + 9 * rolls
+            elif stat is ItemStatType.FLAT_HEALTH:
+                reforged_value = value + 56 * rolls
+            else:
+                reforged_value = value + _SPEED_REFORGE_BONUS[rolls]
+        totals[stat] += reforged_value - value
+
+    return tuple((stat, totals[stat]) for stat in ItemStatType), reforged_main
 
 
 @dataclass(frozen=True, slots=True)
@@ -311,6 +394,11 @@ class ProjectedGearItem:
             and raw_reforged_main >= 0
             else item.gear_item.main_stat_value
         )
+        reforged_totals = item.projection.reforged_totals
+        if getattr(item.projection.reforged_evidence, "value", None) == "missing":
+            predicted = _predicted_reforge(item)
+            if predicted is not None:
+                reforged_totals, reforged_main = predicted
         return cls(
             item_id=item.stable_item_id,
             dense_id=dense_id,
@@ -318,7 +406,7 @@ class ProjectedGearItem:
             gear_set=item.gear_item.gear_set,
             current_totals=item.projection.current_totals,
             current_evidence=_fribbels_evidence(item.projection.augmented_evidence),
-            reforged_totals=item.projection.reforged_totals,
+            reforged_totals=reforged_totals,
             reforged_evidence=_fribbels_evidence(item.projection.reforged_evidence),
             main_stat=item.gear_item.main_stat,
             current_main_value=item.gear_item.main_stat_value,

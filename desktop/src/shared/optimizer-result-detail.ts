@@ -40,6 +40,10 @@ export interface OptimizerGearStat {
   value: number;
 }
 
+export interface OptimizerGearSubstat extends OptimizerGearStat {
+  reforgedValue: number;
+}
+
 export interface OptimizerOwnedGearDetail {
   gearKey: string;
   slotId: string;
@@ -55,7 +59,7 @@ export interface OptimizerOwnedGearDetail {
   equippedStatus: 'unequipped' | 'selected-hero' | 'other-hero';
   equippedHeroName: string | null;
   mainStat: OptimizerGearStat;
-  substats: OptimizerGearStat[];
+  substats: OptimizerGearSubstat[];
 }
 
 export interface OptimizerDetailSet {
@@ -149,6 +153,12 @@ function isGearStat(value: unknown): value is OptimizerGearStat {
     && text(value.statId) && text(value.label) && finite(value.value);
 }
 
+function isGearSubstat(value: unknown): value is OptimizerGearSubstat {
+  return record(value) && exact(value, ['statId', 'label', 'value', 'reforgedValue'])
+    && text(value.statId) && text(value.label)
+    && finite(value.value) && finite(value.reforgedValue);
+}
+
 export function isOptimizerOwnedGearDetail(
   value: unknown,
   slotId?: string,
@@ -176,7 +186,7 @@ export function isOptimizerOwnedGearDetail(
         : value.equippedHeroName === null || text(value.equippedHeroName)
     )
     && isGearStat(value.mainStat)
-    && Array.isArray(value.substats) && value.substats.length <= 4 && value.substats.every(isGearStat);
+    && Array.isArray(value.substats) && value.substats.length <= 4 && value.substats.every(isGearSubstat);
 }
 
 function isDetailSet(value: unknown): value is OptimizerDetailSet {

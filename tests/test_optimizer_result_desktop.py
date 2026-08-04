@@ -113,6 +113,7 @@ class OptimizerResultDesktopTests(unittest.TestCase):
         category: str = "exact",
         equipped_owners: bool = False,
         overflowing_crit: bool = False,
+        source_order: bool = False,
     ):
         temporary = tempfile.TemporaryDirectory(prefix="e7-result-desktop-")
         self.addCleanup(temporary.cleanup)
@@ -130,6 +131,13 @@ class OptimizerResultDesktopTests(unittest.TestCase):
             )
             for index, slot in enumerate(GEAR_SLOT_ORDER)
         ]
+        if source_order:
+            rows[0]["substats"] = [
+                {"type": "EffectivenessPercent", "value": 8, "reforgedValue": 10},
+                {"type": "CriticalHitChancePercent", "value": 9, "reforgedValue": 11},
+                {"type": "HealthPercent", "value": 17, "reforgedValue": 20},
+                {"type": "Speed", "value": 16, "reforgedValue": 19},
+            ]
         if overflowing_crit:
             for row in rows:
                 row["substats"] = [{
@@ -175,8 +183,8 @@ class OptimizerResultDesktopTests(unittest.TestCase):
         self.addCleanup(controller.close)
         return root, run_id, controller, events
 
-    def _completed_detail(self, category: str) -> dict:
-        _root, run_id, controller, _events = self._fixture(category=category)
+    def _completed_detail(self, category: str, **fixture_options: object) -> dict:
+        _root, run_id, controller, _events = self._fixture(category=category, **fixture_options)
         controller.query(_query(run_id))
         page = _wait(controller)
         self.assertEqual("completed", page["state"])
@@ -296,6 +304,23 @@ class OptimizerResultDesktopTests(unittest.TestCase):
         self.assertEqual(15, len(detail["constraints"]["derived"]))
         self.assertTrue(all(item["rankLabel"] == "Epic" for item in detail["gear"]))
         self.assertTrue(all(item["equippedHeroName"] is None for item in detail["gear"]))
+
+    def test_optimizer_gear_cards_keep_the_game_substat_order(self) -> None:
+        detail = self._completed_detail("exact", source_order=True)
+
+        self.assertEqual(
+            [
+                "item_stat.effectiveness_percent",
+                "item_stat.critical_hit_chance_percent",
+                "item_stat.health_percent",
+                "item_stat.speed",
+            ],
+            [stat["statId"] for stat in detail["gear"][0]["substats"]],
+        )
+        self.assertEqual(
+            [10, 11, 20, 19],
+            [stat["reforgedValue"] for stat in detail["gear"][0]["substats"]],
+        )
 
     def test_results_display_filter_and_detail_use_raw_overflowing_critical_hit_chance(self) -> None:
         _root, run_id, controller, _events = self._fixture(overflowing_crit=True)

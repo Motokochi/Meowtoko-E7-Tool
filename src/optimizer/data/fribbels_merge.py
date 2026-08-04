@@ -20,7 +20,13 @@ from src.optimizer.data.schema_common import (
     deterministic_json,
     freeze_json_object,
 )
-from src.optimizer.domain import GearItem, GearRank, ItemStatType, ReforgeMaterial
+from src.optimizer.domain import (
+    GearItem,
+    GearRank,
+    ItemStatType,
+    ReforgeMaterial,
+    item_stat_from_fribbels,
+)
 
 
 FRIBBELS_FINGERPRINT_VERSION = 1
@@ -266,6 +272,29 @@ class FribbelsInventoryItem:
             for identity in self.identities
             if identity.kind is FribbelsIdentityKind.FINGERPRINT
         )
+
+    def source_substat_rows(
+        self,
+    ) -> tuple[tuple[ItemStatType, int | float, Mapping[str, object] | None], ...]:
+        """Return substats in the same order supplied by the game export."""
+
+        values = dict(self.gear_item.substats)
+        source_by_stat: dict[ItemStatType, Mapping[str, object]] = {}
+        raw_substats = self.source_metadata.get("substats")
+        if isinstance(raw_substats, Sequence) and not isinstance(raw_substats, (str, bytes)):
+            for raw in raw_substats:
+                if not isinstance(raw, Mapping):
+                    continue
+                try:
+                    stat = item_stat_from_fribbels(raw.get("type"))
+                except (TypeError, ValueError):
+                    continue
+                if stat in values and stat not in source_by_stat:
+                    source_by_stat[stat] = raw
+
+        ordered = [*source_by_stat]
+        ordered.extend(stat for stat, _value in self.gear_item.substats if stat not in source_by_stat)
+        return tuple((stat, values[stat], source_by_stat.get(stat)) for stat in ordered)
 
 
 @dataclass(frozen=True, slots=True)

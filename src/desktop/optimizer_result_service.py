@@ -27,10 +27,12 @@ from src.optimizer.domain import (
     GEAR_RANK_CATALOG,
     GEAR_SLOT_CATALOG,
     ITEM_STAT_CATALOG,
+    ItemProjectionMode,
     RESULT_CATEGORY_ORDER,
     SET_CATALOG,
     ResultCategory,
 )
+from src.optimizer.engine import ProjectedGearItem
 from src.optimizer.result_store import (
     CompletedResultSortIndex,
     MAX_PAGE_SIZE,
@@ -467,6 +469,12 @@ def _public_gear(
             if canonical_owner is not None
             else None
         )
+        projected = ProjectedGearItem.from_fribbels_inventory_item(stored)
+        reforged_substats = dict(projected.totals_for(ItemProjectionMode.REFORGED))
+        assert projected.main_stat is not None
+        reforged_substats[projected.main_stat] -= projected.main_value_for(
+            ItemProjectionMode.REFORGED
+        )
         result.append({
             "gearKey": gear_key,
             "slotId": gear.slot.value,
@@ -491,8 +499,9 @@ def _public_gear(
                     "statId": stat.value,
                     "label": ITEM_STAT_CATALOG[stat].display_name,
                     "value": value,
+                    "reforgedValue": reforged_substats[stat],
                 }
-                for stat, value in gear.substats
+                for stat, value, _raw in stored.source_substat_rows()
             ],
         })
     return result

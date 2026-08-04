@@ -45,8 +45,8 @@ export const IMPORT_RESULT: OptimizerInventoryImportResult = {
       equippedHeroName: 'Alencia',
       mainStat: { statId: 'item_stat.flat_defense', label: 'Flat Defense', value: 310 },
       substats: [
-        { statId: 'item_stat.health_percent', label: 'Health', value: 18 },
-        { statId: 'item_stat.effect_resistance_percent', label: 'Effect Resistance', value: 12 },
+        { statId: 'item_stat.health_percent', label: 'Health', value: 18, reforgedValue: 20 },
+        { statId: 'item_stat.effect_resistance_percent', label: 'Effect Resistance', value: 12, reforgedValue: 15 },
       ],
     }],
     lastImport: {

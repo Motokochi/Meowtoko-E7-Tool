@@ -127,7 +127,7 @@ const GEAR: OptimizerOwnedGearDetail[] = GEAR_SLOTS.map(([slotId, slotLabel], in
   equippedStatus: index === 1 ? 'other-hero' : index === 2 ? 'selected-hero' : 'unequipped',
   equippedHeroName: index === 1 ? 'Alencia' : index === 2 ? 'Setsuka' : null,
   mainStat: { statId: 'item_stat.flat_attack', label: 'Flat Attack', value: 500 },
-  substats: [{ statId: 'item_stat.speed', label: 'Speed', value: 12 }],
+  substats: [{ statId: 'item_stat.speed', label: 'Speed', value: 12, reforgedValue: 14 }],
 }));
 
 const PRIMARY_CONSTRAINTS = OPTIMIZER_PRIMARY_STATS.map(({ key, label }, index) => ({
@@ -376,6 +376,8 @@ test('selected exact build panel shows six compact owned-gear cards, equipped fa
   />);
   assert.match(exactMarkup, /Equip these six pieces/);
   assert.equal((exactMarkup.match(/class="optimizer-gear-card"/g) ?? []).length, 6);
+  assert.match(exactMarkup, /setspeed\.png/);
+  assert.match(exactMarkup, /12 → 14/);
   assert.equal((exactMarkup.match(/Lv 85/g) ?? []).length, 6);
   assert.match(exactMarkup, /Sets complete/);
   assert.match(exactMarkup, /GS 70/);

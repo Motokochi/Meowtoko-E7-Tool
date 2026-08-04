@@ -49,21 +49,6 @@ VARIANTS = ("pose", "face_l", "face_s", "face_su")
 ASSET_CODE_OVERRIDES = {
     "c5004": "m9194",  # Archdemon's Shadow -> Archdemon Mercedes
 }
-# Some heroes keep their base code in filenames but publish the current render
-# from a revisioned asset directory.
-ASSET_DIRECTORY_OVERRIDES = {
-    "c1180": "c1180_1",  # Ruiza
-    "c1183": "c1183_1",  # Estelle
-    "c2076": "c2076_1",  # Shepherd of the Dark Diene
-    "c2148": "c2148_1",  # Tidal Rift Elvira
-    "c2181": "c2181_1",  # Notos
-    "c2184": "c2184_1",  # Salome
-    "c2185": "c2185_1",  # Rhianna and Luciella
-    "c5069": "c5069_1",  # Aubade Ludwig
-    "c5147": "c5147_1",  # Eye of the Abyss Fumyr
-    "c5190": "c5190_1",  # Aube
-    "c6024": "c6024_1",  # Monarch of the Sword Iseria
-}
 WINDOWS_RESERVED_NAMES = {
     "CON",
     "PRN",
@@ -87,7 +72,7 @@ class Character:
 class DownloadTask:
     character: Character
     variant: str
-    source_url: str
+    source_urls: tuple[str, str]
     destination: Path
 
 
@@ -242,47 +227,54 @@ def _download_task(
             return {
                 "status": "available",
                 "reused": True,
+                "sourceUrl": task.source_urls[0],
                 **_file_metadata(task.destination),
             }
         except (OSError, ValueError):
             pass
 
-    failure: Exception | None = None
-    for attempt in range(1, retries + 1):
-        try:
-            data = _download_bytes(task.source_url, timeout)
-            task.destination.parent.mkdir(parents=True, exist_ok=True)
-            temporary = task.destination.with_name(
-                f".{task.destination.name}.{os.getpid()}.{threading.get_ident()}.part"
-            )
+    for source_url in task.source_urls:
+        failure: Exception | None = None
+        for attempt in range(1, retries + 1):
             try:
-                temporary.write_bytes(data)
-                os.replace(temporary, task.destination)
-            finally:
-                temporary.unlink(missing_ok=True)
-            return {
-                "status": "available",
-                "reused": False,
-                **_file_metadata(task.destination),
-            }
-        except urllib.error.HTTPError as error:
-            if error.code == 404:
+                data = _download_bytes(source_url, timeout)
+                task.destination.parent.mkdir(parents=True, exist_ok=True)
+                temporary = task.destination.with_name(
+                    f".{task.destination.name}.{os.getpid()}.{threading.get_ident()}.part"
+                )
+                try:
+                    temporary.write_bytes(data)
+                    os.replace(temporary, task.destination)
+                finally:
+                    temporary.unlink(missing_ok=True)
                 return {
-                    "status": "missing",
+                    "status": "available",
                     "reused": False,
-                    "httpStatus": 404,
-                    "message": "E7 Codex does not publish this image.",
+                    "sourceUrl": source_url,
+                    **_file_metadata(task.destination),
                 }
-            failure = error
-        except (OSError, TimeoutError, urllib.error.URLError, ValueError) as error:
-            failure = error
-        if attempt < retries:
-            time.sleep(min(4.0, 0.5 * (2 ** (attempt - 1))))
+            except urllib.error.HTTPError as error:
+                if error.code == 404:
+                    break
+                failure = error
+            except (OSError, TimeoutError, urllib.error.URLError, ValueError) as error:
+                failure = error
+            if attempt < retries:
+                time.sleep(min(4.0, 0.5 * (2 ** (attempt - 1))))
+        if failure is not None:
+            return {
+                "status": "error",
+                "reused": False,
+                "sourceUrl": source_url,
+                "message": f"{type(failure).__name__}: {failure}",
+            }
 
     return {
-        "status": "error",
+        "status": "missing",
         "reused": False,
-        "message": f"{type(failure).__name__}: {failure}",
+        "sourceUrl": task.source_urls[-1],
+        "httpStatus": 404,
+        "message": "E7 Codex does not publish this image.",
     }
 
 
@@ -358,9 +350,9 @@ def run(arguments: argparse.Namespace) -> int:
         DownloadTask(
             character=character,
             variant=variant,
-            source_url=(
-                f"{base_url}/{ASSET_DIRECTORY_OVERRIDES.get(character.code, character.asset_code)}/"
-                f"{_source_filename(character.asset_code, variant)}"
+            source_urls=(
+                f"{base_url}/{character.asset_code}_1/{_source_filename(character.asset_code, variant)}",
+                f"{base_url}/{character.asset_code}/{_source_filename(character.asset_code, variant)}",
             ),
             destination=destination / character.folder / _local_filename(variant),
         )
@@ -392,7 +384,6 @@ def run(arguments: argparse.Namespace) -> int:
             result = future.result()
             result.update({
                 "path": f"{task.character.folder}/{_local_filename(task.variant)}",
-                "sourceUrl": task.source_url,
             })
             results[(task.character.code, task.variant)] = result
             with progress_lock:

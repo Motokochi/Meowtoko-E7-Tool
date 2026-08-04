@@ -14,10 +14,15 @@ test('renders the compact +15 gear table and selected-row archetype verdict', ()
   assert.match(markup, />RGS</);
   assert.match(markup, />CGS</);
   assert.match(markup, />SGS</);
+  assert.match(markup, />Fit</);
+  assert.equal(markup.match(/>Destroy</g)?.length, 2);
   assert.match(markup, /ARCHETYPE ANALYSIS/);
   assert.match(markup, /Destroy/);
   assert.match(markup, /no compatible archetype or heroes/i);
   assert.match(markup, /geararmor\.png/);
+  assert.match(markup, /setdefense\.png/);
+  assert.match(markup, /HP 20%/);
+  assert.doesNotMatch(markup, /HP 18%/);
   assert.match(markup, /variant=face_s/);
   assert.doesNotMatch(markup, /The card shows/);
   assert.doesNotMatch(markup, /View/);

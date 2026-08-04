@@ -7,6 +7,7 @@ import necklaceIcon from '../../assets/equipment/slots/gearnecklace.png';
 import ringIcon from '../../assets/equipment/slots/gearring.png';
 import weaponIcon from '../../assets/equipment/slots/gearweapon.png';
 import { characterArtworkUrl } from './shared/character-artwork';
+import { FRIBBELS_SET_ICONS } from './fribbels-set-icons';
 import type { OptimizerResultDetailWorkspaceState } from './optimizer-result-detail-workspace';
 import type {
   OptimizerOwnedGearDetail,
@@ -100,7 +101,9 @@ export function GearCard({
         </div>
         {equipped && <EquippedHeroFace heroName={gear.equippedHeroName} />}
         <span className="optimizer-gear-set" title={`${gear.setLabel} set`}>
-          <i aria-hidden="true" />{gear.setLabel}
+          {FRIBBELS_SET_ICONS[gear.setId]
+            ? <img alt={`${gear.setLabel} set`} src={FRIBBELS_SET_ICONS[gear.setId]} />
+            : gear.setLabel}
         </span>
       </header>
 
@@ -113,7 +116,11 @@ export function GearCard({
         {gear.substats.map((stat) => (
           <div key={stat.statId}>
             <dt>{stat.label}</dt>
-            <dd>{formatGearValue(stat.statId, stat.value)}</dd>
+            <dd>
+              {formatGearValue(stat.statId, stat.value)}
+              {' → '}
+              {formatGearValue(stat.statId, stat.reforgedValue)}
+            </dd>
           </div>
         ))}
       </dl>

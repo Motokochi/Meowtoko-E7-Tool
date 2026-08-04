@@ -116,13 +116,18 @@ function GearFilterDialog({
   ): React.JSX.Element => (
     <div className="gear-filter-checks">
       {options.map((option) => (
-        <label key={option.id}>
+        <label key={option.id} title={name === 'setIds' ? `${option.label} set` : undefined}>
           <input
             checked={filters[name].includes(option.id)}
             onChange={() => onChange({ ...filters, [name]: toggle(filters[name], option.id) })}
             type="checkbox"
           />
-          <span>{option.label}</span>
+          {name === 'setIds' && FRIBBELS_SET_ICONS[option.id] ? (
+            <>
+              <img alt="" aria-hidden="true" className="gear-filter-set-icon" src={FRIBBELS_SET_ICONS[option.id]} />
+              <span className="sr-only">{option.label}</span>
+            </>
+          ) : <span>{option.label}</span>}
         </label>
       ))}
     </div>
@@ -269,7 +274,7 @@ export function GearCenter({
     if (sortBy.startsWith('stat:')) {
       const statId = sortBy.slice(5);
       const statValue = (item: OptimizerInventoryGearItem): number => (
-        item.substats.find((stat) => stat.statId === statId)?.value ?? -1
+        item.substats.find((stat) => stat.statId === statId)?.reforgedValue ?? -1
       );
       comparison = statValue(left) - statValue(right);
     } else if (sortBy === 'setLabel') {
@@ -407,6 +412,7 @@ export function GearCenter({
                   <col className="gear-score-column" />
                   <col className="gear-score-column" />
                   <col className="gear-score-column" />
+                  <col className="gear-verdict-column" />
                   <col className="gear-owner-column" />
                 </colgroup>
                 <thead>
@@ -418,6 +424,7 @@ export function GearCenter({
                     <th title="Reforged Gear Score">RGS</th>
                     <th title="Combat Gear Score">CGS</th>
                     <th title="Support Gear Score">SGS</th>
+                    <th>Fit</th>
                     <th>Equipped</th>
                   </tr>
                 </thead>
@@ -453,13 +460,24 @@ export function GearCenter({
                       <td>
                         <div className="gear-substat-cell">
                           {item.substats.map((stat) => (
-                            <span key={stat.statId}>{formatStat(stat)}</span>
+                            <span key={stat.statId}>{formatStat({ ...stat, value: stat.reforgedValue })}</span>
                           ))}
                         </div>
                       </td>
                       <td><strong>{item.reforgedGearScore}</strong></td>
                       <td>{item.combatGearScore}</td>
                       <td>{item.supportGearScore}</td>
+                      <td title={item.archetypeAnalysis.reason}>
+                        <Badge tone={
+                          item.archetypeAnalysis.verdict === 'keep'
+                            ? 'success'
+                            : item.archetypeAnalysis.verdict === 'destroy' ? 'danger' : 'warning'
+                        }>
+                          {item.archetypeAnalysis.verdict === 'keep'
+                            ? 'Keep'
+                            : item.archetypeAnalysis.verdict === 'destroy' ? 'Destroy' : 'Review'}
+                        </Badge>
+                      </td>
                       <td>
                         {item.equippedStatus === 'unequipped' ? (
                           <span className="gear-owner-empty">Unequipped</span>
@@ -473,7 +491,7 @@ export function GearCenter({
                     </tr>
                   ))}
                   {visible.length === 0 && (
-                    <tr><td className="gear-no-results" colSpan={8}>No +15 gear matches these filters.</td></tr>
+                    <tr><td className="gear-no-results" colSpan={9}>No +15 gear matches these filters.</td></tr>
                   )}
                 </tbody>
               </table>

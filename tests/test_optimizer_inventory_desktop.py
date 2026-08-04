@@ -95,6 +95,80 @@ class OptimizerInventoryDesktopServiceTests(unittest.TestCase):
             self.assertNotIn("private-invalid-value", encoded)
             self.assertNotIn(str(source), encoded)
 
+    def test_substats_keep_game_order_and_rolls_follow_their_stat_type(self) -> None:
+        item = {
+            "ingameId": "roll-order-regression",
+            "gear": "Necklace",
+            "rank": "Epic",
+            "set": "SpeedSet",
+            "enhance": 15,
+            "level": 90,
+            "main": {"type": "HealthPercent", "value": 65},
+            "substats": [
+                {"type": "EffectivenessPercent", "value": 8, "rolls": 1, "ingameRolls": 1},
+                {"type": "CriticalHitChancePercent", "value": 9, "rolls": 2, "ingameRolls": 2},
+                {"type": "DefensePercent", "value": 17, "rolls": 2, "ingameRolls": 2},
+                {"type": "Speed", "value": 16, "rolls": 4, "ingameRolls": 4},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "gear.txt"
+            source.write_text(json.dumps({"items": [item]}), encoding="utf-8")
+
+            gear = self._service(root / "data").import_file(source)["inventory"]["gear"][0]
+
+        self.assertEqual(
+            [
+                "item_stat.effectiveness_percent",
+                "item_stat.critical_hit_chance_percent",
+                "item_stat.defense_percent",
+                "item_stat.speed",
+            ],
+            [stat["statId"] for stat in gear["substats"]],
+        )
+        match = next(
+            match for match in gear["archetypeAnalysis"]["matches"]
+            if match["id"] == "health-bruiser-critical-hit-chance-critical-hit-damage-defense-health-speed"
+        )
+        self.assertEqual(
+            [{
+                "statId": "item_stat.effectiveness_percent",
+                "label": "Effectiveness",
+                "rolls": 1,
+            }],
+            match["offStats"],
+        )
+        self.assertEqual("eligible", match["status"])
+
+    def test_reforged_scores_are_predicted_from_packet_roll_counts(self) -> None:
+        item = {
+            "ingameId": "reforge-score-regression",
+            "gear": "Ring",
+            "rank": "Epic",
+            "set": "DefenseSet",
+            "enhance": 15,
+            "level": 85,
+            "main": {"type": "EffectResistancePercent", "value": 60},
+            "substats": [
+                {"type": "AttackPercent", "value": 20, "rolls": 3, "ingameRolls": 3},
+                {"type": "CriticalHitDamagePercent", "value": 12, "rolls": 2, "ingameRolls": 2},
+                {"type": "DefensePercent", "value": 17, "rolls": 3, "ingameRolls": 3},
+                {"type": "HealthPercent", "value": 7, "rolls": 1, "ingameRolls": 1},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "gear.txt"
+            source.write_text(json.dumps({"items": [item]}), encoding="utf-8")
+
+            gear = self._service(root / "data").import_file(source)["inventory"]["gear"][0]
+
+        self.assertEqual(69, gear["reforgedGearScore"])
+        self.assertEqual(69, gear["combatGearScore"])
+        self.assertEqual(29, gear["supportGearScore"])
+        self.assertEqual([24, 14, 21, 8], [stat["reforgedValue"] for stat in gear["substats"]])
+
     def test_packet_capture_imports_all_supported_gear_and_only_five_star_heroes(self) -> None:
         account_data = {
             "equips": {

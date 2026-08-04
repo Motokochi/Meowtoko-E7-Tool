@@ -138,7 +138,9 @@ def _empty_snapshot() -> dict[str, Any]:
     }
 
 
-def _reforged_scores(item: object) -> tuple[int, int, int]:
+def _reforged_scores(
+    item: object,
+) -> tuple[int, int, int, Mapping[ItemStatType, int | float]]:
     projected = ProjectedGearItem.from_fribbels_inventory_item(item)
     totals = dict(projected.totals_for(ItemProjectionMode.REFORGED))
     assert projected.main_stat is not None
@@ -176,16 +178,15 @@ def _reforged_scores(item: object) -> tuple[int, int, int]:
         + totals[ItemStatType.EFFECT_RESISTANCE_PERCENT]
         + 0.5
     )
-    return reforged, combat, support
+    return reforged, combat, support, totals
 
 
-def _substat_roll_counts(item: object) -> dict[str, int | None]:
-    raw_substats = item.source_metadata.get("substats")
-    result = {stat.value: None for stat, _value in item.gear_item.substats}
-    if not isinstance(raw_substats, Sequence) or isinstance(raw_substats, (str, bytes)):
-        return result
-    for (stat, _value), raw in zip(item.gear_item.substats, raw_substats):
-        if not isinstance(raw, Mapping):
+def _substat_roll_counts(
+    substats: Sequence[tuple[ItemStatType, int | float, Mapping[str, object] | None]],
+) -> dict[str, int | None]:
+    result = {stat.value: None for stat, _value, _raw in substats}
+    for stat, _value, raw in substats:
+        if raw is None:
             continue
         rolls = raw.get("ingameRolls")
         if isinstance(rolls, bool) or not isinstance(rolls, int):
@@ -202,8 +203,9 @@ def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
         gear = stored.gear_item
         if gear.enhance != 15:
             continue
-        reforged, combat, support = _reforged_scores(stored)
-        roll_counts = _substat_roll_counts(stored)
+        reforged, combat, support, reforged_substats = _reforged_scores(stored)
+        substats = stored.source_substat_rows()
+        roll_counts = _substat_roll_counts(substats)
         owner_name = (
             owners.get(gear.equipped_hero_id)
             if gear.equipped_hero_id is not None
@@ -227,7 +229,7 @@ def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
                 gear_set=gear.gear_set.value,
                 slot=gear.slot.value,
                 main_stat=gear.main_stat.value,
-                substats=tuple(stat.value for stat, _value in gear.substats),
+                substats=tuple(stat.value for stat, _value, _raw in substats),
                 roll_counts=roll_counts,
             ),
             "locked": gear.locked,
@@ -245,8 +247,9 @@ def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
                     "statId": stat.value,
                     "label": ITEM_STAT_CATALOG[stat].display_name,
                     "value": value,
+                    "reforgedValue": reforged_substats[stat],
                 }
-                for stat, value in gear.substats
+                for stat, value, _raw in substats
             ],
         })
     return result

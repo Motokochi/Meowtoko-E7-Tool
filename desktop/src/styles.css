@@ -2292,13 +2292,10 @@ select:disabled {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.optimizer-gear-set i {
-  flex: 0 0 auto;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: var(--color-accent);
-  box-shadow: 0 0 0 2px var(--color-accent-soft);
+.optimizer-gear-set img {
+  width: 1.1rem;
+  height: 1.1rem;
+  object-fit: contain;
 }
 .optimizer-gear-main-stat {
   display: flex;
@@ -5230,6 +5227,7 @@ select:disabled {
 .gear-set-column { width: 3rem; }
 .gear-main-column { width: 6.2rem; }
 .gear-score-column { width: 3.2rem; }
+.gear-verdict-column { width: 5rem; }
 .gear-owner-column { width: 8rem; }
 
 .gear-piece-button {
@@ -5466,6 +5464,12 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.gear-filter-set-icon {
+  height: 1.5rem;
+  object-fit: contain;
+  width: 1.5rem;
 }
 
 .gear-filter-selects,
