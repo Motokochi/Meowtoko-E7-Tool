@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.34] - 2026-08-04
+
+- Clarify the game inventory capture order and allow late packets to arrive after finishing.
+
 ## [0.1.33] - 2026-08-03
 
 - Improve LDPlayer game capture adapter compatibility and failure diagnostics.
