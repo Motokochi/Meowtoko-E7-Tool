@@ -103,25 +103,25 @@ export function ImporterCenter({
         <div>
           <span className="card-kicker">GAME INVENTORY</span>
           <h2>Import your owned gear</h2>
-          <p>
-            Capture gear and heroes directly from Epic Seven traffic, or import a
-            Fribbels <strong>gear.txt</strong>. Only heroes currently at 5★ or higher
-            are included.
-          </p>
-          {capturing && (
-            <div className="importer-capture-instructions">
-              <strong>Capture is running</strong>
-              <p>
-                Fully exit Epic Seven (do not only minimize it), open it again,
-                continue to the main screen, and wait until it fully loads. Then click{' '}
-                <strong>Done Capturing</strong>.
-              </p>
+          <div className="importer-capture-instructions">
+            <ol>
+              <li>Close Epic Seven in your emulator.</li>
+              <li>Click <strong>Start capturing from game</strong>.</li>
+              <li>Open Epic Seven.</li>
+              <li>Wait until the Epic Seven Lobby is fully loaded.</li>
+              <li>Click <strong>Done Capturing</strong>.</li>
+            </ol>
+            <p>
+              Otherwise, import an existing Fribbels <strong>gear.txt</strong>. Only heroes
+              currently at 5★ or higher are included.
+            </p>
+            {capturing && (
               <small>
-                The captured file will be saved as Documents\MeowtokoE7Hub\gear.txt
-                and imported automatically.
+                Capture is running. Continue with step 3. The captured file will be saved
+                as Documents\MeowtokoE7Hub\gear.txt and imported automatically.
               </small>
-            </div>
-          )}
+            )}
+          </div>
         </div>
         <div className="importer-actions">
           {capturing ? (

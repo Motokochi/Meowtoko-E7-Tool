@@ -27,7 +27,11 @@ test('renders Fribbels import and full optimizer reset in the dedicated workspac
     />,
   );
   assert.match(empty, /GAME INVENTORY/);
-  assert.match(empty, /Capture gear and heroes directly from Epic Seven traffic/);
+  assert.match(
+    empty,
+    /Close Epic Seven in your emulator[\s\S]*Start capturing from game[\s\S]*Open Epic Seven[\s\S]*Epic Seven Lobby is fully loaded[\s\S]*Done Capturing/,
+  );
+  assert.match(empty, /Otherwise, import an existing Fribbels <strong>gear\.txt/);
   assert.match(empty, /Start capturing from game/);
   assert.match(empty, /Select gear\.txt/);
   assert.match(empty, /Erase all Optimizer data/);
@@ -54,7 +58,7 @@ test('renders Fribbels import and full optimizer reset in the dedicated workspac
   assert.match(ready, /Latest import/);
   assert.match(ready, /Inventory imported/);
   assert.match(ready, /Done Capturing/);
-  assert.match(ready, /Fully exit Epic Seven \(do not only minimize it\)/);
+  assert.match(ready, /Capture is running\. Continue with step 3\./);
   assert.match(ready, /Documents\\MeowtokoE7Hub\\gear\.txt/);
 });
 

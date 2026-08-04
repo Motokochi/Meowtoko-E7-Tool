@@ -8,6 +8,7 @@ import uuid
 import os
 import shutil
 import threading
+import time
 from collections.abc import Callable, Mapping, Sequence
 from datetime import datetime, timezone
 from pathlib import Path
@@ -49,6 +50,7 @@ from src.optimizer.domain import (
 
 
 MAX_DESKTOP_IMPORT_ISSUES = 20
+CAPTURE_FINISH_GRACE_SECONDS = 1.0
 _OPTIMIZER_DATABASE_FILES = ("optimizer.db", "optimizer.db-wal", "optimizer.db-shm")
 _OPTIMIZER_DATA_DIRECTORIES = (
     "optimizer_profiles",
@@ -411,6 +413,7 @@ class OptimizerInventoryService:
                     message="Start capturing before finishing the game import.",
                 )
             try:
+                time.sleep(CAPTURE_FINISH_GRACE_SECONDS)
                 payload_reader = getattr(source, "captured_payloads", None)
                 payloads = payload_reader() if callable(payload_reader) else []
                 if not payloads:
@@ -433,7 +436,8 @@ class OptimizerInventoryService:
                         code="account-packet-missing",
                         message=(
                             "The packet service did not recognize an account inventory "
-                            "snapshot. Fully reopen Epic Seven, then start a new capture."
+                            "snapshot. Fully close Epic Seven, start a new capture, then "
+                            "reopen the game."
                         ),
                     ) from error
                 return self._save_and_import_document(document)
@@ -447,8 +451,8 @@ class OptimizerInventoryService:
         status = status_reader() if callable(status_reader) else None
         if not isinstance(status, Mapping):
             return (
-                "No account inventory packet has arrived yet. Fully reopen Epic Seven, "
-                "then start a new capture."
+                "No account inventory packet has arrived yet. Fully close Epic Seven, "
+                "start a new capture, then reopen the game."
             )
         packets = int(status.get("packetsSeen") or 0)
         game_packets = int(status.get("gamePacketsSeen") or 0)
@@ -482,13 +486,13 @@ class OptimizerInventoryService:
                 evidence += f" TCP payload source ports observed: {', '.join(ports)}."
             return (
                 f"Packet capture is running and saw {packets:,} network packets, but no "
-                f"supported game response traffic.{evidence} Fully exit the game instead "
-                "of minimizing "
-                "it, reopen it to the main screen, then start a new capture."
+                f"supported game response traffic.{evidence} Fully close Epic Seven, "
+                "start a new capture, then reopen the game and wait for the Lobby."
             )
         return (
             f"Captured {game_packets:,} supported game packets, but no complete account "
-            "snapshot was available. Fully reopen Epic Seven, then start a new capture."
+            "snapshot was available. Fully close Epic Seven, start a new capture, then "
+            "reopen the game and wait for the Lobby."
         )
 
     def close(self) -> None:

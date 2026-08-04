@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from src.desktop import PROTOCOL_VERSION
 from src.desktop.optimizer_inventory_controller import OptimizerInventoryController
@@ -195,6 +196,40 @@ class OptimizerInventoryDesktopServiceTests(unittest.TestCase):
             result = service.finish_game_inventory_capture()
 
         self.assertEqual(received, [payloads])
+        self.assertEqual(result["inventory"]["totalItems"], 0)
+
+    def test_done_keeps_capture_open_for_late_packets(self) -> None:
+        payloads = []
+
+        class PacketSource:
+            def start(self):
+                return None
+
+            def stop(self):
+                return None
+
+            def captured_payloads(self):
+                return payloads
+
+        def finish_grace(seconds):
+            self.assertEqual(seconds, 1.0)
+            payloads.append(b"late-account-response")
+
+        with tempfile.TemporaryDirectory() as directory, patch(
+            "src.desktop.optimizer_inventory_service.time.sleep",
+            side_effect=finish_grace,
+        ):
+            service = OptimizerInventoryService(
+                Path(directory),
+                packet_source_factory=PacketSource,
+                inventory_normalizer=lambda captured: {"items": [], "heroes": []}
+                if captured == payloads else None,
+                capture_directory=Path(directory) / "Documents",
+            )
+            service.start_game_inventory_capture()
+            result = service.finish_game_inventory_capture()
+
+        self.assertEqual(payloads, [b"late-account-response"])
         self.assertEqual(result["inventory"]["totalItems"], 0)
 
     def test_done_without_account_packet_closes_capture_for_a_fresh_retry(self) -> None:
