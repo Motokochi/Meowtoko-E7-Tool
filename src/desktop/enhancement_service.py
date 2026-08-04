@@ -214,6 +214,9 @@ class EnhancementService:
             ):
                 return {
                     "set": gear_set_display_name(item.gear_item.gear_set),
+                    "setId": item.gear_item.gear_set.value,
+                    "slotId": item.gear_item.slot.value,
+                    "mainStatId": item.gear_item.main_stat.value,
                     "enhance": item.gear_item.enhance,
                     "initialSubstats": initial_substats[item.rank],
                 }

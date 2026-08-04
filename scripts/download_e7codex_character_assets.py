@@ -49,6 +49,21 @@ VARIANTS = ("pose", "face_l", "face_s", "face_su")
 ASSET_CODE_OVERRIDES = {
     "c5004": "m9194",  # Archdemon's Shadow -> Archdemon Mercedes
 }
+# Some heroes keep their base code in filenames but publish the current render
+# from a revisioned asset directory.
+ASSET_DIRECTORY_OVERRIDES = {
+    "c1180": "c1180_1",  # Ruiza
+    "c1183": "c1183_1",  # Estelle
+    "c2076": "c2076_1",  # Shepherd of the Dark Diene
+    "c2148": "c2148_1",  # Tidal Rift Elvira
+    "c2181": "c2181_1",  # Notos
+    "c2184": "c2184_1",  # Salome
+    "c2185": "c2185_1",  # Rhianna and Luciella
+    "c5069": "c5069_1",  # Aubade Ludwig
+    "c5147": "c5147_1",  # Eye of the Abyss Fumyr
+    "c5190": "c5190_1",  # Aube
+    "c6024": "c6024_1",  # Monarch of the Sword Iseria
+}
 WINDOWS_RESERVED_NAMES = {
     "CON",
     "PRN",
@@ -287,7 +302,7 @@ def _atomic_json(path: Path, value: object) -> None:
 def _write_index(path: Path, characters: Iterable[dict[str, object]]) -> None:
     temporary = path.with_name(f".{path.name}.{os.getpid()}.part")
     try:
-        with temporary.open("w", encoding="utf-8", newline="") as stream:
+        with temporary.open("w", encoding="utf-8-sig", newline="") as stream:
             writer = csv.DictWriter(
                 stream,
                 fieldnames=(
@@ -300,11 +315,17 @@ def _write_index(path: Path, characters: Iterable[dict[str, object]]) -> None:
                     "errors",
                     "bytes",
                 ),
+                quoting=csv.QUOTE_ALL,
             )
             writer.writeheader()
             for character in characters:
                 files = character["files"]
                 statuses = [file["status"] for file in files.values()]
+                available_bytes = sum(
+                    int(file.get("bytes", 0))
+                    for file in files.values()
+                    if file["status"] == "available"
+                )
                 writer.writerow({
                     "name": character["name"],
                     "code": character["code"],
@@ -313,11 +334,7 @@ def _write_index(path: Path, characters: Iterable[dict[str, object]]) -> None:
                     "available": statuses.count("available"),
                     "missing": statuses.count("missing"),
                     "errors": statuses.count("error"),
-                    "bytes": sum(
-                        int(file.get("bytes", 0))
-                        for file in files.values()
-                        if file["status"] == "available"
-                    ),
+                    "bytes": available_bytes if statuses.count("available") else "",
                 })
         os.replace(temporary, path)
     finally:
@@ -342,7 +359,7 @@ def run(arguments: argparse.Namespace) -> int:
             character=character,
             variant=variant,
             source_url=(
-                f"{base_url}/{character.asset_code}/"
+                f"{base_url}/{ASSET_DIRECTORY_OVERRIDES.get(character.code, character.asset_code)}/"
                 f"{_source_filename(character.asset_code, variant)}"
             ),
             destination=destination / character.folder / _local_filename(variant),

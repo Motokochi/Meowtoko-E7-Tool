@@ -1,0 +1,3867 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "page": "https://epic7.onstove.com/en/gg/herorecord",
+    "seasonCode": "pvp_rta_ss20",
+    "seasonName": "Summer 2026",
+    "seasonStart": "2026-04-04 00:00:00.0",
+    "seasonEnd": "2026-07-11 00:00:00.0",
+    "grade": "emperor",
+    "snapshotAt": "2026-07-12 11:01:14.0",
+    "heroRecordsFetched": 189,
+    "populationRecords": 182,
+    "excludedRecords": 7,
+    "minimumSetUsagePercent": 5,
+    "peakWindowBins": 3,
+    "minimumRollInvestment": {
+      "Attack": 5,
+      "Defense": 5,
+      "Health": 5,
+      "Speed": 3,
+      "Critical Hit Chance": 5,
+      "Critical Hit Damage": 5,
+      "Effectiveness": 5,
+      "Effect Resistance": 5
+    },
+    "preferredStatExceptions": [
+      "Aki",
+      "Inheritor Amiki",
+      "Ivana",
+      "Mort",
+      "Politis",
+      "Rimuru",
+      "Schniel",
+      "Solitaria of the Snow",
+      "Successor Taeyou",
+      "Wanderer Silk",
+      "Zeno"
+    ],
+    "method": "Dominant contiguous histogram peaks use conservative lower boundaries, then subtract base and universal left-side main stats and convert the remainder to approximate max-roll investment.",
+    "limitation": "The source publishes marginal population histograms, not stat distributions per equipment-set combination."
+  },
+  "archetypes": [
+    {
+      "id": "attack-dps-attack-critical-hit-chance-critical-hit-damage-speed",
+      "name": "Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Arbiter Vildred",
+        "Argent Waves Hwayoung",
+        "Astromancer Elena",
+        "Benimaru",
+        "Blood Blade Karin",
+        "Celine",
+        "Closer Charles",
+        "Commander Pavel",
+        "Eda",
+        "Fenris",
+        "Jack-O'",
+        "Jenua",
+        "Kise",
+        "Landy",
+        "Lilibet",
+        "Operator Sigret",
+        "Sez",
+        "Shalltear",
+        "Specimen Sez",
+        "Spirit Eye Celine",
+        "Straze",
+        "Summer Break Charlotte",
+        "Tori",
+        "Watcher Schuri",
+        "Yufine"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.torrent",
+        "set.penetration",
+        "set.destruction",
+        "set.critical",
+        "set.immunity"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 56.14,
+          "populationSupportPercent": 96.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 46.43,
+          "populationSupportPercent": 96.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 31.56,
+          "populationSupportPercent": 60.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 26.64,
+          "populationSupportPercent": 92.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 14.81,
+          "populationSupportPercent": 72.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 6.76,
+          "populationSupportPercent": 32.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 20.18,
+        "Defense": 1.83,
+        "Health": 3.21,
+        "Speed": 22.46,
+        "Critical Hit Chance": 12.89,
+        "Critical Hit Damage": 21.0,
+        "Effectiveness": 0.33,
+        "Effect Resistance": 0.24
+      },
+      "population": 25,
+      "metaPickRatePercent": 41.32
+    },
+    {
+      "id": "attack-support-defense-effectiveness-health-speed",
+      "name": "Effectiveness Opener",
+      "archetypeClass": "Support",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Angel of Light Angelica",
+        "Aubade Ludwig",
+        "Benevolent Romann",
+        "Dragon King Sharun",
+        "Eye of the Abyss Fumyr",
+        "Fairytale Tenebria",
+        "Hellion Lua",
+        "Lua",
+        "Perfumer Byblis",
+        "Politis",
+        "Sea Phantom Politis",
+        "Wanderer Silk",
+        "Witch of the Mere Tenebria"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.immunity",
+        "set.pursuit",
+        "set.weakening"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 85.53,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 38.11,
+          "populationSupportPercent": 92.31
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 20.46,
+          "populationSupportPercent": 92.31
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 9.78,
+          "populationSupportPercent": 23.08
+        },
+        {
+          "id": "set.weakening",
+          "name": "Weakening Set",
+          "averageUsagePercent": 5.2,
+          "populationSupportPercent": 23.08
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.46,
+        "Defense": 7.02,
+        "Health": 15.12,
+        "Speed": 28.87,
+        "Critical Hit Chance": 0.39,
+        "Critical Hit Damage": 0.24,
+        "Effectiveness": 11.39,
+        "Effect Resistance": 0.94
+      },
+      "population": 13,
+      "metaPickRatePercent": 54.75
+    },
+    {
+      "id": "attack-bruiser-attack-critical-hit-chance-critical-hit-damage-health-speed",
+      "name": "Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Bystander Hwayoung",
+        "Challenger Dominiel",
+        "Eternal Wanderer Ludwig",
+        "Frieren",
+        "Little Queen Charlotte",
+        "Melissa",
+        "New Kid Adin",
+        "Remnant Violet",
+        "Rhianna and Luciella",
+        "Savior Adin",
+        "Specter Tenebria",
+        "Sylvan Sage Vivian",
+        "Top Model Luluca"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.penetration",
+        "set.speed",
+        "set.destruction",
+        "set.torrent",
+        "set.critical",
+        "set.lifesteal",
+        "set.counter"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 47.76,
+          "populationSupportPercent": 84.62
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 44.54,
+          "populationSupportPercent": 84.62
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 29.75,
+          "populationSupportPercent": 84.62
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 24.3,
+          "populationSupportPercent": 61.54
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 9.91,
+          "populationSupportPercent": 76.92
+        },
+        {
+          "id": "set.lifesteal",
+          "name": "Lifesteal Set",
+          "averageUsagePercent": 8.59,
+          "populationSupportPercent": 23.08
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 6.11,
+          "populationSupportPercent": 15.38
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 19.69,
+        "Defense": 1.79,
+        "Health": 7.86,
+        "Speed": 21.42,
+        "Critical Hit Chance": 12.74,
+        "Critical Hit Damage": 20.37,
+        "Effectiveness": 0.42,
+        "Effect Resistance": 0.39
+      },
+      "population": 13,
+      "metaPickRatePercent": 41.78
+    },
+    {
+      "id": "health-bruiser-defense-health-speed",
+      "name": "Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Abigail",
+        "Adventurer Ras",
+        "Albedo",
+        "Ambitious Tywin",
+        "Belian",
+        "Fallen Cecilia",
+        "Laia",
+        "Lethe",
+        "Lilias",
+        "Mediator Kawerik",
+        "New Moon Luna",
+        "Salome"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.immunity",
+        "set.health",
+        "set.protection",
+        "set.counter"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 56.4,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 36.33,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 32.78,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 14.81,
+          "populationSupportPercent": 41.67
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 7.26,
+          "populationSupportPercent": 25.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.8,
+        "Defense": 8.41,
+        "Health": 24.82,
+        "Speed": 22.28,
+        "Critical Hit Chance": 0.75,
+        "Critical Hit Damage": 0.42,
+        "Effectiveness": 2.03,
+        "Effect Resistance": 1.97
+      },
+      "population": 12,
+      "metaPickRatePercent": 46.21
+    },
+    {
+      "id": "attack-tank-attack-defense-effect-resistance-health-speed",
+      "name": "ER Tank",
+      "archetypeClass": "Tank",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Desert Jewel Basar",
+        "Destina",
+        "Lady of the Scales",
+        "Maid Chloe",
+        "Roana",
+        "Sinful Angelica",
+        "Wretched Rose"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.resist",
+        "set.health",
+        "set.immunity",
+        "set.protection"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 58.53,
+          "populationSupportPercent": 85.71
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 31.3,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 23.25,
+          "populationSupportPercent": 85.71
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 19.91,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 12.5,
+          "populationSupportPercent": 42.86
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 6.35,
+        "Defense": 8.83,
+        "Health": 23.36,
+        "Speed": 22.49,
+        "Critical Hit Chance": 0.21,
+        "Critical Hit Damage": 0.11,
+        "Effectiveness": 1.6,
+        "Effect Resistance": 13.63
+      },
+      "population": 7,
+      "metaPickRatePercent": 21.28
+    },
+    {
+      "id": "attack-support-attack-defense-health-speed",
+      "name": "Fast Support",
+      "archetypeClass": "Support",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Amid",
+        "Diene",
+        "Elena",
+        "Infinite Horizon Achates",
+        "Moon Bunny Dominiel",
+        "Tamarinne",
+        "Young Senya"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.immunity",
+        "set.resist",
+        "set.warfare",
+        "set.health"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 72.78,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 24.54,
+          "populationSupportPercent": 85.71
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 22.48,
+          "populationSupportPercent": 71.43
+        },
+        {
+          "id": "set.warfare",
+          "name": "Warfare Set",
+          "averageUsagePercent": 13.8,
+          "populationSupportPercent": 14.29
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 11.09,
+          "populationSupportPercent": 85.71
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 5.86,
+        "Defense": 7.71,
+        "Health": 19.06,
+        "Speed": 28.86,
+        "Critical Hit Chance": 0.53,
+        "Critical Hit Damage": 0.23,
+        "Effectiveness": 1.63,
+        "Effect Resistance": 0.34
+      },
+      "population": 7,
+      "metaPickRatePercent": 16.93
+    },
+    {
+      "id": "health-bruiser-defense-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Dark Corvus",
+        "Dragon Bride Senya",
+        "Empyrean Ilynav",
+        "Krau",
+        "Last Rider Krau",
+        "Unbound Knight Arowell",
+        "Yulha"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.health",
+        "set.immunity",
+        "set.speed",
+        "set.protection",
+        "set.warfare"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 50.43,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 41.67,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 24.93,
+          "populationSupportPercent": 57.14
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 22.38,
+          "populationSupportPercent": 57.14
+        },
+        {
+          "id": "set.warfare",
+          "name": "Warfare Set",
+          "averageUsagePercent": 14.07,
+          "populationSupportPercent": 14.29
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.41,
+        "Defense": 9.52,
+        "Health": 25.09,
+        "Speed": 13.82,
+        "Critical Hit Chance": 0.22,
+        "Critical Hit Damage": 0.13,
+        "Effectiveness": 2.09,
+        "Effect Resistance": 7.83
+      },
+      "population": 7,
+      "metaPickRatePercent": 11.67
+    },
+    {
+      "id": "attack-bruiser-attack-effectiveness-health-speed",
+      "name": "Effectiveness Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Conqueror Lilias",
+        "Pirate Captain Flan",
+        "Requiem Roana",
+        "Silver Blade Aramintha",
+        "Summertime Iseria",
+        "Tactical Archetype Coli",
+        "Westwind Executioner Schuri"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.critical"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 84.11,
+          "populationSupportPercent": 85.71
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 74.37,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 7.07,
+          "populationSupportPercent": 71.43
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 17.39,
+        "Defense": 2.77,
+        "Health": 6.04,
+        "Speed": 28.55,
+        "Critical Hit Chance": 0.59,
+        "Critical Hit Damage": 0.67,
+        "Effectiveness": 14.85,
+        "Effect Resistance": 0.69
+      },
+      "population": 7,
+      "metaPickRatePercent": 11.41
+    },
+    {
+      "id": "attack-support-defense-health-speed",
+      "name": "Fast Support",
+      "archetypeClass": "Support",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Archdemon's Shadow",
+        "Birgitta",
+        "Festive Eda",
+        "Frida",
+        "Immortal Wukong",
+        "School Nurse Yulha"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.immunity",
+        "set.health",
+        "set.counter",
+        "set.hit",
+        "set.pursuit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 72.61,
+          "populationSupportPercent": 83.33
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 22.57,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 14.69,
+          "populationSupportPercent": 83.33
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 9.54,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 8.2,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 6.21,
+          "populationSupportPercent": 33.33
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.85,
+        "Defense": 8.05,
+        "Health": 19.44,
+        "Speed": 28.01,
+        "Critical Hit Chance": 0.56,
+        "Critical Hit Damage": 0.58,
+        "Effectiveness": 1.56,
+        "Effect Resistance": 1.53
+      },
+      "population": 6,
+      "metaPickRatePercent": 25.31
+    },
+    {
+      "id": "attack-bruiser-attack-defense-health-speed",
+      "name": "Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Hecate",
+        "Holiday Yufine",
+        "Hwayoung",
+        "Lone Wolf Peira",
+        "Senya"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.immunity",
+        "set.warfare",
+        "set.pursuit",
+        "set.hit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 60.66,
+          "populationSupportPercent": 80.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 30.01,
+          "populationSupportPercent": 80.0
+        },
+        {
+          "id": "set.warfare",
+          "name": "Warfare Set",
+          "averageUsagePercent": 18.99,
+          "populationSupportPercent": 20.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 15.8,
+          "populationSupportPercent": 60.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 11.17,
+          "populationSupportPercent": 60.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 25.35,
+        "Defense": 6.4,
+        "Health": 11.7,
+        "Speed": 28.32,
+        "Critical Hit Chance": 0.75,
+        "Critical Hit Damage": 0.52,
+        "Effectiveness": 1.44,
+        "Effect Resistance": 1.19
+      },
+      "population": 5,
+      "metaPickRatePercent": 7.63
+    },
+    {
+      "id": "speed-dps-attack-critical-hit-chance-critical-hit-damage-speed",
+      "name": "Speed-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Speed",
+      "heroes": [
+        "Cidd",
+        "Eligos",
+        "Last Piece Karin",
+        "Taeyou",
+        "Vildred"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.penetration",
+        "set.critical",
+        "set.torrent"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 97.38,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 54.35,
+          "populationSupportPercent": 80.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 24.53,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 15.57,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 17.71,
+        "Defense": 2.15,
+        "Health": 4.21,
+        "Speed": 30.76,
+        "Critical Hit Chance": 12.99,
+        "Critical Hit Damage": 17.2,
+        "Effectiveness": 0.33,
+        "Effect Resistance": 0.24
+      },
+      "population": 5,
+      "metaPickRatePercent": 2.86
+    },
+    {
+      "id": "attack-tank-defense-effect-resistance-health-speed",
+      "name": "ER Tank",
+      "archetypeClass": "Tank",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Aram",
+        "Ivana",
+        "Schniel",
+        "Twisted Eidolon Kayron"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.health",
+        "set.immunity",
+        "set.pursuit",
+        "set.protection",
+        "set.resist"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 47.37,
+          "populationSupportPercent": 75.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 42.47,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 32.53,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 19.0,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 15.65,
+          "populationSupportPercent": 25.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 12.47,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 3.12,
+        "Defense": 8.88,
+        "Health": 23.22,
+        "Speed": 11.38,
+        "Critical Hit Chance": 0.17,
+        "Critical Hit Damage": 0.16,
+        "Effectiveness": 1.03,
+        "Effect Resistance": 4.07
+      },
+      "population": 4,
+      "metaPickRatePercent": 6.06
+    },
+    {
+      "id": "defense-bruiser-defense-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Defense-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Defense",
+      "heroes": [
+        "Boss Arunka",
+        "Crimson Armin",
+        "ae-KARINA"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.immunity",
+        "set.protection",
+        "set.counter",
+        "set.defense",
+        "set.pursuit",
+        "set.speed"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 67.4,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 50.35,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 14.79,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.defense",
+          "name": "Defense Set",
+          "averageUsagePercent": 7.9,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 6.34,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 5.4,
+          "populationSupportPercent": 66.67
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 3.44,
+        "Defense": 16.88,
+        "Health": 22.55,
+        "Speed": 10.68,
+        "Critical Hit Chance": 0.25,
+        "Critical Hit Damage": 0.06,
+        "Effectiveness": 1.27,
+        "Effect Resistance": 8.42
+      },
+      "population": 3,
+      "metaPickRatePercent": 32.8
+    },
+    {
+      "id": "health-bruiser-critical-hit-chance-critical-hit-damage-health-speed",
+      "name": "Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Genesis Ras",
+        "Mort",
+        "Setsuka"
+      ],
+      "preferredStats": [
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.destruction",
+        "set.immunity",
+        "set.health",
+        "set.riposte",
+        "set.speed",
+        "set.critical"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 40.31,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 36.46,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 36.04,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.riposte",
+          "name": "Riposte Set",
+          "averageUsagePercent": 29.71,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 14.61,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 11.26,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.1,
+        "Defense": 3.15,
+        "Health": 26.98,
+        "Speed": 8.0,
+        "Critical Hit Chance": 13.64,
+        "Critical Hit Damage": 12.52,
+        "Effectiveness": 0.45,
+        "Effect Resistance": 0.51
+      },
+      "population": 3,
+      "metaPickRatePercent": 23.82
+    },
+    {
+      "id": "attack-support-effectiveness-health-speed",
+      "name": "Effectiveness Opener",
+      "archetypeClass": "Support",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Fumyr",
+        "Nahkwol",
+        "Swift Flagbearer Sigret"
+      ],
+      "preferredStats": [
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.immunity"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 99.52,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 67.38,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 11.94,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 1.86,
+        "Defense": 1.98,
+        "Health": 12.81,
+        "Speed": 33.45,
+        "Critical Hit Chance": 0.37,
+        "Critical Hit Damage": 0.27,
+        "Effectiveness": 16.8,
+        "Effect Resistance": 0.79
+      },
+      "population": 3,
+      "metaPickRatePercent": 12.34
+    },
+    {
+      "id": "attack-bruiser-attack-critical-hit-chance-effectiveness-health-speed",
+      "name": "Effectiveness Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Briar Witch Iseria",
+        "Veronica",
+        "ae-WINTER"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.pursuit",
+        "set.critical",
+        "set.immunity"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 94.84,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 28.07,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 19.48,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 12.67,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 9.29,
+          "populationSupportPercent": 66.67
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 6.7,
+        "Defense": 3.83,
+        "Health": 6.12,
+        "Speed": 32.83,
+        "Critical Hit Chance": 14.89,
+        "Critical Hit Damage": 1.24,
+        "Effectiveness": 12.59,
+        "Effect Resistance": 0.73
+      },
+      "population": 3,
+      "metaPickRatePercent": 9.69
+    },
+    {
+      "id": "attack-bruiser-attack-defense-effectiveness-health-speed",
+      "name": "Effectiveness Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Beehoo",
+        "Lidica",
+        "Ruiza"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.pursuit",
+        "set.immunity"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 97.13,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 44.32,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 6.69,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 5.36,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 14.26,
+        "Defense": 6.47,
+        "Health": 9.15,
+        "Speed": 31.97,
+        "Critical Hit Chance": 0.7,
+        "Critical Hit Damage": 0.53,
+        "Effectiveness": 15.83,
+        "Effect Resistance": 0.54
+      },
+      "population": 3,
+      "metaPickRatePercent": 3.55
+    },
+    {
+      "id": "attack-support-attack-defense-effectiveness-health-speed",
+      "name": "Effectiveness Opener",
+      "archetypeClass": "Support",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Death Dealer Ray",
+        "Ocean Breeze Luluca",
+        "Sharun"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.resist",
+        "set.immunity",
+        "set.health"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 89.35,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 43.19,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 15.41,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 14.45,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 12.89,
+          "populationSupportPercent": 66.67
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 6.59,
+        "Defense": 6.69,
+        "Health": 17.91,
+        "Speed": 29.96,
+        "Critical Hit Chance": 0.13,
+        "Critical Hit Damage": 0.06,
+        "Effectiveness": 14.23,
+        "Effect Resistance": 0.53
+      },
+      "population": 3,
+      "metaPickRatePercent": 1.74
+    },
+    {
+      "id": "speed-bruiser-attack-critical-hit-chance-critical-hit-damage-health-speed",
+      "name": "Speed-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Speed",
+      "heroes": [
+        "Architect Laika",
+        "Fern",
+        "Ran"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.penetration",
+        "set.critical",
+        "set.warfare",
+        "set.torrent",
+        "set.riposte",
+        "set.fervor"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 65.31,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 31.56,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 25.21,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.warfare",
+          "name": "Warfare Set",
+          "averageUsagePercent": 23.66,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 16.43,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.riposte",
+          "name": "Riposte Set",
+          "averageUsagePercent": 8.71,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.fervor",
+          "name": "Fervor Set",
+          "averageUsagePercent": 5.44,
+          "populationSupportPercent": 33.33
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 15.84,
+        "Defense": 1.64,
+        "Health": 6.36,
+        "Speed": 27.98,
+        "Critical Hit Chance": 12.66,
+        "Critical Hit Damage": 16.16,
+        "Effectiveness": 0.74,
+        "Effect Resistance": 0.15
+      },
+      "population": 3,
+      "metaPickRatePercent": 0.82
+    },
+    {
+      "id": "health-bruiser-critical-hit-chance-critical-hit-damage-defense-health-speed",
+      "name": "Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Alencia",
+        "Apocalypse Ravi",
+        "Edward Elric"
+      ],
+      "preferredStats": [
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.penetration",
+        "set.destruction",
+        "set.speed",
+        "set.injury",
+        "set.critical",
+        "set.health",
+        "set.counter"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 48.43,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 31.17,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 19.69,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.injury",
+          "name": "Injury Set",
+          "averageUsagePercent": 15.12,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 11.66,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 11.1,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 6.55,
+          "populationSupportPercent": 33.33
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.32,
+        "Defense": 6.79,
+        "Health": 22.57,
+        "Speed": 5.56,
+        "Critical Hit Chance": 13.18,
+        "Critical Hit Damage": 18.59,
+        "Effectiveness": 0.68,
+        "Effect Resistance": 1.21
+      },
+      "population": 3,
+      "metaPickRatePercent": 0.55
+    },
+    {
+      "id": "health-bruiser-defense-effectiveness-health-speed",
+      "name": "Effectiveness Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Assassin Cartuja",
+        "Sage Baal & Sezan",
+        "Tywin"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.health",
+        "set.protection",
+        "set.immunity",
+        "set.hit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 46.81,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 29.7,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 28.29,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 26.86,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 20.3,
+          "populationSupportPercent": 66.67
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 1.82,
+        "Defense": 8.51,
+        "Health": 25.93,
+        "Speed": 16.2,
+        "Critical Hit Chance": 0.31,
+        "Critical Hit Damage": 0.26,
+        "Effectiveness": 8.66,
+        "Effect Resistance": 1.29
+      },
+      "population": 3,
+      "metaPickRatePercent": 0.37
+    },
+    {
+      "id": "attack-bruiser-attack-critical-hit-chance-critical-hit-damage-defense-health-speed",
+      "name": "Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Navy Captain Landy",
+        "Seaside Bellona",
+        "Violet"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.lifesteal",
+        "set.immunity",
+        "set.penetration",
+        "set.counter",
+        "set.protection",
+        "set.critical"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.lifesteal",
+          "name": "Lifesteal Set",
+          "averageUsagePercent": 53.64,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 48.26,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 30.74,
+          "populationSupportPercent": 66.67
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 22.62,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 7.22,
+          "populationSupportPercent": 33.33
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 6.09,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 19.64,
+        "Defense": 7.24,
+        "Health": 14.04,
+        "Speed": 5.91,
+        "Critical Hit Chance": 13.31,
+        "Critical Hit Damage": 15.32,
+        "Effectiveness": 0.75,
+        "Effect Resistance": 0.68
+      },
+      "population": 3,
+      "metaPickRatePercent": 0.19
+    },
+    {
+      "id": "health-tank-attack-defense-effect-resistance-health-speed",
+      "name": "ER Tank",
+      "archetypeClass": "Tank",
+      "scalingStat": "Health",
+      "heroes": [
+        "Blood Moon Haste",
+        "Ruele of Light"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.immunity",
+        "set.counter",
+        "set.health",
+        "set.reversal",
+        "set.speed",
+        "set.resist"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 46.88,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 44.94,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 33.23,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.reversal",
+          "name": "Reversal Set",
+          "averageUsagePercent": 23.48,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 22.43,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 6.0,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 7.41,
+        "Defense": 10.46,
+        "Health": 30.16,
+        "Speed": 18.73,
+        "Critical Hit Chance": 0.12,
+        "Critical Hit Damage": 0.07,
+        "Effectiveness": 1.37,
+        "Effect Resistance": 8.85
+      },
+      "population": 2,
+      "metaPickRatePercent": 15.73
+    },
+    {
+      "id": "attack-bruiser-attack-critical-hit-damage-health-speed",
+      "name": "Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Afternoon Soak Flan",
+        "Zio"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Damage",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.penetration",
+        "set.speed",
+        "set.hit",
+        "set.destruction",
+        "set.torrent",
+        "set.riposte"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 71.67,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 61.4,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 15.9,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 15.68,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 8.19,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.riposte",
+          "name": "Riposte Set",
+          "averageUsagePercent": 5.81,
+          "populationSupportPercent": 50.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 19.49,
+        "Defense": 1.67,
+        "Health": 5.85,
+        "Speed": 17.89,
+        "Critical Hit Chance": 2.18,
+        "Critical Hit Damage": 20.14,
+        "Effectiveness": 0.0,
+        "Effect Resistance": 0.26
+      },
+      "population": 2,
+      "metaPickRatePercent": 14.37
+    },
+    {
+      "id": "attack-bruiser-attack-critical-hit-damage-defense-health-speed",
+      "name": "Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Charlotte",
+        "Lone Crescent Bellona"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Damage",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.immunity",
+        "set.counter",
+        "set.destruction",
+        "set.penetration"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 84.77,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 48.73,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 40.3,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 7.21,
+          "populationSupportPercent": 50.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 22.06,
+        "Defense": 7.41,
+        "Health": 15.13,
+        "Speed": 6.6,
+        "Critical Hit Chance": 0.16,
+        "Critical Hit Damage": 24.19,
+        "Effectiveness": 0.18,
+        "Effect Resistance": 1.57
+      },
+      "population": 2,
+      "metaPickRatePercent": 14.06
+    },
+    {
+      "id": "health-bruiser-critical-hit-chance-defense-health-speed",
+      "name": "Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Notos",
+        "Urban Shadow Choux"
+      ],
+      "preferredStats": [
+        "Critical Hit Chance",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.warfare",
+        "set.speed",
+        "set.immunity",
+        "set.pursuit",
+        "set.health",
+        "set.critical"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.warfare",
+          "name": "Warfare Set",
+          "averageUsagePercent": 49.37,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 48.97,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 41.71,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 35.34,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 10.48,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 5.6,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 3.27,
+        "Defense": 6.17,
+        "Health": 23.49,
+        "Speed": 29.69,
+        "Critical Hit Chance": 7.01,
+        "Critical Hit Damage": 2.33,
+        "Effectiveness": 0.27,
+        "Effect Resistance": 1.16
+      },
+      "population": 2,
+      "metaPickRatePercent": 12.69
+    },
+    {
+      "id": "attack-bruiser-attack-defense-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Monarch of the Sword Iseria",
+        "Rimuru"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.counter",
+        "set.immunity",
+        "set.pursuit",
+        "set.speed"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 49.11,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 46.24,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 44.85,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 30.81,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 21.37,
+        "Defense": 5.19,
+        "Health": 10.84,
+        "Speed": 14.62,
+        "Critical Hit Chance": 0.24,
+        "Critical Hit Damage": 0.52,
+        "Effectiveness": 0.82,
+        "Effect Resistance": 5.86
+      },
+      "population": 2,
+      "metaPickRatePercent": 7.19
+    },
+    {
+      "id": "defense-bruiser-critical-hit-chance-critical-hit-damage-defense-speed",
+      "name": "Defense-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Defense",
+      "heroes": [
+        "Lionheart Cermia",
+        "Zeno"
+      ],
+      "preferredStats": [
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Defense",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.destruction",
+        "set.critical",
+        "set.immunity",
+        "set.torrent"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 33.54,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 21.54,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 19.22,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 17.35,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 15.18,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 1.6,
+        "Defense": 9.52,
+        "Health": 2.66,
+        "Speed": 4.4,
+        "Critical Hit Chance": 7.62,
+        "Critical Hit Damage": 12.0,
+        "Effectiveness": 0.14,
+        "Effect Resistance": 0.39
+      },
+      "population": 2,
+      "metaPickRatePercent": 2.97
+    },
+    {
+      "id": "defense-bruiser-critical-hit-chance-defense-health-speed",
+      "name": "Defense-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Defense",
+      "heroes": [
+        "Abyssal Yufine",
+        "Designer Lilibet"
+      ],
+      "preferredStats": [
+        "Critical Hit Chance",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.immunity",
+        "set.speed",
+        "set.critical",
+        "set.destruction",
+        "set.lifesteal",
+        "set.protection"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 54.32,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 37.59,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 27.15,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 19.6,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.lifesteal",
+          "name": "Lifesteal Set",
+          "averageUsagePercent": 19.07,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 7.2,
+          "populationSupportPercent": 50.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.45,
+        "Defense": 16.37,
+        "Health": 11.75,
+        "Speed": 15.07,
+        "Critical Hit Chance": 13.91,
+        "Critical Hit Damage": 0.47,
+        "Effectiveness": 1.1,
+        "Effect Resistance": 1.06
+      },
+      "population": 2,
+      "metaPickRatePercent": 1.07
+    },
+    {
+      "id": "attack-dps-attack-critical-hit-chance-speed",
+      "name": "Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Schuri",
+        "Surin"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.critical",
+        "set.penetration",
+        "set.torrent"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 83.77,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 45.61,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 20.27,
+          "populationSupportPercent": 50.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 10.56,
+          "populationSupportPercent": 50.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 16.35,
+        "Defense": 1.87,
+        "Health": 3.66,
+        "Speed": 16.25,
+        "Critical Hit Chance": 12.69,
+        "Critical Hit Damage": 0.51,
+        "Effectiveness": 0.38,
+        "Effect Resistance": 1.0
+      },
+      "population": 2,
+      "metaPickRatePercent": 0.64
+    },
+    {
+      "id": "attack-dps-attack-critical-hit-damage-speed",
+      "name": "Non-Crit-Chance Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Midnight Gala Lilias",
+        "Zahhak"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Damage",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.torrent",
+        "set.penetration"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 89.29,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 52.09,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 42.8,
+          "populationSupportPercent": 50.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 21.01,
+        "Defense": 2.25,
+        "Health": 3.52,
+        "Speed": 30.08,
+        "Critical Hit Chance": 2.84,
+        "Critical Hit Damage": 20.09,
+        "Effectiveness": 0.16,
+        "Effect Resistance": 0.5
+      },
+      "population": 2,
+      "metaPickRatePercent": 0.64
+    },
+    {
+      "id": "health-bruiser-critical-hit-damage-defense-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Estelle"
+      ],
+      "preferredStats": [
+        "Critical Hit Damage",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.counter",
+        "set.immunity",
+        "set.health"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 85.71,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 83.97,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 7.93,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.73,
+        "Defense": 10.43,
+        "Health": 25.07,
+        "Speed": 5.68,
+        "Critical Hit Chance": 0.47,
+        "Critical Hit Damage": 11.21,
+        "Effectiveness": 0.58,
+        "Effect Resistance": 8.68
+      },
+      "population": 1,
+      "metaPickRatePercent": 21.03
+    },
+    {
+      "id": "health-bruiser-critical-hit-damage-effectiveness-health-speed",
+      "name": "Effectiveness Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Shepherd of the Dark Diene"
+      ],
+      "preferredStats": [
+        "Critical Hit Damage",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.health",
+        "set.destruction",
+        "set.torrent"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 54.99,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 40.72,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 35.19,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 26.02,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 5.1,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 1.98,
+        "Defense": 0.84,
+        "Health": 20.9,
+        "Speed": 25.0,
+        "Critical Hit Chance": 0.39,
+        "Critical Hit Damage": 22.99,
+        "Effectiveness": 9.61,
+        "Effect Resistance": 0.96
+      },
+      "population": 1,
+      "metaPickRatePercent": 16.31
+    },
+    {
+      "id": "speed-bruiser-attack-health-speed",
+      "name": "Non-Crit-Chance Speed-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Speed",
+      "heroes": [
+        "Rinak"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.pursuit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 98.98,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 58.15,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 17.05,
+        "Defense": 4.52,
+        "Health": 11.47,
+        "Speed": 31.24,
+        "Critical Hit Chance": 0.86,
+        "Critical Hit Damage": 0.57,
+        "Effectiveness": 1.77,
+        "Effect Resistance": 0.55
+      },
+      "population": 1,
+      "metaPickRatePercent": 14.69
+    },
+    {
+      "id": "health-bruiser-critical-hit-damage-defense-health-speed",
+      "name": "Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Disciplinary Prefect Aria"
+      ],
+      "preferredStats": [
+        "Critical Hit Damage",
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.penetration",
+        "set.destruction",
+        "set.health",
+        "set.speed"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 80.3,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 80.14,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 7.04,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 6.94,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.89,
+        "Defense": 8.75,
+        "Health": 22.59,
+        "Speed": 19.24,
+        "Critical Hit Chance": 0.44,
+        "Critical Hit Damage": 23.16,
+        "Effectiveness": 0.13,
+        "Effect Resistance": 2.37
+      },
+      "population": 1,
+      "metaPickRatePercent": 9.44
+    },
+    {
+      "id": "health-bruiser-critical-hit-chance-defense-health",
+      "name": "Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Harsetti"
+      ],
+      "preferredStats": [
+        "Critical Hit Chance",
+        "Defense",
+        "Health"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.health",
+        "set.injury",
+        "set.destruction",
+        "set.critical",
+        "set.hit",
+        "set.weakening"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 46.66,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.injury",
+          "name": "Injury Set",
+          "averageUsagePercent": 43.54,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 16.47,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 13.35,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 5.31,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.weakening",
+          "name": "Weakening Set",
+          "averageUsagePercent": 5.31,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.18,
+        "Defense": 8.01,
+        "Health": 28.55,
+        "Speed": 2.9,
+        "Critical Hit Chance": 14.45,
+        "Critical Hit Damage": 0.79,
+        "Effectiveness": 2.02,
+        "Effect Resistance": 1.25
+      },
+      "population": 1,
+      "metaPickRatePercent": 8.55
+    },
+    {
+      "id": "health-bruiser-attack-defense-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Silvertide Christy"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.resist",
+        "set.health",
+        "set.speed"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 82.73,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 11.03,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 7.18,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 5.94,
+        "Defense": 8.16,
+        "Health": 21.04,
+        "Speed": 7.01,
+        "Critical Hit Chance": 0.27,
+        "Critical Hit Damage": 0.18,
+        "Effectiveness": 1.89,
+        "Effect Resistance": 23.1
+      },
+      "population": 1,
+      "metaPickRatePercent": 5.4
+    },
+    {
+      "id": "attack-dps-attack-critical-hit-damage-effectiveness",
+      "name": "Effectiveness Non-Crit-Chance Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Successor Taeyou"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Damage",
+        "Effectiveness"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.penetration",
+        "set.destruction",
+        "set.torrent",
+        "set.speed"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 81.17,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 67.67,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 19.15,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 6.46,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 27.19,
+        "Defense": 0.0,
+        "Health": 1.88,
+        "Speed": 2.2,
+        "Critical Hit Chance": 0.72,
+        "Critical Hit Damage": 24.68,
+        "Effectiveness": 1.54,
+        "Effect Resistance": 0.44
+      },
+      "population": 1,
+      "metaPickRatePercent": 2.77
+    },
+    {
+      "id": "attack-bruiser-attack-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Inheritor Amiki"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.counter",
+        "set.resist",
+        "set.pursuit",
+        "set.immunity",
+        "set.penetration"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 95.41,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 38.23,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 35.06,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 11.11,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 6.23,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 29.55,
+        "Defense": 1.35,
+        "Health": 3.45,
+        "Speed": 2.74,
+        "Critical Hit Chance": 0.52,
+        "Critical Hit Damage": 0.59,
+        "Effectiveness": 2.15,
+        "Effect Resistance": 19.34
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.85
+    },
+    {
+      "id": "attack-dps-attack-effect-resistance-effectiveness-speed",
+      "name": "ER Effectiveness Non-Crit-Chance Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Aki"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Effect Resistance",
+        "Effectiveness",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.torrent",
+        "set.immunity",
+        "set.hit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 97.17,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 18.88,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 8.7,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 7.52,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 42.66,
+        "Defense": 0.0,
+        "Health": 2.43,
+        "Speed": 33.36,
+        "Critical Hit Chance": 0.75,
+        "Critical Hit Damage": 0.7,
+        "Effectiveness": 1.7,
+        "Effect Resistance": 0.02
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.73
+    },
+    {
+      "id": "attack-tank-defense-effect-resistance-effectiveness-health-speed",
+      "name": "ER Effectiveness Tank",
+      "archetypeClass": "Tank",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Solitaria of the Snow"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Effect Resistance",
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.immunity",
+        "set.hit",
+        "set.health",
+        "set.resist"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 84.71,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 46.76,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 24.28,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 5.47,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 5.2,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 0.0,
+        "Defense": 0.0,
+        "Health": 2.15,
+        "Speed": 3.05,
+        "Critical Hit Chance": 0.18,
+        "Critical Hit Damage": 0.1,
+        "Effectiveness": 0.0,
+        "Effect Resistance": 0.0
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.28
+    },
+    {
+      "id": "health-bruiser-effectiveness-health-speed",
+      "name": "Effectiveness Non-Crit-Chance Health-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Health",
+      "heroes": [
+        "Blooming Lidica"
+      ],
+      "preferredStats": [
+        "Effectiveness",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.health"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 93.33,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 57.15,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 35.09,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 1.8,
+        "Defense": 3.7,
+        "Health": 22.92,
+        "Speed": 30.23,
+        "Critical Hit Chance": 0.29,
+        "Critical Hit Damage": 0.08,
+        "Effectiveness": 15.7,
+        "Effect Resistance": 0.97
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.12
+    },
+    {
+      "id": "defense-bruiser-critical-hit-chance-defense-effect-resistance-health-speed",
+      "name": "ER Defense-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Defense",
+      "heroes": [
+        "Aria"
+      ],
+      "preferredStats": [
+        "Critical Hit Chance",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.lifesteal",
+        "set.resist",
+        "set.immunity",
+        "set.health",
+        "set.defense"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.lifesteal",
+          "name": "Lifesteal Set",
+          "averageUsagePercent": 83.91,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 59.31,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 14.48,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 7.82,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.defense",
+          "name": "Defense Set",
+          "averageUsagePercent": 6.44,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 2.42,
+        "Defense": 16.99,
+        "Health": 17.05,
+        "Speed": 5.77,
+        "Critical Hit Chance": 8.52,
+        "Critical Hit Damage": 1.79,
+        "Effectiveness": 0.0,
+        "Effect Resistance": 9.62
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.05
+    },
+    {
+      "id": "defense-bruiser-defense-health-speed",
+      "name": "Non-Crit-Chance Defense-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Defense",
+      "heroes": [
+        "Guard Captain Krau"
+      ],
+      "preferredStats": [
+        "Defense",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.immunity",
+        "set.defense"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 84.93,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 48.57,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.defense",
+          "name": "Defense Set",
+          "averageUsagePercent": 26.23,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 1.97,
+        "Defense": 25.28,
+        "Health": 11.26,
+        "Speed": 27.97,
+        "Critical Hit Chance": 0.23,
+        "Critical Hit Damage": 0.1,
+        "Effectiveness": 1.44,
+        "Effect Resistance": 2.15
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.04
+    },
+    {
+      "id": "attack-bruiser-attack-critical-hit-chance-health-speed",
+      "name": "Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Milim"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.penetration",
+        "set.speed",
+        "set.destruction",
+        "set.riposte"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 87.75,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 50.34,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 26.53,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.riposte",
+          "name": "Riposte Set",
+          "averageUsagePercent": 10.88,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 16.2,
+        "Defense": 0.0,
+        "Health": 5.74,
+        "Speed": 27.45,
+        "Critical Hit Chance": 13.49,
+        "Critical Hit Damage": 0.11,
+        "Effectiveness": 0.0,
+        "Effect Resistance": 0.0
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.03
+    },
+    {
+      "id": "attack-bruiser-attack-critical-hit-damage-defense-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Martial Artist Ken"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Damage",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.destruction",
+        "set.penetration",
+        "set.attack",
+        "set.pursuit",
+        "set.immunity",
+        "set.resist"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 58.74,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 34.2,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.attack",
+          "name": "Attack Set",
+          "averageUsagePercent": 18.96,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 18.96,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 18.22,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 10.78,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 15.62,
+        "Defense": 9.73,
+        "Health": 19.09,
+        "Speed": 3.41,
+        "Critical Hit Chance": 0.0,
+        "Critical Hit Damage": 22.62,
+        "Effectiveness": 0.54,
+        "Effect Resistance": 12.54
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.03
+    },
+    {
+      "id": "attack-dps-attack-critical-hit-chance-critical-hit-damage-effect-resistance-speed",
+      "name": "ER Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Commander Lorina"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Effect Resistance",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.destruction",
+        "set.penetration",
+        "set.counter",
+        "set.resist",
+        "set.pursuit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 48.13,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 41.49,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 38.59,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 32.78,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.pursuit",
+          "name": "Pursuit Set",
+          "averageUsagePercent": 12.45,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 16.25,
+        "Defense": 2.37,
+        "Health": 4.74,
+        "Speed": 5.88,
+        "Critical Hit Chance": 12.36,
+        "Critical Hit Damage": 23.6,
+        "Effectiveness": 1.79,
+        "Effect Resistance": 17.0
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.03
+    },
+    {
+      "id": "attack-dps-attack-critical-hit-chance-critical-hit-damage-effectiveness-speed",
+      "name": "Effectiveness Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Judge Kise"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Effectiveness",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.torrent",
+        "set.hit",
+        "set.critical"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 88.32,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 34.55,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 28.47,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 9.73,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 16.62,
+        "Defense": 1.44,
+        "Health": 3.88,
+        "Speed": 30.74,
+        "Critical Hit Chance": 11.8,
+        "Critical Hit Damage": 14.85,
+        "Effectiveness": 5.96,
+        "Effect Resistance": 0.0
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.03
+    },
+    {
+      "id": "attack-dps-attack-effectiveness-speed",
+      "name": "Effectiveness Non-Crit-Chance Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Robin"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Effectiveness",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 97.64,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 95.29,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 22.12,
+        "Defense": 1.69,
+        "Health": 4.42,
+        "Speed": 28.55,
+        "Critical Hit Chance": 0.47,
+        "Critical Hit Damage": 0.11,
+        "Effectiveness": 15.56,
+        "Effect Resistance": 0.21
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.03
+    },
+    {
+      "id": "attack-support-attack-critical-hit-chance-critical-hit-damage-health-speed",
+      "name": "Fast Support",
+      "archetypeClass": "Support",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Fenne"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.penetration",
+        "set.destruction",
+        "set.speed",
+        "set.critical",
+        "set.immunity"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.penetration",
+          "name": "Penetration Set",
+          "averageUsagePercent": 79.08,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 74.48,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 18.83,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.critical",
+          "name": "Critical Set",
+          "averageUsagePercent": 7.95,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 5.02,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 10.76,
+        "Defense": 3.47,
+        "Health": 20.54,
+        "Speed": 21.33,
+        "Critical Hit Chance": 8.78,
+        "Critical Hit Damage": 24.29,
+        "Effectiveness": 1.0,
+        "Effect Resistance": 0.14
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.02
+    },
+    {
+      "id": "defense-bruiser-attack-defense-effect-resistance-health-speed",
+      "name": "ER Non-Crit-Chance Defense-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Defense",
+      "heroes": [
+        "Armin"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Effect Resistance",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.immunity",
+        "set.protection",
+        "set.health",
+        "set.defense",
+        "set.resist"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 62.75,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.protection",
+          "name": "Protection Set",
+          "averageUsagePercent": 42.11,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 22.26,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.defense",
+          "name": "Defense Set",
+          "averageUsagePercent": 17.81,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 12.96,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 5.31,
+        "Defense": 10.35,
+        "Health": 28.18,
+        "Speed": 13.0,
+        "Critical Hit Chance": 0.69,
+        "Critical Hit Damage": 0.19,
+        "Effectiveness": 2.25,
+        "Effect Resistance": 9.37
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.02
+    },
+    {
+      "id": "attack-bruiser-attack-defense-speed",
+      "name": "Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Inferno Khawazu"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Defense",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Defense"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.immunity",
+        "set.health",
+        "set.hit"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 90.25,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 48.78,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.health",
+          "name": "Health Set",
+          "averageUsagePercent": 24.39,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 12.2,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 22.0,
+        "Defense": 9.07,
+        "Health": 1.67,
+        "Speed": 25.42,
+        "Critical Hit Chance": 0.71,
+        "Critical Hit Damage": 0.43,
+        "Effectiveness": 2.09,
+        "Effect Resistance": 0.59
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.01
+    },
+    {
+      "id": "attack-bruiser-attack-health-speed",
+      "name": "Non-Crit-Chance Attack-Scaling Bruiser",
+      "archetypeClass": "Bruiser",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Sealed Eye Surin"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Health",
+        "Speed"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack",
+        "Flat Health"
+      ],
+      "compatibleSets": [
+        "set.speed",
+        "set.hit",
+        "set.immunity",
+        "set.destruction",
+        "set.torrent"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.speed",
+          "name": "Speed Set",
+          "averageUsagePercent": 82.19,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.hit",
+          "name": "Hit Set",
+          "averageUsagePercent": 60.27,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 19.18,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.destruction",
+          "name": "Destruction Set",
+          "averageUsagePercent": 6.16,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 6.16,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 25.34,
+        "Defense": 4.36,
+        "Health": 7.67,
+        "Speed": 29.51,
+        "Critical Hit Chance": 1.07,
+        "Critical Hit Damage": 1.47,
+        "Effectiveness": 0.0,
+        "Effect Resistance": 1.06
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.01
+    },
+    {
+      "id": "attack-dps-attack-critical-hit-chance-critical-hit-damage-effect-resistance",
+      "name": "ER Attack-Scaling DPS",
+      "archetypeClass": "DPS",
+      "scalingStat": "Attack",
+      "heroes": [
+        "Kayron"
+      ],
+      "preferredStats": [
+        "Attack",
+        "Critical Hit Chance",
+        "Critical Hit Damage",
+        "Effect Resistance"
+      ],
+      "flatStatFallbacks": [
+        "Flat Attack"
+      ],
+      "compatibleSets": [
+        "set.immunity",
+        "set.counter",
+        "set.riposte",
+        "set.resist",
+        "set.torrent"
+      ],
+      "setEvidence": [
+        {
+          "id": "set.immunity",
+          "name": "Immunity Set",
+          "averageUsagePercent": 75.3,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.counter",
+          "name": "Counter Set",
+          "averageUsagePercent": 45.89,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.riposte",
+          "name": "Riposte Set",
+          "averageUsagePercent": 37.65,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.resist",
+          "name": "Resist Set",
+          "averageUsagePercent": 16.48,
+          "populationSupportPercent": 100.0
+        },
+        {
+          "id": "set.torrent",
+          "name": "Torrent Set",
+          "averageUsagePercent": 8.24,
+          "populationSupportPercent": 100.0
+        }
+      ],
+      "averageMaxRollInvestment": {
+        "Attack": 21.73,
+        "Defense": 2.78,
+        "Health": 4.47,
+        "Speed": 2.41,
+        "Critical Hit Chance": 13.43,
+        "Critical Hit Damage": 23.16,
+        "Effectiveness": 0.12,
+        "Effect Resistance": 14.01
+      },
+      "population": 1,
+      "metaPickRatePercent": 0.01
+    }
+  ]
+}

@@ -34,6 +34,12 @@ export const IMPORT_RESULT: OptimizerInventoryImportResult = {
       reforgedGearScore: 37,
       combatGearScore: 22,
       supportGearScore: 37,
+      archetypeAnalysis: {
+        verdict: 'destroy',
+        reason: 'No archetype matches this set, main stat, and at least three substats.',
+        rollHistoryAvailable: true,
+        matches: [],
+      },
       locked: true,
       equippedStatus: 'other-hero',
       equippedHeroName: 'Alencia',

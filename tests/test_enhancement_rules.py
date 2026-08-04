@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 from src.core.enhancement_packets import EnhancementPacket
 from src.core.enhancement_rules import (
@@ -22,6 +23,17 @@ def observe(state, enhancement, rolls, subs=None):
 
 
 class EnhancementRulesTests(unittest.TestCase):
+    @staticmethod
+    def archetype_state(initial_substats=4):
+        return AutomationState(
+            archetype_context={
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
+            },
+            initial_substat_count=initial_substats,
+        )
+
     def test_first_plus_three_is_first_roll_even_for_three_substat_gear(self):
         state = AutomationState()
         parsed = packet(3, [("speed", 3)], subs=[
@@ -117,6 +129,44 @@ class EnhancementRulesTests(unittest.TestCase):
         self.assertTrue(state.quality_track)
         self.assertEqual(decision.action, "enhance")
         self.assertEqual(decision.next_target, 6)
+
+    def test_third_total_roll_on_the_only_off_stat_destroys(self):
+        state = self.archetype_state()
+        subs = [
+            ["att", 40],
+            ["speed", 8],
+            ["acc", 0.16],
+            ["cri", 0.04],
+        ]
+
+        fixture = ({
+            "id": "fixture",
+            "name": "Fixture",
+            "heroes": ["Fixture Hero"],
+            "preferredStats": ["Attack", "Effectiveness", "Speed"],
+            "flatStatFallbacks": ["Flat Attack"],
+            "compatibleSets": ["set.speed"],
+        },)
+        with patch("src.core.gear_archetypes.load_gear_archetypes", return_value=fixture):
+            allowed = observe(state, 3, [("cri", 0.04)], subs=subs)
+            rejected = observe(state, 6, [("cri", 0.04), ("cri", 0.04)], subs=subs)
+
+        self.assertEqual(allowed.action, "enhance")
+        self.assertEqual(rejected.action, "destroy")
+        self.assertIn("3 total rolls", rejected.reason)
+
+    def test_heroic_fourth_substat_starts_at_one_total_roll(self):
+        state = self.archetype_state(initial_substats=3)
+        parsed = packet(3, [("cri", 0.04)], subs=[
+            ["att", 40],
+            ["speed", 8],
+            ["acc", 0.16],
+        ])
+
+        record_enhancement_event(parsed, state)
+        decision = decide_enhancement_action(parsed, state)
+
+        self.assertNotEqual(decision.action, "destroy")
 
 
 if __name__ == "__main__":

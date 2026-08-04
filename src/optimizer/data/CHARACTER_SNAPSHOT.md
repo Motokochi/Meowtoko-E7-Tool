@@ -75,6 +75,15 @@ Generated JSON is UTF-8, compact, key-sorted, and contains no local absolute
 paths. The pinned build/fetch timestamp is `2026-07-20T00:00:00Z`; the
 generator never reads a clock.
 
+## Future heroes
+
+This Fribbels snapshot is a frozen legacy baseline and must not be refreshed to
+add later characters. Future heroes originate from the user-maintained intake
+contract in `support/New-Character/new-character-template.json` and a matching
+`assets/characters/<Exact Character Name>/` raw artwork folder. Build evidence
+is supplied separately as a Hero Journal Discord screenshot and is never
+guessed from the character intake file.
+
 ## Attribution
 
 The source project identifies Fribbels as its author, the offline fork is

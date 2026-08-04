@@ -37,6 +37,7 @@ from src.core.live_packet_source import (
     LivePacketSource,
     PacketCaptureUnavailable,
 )
+from src.core.gear_archetypes import analyze_gear_archetypes
 from src.core.packet_inventory import PacketInventoryError, normalize_account_inventory
 from src.optimizer.domain import (
     GEAR_RANK_CATALOG,
@@ -178,6 +179,22 @@ def _reforged_scores(item: object) -> tuple[int, int, int]:
     return reforged, combat, support
 
 
+def _substat_roll_counts(item: object) -> dict[str, int | None]:
+    raw_substats = item.source_metadata.get("substats")
+    result = {stat.value: None for stat, _value in item.gear_item.substats}
+    if not isinstance(raw_substats, Sequence) or isinstance(raw_substats, (str, bytes)):
+        return result
+    for (stat, _value), raw in zip(item.gear_item.substats, raw_substats):
+        if not isinstance(raw, Mapping):
+            continue
+        rolls = raw.get("ingameRolls")
+        if isinstance(rolls, bool) or not isinstance(rolls, int):
+            rolls = raw.get("rolls")
+        if isinstance(rolls, int) and not isinstance(rolls, bool) and rolls >= 1:
+            result[stat.value] = rolls
+    return result
+
+
 def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
     owners = {hero.hero_id: hero.name for hero in repository.load_heroes()}
     result = []
@@ -186,6 +203,7 @@ def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
         if gear.enhance != 15:
             continue
         reforged, combat, support = _reforged_scores(stored)
+        roll_counts = _substat_roll_counts(stored)
         owner_name = (
             owners.get(gear.equipped_hero_id)
             if gear.equipped_hero_id is not None
@@ -205,6 +223,13 @@ def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
             "reforgedGearScore": reforged,
             "combatGearScore": combat,
             "supportGearScore": support,
+            "archetypeAnalysis": analyze_gear_archetypes(
+                gear_set=gear.gear_set.value,
+                slot=gear.slot.value,
+                main_stat=gear.main_stat.value,
+                substats=tuple(stat.value for stat, _value in gear.substats),
+                roll_counts=roll_counts,
+            ),
             "locked": gear.locked,
             "equippedStatus": (
                 "unequipped" if gear.equipped_hero_id is None else "other-hero"

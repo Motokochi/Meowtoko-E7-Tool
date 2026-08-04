@@ -64,6 +64,8 @@ class OptimizerInventoryDesktopServiceTests(unittest.TestCase):
             self.assertEqual(reloaded["gear"][0]["reforgedGearScore"], 37)
             self.assertEqual(reloaded["gear"][0]["combatGearScore"], 22)
             self.assertEqual(reloaded["gear"][0]["supportGearScore"], 37)
+            self.assertEqual(reloaded["gear"][0]["archetypeAnalysis"]["verdict"], "destroy")
+            self.assertIn("No archetype", reloaded["gear"][0]["archetypeAnalysis"]["reason"])
             self.assertEqual(reloaded["gear"][0]["equippedHeroName"], "Fixture Guardian")
             self.assertEqual(reloaded["lastImport"]["importedAt"], "2026-07-22T12:34:56.000Z")
             self.assertEqual(result["report"]["insertedCount"], 2)

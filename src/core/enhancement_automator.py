@@ -133,6 +133,12 @@ class EnhancementAutomator:
         gear_set = metadata["set"]
         initial_substats = metadata["initialSubstats"]
         imported_enhancement = metadata["enhance"]
+        state.initial_substat_count = initial_substats
+        state.archetype_context = {
+            "setId": metadata["setId"],
+            "slotId": metadata["slotId"],
+            "mainStatId": metadata["mainStatId"],
+        }
         if imported_enhancement >= 15:
             raise RuntimeError(
                 f"Imported equipment {item_id} is already +15. "
@@ -321,6 +327,9 @@ class EnhancementAutomator:
         gear_set = metadata.get("set")
         enhancement = metadata.get("enhance")
         initial_substats = metadata.get("initialSubstats")
+        set_id = metadata.get("setId")
+        slot_id = metadata.get("slotId")
+        main_stat_id = metadata.get("mainStatId")
         if (
             not isinstance(gear_set, str)
             or not gear_set
@@ -330,6 +339,12 @@ class EnhancementAutomator:
             or isinstance(initial_substats, bool)
             or not isinstance(initial_substats, int)
             or not 0 <= initial_substats <= 4
+            or not isinstance(set_id, str)
+            or not set_id
+            or not isinstance(slot_id, str)
+            or not slot_id
+            or not isinstance(main_stat_id, str)
+            or not main_stat_id
         ):
             raise RuntimeError(
                 f"Imported metadata for equipment {item_id} is incomplete. "
@@ -339,6 +354,9 @@ class EnhancementAutomator:
             "set": gear_set,
             "enhance": enhancement,
             "initialSubstats": initial_substats,
+            "setId": set_id,
+            "slotId": slot_id,
+            "mainStatId": main_stat_id,
         }
 
     @staticmethod

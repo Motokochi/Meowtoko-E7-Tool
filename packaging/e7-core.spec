@@ -81,6 +81,10 @@ analysis = Analysis(
             str(ROOT / "src" / "optimizer" / "data" / "character_data"),
             "src/optimizer/data/character_data",
         ),
+        (
+            str(ROOT / "src" / "core" / "data"),
+            "src/core/data",
+        ),
     ],
     hiddenimports=HIDDEN_IMPORTS,
     hookspath=[],

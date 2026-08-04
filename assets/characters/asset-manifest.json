@@ -1,7 +1,7 @@
 {
   "schemaId": "e7hub.e7codex-character-assets",
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23T14:45:19Z",
+  "generatedAt": "2026-08-04T03:00:45Z",
   "source": {
     "site": "https://e7codex.com/",
     "assetBaseUrl": "https://e7codex.com/assets",
@@ -14,8 +14,8 @@
     "availableFiles": 1532,
     "missingFiles": 12,
     "errorFiles": 0,
-    "totalBytes": 107535608,
-    "sourceTotalBytes": 1937420353
+    "totalBytes": 107597974,
+    "sourceTotalBytes": 1924778095
   },
   "characters": [
     {
@@ -3093,18 +3093,18 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 3694,
-          "sha256": "b73fb3fc8315d6c1439bd09869ce95dcd9864b822bd56888cf6d3eec33d26ffa",
-          "width": 1231,
+          "bytes": 199954,
+          "sha256": "b3060b1b9398521ed3c0e61c97d9a70696153f5093ae7948020c614ef3f7536f",
+          "width": 1165,
           "height": 1600,
           "path": "Aubade Ludwig/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5069/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c5069_1/pose.png",
           "sourceFile": {
             "path": "Aubade Ludwig/pose.png",
-            "bytes": 29255,
-            "sha256": "1b9bf0cbbf078bde3e5f5bd12c9143a306d18f9cb2de5066033131849b056a13",
-            "width": 2400,
-            "height": 3120
+            "bytes": 3584736,
+            "sha256": "07d72cd503907aa0f2fbf1d3acebfcadf331cfca7b58a936bb97ae8618a78656",
+            "width": 2067,
+            "height": 2839
           }
         },
         "face_l": {
@@ -3114,7 +3114,7 @@
           "width": 156,
           "height": 89,
           "path": "Aubade Ludwig/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5069/face_c5069_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c5069_1/face_c5069_l.png",
           "sourceFile": {
             "path": "Aubade Ludwig/face_l.png",
             "bytes": 8361,
@@ -3130,7 +3130,7 @@
           "width": 112,
           "height": 112,
           "path": "Aubade Ludwig/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5069/face_c5069_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c5069_1/face_c5069_s.png",
           "sourceFile": {
             "path": "Aubade Ludwig/face_s.png",
             "bytes": 8251,
@@ -3146,7 +3146,7 @@
           "width": 218,
           "height": 206,
           "path": "Aubade Ludwig/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5069/face_c5069_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c5069_1/face_c5069_su.png",
           "sourceFile": {
             "path": "Aubade Ludwig/face_su.png",
             "bytes": 16001,
@@ -3166,17 +3166,17 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 458836,
-          "sha256": "9b381b67b3e088bf96b1dd13ef5d57ca9a1f37421ac785ce5c72bd54d403b42c",
-          "width": 1314,
+          "bytes": 313148,
+          "sha256": "f8f9ddb650e8d775f51e2edb98db2ad65400d86061cec10e02d4b798edb8ebcf",
+          "width": 1324,
           "height": 1600,
           "path": "Aube/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5190/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c5190_1/pose.png",
           "sourceFile": {
             "path": "Aube/pose.png",
-            "bytes": 9675084,
-            "sha256": "0d635daaa27c616e4baf03697fa4fd5dee3ad71bb08da43bf210e521f3cf9e52",
-            "width": 2563,
+            "bytes": 5947005,
+            "sha256": "479dd8c1cf79a9ff8a7630143694a9273f541dda5368cfe267389d3b53c77677",
+            "width": 2581,
             "height": 3120
           }
         },
@@ -3187,7 +3187,7 @@
           "width": 192,
           "height": 89,
           "path": "Aube/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5190/face_c5190_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c5190_1/face_c5190_l.png",
           "sourceFile": {
             "path": "Aube/face_l.png",
             "bytes": 11222,
@@ -3203,7 +3203,7 @@
           "width": 112,
           "height": 112,
           "path": "Aube/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5190/face_c5190_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c5190_1/face_c5190_s.png",
           "sourceFile": {
             "path": "Aube/face_s.png",
             "bytes": 8621,
@@ -3219,7 +3219,7 @@
           "width": 350,
           "height": 206,
           "path": "Aube/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5190/face_c5190_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c5190_1/face_c5190_su.png",
           "sourceFile": {
             "path": "Aube/face_su.png",
             "bytes": 25341,
@@ -9485,17 +9485,17 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 3694,
-          "sha256": "b73fb3fc8315d6c1439bd09869ce95dcd9864b822bd56888cf6d3eec33d26ffa",
-          "width": 1231,
+          "bytes": 216708,
+          "sha256": "8582c890ab3696e9e5f542ef3c1617130db5e6a9e396b6ab1687d435462a289e",
+          "width": 979,
           "height": 1600,
           "path": "Estelle/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1183/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c1183_1/pose.png",
           "sourceFile": {
             "path": "Estelle/pose.png",
-            "bytes": 29255,
-            "sha256": "1b9bf0cbbf078bde3e5f5bd12c9143a306d18f9cb2de5066033131849b056a13",
-            "width": 2400,
+            "bytes": 4481308,
+            "sha256": "0d5f646077f4c4eab573fb22037c0b5f6d7e39ed0a5fb79062d83a66a0a6ff0d",
+            "width": 1909,
             "height": 3120
           }
         },
@@ -9506,7 +9506,7 @@
           "width": 189,
           "height": 89,
           "path": "Estelle/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1183/face_c1183_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c1183_1/face_c1183_l.png",
           "sourceFile": {
             "path": "Estelle/face_l.png",
             "bytes": 11667,
@@ -9522,7 +9522,7 @@
           "width": 112,
           "height": 112,
           "path": "Estelle/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1183/face_c1183_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c1183_1/face_c1183_s.png",
           "sourceFile": {
             "path": "Estelle/face_s.png",
             "bytes": 9316,
@@ -9538,7 +9538,7 @@
           "width": 331,
           "height": 206,
           "path": "Estelle/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1183/face_c1183_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c1183_1/face_c1183_su.png",
           "sourceFile": {
             "path": "Estelle/face_su.png",
             "bytes": 26923,
@@ -9631,17 +9631,17 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 336586,
-          "sha256": "f7f77def20c2a98e7be6590f4c93a6f185b86f421cfc13e3518290387b034080",
-          "width": 1493,
+          "bytes": 251510,
+          "sha256": "ae9228e24d9fd7047a2a9c42d5597759efda662790c1e3780ccfbd2a6b8b4e76",
+          "width": 926,
           "height": 1600,
           "path": "Eye of the Abyss Fumyr/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5147/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c5147_1/pose.png",
           "sourceFile": {
             "path": "Eye of the Abyss Fumyr/pose.png",
-            "bytes": 8369898,
-            "sha256": "4983bc1800cffd71e8daa60b7a99b359322f6a672405000a48be5cd8f1a943f4",
-            "width": 2912,
+            "bytes": 5099800,
+            "sha256": "16a144ac59d76c97dc3d19fc6d096970828a07709c93e8f69f48a0892f3541a1",
+            "width": 1806,
             "height": 3120
           }
         },
@@ -9652,7 +9652,7 @@
           "width": 173,
           "height": 89,
           "path": "Eye of the Abyss Fumyr/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5147/face_c5147_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c5147_1/face_c5147_l.png",
           "sourceFile": {
             "path": "Eye of the Abyss Fumyr/face_l.png",
             "bytes": 10810,
@@ -9668,7 +9668,7 @@
           "width": 112,
           "height": 112,
           "path": "Eye of the Abyss Fumyr/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5147/face_c5147_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c5147_1/face_c5147_s.png",
           "sourceFile": {
             "path": "Eye of the Abyss Fumyr/face_s.png",
             "bytes": 9058,
@@ -9684,7 +9684,7 @@
           "width": 239,
           "height": 206,
           "path": "Eye of the Abyss Fumyr/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c5147/face_c5147_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c5147_1/face_c5147_su.png",
           "sourceFile": {
             "path": "Eye of the Abyss Fumyr/face_su.png",
             "bytes": 24975,
@@ -17483,18 +17483,18 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 527800,
-          "sha256": "c5568ef6ed2fa8686c9ce2ae684c9443d0edcde034f47405191bde6bad3efed2",
-          "width": 1556,
+          "bytes": 240750,
+          "sha256": "cde661179e4ca50961c6e753982c896c35b000d8066279b7ba8ff8ce61a848d8",
+          "width": 965,
           "height": 1600,
           "path": "Monarch of the Sword Iseria/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c6024/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c6024_1/pose.png",
           "sourceFile": {
             "path": "Monarch of the Sword Iseria/pose.png",
-            "bytes": 4791797,
-            "sha256": "d47fb72e78b78d2737e82d062b32ff93c3f6c2df938fc5bbfcf7a351d2b0f295",
-            "width": 1622,
-            "height": 1668
+            "bytes": 4243242,
+            "sha256": "fb5e009726e0ed6927c26faa17be155b450985ff0126eac51dbdb0b5426c3488",
+            "width": 1881,
+            "height": 3120
           }
         },
         "face_l": {
@@ -17504,7 +17504,7 @@
           "width": 189,
           "height": 89,
           "path": "Monarch of the Sword Iseria/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c6024/face_c6024_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c6024_1/face_c6024_l.png",
           "sourceFile": {
             "path": "Monarch of the Sword Iseria/face_l.png",
             "bytes": 10133,
@@ -17520,7 +17520,7 @@
           "width": 112,
           "height": 112,
           "path": "Monarch of the Sword Iseria/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c6024/face_c6024_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c6024_1/face_c6024_s.png",
           "sourceFile": {
             "path": "Monarch of the Sword Iseria/face_s.png",
             "bytes": 8601,
@@ -17536,7 +17536,7 @@
           "width": 295,
           "height": 206,
           "path": "Monarch of the Sword Iseria/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c6024/face_c6024_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c6024_1/face_c6024_su.png",
           "sourceFile": {
             "path": "Monarch of the Sword Iseria/face_su.png",
             "bytes": 26224,
@@ -18432,17 +18432,17 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 268332,
-          "sha256": "4bc12c32a6e0eb1a2e755e3fea55eae9effd7d8fbfb734d87b0288aaed1999df",
-          "width": 1360,
+          "bytes": 476730,
+          "sha256": "802f59572eae7f10f4f07f85b3e9fb3cba5fb22aed16eafaa82d9de9f7626102",
+          "width": 1420,
           "height": 1600,
           "path": "Notos/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2181/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c2181_1/pose.png",
           "sourceFile": {
             "path": "Notos/pose.png",
-            "bytes": 10312317,
-            "sha256": "4cf0a6bd8b5c8435baf97ef8e5f37d90e4ca13766f1031a03f6f782433546567",
-            "width": 2652,
+            "bytes": 12776089,
+            "sha256": "03aca4e22008c32653409464467eb1d6d2362e4a5e09f375ac273aaf946c86e7",
+            "width": 2769,
             "height": 3120
           }
         },
@@ -18453,7 +18453,7 @@
           "width": 222,
           "height": 89,
           "path": "Notos/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2181/face_c2181_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c2181_1/face_c2181_l.png",
           "sourceFile": {
             "path": "Notos/face_l.png",
             "bytes": 11055,
@@ -18469,7 +18469,7 @@
           "width": 112,
           "height": 112,
           "path": "Notos/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2181/face_c2181_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c2181_1/face_c2181_s.png",
           "sourceFile": {
             "path": "Notos/face_s.png",
             "bytes": 9063,
@@ -18485,7 +18485,7 @@
           "width": 436,
           "height": 206,
           "path": "Notos/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2181/face_c2181_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c2181_1/face_c2181_su.png",
           "sourceFile": {
             "path": "Notos/face_su.png",
             "bytes": 27972,
@@ -20476,18 +20476,18 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 215900,
-          "sha256": "cf12cd6535517f785288304a719e12e4479f930b68858d6767d65fd6d846c37b",
-          "width": 1188,
-          "height": 1600,
+          "bytes": 122492,
+          "sha256": "0a85cb0a16bd391bac101d23fb12018d38e4e3ec06c93f5d1105fd2f24113040",
+          "width": 902,
+          "height": 986,
           "path": "Rhianna and Luciella/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2185/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c2185_1/pose.png",
           "sourceFile": {
             "path": "Rhianna and Luciella/pose.png",
-            "bytes": 7677778,
-            "sha256": "45485fc52ca0e4b1714118c03a7a16825a2c07f3ddfd4f5dcfef1cf62f4cc32e",
-            "width": 2316,
-            "height": 3120
+            "bytes": 583655,
+            "sha256": "ebb18f481946d5f5b6606022d33b3923af6e63d003b8fb38561512c78bf1ca07",
+            "width": 902,
+            "height": 986
           }
         },
         "face_l": {
@@ -20497,7 +20497,7 @@
           "width": 222,
           "height": 89,
           "path": "Rhianna and Luciella/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2185/face_c2185_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c2185_1/face_c2185_l.png",
           "sourceFile": {
             "path": "Rhianna and Luciella/face_l.png",
             "bytes": 10791,
@@ -20513,7 +20513,7 @@
           "width": 112,
           "height": 112,
           "path": "Rhianna and Luciella/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2185/face_c2185_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c2185_1/face_c2185_s.png",
           "sourceFile": {
             "path": "Rhianna and Luciella/face_s.png",
             "bytes": 8768,
@@ -20529,7 +20529,7 @@
           "width": 323,
           "height": 206,
           "path": "Rhianna and Luciella/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2185/face_c2185_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c2185_1/face_c2185_su.png",
           "sourceFile": {
             "path": "Rhianna and Luciella/face_su.png",
             "bytes": 28607,
@@ -21644,17 +21644,17 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 254364,
-          "sha256": "8d4b662129ab1ca620a26bf741fc280e02780cfb62b731eebcd5415de8e06b0c",
-          "width": 1414,
+          "bytes": 218060,
+          "sha256": "6b5988fb235cc8071079a059284639f42ebdce350ff33c2c63906b585e3bbea1",
+          "width": 1303,
           "height": 1600,
           "path": "Ruiza/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1180/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c1180_1/pose.png",
           "sourceFile": {
             "path": "Ruiza/pose.png",
-            "bytes": 5827377,
-            "sha256": "eecd5a3dbe0a752e84d3c3805228fa0e26820fced29c7d89a65424e5d991a0be",
-            "width": 2757,
+            "bytes": 4868435,
+            "sha256": "541a7e8d610e8af00f25a94086d02296de3c10d354dea2b8f91d618660d150da",
+            "width": 2541,
             "height": 3120
           }
         },
@@ -21665,7 +21665,7 @@
           "width": 189,
           "height": 89,
           "path": "Ruiza/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1180/face_c1180_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c1180_1/face_c1180_l.png",
           "sourceFile": {
             "path": "Ruiza/face_l.png",
             "bytes": 12119,
@@ -21681,7 +21681,7 @@
           "width": 112,
           "height": 112,
           "path": "Ruiza/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1180/face_c1180_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c1180_1/face_c1180_s.png",
           "sourceFile": {
             "path": "Ruiza/face_s.png",
             "bytes": 9240,
@@ -21697,7 +21697,7 @@
           "width": 267,
           "height": 206,
           "path": "Ruiza/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c1180/face_c1180_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c1180_1/face_c1180_su.png",
           "sourceFile": {
             "path": "Ruiza/face_su.png",
             "bytes": 27697,
@@ -21790,17 +21790,17 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 237818,
-          "sha256": "5c3ec79204a7de722c30b30e6c218626c71ff7c1880008062dcd599ba0f18530",
-          "width": 1307,
+          "bytes": 248628,
+          "sha256": "197f32fb0d1391f0220e1c9d82a9cc0faff8111945e1a7994e4f6d80f158b844",
+          "width": 1078,
           "height": 1600,
           "path": "Salome/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2184/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c2184_1/pose.png",
           "sourceFile": {
             "path": "Salome/pose.png",
-            "bytes": 7480638,
-            "sha256": "68606e4616c546b57da5b351f849d7471a5b3bbfbc1c4c6ab43be4e8e93c4704",
-            "width": 2548,
+            "bytes": 3785451,
+            "sha256": "9ec25b523f47f839ef0fa122bb8b8fc695451b0d430280ea8233cfcafe4ead72",
+            "width": 2103,
             "height": 3120
           }
         },
@@ -21811,7 +21811,7 @@
           "width": 189,
           "height": 89,
           "path": "Salome/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2184/face_c2184_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c2184_1/face_c2184_l.png",
           "sourceFile": {
             "path": "Salome/face_l.png",
             "bytes": 12781,
@@ -21827,7 +21827,7 @@
           "width": 112,
           "height": 112,
           "path": "Salome/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2184/face_c2184_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c2184_1/face_c2184_s.png",
           "sourceFile": {
             "path": "Salome/face_s.png",
             "bytes": 9153,
@@ -21843,7 +21843,7 @@
           "width": 355,
           "height": 206,
           "path": "Salome/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2184/face_c2184_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c2184_1/face_c2184_su.png",
           "sourceFile": {
             "path": "Salome/face_su.png",
             "bytes": 32960,
@@ -23177,18 +23177,18 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 334478,
-          "sha256": "2bce3cd08fb517da1912d36f2f2f88dbcba3798e3f5cfec846356ad1fe41b915",
-          "width": 1429,
+          "bytes": 225304,
+          "sha256": "53b26977de7fc0e421e2298b0d950bdf84a6bc7a63427bcb58199e77fe401523",
+          "width": 1339,
           "height": 1600,
           "path": "Shepherd of the Dark Diene/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2076/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c2076_1/pose.png",
           "sourceFile": {
             "path": "Shepherd of the Dark Diene/pose.png",
-            "bytes": 6104220,
-            "sha256": "df6810bedbb5d7b07ee9ed6069e2d08a507d1d9993e2cd8bd64ec9385d691653",
-            "width": 1966,
-            "height": 2201
+            "bytes": 2121943,
+            "sha256": "b49714adaab9c122a445fac72007086e696a099673dc228a0bacbca04ac04070",
+            "width": 1573,
+            "height": 1879
           }
         },
         "face_l": {
@@ -23198,7 +23198,7 @@
           "width": 146,
           "height": 89,
           "path": "Shepherd of the Dark Diene/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2076/face_c2076_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c2076_1/face_c2076_l.png",
           "sourceFile": {
             "path": "Shepherd of the Dark Diene/face_l.png",
             "bytes": 9066,
@@ -23214,7 +23214,7 @@
           "width": 112,
           "height": 112,
           "path": "Shepherd of the Dark Diene/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2076/face_c2076_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c2076_1/face_c2076_s.png",
           "sourceFile": {
             "path": "Shepherd of the Dark Diene/face_s.png",
             "bytes": 8015,
@@ -23230,7 +23230,7 @@
           "width": 213,
           "height": 206,
           "path": "Shepherd of the Dark Diene/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2076/face_c2076_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c2076_1/face_c2076_su.png",
           "sourceFile": {
             "path": "Shepherd of the Dark Diene/face_su.png",
             "bytes": 20693,
@@ -25659,18 +25659,18 @@
       "files": {
         "pose": {
           "status": "available",
-          "bytes": 112132,
-          "sha256": "45276d4875f72ec5739cd3acfdbd2d17166028889c7a39c7d914289c60b7cac5",
-          "width": 1600,
-          "height": 1285,
+          "bytes": 302716,
+          "sha256": "1073a29c5f259d889489683dd196a864a5a51dad5f1d9495728e32dc2ecc471b",
+          "width": 1004,
+          "height": 1600,
           "path": "Tidal Rift Elvira/pose.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2148/pose.png",
+          "sourceUrl": "https://e7codex.com/assets/c2148_1/pose.png",
           "sourceFile": {
             "path": "Tidal Rift Elvira/pose.png",
-            "bytes": 3539694,
-            "sha256": "4416691cc1d8af585593f3ab13b2251f176eb7345683bdf9ce6665de6282e426",
-            "width": 2955,
-            "height": 2373
+            "bytes": 3703391,
+            "sha256": "f85b03f43b7fcf9ad2e0218a9d1e24f4eaa899145d00197afbe30b6cdf93ba2e",
+            "width": 1958,
+            "height": 3120
           }
         },
         "face_l": {
@@ -25680,7 +25680,7 @@
           "width": 151,
           "height": 89,
           "path": "Tidal Rift Elvira/face_l.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2148/face_c2148_l.png",
+          "sourceUrl": "https://e7codex.com/assets/c2148_1/face_c2148_l.png",
           "sourceFile": {
             "path": "Tidal Rift Elvira/face_l.png",
             "bytes": 8555,
@@ -25696,7 +25696,7 @@
           "width": 112,
           "height": 112,
           "path": "Tidal Rift Elvira/face_s.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2148/face_c2148_s.png",
+          "sourceUrl": "https://e7codex.com/assets/c2148_1/face_c2148_s.png",
           "sourceFile": {
             "path": "Tidal Rift Elvira/face_s.png",
             "bytes": 8633,
@@ -25712,7 +25712,7 @@
           "width": 271,
           "height": 206,
           "path": "Tidal Rift Elvira/face_su.webp",
-          "sourceUrl": "https://e7codex.com/assets/c2148/face_c2148_su.png",
+          "sourceUrl": "https://e7codex.com/assets/c2148_1/face_c2148_su.png",
           "sourceFile": {
             "path": "Tidal Rift Elvira/face_su.png",
             "bytes": 19418,
@@ -28106,6 +28106,6 @@
     "quality": 90,
     "method": 6,
     "poseMaxDimension": 1600,
-    "sourceManifestSha256": "0d2f8a261faf3f4896dceab5232423bd584947752a1750b13ac6b984445663a5"
+    "sourceManifestSha256": "f40abb8780ff8677ec18b48aea0ee10b1ce87cfea2d6e330c9be9dcc8d4f2b89"
   }
 }

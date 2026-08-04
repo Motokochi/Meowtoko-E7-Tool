@@ -134,6 +134,9 @@ class EnhancementServiceTests(unittest.TestCase):
             packet_source_factory=lambda: FakePacketSource(events, cancel),
             item_metadata_resolver=lambda _item_id: {
                 "set": "Speed Set",
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
                 "enhance": 0,
                 "initialSubstats": 4,
             },
@@ -288,6 +291,9 @@ class EnhancementServiceTests(unittest.TestCase):
                 service._resolve_item_metadata("packet-item-42"),
                 {
                     "set": "Speed Set",
+                    "setId": "set.speed",
+                    "slotId": "slot.weapon",
+                    "mainStatId": "item_stat.flat_attack",
                     "enhance": 6,
                     "initialSubstats": 3,
                 },

@@ -42,6 +42,11 @@ def packaging_metadata(source_manifest_sha256: str) -> dict[str, Any]:
     }
 
 
+def validate_visible_image(image: Image.Image, relative_path: str) -> None:
+    if "A" in image.getbands() and image.getchannel("A").getbbox() is None:
+        raise RuntimeError(f"Character artwork is fully transparent: {relative_path}")
+
+
 def existing_output_is_valid(
     output_root: Path,
     expected_packaging: dict[str, Any],
@@ -179,6 +184,7 @@ def convert_file(task: tuple[int, str, str, str, dict[str, Any]]) -> tuple[int, 
     with Image.open(source_path) as source_image:
         source_image.load()
         image = source_image
+        validate_visible_image(image, record["path"])
         if variant == "pose":
             image.thumbnail(
                 (POSE_MAX_DIMENSION, POSE_MAX_DIMENSION),

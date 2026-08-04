@@ -1,0 +1,101 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "draft",
+  "sources": [
+    {
+      "label": "In-game Hero Journal",
+      "url": null,
+      "collectedAt": "YYYY-MM-DD"
+    }
+  ],
+  "character": {
+    "name": null,
+    "gameCode": null,
+    "releaseDate": "YYYY-MM-DD",
+    "rarity": 5,
+    "element": null,
+    "class": null,
+    "zodiac": null,
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": null,
+        "defense": null,
+        "health": null,
+        "speed": null,
+        "criticalHitChance": null,
+        "criticalHitDamage": null,
+        "effectiveness": null,
+        "effectResistance": null,
+        "dualAttackChance": 3
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": null,
+        "defense": null,
+        "health": null,
+        "speed": null,
+        "criticalHitChance": null,
+        "criticalHitDamage": null,
+        "effectiveness": null,
+        "effectResistance": null,
+        "dualAttackChance": 3
+      }
+    },
+    "selfImprint": {
+      "stat": null,
+      "grades": {
+        "B": null,
+        "A": null,
+        "S": null,
+        "SS": null,
+        "SSS": null
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": null,
+        "targets": null,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": ""
+      },
+      "s2": {
+        "canCrit": null,
+        "targets": null,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": ""
+      },
+      "s3": {
+        "canCrit": null,
+        "targets": null,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": ""
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/EXACT CHARACTER NAME",
+    "files": {
+      "pose": "pose.png",
+      "faceLarge": "face_l.png",
+      "faceSmall": "face_s.png",
+      "faceAlternate": "face_su.png"
+    }
+  },
+  "notes": ""
+}

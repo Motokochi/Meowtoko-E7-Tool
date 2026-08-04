@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { FRIBBELS_SET_ICONS } from './fribbels-set-icons';
 import {
   EquippedHeroFace,
-  GearCard,
   GEAR_SLOT_ICONS,
 } from './optimizer-result-detail';
 import {
@@ -301,6 +300,9 @@ export function GearCenter({
     + (filters.minimumCgs ? 1 : 0)
     + (filters.minimumSgs ? 1 : 0)
   );
+  const selectedMatches = selected?.archetypeAnalysis.matches ?? [];
+  const viableMatches = selectedMatches.filter((match) => match.status !== 'rejected');
+  const visibleMatches = viableMatches.length ? viableMatches : selectedMatches;
 
   useEffect(() => {
     setPage(1);
@@ -532,30 +534,57 @@ export function GearCenter({
               <>
                 <div className="gear-detail-heading">
                   <div>
-                    <span className="card-kicker">SELECTED GEAR</span>
-                    <h3>{selected.slotLabel}</h3>
+                    <span className="card-kicker">ARCHETYPE ANALYSIS</span>
+                    <h3>{selected.slotLabel} recommendation</h3>
                   </div>
-                  <Badge tone={selected.locked ? 'warning' : 'neutral'}>
-                    {selected.locked ? 'Locked' : 'Unlocked'}
+                  <Badge tone={
+                    selected.archetypeAnalysis.verdict === 'keep'
+                      ? 'success'
+                      : selected.archetypeAnalysis.verdict === 'destroy' ? 'danger' : 'warning'
+                  }>
+                    {selected.archetypeAnalysis.verdict === 'keep'
+                      ? 'Keep'
+                      : selected.archetypeAnalysis.verdict === 'destroy' ? 'Destroy' : 'Review'}
                   </Badge>
                 </div>
-                <ol className="gear-detail-card-list">
-                  <GearCard gear={selected} inventory />
-                </ol>
-                <dl className="gear-detail-scores">
-                  <div title="Fribbels Gear Score using projected reforged substats.">
-                    <dt>Reforged Gear Score</dt><dd>{selected.reforgedGearScore}</dd>
+                <div className={`gear-archetype-verdict gear-archetype-verdict-${selected.archetypeAnalysis.verdict}`}>
+                  <strong>{selected.archetypeAnalysis.reason}</strong>
+                  {selected.archetypeAnalysis.verdict === 'review' && (
+                    <span>Reimport or recapture inventory to restore exact roll evidence.</span>
+                  )}
+                </div>
+                {visibleMatches.length ? (
+                  <div className="gear-archetype-list">
+                    {visibleMatches.map((match) => (
+                      <article className="gear-archetype-match" key={match.id}>
+                        <header>
+                          <h4>{match.name}</h4>
+                          <Badge tone={match.status === 'eligible' ? 'success' : match.status === 'rejected' ? 'danger' : 'warning'}>
+                            {match.status === 'eligible' ? 'Fits' : match.status === 'rejected' ? 'Rolled out' : 'Unknown rolls'}
+                          </Badge>
+                        </header>
+                        <p className="gear-archetype-fit">
+                          {match.matchingSubstats.length}/4 desired substats
+                          {match.offStats.length === 0 && ' · No off-stat'}
+                        </p>
+                        <div className="gear-archetype-stats" aria-label="Desired stats">
+                          {match.preferredStats.map((stat) => <span key={stat}>{stat}</span>)}
+                        </div>
+                        {match.offStats.map((stat) => (
+                          <p className="gear-archetype-offstat" key={stat.statId}>
+                            Off-stat: <strong>{stat.label}</strong> · {stat.rolls === null ? 'rolls unknown' : `${stat.rolls} total roll${stat.rolls === 1 ? '' : 's'}`}
+                          </p>
+                        ))}
+                        <p className="gear-archetype-heroes">
+                          <strong>Heroes</strong>
+                          <span>{match.heroes.join(', ')}</span>
+                        </p>
+                      </article>
+                    ))}
                   </div>
-                  <div title="Reforged score excluding Effectiveness and Effect Resistance.">
-                    <dt>Combat GS</dt><dd>{selected.combatGearScore}</dd>
-                  </div>
-                  <div title="Reforged HP, Defense, Effect Resistance, and Speed score.">
-                    <dt>Support GS</dt><dd>{selected.supportGearScore}</dd>
-                  </div>
-                </dl>
-                <p className="gear-detail-note">
-                  The card shows the item&apos;s current stats. Scores use its reforged projection.
-                </p>
+                ) : (
+                  <p className="gear-detail-note">This piece has no compatible archetype or heroes.</p>
+                )}
               </>
             ) : (
               <p>Select a gear row to inspect it.</p>

@@ -135,6 +135,9 @@ def automator(source, backend=None, **overrides):
             "item_metadata_resolver",
             lambda _item_id: {
                 "set": "Speed Set",
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
                 "enhance": 0,
                 "initialSubstats": 4,
             },
@@ -247,6 +250,9 @@ class EnhancementAutomatorTests(unittest.TestCase):
             source,
             item_metadata_resolver=lambda _item_id: {
                 "set": "Speed Set",
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
                 "enhance": 6,
                 "initialSubstats": 4,
             },
@@ -318,6 +324,9 @@ class EnhancementAutomatorTests(unittest.TestCase):
             source,
             item_metadata_resolver=lambda _item_id: {
                 "set": "Speed Set",
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
                 "enhance": 0,
                 "initialSubstats": 4,
             },
@@ -345,6 +354,9 @@ class EnhancementAutomatorTests(unittest.TestCase):
             backend,
             item_metadata_resolver=lambda _item_id: {
                 "set": "Speed Set",
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
                 "enhance": 3,
                 "initialSubstats": 4,
             },
@@ -365,6 +377,9 @@ class EnhancementAutomatorTests(unittest.TestCase):
             backend,
             item_metadata_resolver=lambda _item_id: {
                 "set": "Speed Set",
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
                 "enhance": 5,
                 "initialSubstats": 4,
             },
@@ -397,6 +412,9 @@ class EnhancementAutomatorTests(unittest.TestCase):
             enhancement_normalizer=normalize,
             item_metadata_resolver=lambda _item_id: {
                 "set": "Speed Set",
+                "setId": "set.speed",
+                "slotId": "slot.weapon",
+                "mainStatId": "item_stat.flat_attack",
                 "enhance": 8,
                 "initialSubstats": 4,
             },

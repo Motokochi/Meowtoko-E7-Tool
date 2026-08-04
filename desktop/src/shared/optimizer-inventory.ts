@@ -53,6 +53,30 @@ export interface OptimizerInventoryGearItem extends OptimizerOwnedGearDetail {
   reforgedGearScore: number;
   combatGearScore: number;
   supportGearScore: number;
+  archetypeAnalysis: OptimizerGearArchetypeAnalysis;
+}
+
+export interface OptimizerGearArchetypeOffStat {
+  statId: string;
+  label: string;
+  rolls: number | null;
+}
+
+export interface OptimizerGearArchetypeMatch {
+  id: string;
+  name: string;
+  heroes: string[];
+  preferredStats: string[];
+  matchingSubstats: string[];
+  offStats: OptimizerGearArchetypeOffStat[];
+  status: 'eligible' | 'unknown' | 'rejected';
+}
+
+export interface OptimizerGearArchetypeAnalysis {
+  verdict: 'keep' | 'review' | 'destroy';
+  reason: string;
+  rollHistoryAvailable: boolean;
+  matches: OptimizerGearArchetypeMatch[];
 }
 
 export interface OptimizerInventoryIssue {
@@ -166,6 +190,40 @@ function isLastImport(value: unknown): value is OptimizerInventoryLastImport {
       + (value.unchangedCount as number) + (value.conflictCount as number);
 }
 
+function isArchetypeOffStat(value: unknown): value is OptimizerGearArchetypeOffStat {
+  return isRecord(value) && hasExactKeys(value, ['statId', 'label', 'rolls'])
+    && typeof value.statId === 'string' && value.statId.startsWith('item_stat.')
+    && typeof value.label === 'string' && value.label.length > 0
+    && (value.rolls === null || (Number.isInteger(value.rolls) && Number(value.rolls) >= 1));
+}
+
+function isArchetypeMatch(value: unknown): value is OptimizerGearArchetypeMatch {
+  return isRecord(value) && hasExactKeys(value, [
+    'id', 'name', 'heroes', 'preferredStats', 'matchingSubstats', 'offStats', 'status',
+  ])
+    && typeof value.id === 'string' && value.id.length > 0
+    && typeof value.name === 'string' && value.name.length > 0
+    && Array.isArray(value.heroes) && value.heroes.every((hero) => typeof hero === 'string' && hero.length > 0)
+    && Array.isArray(value.preferredStats) && value.preferredStats.length >= 3
+    && value.preferredStats.every((stat) => typeof stat === 'string' && stat.length > 0)
+    && Array.isArray(value.matchingSubstats) && value.matchingSubstats.length >= 3
+    && value.matchingSubstats.every((stat) => typeof stat === 'string' && stat.length > 0)
+    && Array.isArray(value.offStats) && value.offStats.length <= 1
+    && value.offStats.every(isArchetypeOffStat)
+    && ['eligible', 'unknown', 'rejected'].includes(String(value.status));
+}
+
+function isArchetypeAnalysis(value: unknown): value is OptimizerGearArchetypeAnalysis {
+  return isRecord(value) && hasExactKeys(value, [
+    'verdict', 'reason', 'rollHistoryAvailable', 'matches',
+  ])
+    && ['keep', 'review', 'destroy'].includes(String(value.verdict))
+    && typeof value.reason === 'string' && value.reason.length > 0
+    && typeof value.rollHistoryAvailable === 'boolean'
+    && Array.isArray(value.matches) && value.matches.length <= 100
+    && value.matches.every(isArchetypeMatch);
+}
+
 export function isOptimizerInventorySnapshot(value: unknown): value is OptimizerInventorySnapshot {
   if (!isRecord(value) || !hasExactKeys(value, [
     'state', 'totalItems', 'equippedItems', 'lockedItems', 'gear', 'lastImport', 'itemsBySlot',
@@ -182,7 +240,7 @@ export function isOptimizerInventorySnapshot(value: unknown): value is Optimizer
         'gearKey', 'slotId', 'slotLabel', 'setId', 'setLabel', 'rankId', 'rankLabel',
         'itemLevel', 'enhance', 'gearScore', 'reforgedGearScore', 'combatGearScore',
         'supportGearScore', 'locked', 'equippedStatus', 'equippedHeroName', 'mainStat',
-        'substats',
+        'substats', 'archetypeAnalysis',
       ])
       && isOptimizerOwnedGearDetail({
         gearKey: gear.gearKey,
@@ -204,6 +262,7 @@ export function isOptimizerInventorySnapshot(value: unknown): value is Optimizer
       && isCount(gear.reforgedGearScore)
       && isCount(gear.combatGearScore)
       && isCount(gear.supportGearScore)
+      && isArchetypeAnalysis(gear.archetypeAnalysis)
       && gear.gearScore === gear.reforgedGearScore
       && gear.enhance === 15
     ))) return false;

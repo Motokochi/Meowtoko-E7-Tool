@@ -1,6 +1,8 @@
 from collections import Counter
 from dataclasses import dataclass, field
 
+from src.core.enhancement_packets import STAT_NAMES
+from src.core.gear_archetypes import analyze_gear_archetypes, item_stat_id
 from src.core.gear_evaluator import build_gs_string, calculate_gear_score_details
 
 
@@ -16,6 +18,9 @@ class AutomationState:
     quality_track: bool | None = None
     roll_stats: list[str] = field(default_factory=list)
     recorded_enhancements: set[int] = field(default_factory=set)
+    archetype_context: dict[str, str] | None = None
+    initial_substat_count: int = 4
+    initial_stat_labels: set[str] = field(default_factory=set)
 
 
 @dataclass
@@ -67,12 +72,49 @@ def _four_matching_rolls_still_possible(state):
     return matching + remaining >= REQUIRED_MATCHING_ROLLS
 
 
+def _archetype_analysis(parsed_data, state):
+    if state.archetype_context is None:
+        return None
+    raw_substats = parsed_data.get("subs", [])
+    labels = [
+        stat.get("stat") for stat in raw_substats
+        if isinstance(stat, dict) and isinstance(stat.get("stat"), str)
+    ]
+    if len(labels) < 4:
+        return None
+    if not state.initial_stat_labels:
+        state.initial_stat_labels.update(labels[:state.initial_substat_count])
+    event_counts = Counter(STAT_NAMES.get(code, code) for code in state.roll_stats)
+    substats = [item_stat_id(label) for label in labels]
+    roll_counts = {
+        item_stat_id(label): event_counts[label] + int(label in state.initial_stat_labels)
+        for label in labels
+    }
+    return analyze_gear_archetypes(
+        gear_set=state.archetype_context["setId"],
+        slot=state.archetype_context["slotId"],
+        main_stat=state.archetype_context["mainStatId"],
+        substats=substats,
+        roll_counts=roll_counts,
+    )
+
+
 def decide_enhancement_action(parsed_data, state):
     subs_string = build_gs_string(parsed_data.get("subs", []))
     gs = calculate_gear_score_details(subs_string, parsed_data.get("enhance", "+0"))
     enhancement = _enhancement_int(parsed_data.get("enhance", "+0"))
     potential = gs["potential_gs"]
     repeated_stat, repeated_rolls = _roll_progress(state)
+
+    archetype = _archetype_analysis(parsed_data, state)
+    if archetype is not None and archetype["verdict"] != "keep":
+        return GearDecision(
+            action="destroy",
+            reason=f"Archetype rule: {archetype['reason']}",
+            current_gs=gs["current_gs"],
+            potential_gs=potential,
+            enhancement=enhancement,
+        )
 
     if state.quality_track is None and enhancement >= 3:
         state.quality_track = potential >= INITIAL_POTENTIAL_THRESHOLD
