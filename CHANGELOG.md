@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.36] - 2026-08-04
+
+- Predict missing level-85 reforge values from packet roll counts across Gear and Optimizer.
+- Preserve in-game substat order and bind roll evidence to the correct stat.
+- Add compact gear-fit tags, projected substats, and set icons throughout gear browsing.
+- Prefer each character pose's `_1` source automatically when E7 Codex provides one.
+
 ## [0.1.35] - 2026-08-04
 
 - Add archetype-aware enhancement decisions and Gear-tab recommendations.
