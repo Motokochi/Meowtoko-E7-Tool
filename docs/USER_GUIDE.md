@@ -271,7 +271,7 @@ There are two ways for a piece to survive:
 
 - Its potential GS is at least 62 after the initial `+3` and remains at least
   58 as enhancement continues.
-- At least four of the five enhancement rolls land on the same stat.
+- At least four of the five enhancement rolls land on the same non-flat stat.
 
 The second rule applies to every piece, including one that misses the GS path.
 Enhancer stops spending as soon as neither outcome can still be reached. If a

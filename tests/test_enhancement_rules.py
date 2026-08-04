@@ -97,6 +97,16 @@ class EnhancementRulesTests(unittest.TestCase):
         self.assertEqual(decision.action, "lock")
         self.assertIn("4/5", decision.reason)
 
+    def test_four_matching_flat_stat_rolls_do_not_keep_low_gs_piece(self):
+        state = AutomationState()
+        events = [("att", 20)] * 4 + [("speed", 1)]
+        decision = None
+        for index in range(1, 6):
+            decision = observe(state, index * 3, events[:index])
+
+        self.assertIsNotNone(decision)
+        self.assertEqual(decision.action, "destroy")
+
     def test_final_low_gs_piece_without_four_matching_rolls_is_destroyed(self):
         state = AutomationState()
         events = [

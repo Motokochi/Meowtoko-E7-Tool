@@ -11,6 +11,7 @@ INITIAL_POTENTIAL_THRESHOLD = 62
 MINIMUM_POTENTIAL_THRESHOLD = 58
 TOTAL_ENHANCEMENT_ROLLS = 5
 REQUIRED_MATCHING_ROLLS = 4
+FLAT_STAT_CODES = frozenset({"att", "def", "max_hp"})
 
 
 @dataclass
@@ -60,7 +61,7 @@ def record_enhancement_event(parsed_data, state):
 
 
 def _roll_progress(state):
-    counts = Counter(state.roll_stats)
+    counts = Counter(stat for stat in state.roll_stats if stat not in FLAT_STAT_CODES)
     if not counts:
         return None, 0
     return max(counts.items(), key=lambda item: (item[1], item[0]))
@@ -136,7 +137,7 @@ def decide_enhancement_action(parsed_data, state):
                 action="destroy",
                 reason=(
                     f"Final potential GS is below {MINIMUM_POTENTIAL_THRESHOLD} "
-                    f"and no stat received {REQUIRED_MATCHING_ROLLS} enhancement rolls."
+                    f"and no non-flat stat received {REQUIRED_MATCHING_ROLLS} enhancement rolls."
                 ),
                 current_gs=gs["current_gs"],
                 potential_gs=potential,
@@ -158,7 +159,7 @@ def decide_enhancement_action(parsed_data, state):
             action="destroy",
             reason=(
                 f"Potential GS does not qualify and {REQUIRED_MATCHING_ROLLS}/"
-                f"{TOTAL_ENHANCEMENT_ROLLS} matching enhancement rolls are no longer possible."
+                f"{TOTAL_ENHANCEMENT_ROLLS} matching non-flat enhancement rolls are no longer possible."
             ),
             current_gs=gs["current_gs"],
             potential_gs=potential,
@@ -180,7 +181,7 @@ def decide_enhancement_action(parsed_data, state):
     else:
         remaining = TOTAL_ENHANCEMENT_ROLLS - len(state.roll_stats)
         reason = (
-            f"Continuing the matching-roll check: {repeated_rolls} on {repeated_stat}; "
+            f"Continuing the non-flat matching-roll check: {repeated_rolls} on {repeated_stat}; "
             f"{remaining} enhancement roll(s) remain."
         )
     return GearDecision(
