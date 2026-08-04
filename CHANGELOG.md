@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.37] - 2026-08-04
+
+- Exclude flat Attack, Defense, and Health from the matching-roll rescue rule.
+
 ## [0.1.36] - 2026-08-04
 
 - Predict missing level-85 reforge values from packet roll counts across Gear and Optimizer.
