@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.40] - 2026-08-05
+
+- Fix optimizer inventory archetype response.
+
 ## [0.1.39] - 2026-08-05
 
 - Limit low-score roll protection to Speed.
