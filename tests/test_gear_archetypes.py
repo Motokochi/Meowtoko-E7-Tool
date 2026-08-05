@@ -99,6 +99,19 @@ class GearArchetypeTests(unittest.TestCase):
 
         self.assertEqual(result["matches"][0]["heroes"], ["Hero B"])
 
+    def test_internal_stat_groups_are_not_exposed_in_public_matches(self):
+        match = self.analyze()["matches"][0]
+
+        self.assertEqual(set(match), {
+            "id",
+            "name",
+            "heroes",
+            "preferredStats",
+            "matchingSubstats",
+            "offStats",
+            "status",
+        })
+
     def test_alternative_bulk_stats_count_as_one_conceptual_slot(self):
         self.archetypes = ({
             **self.archetypes[0],

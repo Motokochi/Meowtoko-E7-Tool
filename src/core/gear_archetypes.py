@@ -91,7 +91,6 @@ def analyze_gear_archetypes(
             "name": archetype["name"],
             "heroes": archetype.get("heroesBySet", {}).get(gear_set, archetype["heroes"]),
             "preferredStats": archetype["preferredStats"],
-            "substatGroups": stat_groups,
             "matchingSubstats": matching,
             "offStats": off_stats,
             "status": "rejected" if rejected else "unknown" if unknown else "eligible",
