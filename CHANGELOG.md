@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.38] - 2026-08-05
+
+- Replace inferred gear archetypes with reviewed Hero Journal builds.
+
 ## [0.1.37] - 2026-08-04
 
 - Exclude flat Attack, Defense, and Health from the matching-roll rescue rule.
