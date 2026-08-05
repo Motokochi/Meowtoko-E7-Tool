@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.41] - 2026-08-05
+
+- Correct enhancer continuation and archetype set rules.
+
 ## [0.1.40] - 2026-08-05
 
 - Fix optimizer inventory archetype response.
