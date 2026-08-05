@@ -205,11 +205,10 @@ and original substats never count as events. Existing event history is
 reconstructed using the imported rarity and enhancement level, including
 non-Epic gear that began with fewer than four substats.
 
-The quality path begins at 62 potential GS and continues while potential GS is
-at least 58. Independently, a piece is kept when four of its five enhancement
-rolls land on the same non-flat stat. If neither outcome remains possible, the
-piece is rejected. A missing packet is retried at the same target after a
-two-second wait instead of guessing from the screen.
+The quality path continues while potential GS is at least 58. Independently, a
+piece is kept when four of its five enhancement rolls land on Speed. If neither
+outcome remains possible, the piece is rejected. A missing packet is retried at
+the same target after a two-second wait instead of guessing from the screen.
 
 Enhancer places run limits and destructive permission beside live progress,
 the latest decision, and a bounded evidence log. The stop boundary is checked

@@ -62,8 +62,8 @@
       "note": "Reviewed English build screen; exact final stats and repeated gear-card set icons."
     },
     "964236296329515038": {
-      "sets": ["set.speed", "set.critical"],
-      "note": "Reviewed repeated gear-card set icons."
+      "sets": ["set.speed"],
+      "note": "Manual review: Critical Set is filler and should not define keep-worthy gear for this archetype."
     },
     "824369503542312980": {
       "sets": ["set.speed", "set.immunity"],

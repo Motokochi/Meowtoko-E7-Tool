@@ -269,8 +269,7 @@ are handled without pretending their initial substats were enhancement events.
 
 There are two ways for a piece to survive:
 
-- Its potential GS is at least 62 after the initial `+3` and remains at least
-  58 as enhancement continues.
+- Its potential GS is at least 58 at the current enhancement checkpoint.
 - At least four of the five enhancement rolls land on Speed.
 
 The second rule applies to every piece, including one that misses the GS path.

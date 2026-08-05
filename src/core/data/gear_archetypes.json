@@ -1998,7 +1998,6 @@
         "set.destruction",
         "set.penetration",
         "set.speed",
-        "set.critical",
         "set.torrent"
       ],
       "heroesBySet": {
@@ -2013,9 +2012,6 @@
           "Summer's Disciple Alexa"
         ],
         "set.speed": [
-          "Coli"
-        ],
-        "set.critical": [
           "Coli"
         ],
         "set.torrent": [
@@ -2054,15 +2050,6 @@
         {
           "id": "set.speed",
           "name": "Speed Set",
-          "buildSupportCount": 1,
-          "buildSupportPercent": 20.0,
-          "heroes": [
-            "Coli"
-          ]
-        },
-        {
-          "id": "set.critical",
-          "name": "Critical Set",
           "buildSupportCount": 1,
           "buildSupportPercent": 20.0,
           "heroes": [

@@ -7,7 +7,6 @@ from src.core.gear_evaluator import build_gs_string, calculate_gear_score_detail
 
 
 ENHANCE_TARGETS = [3, 6, 9, 12, 15]
-INITIAL_POTENTIAL_THRESHOLD = 62
 MINIMUM_POTENTIAL_THRESHOLD = 58
 TOTAL_ENHANCEMENT_ROLLS = 5
 REQUIRED_SPEED_ROLLS = 4
@@ -15,7 +14,6 @@ REQUIRED_SPEED_ROLLS = 4
 
 @dataclass
 class AutomationState:
-    quality_track: bool | None = None
     roll_stats: list[str] = field(default_factory=list)
     recorded_enhancements: set[int] = field(default_factory=set)
     archetype_context: dict[str, str] | None = None
@@ -112,9 +110,6 @@ def decide_enhancement_action(parsed_data, state):
             enhancement=enhancement,
         )
 
-    if state.quality_track is None and enhancement >= 3:
-        state.quality_track = potential >= INITIAL_POTENTIAL_THRESHOLD
-
     if enhancement >= 15:
         if speed_rolls >= REQUIRED_SPEED_ROLLS:
             return GearDecision(
@@ -127,7 +122,7 @@ def decide_enhancement_action(parsed_data, state):
                 potential_gs=potential,
                 enhancement=enhancement,
             )
-        if not state.quality_track or potential < MINIMUM_POTENTIAL_THRESHOLD:
+        if potential < MINIMUM_POTENTIAL_THRESHOLD:
             return GearDecision(
                 action="destroy",
                 reason=(
@@ -146,10 +141,7 @@ def decide_enhancement_action(parsed_data, state):
             enhancement=enhancement,
         )
 
-    if (
-        (not state.quality_track or potential < MINIMUM_POTENTIAL_THRESHOLD)
-        and not _four_speed_rolls_still_possible(state)
-    ):
+    if potential < MINIMUM_POTENTIAL_THRESHOLD and not _four_speed_rolls_still_possible(state):
         return GearDecision(
             action="destroy",
             reason=(
@@ -171,7 +163,7 @@ def decide_enhancement_action(parsed_data, state):
             enhancement=enhancement,
         )
 
-    if state.quality_track and potential >= MINIMUM_POTENTIAL_THRESHOLD:
+    if potential >= MINIMUM_POTENTIAL_THRESHOLD:
         reason = "Potential GS track passed."
     else:
         remaining = TOTAL_ENHANCEMENT_ROLLS - len(state.roll_stats)

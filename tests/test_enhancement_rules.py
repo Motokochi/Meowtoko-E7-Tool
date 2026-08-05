@@ -62,7 +62,6 @@ class EnhancementRulesTests(unittest.TestCase):
         first = observe(state, 3, [("speed", 2)])
         second = observe(state, 6, [("speed", 2), ("cri", 0.03)])
 
-        self.assertFalse(state.quality_track)
         self.assertEqual(first.action, "enhance")
         self.assertEqual(second.action, "enhance")
         self.assertEqual(second.next_target, 9)
@@ -123,20 +122,20 @@ class EnhancementRulesTests(unittest.TestCase):
         self.assertIsNotNone(decision)
         self.assertEqual(decision.action, "destroy")
 
-    def test_quality_track_uses_62_initial_and_58_continuation_thresholds(self):
+    def test_potential_gs_at_least_58_continues(self):
         state = AutomationState()
-        high_subs = [
-            ["speed", 8],
-            ["cri", 0.10],
-            ["cri_dmg", 0.07],
-            ["att_rate", 0.08],
-        ]
+        state.roll_stats = ["att_rate", "cri"]
+        parsed = packet(6, [("att_rate", 0.08), ("cri", 0.08)])
 
-        decision = observe(state, 3, [("att_rate", 0.08)], subs=high_subs)
+        with patch(
+            "src.core.enhancement_rules.calculate_gear_score_details",
+            return_value={"current_gs": 35.0, "potential_gs": 59.0},
+        ):
+            decision = decide_enhancement_action(parsed, state)
 
-        self.assertTrue(state.quality_track)
         self.assertEqual(decision.action, "enhance")
-        self.assertEqual(decision.next_target, 6)
+        self.assertEqual(decision.next_target, 9)
+        self.assertEqual(decision.reason, "Potential GS track passed.")
 
     def test_third_total_roll_on_the_only_off_stat_destroys(self):
         state = self.archetype_state()
