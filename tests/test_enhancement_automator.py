@@ -226,7 +226,7 @@ class EnhancementAutomatorTests(unittest.TestCase):
         self.assertTrue(source.started)
         self.assertTrue(source.stopped)
 
-    def test_four_matching_packet_events_lock_the_piece_at_plus_fifteen(self):
+    def test_four_speed_packet_events_lock_the_piece_at_plus_fifteen(self):
         source = FakePacketSource([
             event(rolls=("speed",)),
             event(rolls=("speed", "speed")),

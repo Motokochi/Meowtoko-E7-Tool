@@ -56,7 +56,7 @@ class EnhancementRulesTests(unittest.TestCase):
 
         self.assertEqual(state.roll_stats, ["speed"])
 
-    def test_low_gs_piece_continues_while_four_matching_rolls_are_possible(self):
+    def test_low_gs_piece_continues_while_four_speed_rolls_are_possible(self):
         state = AutomationState()
 
         first = observe(state, 3, [("speed", 2)])
@@ -67,7 +67,7 @@ class EnhancementRulesTests(unittest.TestCase):
         self.assertEqual(second.action, "enhance")
         self.assertEqual(second.next_target, 9)
 
-    def test_low_gs_piece_stops_as_soon_as_four_matching_rolls_are_impossible(self):
+    def test_low_gs_piece_stops_as_soon_as_four_speed_rolls_are_impossible(self):
         state = AutomationState()
         observe(state, 3, [("speed", 2)])
         observe(state, 6, [("speed", 2), ("cri", 0.03)])
@@ -80,7 +80,7 @@ class EnhancementRulesTests(unittest.TestCase):
 
         self.assertEqual(decision.action, "destroy")
 
-    def test_four_of_five_matching_rolls_keeps_low_gs_piece(self):
+    def test_four_of_five_speed_rolls_keeps_low_gs_piece(self):
         state = AutomationState()
         events = [
             ("speed", 1),
@@ -97,15 +97,13 @@ class EnhancementRulesTests(unittest.TestCase):
         self.assertEqual(decision.action, "lock")
         self.assertIn("4/5", decision.reason)
 
-    def test_four_matching_flat_stat_rolls_do_not_keep_low_gs_piece(self):
+    def test_matching_non_speed_rolls_do_not_extend_low_gs_piece(self):
         state = AutomationState()
-        events = [("att", 20)] * 4 + [("speed", 1)]
-        decision = None
-        for index in range(1, 6):
-            decision = observe(state, index * 3, events[:index])
+        first = observe(state, 3, [("cri", 0.01)])
+        second = observe(state, 6, [("cri", 0.01)] * 2)
 
-        self.assertIsNotNone(decision)
-        self.assertEqual(decision.action, "destroy")
+        self.assertEqual(first.action, "enhance")
+        self.assertEqual(second.action, "destroy")
 
     def test_final_low_gs_piece_without_four_matching_rolls_is_destroyed(self):
         state = AutomationState()

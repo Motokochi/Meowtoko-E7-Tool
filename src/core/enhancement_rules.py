@@ -10,8 +10,7 @@ ENHANCE_TARGETS = [3, 6, 9, 12, 15]
 INITIAL_POTENTIAL_THRESHOLD = 62
 MINIMUM_POTENTIAL_THRESHOLD = 58
 TOTAL_ENHANCEMENT_ROLLS = 5
-REQUIRED_MATCHING_ROLLS = 4
-FLAT_STAT_CODES = frozenset({"att", "def", "max_hp"})
+REQUIRED_SPEED_ROLLS = 4
 
 
 @dataclass
@@ -60,17 +59,13 @@ def record_enhancement_event(parsed_data, state):
     state.roll_stats.append(stat_code)
 
 
-def _roll_progress(state):
-    counts = Counter(stat for stat in state.roll_stats if stat not in FLAT_STAT_CODES)
-    if not counts:
-        return None, 0
-    return max(counts.items(), key=lambda item: (item[1], item[0]))
+def _speed_rolls(state):
+    return state.roll_stats.count("speed")
 
 
-def _four_matching_rolls_still_possible(state):
-    _stat, matching = _roll_progress(state)
+def _four_speed_rolls_still_possible(state):
     remaining = max(0, TOTAL_ENHANCEMENT_ROLLS - len(state.roll_stats))
-    return matching + remaining >= REQUIRED_MATCHING_ROLLS
+    return _speed_rolls(state) + remaining >= REQUIRED_SPEED_ROLLS
 
 
 def _archetype_analysis(parsed_data, state):
@@ -105,7 +100,7 @@ def decide_enhancement_action(parsed_data, state):
     gs = calculate_gear_score_details(subs_string, parsed_data.get("enhance", "+0"))
     enhancement = _enhancement_int(parsed_data.get("enhance", "+0"))
     potential = gs["potential_gs"]
-    repeated_stat, repeated_rolls = _roll_progress(state)
+    speed_rolls = _speed_rolls(state)
 
     archetype = _archetype_analysis(parsed_data, state)
     if archetype is not None and archetype["verdict"] != "keep":
@@ -121,12 +116,12 @@ def decide_enhancement_action(parsed_data, state):
         state.quality_track = potential >= INITIAL_POTENTIAL_THRESHOLD
 
     if enhancement >= 15:
-        if repeated_rolls >= REQUIRED_MATCHING_ROLLS:
+        if speed_rolls >= REQUIRED_SPEED_ROLLS:
             return GearDecision(
                 action="lock",
                 reason=(
-                    f"Kept because {repeated_stat} received "
-                    f"{repeated_rolls}/{TOTAL_ENHANCEMENT_ROLLS} enhancement rolls."
+                    f"Kept because Speed received "
+                    f"{speed_rolls}/{TOTAL_ENHANCEMENT_ROLLS} enhancement rolls."
                 ),
                 current_gs=gs["current_gs"],
                 potential_gs=potential,
@@ -137,7 +132,7 @@ def decide_enhancement_action(parsed_data, state):
                 action="destroy",
                 reason=(
                     f"Final potential GS is below {MINIMUM_POTENTIAL_THRESHOLD} "
-                    f"and no non-flat stat received {REQUIRED_MATCHING_ROLLS} enhancement rolls."
+                    f"and Speed received fewer than {REQUIRED_SPEED_ROLLS} enhancement rolls."
                 ),
                 current_gs=gs["current_gs"],
                 potential_gs=potential,
@@ -153,13 +148,13 @@ def decide_enhancement_action(parsed_data, state):
 
     if (
         (not state.quality_track or potential < MINIMUM_POTENTIAL_THRESHOLD)
-        and not _four_matching_rolls_still_possible(state)
+        and not _four_speed_rolls_still_possible(state)
     ):
         return GearDecision(
             action="destroy",
             reason=(
-                f"Potential GS does not qualify and {REQUIRED_MATCHING_ROLLS}/"
-                f"{TOTAL_ENHANCEMENT_ROLLS} matching non-flat enhancement rolls are no longer possible."
+                f"Potential GS does not qualify and {REQUIRED_SPEED_ROLLS}/"
+                f"{TOTAL_ENHANCEMENT_ROLLS} Speed enhancement rolls are no longer possible."
             ),
             current_gs=gs["current_gs"],
             potential_gs=potential,
@@ -181,7 +176,7 @@ def decide_enhancement_action(parsed_data, state):
     else:
         remaining = TOTAL_ENHANCEMENT_ROLLS - len(state.roll_stats)
         reason = (
-            f"Continuing the non-flat matching-roll check: {repeated_rolls} on {repeated_stat}; "
+            f"Continuing the Speed-roll check: {speed_rolls} Speed roll(s); "
             f"{remaining} enhancement roll(s) remain."
         )
     return GearDecision(
