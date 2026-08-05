@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.39] - 2026-08-05
+
+- Limit low-score roll protection to Speed.
+
 ## [0.1.38] - 2026-08-05
 
 - Replace inferred gear archetypes with reviewed Hero Journal builds.
