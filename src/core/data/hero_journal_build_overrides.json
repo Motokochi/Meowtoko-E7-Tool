@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "records": {
+    "1484193278365532331": {
+      "status": "build",
+      "stats": {
+        "Attack": 1497,
+        "Defense": 1498,
+        "Health": 29778,
+        "Speed": 250,
+        "Critical Hit Chance": 50,
+        "Critical Hit Damage": 178,
+        "Effectiveness": 0,
+        "Effect Resistance": 0
+      },
+      "sets": ["set.warfare", "set.health"],
+      "note": "Reviewed Korean build screen; exact final stat column and displayed set names."
+    },
+    "1484573619375046766": {
+      "status": "build",
+      "stats": {
+        "Attack": 1436,
+        "Defense": 1583,
+        "Health": 29221,
+        "Speed": 239,
+        "Critical Hit Chance": 51,
+        "Critical Hit Damage": 170,
+        "Effectiveness": 0,
+        "Effect Resistance": 0
+      },
+      "sets": ["set.immunity", "set.warfare"],
+      "note": "Reviewed Japanese build screen; exact final stat column and displayed set names."
+    },
+    "1526068466044637247": {
+      "status": "build",
+      "stats": {
+        "Attack": 1436,
+        "Defense": 2020,
+        "Health": 28678,
+        "Speed": 213,
+        "Critical Hit Chance": 54,
+        "Critical Hit Damage": 182,
+        "Effectiveness": 0,
+        "Effect Resistance": 41
+      },
+      "sets": ["set.warfare", "set.immunity"],
+      "note": "Reviewed Chinese gear-detail screen; exact final stats and set icons."
+    },
+    "1303997262808088577": {
+      "status": "build",
+      "stats": {
+        "Attack": 4156,
+        "Defense": 829,
+        "Health": 9223,
+        "Speed": 108,
+        "Critical Hit Chance": 100,
+        "Critical Hit Damage": 270,
+        "Effectiveness": 0,
+        "Effect Resistance": 121
+      },
+      "sets": ["set.counter", "set.resist"],
+      "note": "Reviewed English build screen; exact final stats and repeated gear-card set icons."
+    },
+    "964236296329515038": {
+      "sets": ["set.speed", "set.critical"],
+      "note": "Reviewed repeated gear-card set icons."
+    },
+    "824369503542312980": {
+      "sets": ["set.speed", "set.immunity"],
+      "note": "Reviewed displayed English set names."
+    },
+    "839988212805140520": {
+      "sets": ["set.speed", "set.immunity"],
+      "note": "Reviewed displayed English set names."
+    },
+    "1423083791760494632": {
+      "sets": ["set.torrent", "set.speed"],
+      "note": "Reviewed displayed English set names."
+    },
+    "1412811848683622562": {
+      "sets": ["set.speed", "set.torrent"],
+      "note": "Reviewed set icons beside the combat-power value."
+    },
+    "1477081290892116123": {
+      "sets": ["set.speed", "set.penetration"],
+      "note": "Reviewed set icons beside the combat-power value."
+    },
+    "1115129490507583508": {
+      "sets": ["set.speed", "set.immunity"],
+      "note": "Reviewed repeated gear-card set icons."
+    },
+    "1062138792233947198": {
+      "sets": ["set.speed", "set.hit"],
+      "note": "Reviewed repeated gear-card set icons."
+    },
+    "1152691802827137036": {
+      "sets": ["set.speed", "set.immunity"],
+      "note": "Reviewed repeated gear-card set icons."
+    },
+    "1077771999167905822": {
+      "sets": ["set.hit", "set.speed"],
+      "note": "Reviewed set icons beside the combat-power value."
+    },
+    "1527510759725076573": {
+      "sets": ["set.weakening", "set.pursuit"],
+      "note": "Reviewed set icons beside the combat-power value."
+    },
+    "1527519452898529401": {
+      "sets": ["set.weakening", "set.pursuit"],
+      "note": "Reviewed displayed English set names."
+    },
+    "830030276020666378": {
+      "status": "reference",
+      "sets": ["set.speed", "set.immunity"],
+      "note": "Excluded by manual review: obsolete 2021 Baal & Sezan niche build should not define keep-worthy gear."
+    },
+    "1473347097058345041": {
+      "sets": ["set.riposte", "set.penetration"],
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Speed"],
+      "note": "Manual build review: Mirsa is a Speed-Scaling DPS; incidental bulk is not desired."
+    },
+    "1018699218891841606": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Basar's Critical Damage necklace is a Speed outlier; desired stats are Speed, Effectiveness, and bulk."
+    },
+    "978791927166152764": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Elphelt's Critical Damage necklace is a Speed outlier; desired stats are Speed, Effectiveness, and bulk."
+    },
+    "1116251312472985600": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Roaming Warrior Leo's Critical Damage necklace is a Speed outlier; desired stats are Speed, Effectiveness, and bulk."
+    },
+    "834765810823462912": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Effectiveness", "Speed"],
+      "note": "Manual build review: Clarissa receives additional Critical Hit Chance from artifact sources and is an Effectiveness Attack-Scaling DPS."
+    },
+    "1479848973962317886": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Effectiveness", "Speed"],
+      "note": "Manual build review: Briar Witch Iseria is an Effectiveness Attack-Scaling DPS; incidental bulk is not desired."
+    },
+    "1299242042727333929": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Effectiveness", "Speed"],
+      "note": "Manual build review: Tenebria is an Effectiveness Attack-Scaling DPS; incidental bulk is not desired."
+    },
+    "1009491687829164154": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Effectiveness", "Speed"],
+      "note": "Manual build review: Captain Rikoris is an Effectiveness Attack-Scaling DPS; incidental bulk is not desired."
+    },
+    "869631358186713108": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Effectiveness", "Speed"],
+      "note": "Manual build review: Iseria is an Effectiveness Attack-Scaling DPS; incidental bulk is not desired."
+    },
+    "840022338333573160": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Hurado only wants Speed, Effectiveness, and bulk."
+    },
+    "1193308375631536218": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Conqueror Lilias only wants Speed, Effectiveness, and bulk."
+    },
+    "1277043578312327329": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Lua only wants Speed, Effectiveness, and bulk."
+    },
+    "1358185936076275882": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Byblis only wants Speed, Effectiveness, and bulk."
+    },
+    "1071622653615538246": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Command Model Laika only wants Speed, Effectiveness, and bulk."
+    },
+    "1179138887768096901": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Ezra only wants Speed, Effectiveness, and bulk."
+    },
+    "1401237442618593410": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Lidica only wants Speed, Effectiveness, and bulk."
+    },
+    "1054946108608098375": {
+      "desiredStats": ["Critical Hit Chance", "Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: ae-WINTER needs Crit Chance for fixed damage, plus Speed, Effectiveness, and bulk."
+    },
+    "880463167925395517": {
+      "desiredStats": ["Critical Hit Chance", "Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Crescent Moon Rin needs Crit Chance for her extra turn, plus Speed, Effectiveness, and bulk."
+    },
+    "1533972502013935676": {
+      "desiredStats": ["Critical Hit Chance", "Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Faithless Lidica needs Crit Chance for her skill effects, plus Speed, Effectiveness, and bulk."
+    },
+    "824342576793649182": {
+      "desiredStats": ["Critical Hit Chance", "Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Celeste's reviewed build intentionally uses Crit Chance without Attack or Crit Damage investment."
+    },
+    "843437918458478602": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Effectiveness", "Speed"],
+      "scalingStat": "Attack",
+      "note": "Manual build review: Khawana is a fast Effectiveness Attack-Scaling DPS, not a Speed-Scaling bruiser."
+    },
+    "1237055576001740840": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Effectiveness", "Speed"],
+      "scalingStat": "Attack",
+      "note": "Manual build review: Taeyou needs Attack for damage and is an Effectiveness Attack-Scaling DPS, not a Speed-Scaling DPS."
+    },
+    "1412806400643563581": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Lady of the Scales only wants Speed, bulk, and Effect Resistance."
+    },
+    "1485068367219134514": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Sinful Angelica only wants Speed, bulk, and Effect Resistance."
+    },
+    "1479854890812444802": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Defense", "Effect Resistance", "Health"],
+      "note": "Manual build review: Twisted Eidolon Kayron wants Attack, crit stats, bulk, and Effect Resistance, but no Speed."
+    },
+    "1479849367497343062": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: New Moon Luna wants Speed, bulk, and Effectiveness, not ER damage stats."
+    },
+    "1359362956856524941": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Moon Bunny Dominiel is an ER Tank, not an Attack-Scaling bruiser."
+    },
+    "1359409405140926584": {
+      "desiredStats": ["Defense", "Effect Resistance", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Solitaria of the Snow is an ER Effectiveness support, not an Attack-Scaling bruiser."
+    },
+    "1479850891116019722": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Frida is an ER Tank, not an Attack-Scaling bruiser."
+    },
+    "1479860118165131504": {
+      "desiredStats": ["Defense", "Health", "Speed"],
+      "note": "Manual build review: Auxiliary Lots wants Speed and bulk, not Attack or Effect Resistance."
+    },
+    "1359413905771860008": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Angel of Light Angelica only wants Speed, bulk, and Effectiveness."
+    },
+    "1371436158231248947": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Angel of Light Angelica only wants Speed, bulk, and Effectiveness."
+    },
+    "1030919070457004152": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Angel of Light Angelica only wants Speed, bulk, and Effectiveness."
+    },
+    "1280383085694681139": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Angel of Light Angelica only wants Speed, bulk, and Effectiveness."
+    },
+    "1284980687451197541": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Angel of Light Angelica only wants Speed, bulk, and Effectiveness."
+    },
+    "1299242238978818089": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health"],
+      "note": "Manual build review: Blood Moon Haste wants bulk and Effect Resistance, but no Speed."
+    },
+    "1401273540723867780": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health"],
+      "note": "Manual build review: Blood Moon Haste wants bulk and Effect Resistance, but no Speed."
+    },
+    "1238127020358242476": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health"],
+      "note": "Manual build review: Blood Moon Haste wants bulk and Effect Resistance, but no Speed."
+    },
+    "1277490161487450132": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health"],
+      "note": "Manual build review: Blood Moon Haste wants bulk and Effect Resistance, but no Speed."
+    },
+    "1116242384305528872": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Destina is an ER Tank."
+    },
+    "1152480901712855070": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Destina is an ER Tank."
+    },
+    "1164445097673379910": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Destina is an ER Tank."
+    },
+    "1174784938428616705": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Destina is an ER Tank."
+    },
+    "1181666779240611850": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Destina is an ER Tank."
+    },
+    "1332970200273911828": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Destina is an ER Tank."
+    },
+    "1152718979173994546": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Destina is an ER Tank."
+    },
+    "1410614466076348446": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Lady of the Scales only wants Speed, bulk, and Effect Resistance."
+    },
+    "1411108538138366056": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Lady of the Scales only wants Speed, bulk, and Effect Resistance."
+    },
+    "1414820832223563776": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Lady of the Scales only wants Speed, bulk, and Effect Resistance."
+    },
+    "1360502501807362160": {
+      "desiredStats": ["Attack", "Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Lone Wolf Peira's alternate build wants Attack, Speed, bulk, and Effectiveness."
+    },
+    "1371664050433556492": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Lone Wolf Peira's utility build wants Speed, bulk, and Effectiveness."
+    },
+    "1359359546350506084": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: Lone Wolf Peira's utility build wants Speed, bulk, and Effectiveness."
+    },
+    "1479851383560736928": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: School Nurse Yulha only wants top Speed, bulk, and Effectiveness."
+    },
+    "1479863044354871387": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: School Nurse Yulha only wants top Speed, bulk, and Effectiveness."
+    },
+    "1441780268947210290": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: School Nurse Yulha only wants top Speed, bulk, and Effectiveness."
+    },
+    "1359358947236253746": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Young Senya is an ER Tank."
+    },
+    "1412814953244524584": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Young Senya is an ER Tank."
+    },
+    "1360505019941785752": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Young Senya is an ER Tank."
+    },
+    "1359408921625890926": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Speed"],
+      "note": "Manual build review: Taeyou is a Speed-Scaling DPS; incidental bulk is not desired."
+    },
+    "1428924506969342123": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Speed"],
+      "note": "Manual build review: Fern is a Speed-Scaling DPS; incidental bulk is not desired."
+    },
+    "1466575629645254923": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Speed"],
+      "note": "Manual build review: Fern is a Speed-Scaling DPS; incidental bulk is not desired."
+    },
+    "1511733314376044655": {
+      "desiredStats": ["Attack", "Critical Hit Chance", "Critical Hit Damage", "Speed"],
+      "note": "Manual build review: Ran is a Speed-Scaling DPS; incidental bulk is not desired."
+    },
+    "1269812543065555054": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: New Moon Luna wants Speed, bulk, and Effectiveness."
+    },
+    "1421372392084738109": {
+      "desiredStats": ["Defense", "Effectiveness", "Health", "Speed"],
+      "note": "Manual build review: New Moon Luna wants Speed, bulk, and Effectiveness."
+    },
+    "1318057741926924338": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health", "Speed"],
+      "note": "Manual build review: Sinful Angelica only wants Speed, bulk, and Effect Resistance."
+    },
+    "1479855195256131584": {
+      "desiredStats": ["Defense", "Effect Resistance", "Health"],
+      "note": "Manual build review: Twisted Eidolon Kayron's non-crit bulk build wants bulk and Effect Resistance, but no Attack or Speed."
+    }
+  }
+}

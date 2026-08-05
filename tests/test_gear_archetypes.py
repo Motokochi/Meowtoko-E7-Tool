@@ -12,6 +12,7 @@ class GearArchetypeTests(unittest.TestCase):
         "preferredStats": ["Attack", "Effectiveness", "Speed"],
         "flatStatFallbacks": ["Flat Attack"],
         "compatibleSets": ["set.speed"],
+        "heroesBySet": {"set.speed": ["Hero A"]},
     },)
 
     def analyze(self, **overrides):
@@ -86,6 +87,46 @@ class GearArchetypeTests(unittest.TestCase):
 
         self.assertEqual(result["verdict"], "keep")
         self.assertTrue(any(match["status"] == "eligible" for match in result["matches"]))
+
+    def test_compatible_heroes_are_scoped_to_the_piece_set(self):
+        self.archetypes = ({
+            **self.archetypes[0],
+            "heroes": ["Hero A", "Hero B"],
+            "heroesBySet": {"set.speed": ["Hero B"]},
+        },)
+
+        result = self.analyze()
+
+        self.assertEqual(result["matches"][0]["heroes"], ["Hero B"])
+
+    def test_alternative_bulk_stats_count_as_one_conceptual_slot(self):
+        self.archetypes = ({
+            **self.archetypes[0],
+            "preferredStats": ["Attack", "Speed", "Effectiveness", "Health", "Defense"],
+            "flatStatFallbacks": ["Flat Attack", "Flat Health", "Flat Defense"],
+            "substatGroups": [
+                ["Attack"],
+                ["Speed"],
+                ["Effectiveness"],
+                ["Health", "Defense"],
+            ],
+        },)
+
+        false_match = self.analyze(substats=(
+            "item_stat.attack_percent",
+            "item_stat.health_percent",
+            "item_stat.defense_percent",
+            "item_stat.critical_hit_chance_percent",
+        ))
+        real_match = self.analyze(substats=(
+            "item_stat.attack_percent",
+            "item_stat.speed",
+            "item_stat.effectiveness_percent",
+            "item_stat.critical_hit_chance_percent",
+        ))
+
+        self.assertEqual(false_match["verdict"], "destroy")
+        self.assertEqual(real_match["verdict"], "keep")
 
 
 if __name__ == "__main__":

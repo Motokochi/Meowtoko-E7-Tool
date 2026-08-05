@@ -129,7 +129,7 @@ class OptimizerInventoryDesktopServiceTests(unittest.TestCase):
         )
         match = next(
             match for match in gear["archetypeAnalysis"]["matches"]
-            if match["id"] == "health-bruiser-critical-hit-chance-critical-hit-damage-defense-health-speed"
+            if match["id"] == "health-scaling-bruiser"
         )
         self.assertEqual(
             [{

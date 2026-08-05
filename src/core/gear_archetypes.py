@@ -14,6 +14,11 @@ MAX_OFF_STAT_ROLLS = 2
 _STAT_IDS_BY_LABEL = {
     details.display_name: stat.value for stat, details in ITEM_STAT_CATALOG.items()
 }
+_PERCENT_STAT_BY_FLAT = {
+    "Flat Attack": "Attack",
+    "Flat Defense": "Defense",
+    "Flat Health": "Health",
+}
 
 
 @lru_cache(maxsize=1)
@@ -43,12 +48,27 @@ def analyze_gear_archetypes(
     matches = []
     for archetype in load_gear_archetypes():
         preferred = set(archetype["preferredStats"])
-        accepted_substats = preferred | set(archetype["flatStatFallbacks"])
+        flat_fallbacks = set(archetype["flatStatFallbacks"])
+        stat_groups = archetype.get("substatGroups") or [
+            [stat] for stat in archetype["preferredStats"]
+        ]
+        accepted_groups = [
+            set(group) | {
+                flat_stat for flat_stat in flat_fallbacks
+                if _PERCENT_STAT_BY_FLAT.get(flat_stat) in group
+            }
+            for group in stat_groups
+        ]
+        accepted_substats = set().union(*accepted_groups)
         matching = [label for _stat_id, label in stat_rows if label in accepted_substats]
+        matching_group_count = sum(
+            any(label in group for _stat_id, label in stat_rows)
+            for group in accepted_groups
+        )
         if (
             gear_set not in archetype["compatibleSets"]
             or (slot in RIGHT_SIDE_SLOTS and main_label not in preferred)
-            or len(matching) < 3
+            or matching_group_count < 3
         ):
             continue
 
@@ -69,8 +89,9 @@ def analyze_gear_archetypes(
         matches.append({
             "id": archetype["id"],
             "name": archetype["name"],
-            "heroes": archetype["heroes"],
+            "heroes": archetype.get("heroesBySet", {}).get(gear_set, archetype["heroes"]),
             "preferredStats": archetype["preferredStats"],
+            "substatGroups": stat_groups,
             "matchingSubstats": matching,
             "offStats": off_stats,
             "status": "rejected" if rejected else "unknown" if unknown else "eligible",
