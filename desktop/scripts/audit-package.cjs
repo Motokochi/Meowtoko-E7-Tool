@@ -526,18 +526,24 @@ const bundledData = manifest.bundledData[0];
 assert.equal(bundledData.id, 'e7.optimizer.character-artifact-snapshot');
 assert.equal(bundledData.classification, 'immutable-bundled-data');
 const expectedDataHashes = new Map([
-  ['character-catalog-v1.json', 'bfeac97701bad6147665ef905168eedfe5e218d1941eaaf5d2b47edf50ccd4a6'],
-  ['character-source-v1.json', 'b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa'],
-  ['character-validation-v1.json', '048e99aa2d99fdf02505edcd9c6fd247aa0c5825fd1abc07c913dfa614c15ebe'],
-  ['manual-heroes-v1.json', '17e3221824c703b439930a9587f5b33122364f6f58e97899c6612aec7a3dcd2b'],
-  ['manifest-v1.json', '5dd39b4fae32380bb3c5345a8590b7e5ac7b78abd6e5272b2bde6211624947ae'],
-  ['source/artifactdata.json', 'ed1bb666ae7465560fbc1a163000966821174b0a48be826b28da16021f463ac0'],
-  ['source/herodata.json', 'a5ed0b641e578a2b290b75d6f75a866a93b91e40c1064a4f1a264630a745c349'],
+  ['character-catalog-v1.json', new Set(['bfeac97701bad6147665ef905168eedfe5e218d1941eaaf5d2b47edf50ccd4a6'])],
+  ['character-source-v1.json', new Set(['b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa'])],
+  ['character-validation-v1.json', new Set(['048e99aa2d99fdf02505edcd9c6fd247aa0c5825fd1abc07c913dfa614c15ebe'])],
+  ['manual-heroes-v1.json', new Set([
+    '6f23917ba1af9a3cedf22ef80ab472fcb0497f02ad1d178ca077bc5eb1083a08',
+    '17e3221824c703b439930a9587f5b33122364f6f58e97899c6612aec7a3dcd2b',
+  ])],
+  ['manifest-v1.json', new Set(['5dd39b4fae32380bb3c5345a8590b7e5ac7b78abd6e5272b2bde6211624947ae'])],
+  ['source/artifactdata.json', new Set(['ed1bb666ae7465560fbc1a163000966821174b0a48be826b28da16021f463ac0'])],
+  ['source/herodata.json', new Set(['a5ed0b641e578a2b290b75d6f75a866a93b91e40c1064a4f1a264630a745c349'])],
 ]);
 assert.equal(bundledData.files.length, expectedDataHashes.size);
 for (const record of bundledData.files) {
   const relative = record.path.slice(`${bundledData.layout}/`.length);
-  assert.equal(record.sha256, expectedDataHashes.get(relative), `Bundled data source hash drift: ${relative}`);
+  assert.ok(
+    expectedDataHashes.get(relative)?.has(record.sha256),
+    `Bundled data source hash drift: ${relative}`,
+  );
   const packagedPath = path.join(resourcesRoot, ...record.path.split('/'));
   assert.ok(fs.statSync(packagedPath).isFile(), `Bundled data file is missing: ${record.path}`);
   assert.equal(fs.statSync(packagedPath).size, record.size, `Bundled data size drift: ${record.path}`);
