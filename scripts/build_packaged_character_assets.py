@@ -32,6 +32,12 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def manifest_sha256(payload: bytes) -> str:
+    """Hash JSON text consistently across LF and CRLF checkouts."""
+
+    return hashlib.sha256(payload.replace(b"\r\n", b"\n")).hexdigest()
+
+
 def packaging_metadata(source_manifest_sha256: str) -> dict[str, Any]:
     return {
         "format": FORMAT,
@@ -95,7 +101,7 @@ def validate_prepackaged_source(
         raise RuntimeError("Prepackaged character artwork settings drifted.")
 
     raw_manifest = source_root / "raw-source-manifest.json"
-    if file_sha256(raw_manifest) != packaging.get("sourceManifestSha256"):
+    if manifest_sha256(raw_manifest.read_bytes()) != packaging.get("sourceManifestSha256"):
         raise RuntimeError("Raw character source manifest hash drifted.")
 
     available = 0
@@ -230,7 +236,7 @@ def convert_file(task: tuple[int, str, str, str, dict[str, Any]]) -> tuple[int, 
 def build(source_root: Path, output_root: Path, workers: int) -> None:
     source_manifest_path = source_root / "asset-manifest.json"
     source_manifest_bytes = source_manifest_path.read_bytes()
-    source_manifest_sha256 = hashlib.sha256(source_manifest_bytes).hexdigest()
+    source_manifest_sha256 = manifest_sha256(source_manifest_bytes)
     source_manifest = json.loads(source_manifest_bytes)
     if source_manifest.get("schemaId") != SCHEMA_ID or source_manifest.get("schemaVersion") != 1:
         raise RuntimeError("Source character artwork manifest is invalid.")

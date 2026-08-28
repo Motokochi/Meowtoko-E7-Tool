@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from PIL import Image
 
-from scripts.build_packaged_character_assets import validate_visible_image
+from scripts.build_packaged_character_assets import manifest_sha256, validate_visible_image
 from scripts.download_e7codex_character_assets import (
     Character,
     DownloadTask,
@@ -18,6 +18,11 @@ from scripts.download_e7codex_character_assets import (
 
 
 class CharacterAssetPipelineTests(unittest.TestCase):
+    def test_manifest_hash_is_stable_across_checkout_line_endings(self) -> None:
+        lf = b'{\n  "schemaVersion": 1\n}\n'
+
+        self.assertEqual(manifest_sha256(lf), manifest_sha256(lf.replace(b"\n", b"\r\n")))
+
     def test_manual_heroes_are_part_of_the_asset_catalog(self) -> None:
         root = Path(__file__).resolve().parents[1]
         characters = _catalog_characters(
