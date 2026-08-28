@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.42] - 2026-08-28
+
+- Add Lisette to the character roster.
+
 ## [0.1.41] - 2026-08-05
 
 - Correct enhancer continuation and archetype set rules.
