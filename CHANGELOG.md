@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.45] - 2026-08-28
+
+- Add Lisette to the character roster.
+
 ## [0.1.44] - 2026-08-28
 
 - Add Lisette to the character roster.
