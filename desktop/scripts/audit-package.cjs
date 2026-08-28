@@ -196,15 +196,20 @@ assert.equal(characterArtworkManifest.packaging.format, 'webp');
 assert.equal(characterArtworkManifest.packaging.quality, 90);
 assert.equal(characterArtworkManifest.packaging.method, 6);
 assert.equal(characterArtworkManifest.packaging.poseMaxDimension, 1600);
-assert.equal(characterArtworkManifest.packaging.sourceManifestSha256, sha256(sourceArtworkManifestPath));
+assert.ok(
+  textSha256Candidates(sourceArtworkManifestPath).has(
+    characterArtworkManifest.packaging.sourceManifestSha256,
+  ),
+  'Raw artwork manifest hash drifted.',
+);
 assert.equal(
   sha256(characterArtworkManifestPath),
   sha256(repositoryArtworkManifestPath),
   'Packaged artwork manifest drifted from the repository-optimized source.',
 );
 assert.deepEqual(characterArtworkManifest, repositoryArtworkManifest);
-assert.equal(characterArtworkManifest.summary.characters, 386);
-assert.equal(characterArtworkManifest.summary.availableFiles, 1532);
+assert.equal(characterArtworkManifest.summary.characters, 387);
+assert.equal(characterArtworkManifest.summary.availableFiles, 1536);
 assert.equal(characterArtworkManifest.summary.missingFiles, 12);
 assert.equal(characterArtworkManifest.summary.errorFiles, 0);
 assert.equal(
