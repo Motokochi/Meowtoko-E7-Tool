@@ -78,7 +78,7 @@ class HeroModifierRepositoryTests(unittest.TestCase):
     def test_all_bundled_records_map_offline_with_stable_identity_and_complete_type_coverage(self) -> None:
         with patch.object(socket, "create_connection", side_effect=AssertionError("network forbidden")):
             repository = load_bundled_hero_modifier_repository()
-        self.assertEqual(386, len(repository.character_repository.heroes))
+        self.assertEqual(387, len(repository.character_repository.heroes))
         self.assertEqual(133, len(repository.exclusive_equipment))
         self.assertEqual(
             tuple(sorted(item.equipment_id for item in repository.exclusive_equipment)),
@@ -113,14 +113,14 @@ class HeroModifierRepositoryTests(unittest.TestCase):
                 "def": 9,
                 "def_rate": 13,
                 "max_hp": 22,
-                "max_hp_rate": 55,
+                "max_hp_rate": 56,
                 "res": 26,
             },
             dict(devotion_types),
         )
         self.assertEqual(
             {
-                ("B", "A", "S", "SS", "SSS"): 208,
+                ("B", "A", "S", "SS", "SSS"): 209,
                 ("C", "B", "A", "S", "SS", "SSS"): 71,
                 ("D", "C", "B", "A", "S", "SS", "SSS"): 107,
             },

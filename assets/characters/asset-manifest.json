@@ -1,21 +1,23 @@
 {
   "schemaId": "e7hub.e7codex-character-assets",
   "schemaVersion": 1,
-  "generatedAt": "2026-08-04T03:00:45Z",
+  "generatedAt": "2026-08-28T03:16:56Z",
   "source": {
     "site": "https://e7codex.com/",
     "assetBaseUrl": "https://e7codex.com/assets",
     "catalogPath": "src/optimizer/data/character_data/character-source-v1.json",
-    "catalogSha256": "b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa"
+    "catalogSha256": "b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa",
+    "manualHeroesPath": "src/optimizer/data/character_data/manual-heroes-v1.json",
+    "manualHeroesSha256": "17e3221824c703b439930a9587f5b33122364f6f58e97899c6612aec7a3dcd2b"
   },
   "summary": {
-    "characters": 386,
-    "expectedFiles": 1544,
-    "availableFiles": 1532,
+    "characters": 387,
+    "expectedFiles": 1548,
+    "availableFiles": 1536,
     "missingFiles": 12,
     "errorFiles": 0,
-    "totalBytes": 107597974,
-    "sourceTotalBytes": 1924778095
+    "totalBytes": 107854318,
+    "sourceTotalBytes": 1929111373
   },
   "characters": [
     {
@@ -15682,6 +15684,79 @@
       }
     },
     {
+      "name": "Lisette",
+      "code": "c2186",
+      "assetCode": "c2186",
+      "slug": "lisette",
+      "folder": "Lisette",
+      "files": {
+        "pose": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2186_1/pose.png",
+          "bytes": 219270,
+          "sha256": "b69e8e03965e30257023e7e8fd988266da043c700acd72143de2c8ca4709d983",
+          "width": 1134,
+          "height": 1600,
+          "path": "Lisette/pose.webp",
+          "sourceFile": {
+            "path": "Lisette/pose.png",
+            "bytes": 4291760,
+            "sha256": "5b3b96cc8d1edff01b6a30e47929672b603c9bf649f2cd48c357259d8254dfc6",
+            "width": 2144,
+            "height": 3026
+          }
+        },
+        "face_l": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2186_1/face_c2186_l.png",
+          "bytes": 8560,
+          "sha256": "152e0bc39fcc8a0df64f3dd0657a747299f200cad29e6df4caeab67628082091",
+          "width": 222,
+          "height": 89,
+          "path": "Lisette/face_l.webp",
+          "sourceFile": {
+            "path": "Lisette/face_l.png",
+            "bytes": 9735,
+            "sha256": "071c088512ed28c9d10459863617544a6e993185cbb624b68f7e4a660988df46",
+            "width": 222,
+            "height": 89
+          }
+        },
+        "face_s": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2186_1/face_c2186_s.png",
+          "bytes": 6330,
+          "sha256": "709892695be7d51e26eb881a961e043a1c8f4564492f96f89a3d4e10a0783791",
+          "width": 112,
+          "height": 112,
+          "path": "Lisette/face_s.webp",
+          "sourceFile": {
+            "path": "Lisette/face_s.png",
+            "bytes": 8751,
+            "sha256": "8290dc626170759a537366b662756d5c361119dee42719a7429c5c6993d3951f",
+            "width": 112,
+            "height": 112
+          }
+        },
+        "face_su": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2186_1/face_c2186_su.png",
+          "bytes": 22184,
+          "sha256": "a85aca3c527dbdbbb684d29452a382b88b01087c0c47a6adcc0635bc80cf9b56",
+          "width": 256,
+          "height": 206,
+          "path": "Lisette/face_su.webp",
+          "sourceFile": {
+            "path": "Lisette/face_su.png",
+            "bytes": 23032,
+            "sha256": "b7c8ab0f429cebff71bc9fcf25006f306e2909a1f7ab83b806ed7adc4288cf4c",
+            "width": 256,
+            "height": 206
+          }
+        }
+      }
+    },
+    {
       "name": "Little Queen Charlotte",
       "code": "c2009",
       "assetCode": "c2009",
@@ -28106,6 +28181,6 @@
     "quality": 90,
     "method": 6,
     "poseMaxDimension": 1600,
-    "sourceManifestSha256": "f40abb8780ff8677ec18b48aea0ee10b1ce87cfea2d6e330c9be9dcc8d4f2b89"
+    "sourceManifestSha256": "f39199d740f7c2f8292ba7f37ea745c21020fbe06b30eb0b7810967da9bcdc55"
   }
 }

@@ -1,0 +1,116 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "label": "Official 8/27 Update Content and Hero Introduction",
+      "url": "https://epic7db.com/news/827-thu-update-content",
+      "collectedAt": "2026-08-28"
+    },
+    {
+      "label": "Official Epic Seven Hero Analysis record",
+      "url": "https://epic7.onstove.com/en/gg/herorecord/c2186",
+      "collectedAt": "2026-08-28"
+    },
+    {
+      "label": "Game8 max-level stat and imprint reference",
+      "url": "https://game8.jp/epic-seven/811020",
+      "collectedAt": "2026-08-28"
+    },
+    {
+      "label": "2026-08-27 game-data multiplier extraction",
+      "url": "https://www.reddit.com/r/EpicSeven/comments/1vztafv/datamine_20260827/",
+      "collectedAt": "2026-08-28"
+    }
+  ],
+  "character": {
+    "name": "Lisette",
+    "gameCode": "c2186",
+    "releaseDate": "2026-08-27",
+    "rarity": 5,
+    "element": "Light",
+    "class": "Soul Weaver",
+    "zodiac": "Libra",
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": 666,
+        "defense": 592,
+        "health": 4081,
+        "speed": 103,
+        "criticalHitChance": 15,
+        "criticalHitDamage": 150,
+        "effectiveness": 0,
+        "effectResistance": 0,
+        "dualAttackChance": 3
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": 830,
+        "defense": 735,
+        "health": 5121,
+        "speed": 107,
+        "criticalHitChance": 15,
+        "criticalHitDamage": 150,
+        "effectiveness": 0,
+        "effectResistance": 0,
+        "dualAttackChance": 3
+      }
+    },
+    "selfImprint": {
+      "stat": "Health %",
+      "grades": {
+        "B": 9,
+        "A": 14,
+        "S": 19,
+        "SS": 23,
+        "SSS": 27
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 1,
+        "power": 1,
+        "healthScaling": 10,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Light Source attacks one enemy and heals all allies for 7% of the caster's max Health. Soulburn activates Afterglow instead."
+      },
+      "s2": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Devotion grants four Divinity at the first battle start. When another ally dies, consumes one Divinity to revive them as a Fragment of Life for 2 turns and increases Combat Readiness."
+      },
+      "s3": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Converged Time fully recovers all allies and grants Increased Speed for 3 turns. With Divinity, grants Time Reversal to all allies except Lisette."
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/Lisette",
+    "files": {
+      "pose": "pose.png",
+      "faceLarge": "face_l.png",
+      "faceSmall": "face_s.png",
+      "faceAlternate": "face_su.png"
+    }
+  },
+  "notes": "No Hero Journal build or archetype is included. The official release sheet identifies Libra; a same-day community stat page currently labels Taurus. The level-50 profile follows the game's Libra five-star-to-six-star progression and is retained with that derivation recorded in the reviewed runtime entry."
+}

@@ -84,6 +84,11 @@ contract in `support/New-Character/new-character-template.json` and a matching
 is supplied separately as a Hero Journal Discord screenshot and is never
 guessed from the character intake file.
 
+Reviewed future-hero records are loaded from the separate
+`character_data/manual-heroes-v1.json` runtime overlay. The overlay uses the
+same normalized profile contract while leaving the pinned Fribbels source,
+catalog, validation report, and manifest byte-for-byte unchanged.
+
 ## Attribution
 
 The source project identifies Fribbels as its author, the offline fork is

@@ -59,6 +59,7 @@ from src.optimizer.data.character_repository import (
     CharacterRepository,
     CharacterRepositoryError,
     load_bundled_character_repository,
+    load_bundled_runtime_character_catalog,
     normalize_character_search_text,
 )
 from src.optimizer.data.character_profiles import (
@@ -407,6 +408,7 @@ __all__ = [
     "load_bundled_character_catalog",
     "load_bundled_character_profile_selector",
     "load_bundled_character_repository",
+    "load_bundled_runtime_character_catalog",
     "load_bundled_hero_modifier_repository",
     "load_bundled_skill_context_repository",
     "load_bundled_character_normalization_report",

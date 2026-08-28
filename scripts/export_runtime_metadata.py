@@ -45,6 +45,7 @@ CHARACTER_FILES = (
     "character-catalog-v1.json",
     "character-source-v1.json",
     "character-validation-v1.json",
+    "manual-heroes-v1.json",
     "manifest-v1.json",
     "source/artifactdata.json",
     "source/herodata.json",

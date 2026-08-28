@@ -524,6 +524,7 @@ const expectedDataHashes = new Map([
   ['character-catalog-v1.json', 'bfeac97701bad6147665ef905168eedfe5e218d1941eaaf5d2b47edf50ccd4a6'],
   ['character-source-v1.json', 'b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa'],
   ['character-validation-v1.json', '048e99aa2d99fdf02505edcd9c6fd247aa0c5825fd1abc07c913dfa614c15ebe'],
+  ['manual-heroes-v1.json', '17e3221824c703b439930a9587f5b33122364f6f58e97899c6612aec7a3dcd2b'],
   ['manifest-v1.json', '5dd39b4fae32380bb3c5345a8590b7e5ac7b78abd6e5272b2bde6211624947ae'],
   ['source/artifactdata.json', 'ed1bb666ae7465560fbc1a163000966821174b0a48be826b28da16021f463ac0'],
   ['source/herodata.json', 'a5ed0b641e578a2b290b75d6f75a866a93b91e40c1064a4f1a264630a745c349'],

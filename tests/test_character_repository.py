@@ -24,6 +24,7 @@ from src.optimizer.data import (
     normalize_character_search_text,
     thaw_json,
 )
+from src.optimizer.domain import FinalStat
 
 
 class CharacterRepositoryTests(unittest.TestCase):
@@ -50,13 +51,21 @@ class CharacterRepositoryTests(unittest.TestCase):
         ):
             repository = load_bundled_character_repository()
 
-        self.assertEqual(386, len(repository))
-        self.assertEqual(386, len(repository.heroes))
-        self.assertEqual(772, sum(len(hero.base_profiles) for hero in repository.heroes))
+        self.assertEqual(387, len(repository))
+        self.assertEqual(387, len(repository.heroes))
+        self.assertEqual(774, sum(len(hero.base_profiles) for hero in repository.heroes))
         self.assertEqual(
-            {hero.hero_id for hero in self.catalog.heroes},
+            {hero.hero_id for hero in self.catalog.heroes} | {"hero.fribbels.lisette"},
             {hero.hero_id for hero in repository.heroes},
         )
+
+        lisette = repository.find_exact("c2186")
+        self.assertIsNotNone(lisette)
+        self.assertEqual("Lisette", lisette.name)
+        self.assertEqual((50, 60), tuple(profile.level for profile in lisette.base_profiles))
+        level_sixty = next(profile for profile in lisette.base_profiles if profile.level == 60)
+        self.assertEqual(830, dict(level_sixty.final_stats)[FinalStat.ATTACK])
+        self.assertEqual(5121, dict(level_sixty.final_stats)[FinalStat.HEALTH])
 
     def test_public_exports_and_exact_lookups_use_stable_evidence(self) -> None:
         expected = self.repository.get("hero.fribbels.aube")

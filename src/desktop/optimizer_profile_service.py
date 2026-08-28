@@ -32,6 +32,7 @@ from src.optimizer.data import (
     SourceMetadata,
     load_bundled_character_catalog,
     load_bundled_character_repository,
+    load_bundled_runtime_character_catalog,
     load_bundled_character_source_snapshot,
     load_optimizer_profile,
 )
@@ -245,11 +246,11 @@ class OptimizerProfileService:
         self.user_data_dir = Path(user_data_dir)
         self.profile_directory = self.user_data_dir / DESKTOP_PROFILE_DIRECTORY
         self.clock = clock
-        self.catalog = load_bundled_character_catalog()
+        self.catalog = load_bundled_runtime_character_catalog()
         self.characters = load_bundled_character_repository()
         self.profiles = CharacterProfileSelector(self.characters)
         self.artifacts = ArtifactRepository(
-            self.catalog,
+            load_bundled_character_catalog(),
             load_bundled_character_source_snapshot(),
         )
         self.hero_modifiers = HeroModifierRepository(self.characters)

@@ -119,7 +119,7 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
     def test_bounded_catalog_projection_exposes_every_choice_without_raw_records(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             service = self._service(Path(directory))
-            self.assertEqual(386, len(service.characters.heroes))
+            self.assertEqual(387, len(service.characters.heroes))
             self.assertEqual(283, len(service.artifacts.artifacts))
             self.assertEqual(50, len(service.search_heroes("", 50)["results"]))
             self.assertEqual(50, len(service.search_artifacts("", 50)["results"]))
@@ -139,7 +139,7 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
     def test_representative_heroes_and_complete_modifier_options_are_projected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             service = self._service(Path(directory))
-            for name in ("Ras", "Seaside Bellona", "ae-GISELLE", "Adventurer Ras", "Aube", "Tidal Rift Elvira"):
+            for name in ("Ras", "Seaside Bellona", "ae-GISELLE", "Adventurer Ras", "Aube", "Tidal Rift Elvira", "Lisette"):
                 hero_id = service.search_heroes(name, 1)["results"][0]["heroId"]
                 details = service.get_hero_details(hero_id)
                 self.assertEqual(name, details["hero"]["name"])
@@ -165,6 +165,21 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
             with_ee = next(hero for hero in service.characters.heroes if service.hero_modifiers.exclusive_equipment_for(hero.hero_id) is not None)
             self.assertIsNone(service.get_hero_details(no_ee.hero_id)["exclusiveEquipment"])
             self.assertEqual(3, len(service.get_hero_details(with_ee.hero_id)["exclusiveEquipment"]["skillOptions"]))
+
+    def test_manual_hero_draft_saves_and_reloads_with_existing_catalog_id(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            user_data = Path(directory)
+            service = self._service(user_data)
+            hero_id = service.search_heroes("Lisette", 1)["results"][0]["heroId"]
+            draft = service.load_draft(hero_id)["draft"]
+
+            saved = service.save_draft(draft)
+            reopened = self._service(user_data).load_draft(hero_id)
+
+            self.assertEqual("saved", saved["state"])
+            self.assertEqual(draft, reopened["draft"])
+            payload = json.loads(service._profile_path(hero_id).read_text(encoding="utf-8"))
+            self.assertEqual(service.catalog.catalog_id, payload["characterCatalogId"])
 
     def test_view_and_default_load_do_not_create_storage(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

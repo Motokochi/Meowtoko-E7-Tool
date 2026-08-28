@@ -37,6 +37,14 @@ DEFAULT_CATALOG = (
     / "character_data"
     / "character-source-v1.json"
 )
+DEFAULT_MANUAL_HEROES = (
+    REPOSITORY_ROOT
+    / "src"
+    / "optimizer"
+    / "data"
+    / "character_data"
+    / "manual-heroes-v1.json"
+)
 DEFAULT_DESTINATION = (
     REPOSITORY_ROOT / ".build" / "downloads" / "e7codex-characters"
 )
@@ -81,6 +89,7 @@ def parse_arguments() -> argparse.Namespace:
         description="Download E7 Codex pose and face images for the pinned Meowtoko E7 Tool catalog.",
     )
     parser.add_argument("--catalog", type=Path, default=DEFAULT_CATALOG)
+    parser.add_argument("--manual-heroes", type=Path, default=DEFAULT_MANUAL_HEROES)
     parser.add_argument("--destination", type=Path, default=DEFAULT_DESTINATION)
     parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
     parser.add_argument("--workers", type=int, default=8)
@@ -111,11 +120,20 @@ def _safe_folder_name(name: str, code: str) -> str:
     return value
 
 
-def _catalog_characters(catalog_path: Path, requested_codes: set[str] | None) -> list[Character]:
+def _catalog_characters(
+    catalog_path: Path,
+    manual_heroes_path: Path,
+    requested_codes: set[str] | None,
+) -> list[Character]:
     document = json.loads(catalog_path.read_text(encoding="utf-8"))
     records = document.get("records", {}).get("heroes")
     if not isinstance(records, dict):
         raise ValueError(f"{catalog_path} does not contain records.heroes.")
+    manual_document = json.loads(manual_heroes_path.read_text(encoding="utf-8"))
+    manual_records = manual_document.get("records")
+    if not isinstance(manual_records, dict):
+        raise ValueError(f"{manual_heroes_path} does not contain records.")
+    records = {**records, **manual_records}
 
     pending: list[tuple[str, str, str]] = []
     for record in records.values():
@@ -335,6 +353,7 @@ def _write_index(path: Path, characters: Iterable[dict[str, object]]) -> None:
 
 def run(arguments: argparse.Namespace) -> int:
     catalog_path = arguments.catalog.resolve()
+    manual_heroes_path = arguments.manual_heroes.resolve()
     destination = arguments.destination.resolve()
     if arguments.workers < 1 or arguments.workers > 24:
         raise ValueError("--workers must be between 1 and 24.")
@@ -344,7 +363,7 @@ def run(arguments: argparse.Namespace) -> int:
         raise ValueError("--timeout must be greater than zero and at most 180 seconds.")
 
     requested_codes = set(arguments.codes) if arguments.codes else None
-    characters = _catalog_characters(catalog_path, requested_codes)
+    characters = _catalog_characters(catalog_path, manual_heroes_path, requested_codes)
     base_url = arguments.base_url.rstrip("/")
     tasks = [
         DownloadTask(
@@ -435,6 +454,8 @@ def run(arguments: argparse.Namespace) -> int:
             "assetBaseUrl": base_url,
             "catalogPath": catalog_path.relative_to(REPOSITORY_ROOT).as_posix(),
             "catalogSha256": catalog_hash,
+            "manualHeroesPath": manual_heroes_path.relative_to(REPOSITORY_ROOT).as_posix(),
+            "manualHeroesSha256": hashlib.sha256(manual_heroes_path.read_bytes()).hexdigest(),
         },
         "summary": {
             "characters": len(character_entries),

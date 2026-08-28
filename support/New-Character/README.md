@@ -44,4 +44,7 @@ that reviewed release step; the original PNGs remain the intake evidence.
 
 The completed intake JSON, raw artwork folder, and later Discord screenshot are
 separate inputs for a reviewed app data update. The template itself is never
-loaded by the application.
+loaded by the application. Reviewed identity, stat, imprint, and skill fields
+are copied into `src/optimizer/data/character_data/manual-heroes-v1.json`, the
+small runtime overlay that keeps future heroes separate from the frozen
+Fribbels snapshot.

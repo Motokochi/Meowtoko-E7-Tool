@@ -1,0 +1,108 @@
+{
+  "schemaId": "meowtoko.manual-hero-source",
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-28T00:00:00Z",
+  "records": {
+    "Lisette": {
+      "_id": "lisette",
+      "assets": {
+        "icon": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c2186_s.png",
+        "image": "https://e7codex.com/assets/c2186_1/pose.png",
+        "thumbnail": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c2186_s.png"
+      },
+      "attribute": "light",
+      "calculatedStatus": {
+        "lv50FiveStarFullyAwakened": {
+          "atk": 666,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "def": 592,
+          "eff": 0,
+          "efr": 0,
+          "hp": 4081,
+          "spd": 103
+        },
+        "lv60SixStarFullyAwakened": {
+          "atk": 830,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "def": 735,
+          "eff": 0,
+          "efr": 0,
+          "hp": 5121,
+          "spd": 107
+        }
+      },
+      "code": "c2186",
+      "ex_equip": [],
+      "manual_source": {
+        "releaseDate": "2026-08-27",
+        "reviewedAt": "2026-08-28",
+        "identity": "Official Epic Seven update and Hero Analysis record",
+        "level60StatsAndSelfImprint": "Game8 max-level table, cross-checked against the official Hero Introduction",
+        "level50Profile": "Derived from the game's Libra fully-awakened 5-star to 6-star stat progression; not sourced from Fribbels",
+        "skillBehavior": "Official Hero Introduction",
+        "skillMultipliers": "2026-08-27 game-data extraction",
+        "buildData": "intentionally omitted pending Hero Journal evidence"
+      },
+      "name": "Lisette",
+      "rarity": 5,
+      "role": "manauser",
+      "self_devotion": {
+        "grades": {
+          "A": 0.14,
+          "B": 0.09,
+          "S": 0.19,
+          "SS": 0.23,
+          "SSS": 0.27
+        },
+        "type": "max_hp_rate"
+      },
+      "skills": {
+        "S1": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "note": "Heals all allies; Soulburn activates Afterglow instead",
+          "options": [
+            {
+              "name": "S1 heal",
+              "pow": 0,
+              "rate": 0,
+              "selfHpScaling": 0.07,
+              "targets": 0
+            }
+          ],
+          "pow": 1,
+          "rate": 1,
+          "selfHpScaling": 0.1,
+          "targets": 1
+        },
+        "S2": {
+          "hitTypes": [],
+          "note": "Passive: Divinity and Fragment of Life revival",
+          "options": []
+        },
+        "S3": {
+          "hitTypes": [],
+          "note": "Full-party recovery, Increased Speed, and conditional Time Reversal",
+          "options": [
+            {
+              "name": "S3 full heal",
+              "pow": 0,
+              "rate": 0,
+              "selfHpScaling": 1,
+              "targets": 0
+            }
+          ]
+        }
+      },
+      "zodiac": "scales"
+    }
+  }
+}

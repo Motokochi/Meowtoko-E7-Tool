@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import math
 import unicodedata
 from collections import defaultdict
@@ -13,6 +14,8 @@ from urllib.parse import urlsplit
 
 from src.optimizer.data.character_snapshot import (
     CharacterSourceSnapshotDocument,
+    _normalize_hero,
+    bundled_character_data_path,
     load_bundled_character_catalog,
     load_bundled_character_source_snapshot,
 )
@@ -20,6 +23,7 @@ from src.optimizer.data.schema_common import (
     FrozenJson,
     FrozenJsonArray,
     FrozenJsonObject,
+    freeze_json_object,
     required_text,
 )
 from src.optimizer.data.schemas import CharacterCatalogDocument
@@ -28,6 +32,7 @@ from src.optimizer.domain import HeroBaseProfile, HeroDefinition
 
 DEFAULT_CHARACTER_SEARCH_LIMIT = 20
 MAX_CHARACTER_SEARCH_LIMIT = 100
+MANUAL_HERO_SOURCE_FILENAME = "manual-heroes-v1.json"
 HERO_PLACEHOLDER_IMAGE_REFERENCE = (
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E"
     "%3Crect width='128' height='128' rx='18' fill='%23242a38'/%3E"
@@ -431,6 +436,7 @@ class CharacterRepository:
         catalog: CharacterCatalogDocument,
         source_snapshot: CharacterSourceSnapshotDocument,
         *,
+        manual_heroes: Mapping[str, object] | None = None,
         usable_asset_reference: Callable[[str], bool] | None = None,
     ) -> None:
         if not isinstance(catalog, CharacterCatalogDocument):
@@ -483,6 +489,28 @@ class CharacterRepository:
                 "missing-source-hero", "heroes", f"Canonical heroes have no source records: {', '.join(unmatched)}."
             )
 
+        if manual_heroes:
+            first_profile_dense_id = sum(len(hero.base_profiles) for hero in catalog.heroes)
+            for offset, source_key in enumerate(sorted(manual_heroes)):
+                raw_source = freeze_json_object(
+                    manual_heroes[source_key],
+                    f"manualHeroes[{source_key!r}]",
+                )
+                definition = _normalize_hero(
+                    source_key,
+                    manual_heroes[source_key],
+                    hero_dense_id=len(catalog.heroes) + offset,
+                    first_profile_dense_id=first_profile_dense_id + offset * 2,
+                )
+                records.append(
+                    _hero_record(
+                        definition,
+                        source_key,
+                        raw_source,
+                        usable_asset_reference,
+                    )
+                )
+
         hero_id_index: dict[str, CharacterHeroRecord] = {}
         alias_claims: dict[str, set[str]] = defaultdict(set)
         for record in records:
@@ -519,9 +547,15 @@ class CharacterRepository:
         *,
         usable_asset_reference: Callable[[str], bool] | None = None,
     ) -> "CharacterRepository":
+        manual_document = json.loads(
+            bundled_character_data_path(MANUAL_HERO_SOURCE_FILENAME).read_text(
+                encoding="utf-8"
+            )
+        )
         return cls(
             load_bundled_character_catalog(),
             load_bundled_character_source_snapshot(),
+            manual_heroes=manual_document["records"],
             usable_asset_reference=usable_asset_reference,
         )
 
@@ -595,10 +629,25 @@ def load_bundled_character_repository(
     return CharacterRepository.from_bundled(usable_asset_reference=usable_asset_reference)
 
 
+def load_bundled_runtime_character_catalog() -> CharacterCatalogDocument:
+    """Return the frozen catalog with reviewed manual hero additions appended."""
+
+    catalog = load_bundled_character_catalog()
+    repository = load_bundled_character_repository()
+    return CharacterCatalogDocument(
+        catalog_id=catalog.catalog_id,
+        generated_at=catalog.generated_at,
+        source=catalog.source,
+        heroes=tuple(record.definition for record in repository.heroes),
+        artifacts=catalog.artifacts,
+    )
+
+
 __all__ = [
     "DEFAULT_CHARACTER_SEARCH_LIMIT",
     "HERO_PLACEHOLDER_IMAGE_REFERENCE",
     "MAX_CHARACTER_SEARCH_LIMIT",
+    "MANUAL_HERO_SOURCE_FILENAME",
     "CharacterAlias",
     "CharacterAliasCollisionError",
     "CharacterAliasKind",
@@ -608,5 +657,6 @@ __all__ = [
     "CharacterRepository",
     "CharacterRepositoryError",
     "load_bundled_character_repository",
+    "load_bundled_runtime_character_catalog",
     "normalize_character_search_text",
 ]

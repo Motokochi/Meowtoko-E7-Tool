@@ -112,10 +112,10 @@ class SkillContextRepositoryTests(unittest.TestCase):
     def test_all_skill_records_and_source_options_map_offline_with_stable_identity(self) -> None:
         with patch.object(socket, "create_connection", side_effect=AssertionError("network forbidden")):
             repository = load_bundled_skill_context_repository()
-        self.assertEqual(1158, len(repository.records))
-        self.assertEqual(209, len(repository.source_options))
+        self.assertEqual(1161, len(repository.records))
+        self.assertEqual(211, len(repository.source_options))
         self.assertEqual(
-            209,
+            211,
             len({option.option_id.casefold() for option in repository.source_options}),
         )
         self.assertEqual(
@@ -146,33 +146,33 @@ class SkillContextRepositoryTests(unittest.TestCase):
             for option in record.options:
                 heroes_with_options.add(option.hero_id)
                 option_field_counts.update(option.raw_source.keys())
-        self.assertEqual(1158, field_counts["hitTypes"])
-        self.assertEqual(1158, field_counts["options"])
-        self.assertEqual(839, field_counts["rate"])
-        self.assertEqual(839, field_counts["pow"])
-        self.assertEqual(835, field_counts["targets"])
+        self.assertEqual(1161, field_counts["hitTypes"])
+        self.assertEqual(1161, field_counts["options"])
+        self.assertEqual(840, field_counts["rate"])
+        self.assertEqual(840, field_counts["pow"])
+        self.assertEqual(836, field_counts["targets"])
         self.assertEqual(61, field_counts["penetration"])
-        self.assertEqual(72, field_counts["note"])
-        self.assertEqual(140, field_counts["selfHpScaling"])
+        self.assertEqual(75, field_counts["note"])
+        self.assertEqual(141, field_counts["selfHpScaling"])
         self.assertEqual(39, field_counts["selfDefScaling"])
         self.assertEqual(47, field_counts["selfSpdScaling"])
         self.assertEqual(2, field_counts["extraSelfAtkScaling"])
         self.assertEqual(1, field_counts["extraSelfDefScaling"])
         self.assertEqual(2, field_counts["increasedValue"])
         self.assertEqual(1, field_counts["cdmgIncrease"])
-        self.assertEqual({1: 632, 2: 9, 3: 194}, dict(target_counts))
+        self.assertEqual({1: 633, 2: 9, 3: 194}, dict(target_counts))
         self.assertEqual({0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 1}, set(penetration_values))
         self.assertEqual(
             {"hit.critical", "hit.crushing", "hit.normal", "hit.miss"},
             set(hit_counts),
         )
-        self.assertEqual(143, len(heroes_with_options))
+        self.assertEqual(144, len(heroes_with_options))
         self.assertEqual(2, maximum_options)
-        self.assertEqual(209, option_field_counts["name"])
-        self.assertEqual(209, option_field_counts["rate"])
-        self.assertEqual(209, option_field_counts["pow"])
-        self.assertEqual(120, option_field_counts["targets"])
-        self.assertEqual(168, option_field_counts["selfHpScaling"])
+        self.assertEqual(211, option_field_counts["name"])
+        self.assertEqual(211, option_field_counts["rate"])
+        self.assertEqual(211, option_field_counts["pow"])
+        self.assertEqual(122, option_field_counts["targets"])
+        self.assertEqual(170, option_field_counts["selfHpScaling"])
         self.assertEqual(39, option_field_counts["selfAtkScaling"])
         self.assertEqual(8, option_field_counts["selfDefScaling"])
         self.assertTrue(all(not option.is_damaging for option in self.repository.source_options))

@@ -37,7 +37,8 @@ At the current pin, E7 Codex has no indexed artwork record for Desert Jewel
 Basar (`c2053`), Mighty Scout (`m0063`), or Wild Angara (`m0171`). All four
 expected variants for those three entries are therefore recorded as missing.
 
-To refresh the raw source library from the pinned Meowtoko E7 Tool character catalog:
+To refresh the raw source library from the pinned Meowtoko E7 Tool character
+catalog plus its reviewed manual-hero overlay:
 
 ```powershell
 python scripts/download_e7codex_character_assets.py
