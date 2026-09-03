@@ -142,7 +142,7 @@ def character_data_records() -> list[dict[str, object]]:
             raise RuntimeError(f"Required character/artifact data is missing: {path}")
         records.append({
             "path": f"backend/_internal/src/optimizer/data/character_data/{relative}",
-            "sha256": sha256(path),
+            "sha256": normalized_text_sha256(path),
             "size": path.stat().st_size,
         })
     return records

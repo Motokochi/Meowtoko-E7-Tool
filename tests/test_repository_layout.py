@@ -18,6 +18,9 @@ class RepositoryLayoutTests(unittest.TestCase):
         runtime_export = (ROOT / "scripts" / "export_runtime_metadata.py").read_text(
             encoding="utf-8"
         )
+        package_audit = (ROOT / "desktop" / "scripts" / "audit-package.cjs").read_text(
+            encoding="utf-8"
+        )
 
         self.assertTrue(spec.is_file())
         self.assertIn("ROOT = Path(SPECPATH).resolve().parent", spec.read_text(encoding="utf-8"))
@@ -30,6 +33,8 @@ class RepositoryLayoutTests(unittest.TestCase):
         )
         self.assertNotIn("RUNTIME_PACKAGES", runtime_export)
         self.assertIn('"lockSha256": normalized_text_sha256(', runtime_export)
+        self.assertIn('"sha256": normalized_text_sha256(path)', runtime_export)
+        self.assertIn("textSha256Candidates(packagedPath).has(record.sha256)", package_audit)
         self.assertIn("'.build', 'pyinstaller', 'e7-core'", build_script)
         self.assertIn("['-3.12']", build_script)
         self.assertNotIn("['-3.13']", build_script)

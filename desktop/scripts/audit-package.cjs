@@ -548,7 +548,10 @@ for (const record of bundledData.files) {
   const packagedPath = path.join(resourcesRoot, ...record.path.split('/'));
   assert.ok(fs.statSync(packagedPath).isFile(), `Bundled data file is missing: ${record.path}`);
   assert.equal(fs.statSync(packagedPath).size, record.size, `Bundled data size drift: ${record.path}`);
-  assert.equal(sha256(packagedPath), record.sha256, `Bundled data hash drift: ${record.path}`);
+  assert.ok(
+    textSha256Candidates(packagedPath).has(record.sha256),
+    `Bundled data hash drift: ${record.path}`,
+  );
   assert.equal(
     relativeResources.filter((entry) => entry.endsWith(`/character_data/${relative}`)).length,
     1,
