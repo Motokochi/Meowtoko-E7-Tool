@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.46] - 2026-09-03
+
+- Add Uncharted Pioneer Politis and optimizer fixes.
+
 ## [0.1.45] - 2026-08-28
 
 - Add Lisette to the character roster.
