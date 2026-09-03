@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.47] - 2026-09-03
+
+- Add Uncharted Pioneer Politis and optimizer fixes.
+
 ## [0.1.46] - 2026-09-03
 
 - Add Uncharted Pioneer Politis and optimizer fixes.
