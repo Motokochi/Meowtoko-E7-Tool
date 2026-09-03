@@ -210,7 +210,7 @@ class PrimaryStatBoundsTests(unittest.TestCase):
         )
         result = self._evaluate(
             {
-                FinalStat.CRITICAL_HIT_CHANCE: StatRange(100, 100),
+                FinalStat.CRITICAL_HIT_CHANCE: StatRange(127, 127),
                 FinalStat.CRITICAL_HIT_DAMAGE: StatRange(350, 350),
             },
             set_result,
@@ -224,10 +224,10 @@ class PrimaryStatBoundsTests(unittest.TestCase):
         self.assertTrue(result.evaluation_for(FinalStat.CRITICAL_HIT_DAMAGE).cap_applied)
         self.assertEqual(set_result.final_stats, result.set_evaluation.final_stats)
 
-    def test_minimums_above_caps_are_impossible_and_cap_edges_are_inclusive(self) -> None:
+    def test_crit_chance_bounds_use_raw_value_while_damage_uses_cap(self) -> None:
         capped = self._evaluate(
             {
-                FinalStat.CRITICAL_HIT_CHANCE: StatRange(minimum=100),
+                FinalStat.CRITICAL_HIT_CHANCE: StatRange(minimum=127),
                 FinalStat.CRITICAL_HIT_DAMAGE: StatRange(minimum=350),
             },
             replace(
@@ -247,6 +247,21 @@ class PrimaryStatBoundsTests(unittest.TestCase):
         )
         self.assertTrue(capped.passes)
 
+        overflow = self._evaluate(
+            {FinalStat.CRITICAL_HIT_CHANCE: StatRange(99, 106)},
+            replace(
+                self.fixture_set_result,
+                final_stats=tuple(
+                    (stat, 124 if stat is FinalStat.CRITICAL_HIT_CHANCE else value)
+                    for stat, value in self.fixture_set_result.final_stats
+                ),
+            ),
+        )
+        self.assertIs(
+            overflow.evaluation_for(FinalStat.CRITICAL_HIT_CHANCE).status,
+            PrimaryStatBoundStatus.ABOVE_MAXIMUM,
+        )
+
         impossible = self._evaluate(
             {
                 FinalStat.CRITICAL_HIT_CHANCE: StatRange(minimum=101),
@@ -260,10 +275,16 @@ class PrimaryStatBoundsTests(unittest.TestCase):
             ),
             tuple(failure.stat for failure in impossible.failures),
         )
+        self.assertEqual(
+            (
+                PrimaryStatBoundStatus.BELOW_MINIMUM,
+                PrimaryStatBoundStatus.MINIMUM_ABOVE_CAP,
+            ),
+            tuple(failure.status for failure in impossible.failures),
+        )
         self.assertTrue(
             all(
-                failure.status is PrimaryStatBoundStatus.MINIMUM_ABOVE_CAP
-                and failure.failure_side is PrimaryStatBoundSide.MINIMUM
+                failure.failure_side is PrimaryStatBoundSide.MINIMUM
                 for failure in impossible.failures
             )
         )

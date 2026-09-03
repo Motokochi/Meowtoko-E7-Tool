@@ -515,9 +515,10 @@ void e7_filter_exact_builds_packed(
                 if (stat == 4 && bounded > 100) bounded = 100;
                 if (stat == 5 && bounded > 350) bounded = 350;
                 effective[stat] = bounded;
+                const long long range_value = stat == 4 ? raw[stat] : bounded;
                 if (
-                    (primary_minimum_present[stat] && e7_below(bounded, primary_minimum_values[stat]))
-                    || (primary_maximum_present[stat] && e7_above(bounded, primary_maximum_values[stat]))
+                    (primary_minimum_present[stat] && e7_below(range_value, primary_minimum_values[stat]))
+                    || (primary_maximum_present[stat] && e7_above(range_value, primary_maximum_values[stat]))
                 ) {
                     primary_pass = false;
                     break;

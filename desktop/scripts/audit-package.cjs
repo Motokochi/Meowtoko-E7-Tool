@@ -208,8 +208,8 @@ assert.equal(
   'Packaged artwork manifest drifted from the repository-optimized source.',
 );
 assert.deepEqual(characterArtworkManifest, repositoryArtworkManifest);
-assert.equal(characterArtworkManifest.summary.characters, 387);
-assert.equal(characterArtworkManifest.summary.availableFiles, 1536);
+assert.equal(characterArtworkManifest.summary.characters, 388);
+assert.equal(characterArtworkManifest.summary.availableFiles, 1540);
 assert.equal(characterArtworkManifest.summary.missingFiles, 12);
 assert.equal(characterArtworkManifest.summary.errorFiles, 0);
 assert.equal(
@@ -530,8 +530,9 @@ const expectedDataHashes = new Map([
   ['character-source-v1.json', new Set(['b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa'])],
   ['character-validation-v1.json', new Set(['048e99aa2d99fdf02505edcd9c6fd247aa0c5825fd1abc07c913dfa614c15ebe'])],
   ['manual-heroes-v1.json', new Set([
-    '6f23917ba1af9a3cedf22ef80ab472fcb0497f02ad1d178ca077bc5eb1083a08',
-    '17e3221824c703b439930a9587f5b33122364f6f58e97899c6612aec7a3dcd2b',
+    '697d31bfcbe6c398dc2bcd7422eb46051aa1ccca4ffbba688345ded51d1600f9',
+    '3eb128a0100c9776124486108bbddc366156fa338542068b1413655849406e87',
+    '9f72aac8a6efda731c1ec896bbd422e5e5f7e3b77ef7aaf2435bf2c92fa70352',
   ])],
   ['manifest-v1.json', new Set(['5dd39b4fae32380bb3c5345a8590b7e5ac7b78abd6e5272b2bde6211624947ae'])],
   ['source/artifactdata.json', new Set(['ed1bb666ae7465560fbc1a163000966821174b0a48be826b28da16021f463ac0'])],

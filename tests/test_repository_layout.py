@@ -104,7 +104,7 @@ class RepositoryLayoutTests(unittest.TestCase):
         artwork = list(character_root.rglob("*.webp"))
 
         self.assertTrue(raw_manifest.is_file())
-        self.assertEqual(len(artwork), 1536)
+        self.assertEqual(len(artwork), 1540)
         self.assertFalse(any(character_root.rglob("*.png")))
         self.assertIn('"format": "webp"', manifest)
         self.assertIn('"sourceManifestSha256"', manifest)

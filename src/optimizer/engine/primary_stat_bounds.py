@@ -61,7 +61,7 @@ PRIMARY_STAT_RULES = tuple(
 
 
 class PrimaryStatBoundStatus(StrEnum):
-    """Outcome of applying one optional range to one effective stat."""
+    """Outcome of applying one optional range to one primary stat."""
 
     UNRESTRICTED = "unrestricted"
     PASSED = "passed"
@@ -153,17 +153,22 @@ _UNRESTRICTED_RANGE = StatRange()
 def _status(
     rule: PrimaryStatRule,
     requested_range: StatRange,
-    effective_value: int,
+    range_value: int,
 ) -> PrimaryStatBoundStatus:
     minimum = requested_range.minimum
     maximum = requested_range.maximum
     if minimum is None and maximum is None:
         return PrimaryStatBoundStatus.UNRESTRICTED
-    if rule.upper_cap is not None and minimum is not None and minimum > rule.upper_cap:
+    if (
+        rule.stat is not FinalStat.CRITICAL_HIT_CHANCE
+        and rule.upper_cap is not None
+        and minimum is not None
+        and minimum > rule.upper_cap
+    ):
         return PrimaryStatBoundStatus.MINIMUM_ABOVE_CAP
-    if minimum is not None and effective_value < minimum:
+    if minimum is not None and range_value < minimum:
         return PrimaryStatBoundStatus.BELOW_MINIMUM
-    if maximum is not None and effective_value > maximum:
+    if maximum is not None and range_value > maximum:
         return PrimaryStatBoundStatus.ABOVE_MAXIMUM
     return PrimaryStatBoundStatus.PASSED
 
@@ -172,7 +177,7 @@ def evaluate_primary_stat_bounds(
     request: OptimizationRequest,
     set_evaluation: SetEvaluationResult,
 ) -> PrimaryStatBoundsResult:
-    """Apply gameplay caps and the request's inclusive primary-stat ranges."""
+    """Apply gameplay caps and inclusive ranges, using raw displayed Crit Chance."""
 
     if not isinstance(request, OptimizationRequest):
         raise TypeError("request must be an OptimizationRequest.")
@@ -189,6 +194,11 @@ def evaluate_primary_stat_bounds(
         effective_by_stat[rule.stat] = effective_value
         range_supplied = rule.stat in ranges
         requested_range = ranges.get(rule.stat, _UNRESTRICTED_RANGE)
+        range_value = (
+            raw_value
+            if rule.stat is FinalStat.CRITICAL_HIT_CHANCE
+            else effective_value
+        )
         evaluations.append(
             PrimaryStatBoundEvaluation(
                 stat=rule.stat,
@@ -197,7 +207,7 @@ def evaluate_primary_stat_bounds(
                 upper_cap=rule.upper_cap,
                 requested_range=requested_range,
                 range_supplied=range_supplied,
-                status=_status(rule, requested_range, effective_value),
+                status=_status(rule, requested_range, range_value),
             )
         )
 

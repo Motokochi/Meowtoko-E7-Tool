@@ -1,0 +1,106 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "label": "Official Epic Seven hero index and Hero Introduction",
+      "url": "https://epic7.onstove.com/en/gg/herorecord",
+      "collectedAt": "2026-09-03"
+    },
+    {
+      "label": "2026-08-27 game-data extraction",
+      "url": "https://www.reddit.com/r/EpicSeven/comments/1vztafv/datamine_20260827/",
+      "collectedAt": "2026-09-03"
+    }
+  ],
+  "character": {
+    "name": "Uncharted Pioneer Politis",
+    "gameCode": "c5112",
+    "releaseDate": "2026-09-03",
+    "rarity": 5,
+    "element": "Ice",
+    "class": "Ranger",
+    "zodiac": "Pisces",
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": 797,
+        "defense": 492,
+        "health": 4536,
+        "speed": 120,
+        "criticalHitChance": 15,
+        "criticalHitDamage": 150,
+        "effectiveness": 0,
+        "effectResistance": 0,
+        "dualAttackChance": 3
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": 993,
+        "defense": 611,
+        "health": 6002,
+        "speed": 120,
+        "criticalHitChance": 15,
+        "criticalHitDamage": 150,
+        "effectiveness": 0,
+        "effectResistance": 0,
+        "dualAttackChance": 3
+      }
+    },
+    "selfImprint": {
+      "stat": "Attack %",
+      "grades": {
+        "B": 7,
+        "A": 11,
+        "S": 15,
+        "SS": 18,
+        "SSS": 21
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": true,
+        "targets": 3,
+        "attackRate": 0.5,
+        "power": 1,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Pulse Deployment attacks all enemies, can dispel one buff, and deals 1,000 additional damage."
+      },
+      "s2": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "The Survivor's Mission assigns an Attack Mission in the front row or a Defense Mission in the back row. Completion cleanses Politis, grants Star's Knowledge to all allies, and grants an extra turn."
+      },
+      "s3": {
+        "canCrit": true,
+        "targets": 3,
+        "attackRate": 0.7,
+        "power": 1,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Light That Cleaves the End attacks all enemies, dispels all buffs, increases skill cooldowns, and deals 3,000 additional damage. Soulburn ignores Effect Resistance."
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/Uncharted Pioneer Politis",
+    "files": {
+      "pose": "pose.png",
+      "faceLarge": "face_l.png",
+      "faceSmall": "face_s.png",
+      "faceAlternate": "face_su.png"
+    }
+  },
+  "notes": "No Hero Journal build or archetype is included. The current-season Hero Analysis endpoint has no day-one usage record yet."
+}

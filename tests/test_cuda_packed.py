@@ -51,6 +51,12 @@ class CudaPackedFlexibleSetTests(unittest.TestCase):
         self.assertNotIn("target_set_contributions", CUDA_PACKED_FILTER_KERNEL_SOURCE)
         self.assertNotIn("target_activations", CUDA_PACKED_FILTER_KERNEL_SOURCE)
 
+    def test_kernel_bounds_critical_hit_chance_with_its_raw_value(self) -> None:
+        self.assertIn(
+            "const long long range_value = stat == 4 ? raw[stat] : bounded;",
+            CUDA_PACKED_FILTER_KERNEL_SOURCE,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

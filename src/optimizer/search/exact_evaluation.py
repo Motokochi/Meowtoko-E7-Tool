@@ -83,6 +83,7 @@ _PROJECTION_MODE_CODES = {
     ItemProjectionMode.REFORGED: 1,
 }
 _PRIMARY_CAPS = (None, None, None, None, 100, 350, None, None)
+_CRITICAL_HIT_CHANCE_INDEX = FINAL_STAT_ORDER.index(FinalStat.CRITICAL_HIT_CHANCE)
 _BASE_RELATIVE_INDICES = (0, 1, 2)
 
 
@@ -1228,8 +1229,12 @@ def evaluate_exact_build_batch(
                 for slot, offset in zip(slot_arrays.slots, offsets, strict=True)
             ),
         )
+        primary_range_values = list(row.effective_final_stats)
+        primary_range_values[_CRITICAL_HIT_CHANCE_INDEX] = row.raw_final_stats[
+            _CRITICAL_HIT_CHANCE_INDEX
+        ]
         primary_passes = _passes_ranges(
-            row.effective_final_stats,
+            tuple(primary_range_values),
             actual_context.primary_minimums,
             actual_context.primary_maximums,
         )

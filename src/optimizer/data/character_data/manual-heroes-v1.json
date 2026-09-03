@@ -1,7 +1,7 @@
 {
   "schemaId": "meowtoko.manual-hero-source",
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T00:00:00Z",
+  "generatedAt": "2026-09-03T00:00:00Z",
   "records": {
     "Lisette": {
       "_id": "lisette",
@@ -52,11 +52,11 @@
       "role": "manauser",
       "self_devotion": {
         "grades": {
-          "A": 0.14,
-          "B": 0.09,
-          "S": 0.19,
-          "SS": 0.23,
-          "SSS": 0.27
+          "A": 0.11,
+          "B": 0.07,
+          "S": 0.15,
+          "SS": 0.18,
+          "SSS": 0.21
         },
         "type": "max_hp_rate"
       },
@@ -103,6 +103,98 @@
         }
       },
       "zodiac": "scales"
+    },
+    "Uncharted Pioneer Politis": {
+      "_id": "uncharted-pioneer-politis",
+      "assets": {
+        "icon": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c5112_s.png",
+        "image": "https://e7codex.com/assets/c5112_1/pose.png",
+        "thumbnail": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c5112_s.png"
+      },
+      "attribute": "ice",
+      "calculatedStatus": {
+        "lv50FiveStarFullyAwakened": {
+          "atk": 797,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "def": 492,
+          "eff": 0,
+          "efr": 0,
+          "hp": 4536,
+          "spd": 120
+        },
+        "lv60SixStarFullyAwakened": {
+          "atk": 993,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "def": 611,
+          "eff": 0,
+          "efr": 0,
+          "hp": 6002,
+          "spd": 120
+        }
+      },
+      "code": "c5112",
+      "ex_equip": [],
+      "manual_source": {
+        "releaseDate": "2026-09-03",
+        "reviewedAt": "2026-09-03",
+        "identity": "Official Epic Seven hero index and release announcement",
+        "level60StatsAndSelfImprint": "In-game five-star Ranger/Pisces statline and official Hero Introduction",
+        "level50Profile": "Derived from the game's Ranger/Pisces fully-awakened 5-star to 6-star stat progression; not sourced from Fribbels",
+        "skillBehavior": "Official Hero Introduction and live release notes",
+        "skillMultipliers": "2026-08-27 game-data extraction",
+        "buildData": "intentionally omitted pending Hero Journal evidence"
+      },
+      "name": "Uncharted Pioneer Politis",
+      "rarity": 5,
+      "role": "ranger",
+      "self_devotion": {
+        "grades": {
+          "A": 0.11,
+          "B": 0.07,
+          "S": 0.15,
+          "SS": 0.18,
+          "SSS": 0.21
+        },
+        "type": "att_rate"
+      },
+      "skills": {
+        "S1": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "note": "Attacks all enemies, can dispel one buff, and deals 1,000 additional damage",
+          "options": [],
+          "pow": 1,
+          "rate": 0.5,
+          "targets": 3
+        },
+        "S2": {
+          "hitTypes": [],
+          "note": "Passive: position-based Attack or Defense Mission; completion grants Star's Knowledge to all allies and an extra turn",
+          "options": []
+        },
+        "S3": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "note": "Attacks all enemies, dispels all buffs, increases skill cooldowns, and deals 3,000 additional damage; Soulburn ignores Effect Resistance",
+          "options": [],
+          "pow": 1,
+          "rate": 0.7,
+          "targets": 3
+        }
+      },
+      "zodiac": "fish"
     }
   }
 }

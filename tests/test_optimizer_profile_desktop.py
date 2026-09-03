@@ -119,7 +119,7 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
     def test_bounded_catalog_projection_exposes_every_choice_without_raw_records(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             service = self._service(Path(directory))
-            self.assertEqual(387, len(service.characters.heroes))
+            self.assertEqual(388, len(service.characters.heroes))
             self.assertEqual(283, len(service.artifacts.artifacts))
             self.assertEqual(50, len(service.search_heroes("", 50)["results"]))
             self.assertEqual(50, len(service.search_artifacts("", 50)["results"]))
@@ -139,7 +139,16 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
     def test_representative_heroes_and_complete_modifier_options_are_projected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             service = self._service(Path(directory))
-            for name in ("Ras", "Seaside Bellona", "ae-GISELLE", "Adventurer Ras", "Aube", "Tidal Rift Elvira", "Lisette"):
+            for name in (
+                "Ras",
+                "Seaside Bellona",
+                "ae-GISELLE",
+                "Adventurer Ras",
+                "Aube",
+                "Tidal Rift Elvira",
+                "Lisette",
+                "Uncharted Pioneer Politis",
+            ):
                 hero_id = service.search_heroes(name, 1)["results"][0]["heroId"]
                 details = service.get_hero_details(hero_id)
                 self.assertEqual(name, details["hero"]["name"])

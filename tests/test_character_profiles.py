@@ -58,10 +58,10 @@ class CharacterProfileSelectorTests(unittest.TestCase):
         ):
             selector = load_bundled_character_profile_selector()
 
-        self.assertEqual(387, len(selector))
-        self.assertEqual(774, selector.profile_count)
+        self.assertEqual(388, len(selector))
+        self.assertEqual(776, selector.profile_count)
         self.assertEqual(
-            774,
+            776,
             sum(len(selector.profiles_for(hero.hero_id)) for hero in selector.heroes),
         )
 

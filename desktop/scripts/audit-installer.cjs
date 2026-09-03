@@ -71,7 +71,7 @@ for (const required of [
 const characterWebpEntries = packageListing
   .split(/\r?\n/)
   .filter((line) => line.startsWith('path = ') && /\/resources\/characters\/.*\.webp$/.test(line));
-assert.equal(characterWebpEntries.length, 1536, 'Installer character artwork count drifted.');
+assert.equal(characterWebpEntries.length, 1540, 'Installer character artwork count drifted.');
 assert.doesNotMatch(packageListing, /\/resources\/characters\/.*\.png$/m);
 for (const missing of [
   '/resources/characters/desert jewel basar/',

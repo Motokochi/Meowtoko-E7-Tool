@@ -59,11 +59,11 @@
     "selfImprint": {
       "stat": "Health %",
       "grades": {
-        "B": 9,
-        "A": 14,
-        "S": 19,
-        "SS": 23,
-        "SSS": 27
+        "B": 7,
+        "A": 11,
+        "S": 15,
+        "SS": 18,
+        "SSS": 21
       }
     },
     "skills": {

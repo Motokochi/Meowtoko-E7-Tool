@@ -51,11 +51,12 @@ class CharacterRepositoryTests(unittest.TestCase):
         ):
             repository = load_bundled_character_repository()
 
-        self.assertEqual(387, len(repository))
-        self.assertEqual(387, len(repository.heroes))
-        self.assertEqual(774, sum(len(hero.base_profiles) for hero in repository.heroes))
+        self.assertEqual(388, len(repository))
+        self.assertEqual(388, len(repository.heroes))
+        self.assertEqual(776, sum(len(hero.base_profiles) for hero in repository.heroes))
         self.assertEqual(
-            {hero.hero_id for hero in self.catalog.heroes} | {"hero.fribbels.lisette"},
+            {hero.hero_id for hero in self.catalog.heroes}
+            | {"hero.fribbels.lisette", "hero.fribbels.uncharted-pioneer-politis"},
             {hero.hero_id for hero in repository.heroes},
         )
 
@@ -66,6 +67,29 @@ class CharacterRepositoryTests(unittest.TestCase):
         level_sixty = next(profile for profile in lisette.base_profiles if profile.level == 60)
         self.assertEqual(830, dict(level_sixty.final_stats)[FinalStat.ATTACK])
         self.assertEqual(5121, dict(level_sixty.final_stats)[FinalStat.HEALTH])
+        self.assertEqual(
+            {
+                "type": "max_hp_rate",
+                "grades": {"B": 0.07, "A": 0.11, "S": 0.15, "SS": 0.18, "SSS": 0.21},
+            },
+            thaw_json(lisette.self_devotion),
+        )
+
+        politis = repository.find_exact("c5112")
+        self.assertIsNotNone(politis)
+        self.assertEqual("Uncharted Pioneer Politis", politis.name)
+        level_sixty = next(profile for profile in politis.base_profiles if profile.level == 60)
+        self.assertEqual(993, dict(level_sixty.final_stats)[FinalStat.ATTACK])
+        self.assertEqual(611, dict(level_sixty.final_stats)[FinalStat.DEFENSE])
+        self.assertEqual(6002, dict(level_sixty.final_stats)[FinalStat.HEALTH])
+        self.assertEqual(120, dict(level_sixty.final_stats)[FinalStat.SPEED])
+        self.assertEqual(
+            {
+                "type": "att_rate",
+                "grades": {"B": 0.07, "A": 0.11, "S": 0.15, "SS": 0.18, "SSS": 0.21},
+            },
+            thaw_json(politis.self_devotion),
+        )
 
     def test_public_exports_and_exact_lookups_use_stable_evidence(self) -> None:
         expected = self.repository.get("hero.fribbels.aube")

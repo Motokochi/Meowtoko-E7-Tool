@@ -417,6 +417,17 @@ class ExactBuildEvaluationTests(unittest.TestCase):
         self.assertEqual((100, 350), (row.effective_final_stats[crit], row.effective_final_stats[damage]))
         self._assert_p03_oracle(request, row, projected)
 
+        constrained = replace(
+            request,
+            stat_ranges=((FinalStat.CRITICAL_HIT_CHANCE, StatRange(99, 106)),),
+        )
+        rejected, _, _, _, _ = self._evaluate(constrained, candidates)
+        self.assertEqual((1, 1, 0), (
+            rejected.exact_set_count,
+            rejected.hard_bound_rejected_count,
+            rejected.emitted_count,
+        ))
+
     def test_context_rejects_identity_projection_base_and_radix_mismatches(self) -> None:
         request = self._request((GearSet.RAGE, GearSet.PENETRATION))
         _, context, arrays, _, batch = self._evaluate(request, _items())

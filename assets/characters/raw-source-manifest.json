@@ -1,22 +1,22 @@
 {
   "schemaId": "e7hub.e7codex-character-assets",
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T03:16:56Z",
+  "generatedAt": "2026-09-03T13:40:18Z",
   "source": {
     "site": "https://e7codex.com/",
     "assetBaseUrl": "https://e7codex.com/assets",
     "catalogPath": "src/optimizer/data/character_data/character-source-v1.json",
     "catalogSha256": "b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa",
     "manualHeroesPath": "src/optimizer/data/character_data/manual-heroes-v1.json",
-    "manualHeroesSha256": "17e3221824c703b439930a9587f5b33122364f6f58e97899c6612aec7a3dcd2b"
+    "manualHeroesSha256": "9f72aac8a6efda731c1ec896bbd422e5e5f7e3b77ef7aaf2435bf2c92fa70352"
   },
   "summary": {
-    "characters": 387,
-    "expectedFiles": 1548,
-    "availableFiles": 1536,
+    "characters": 388,
+    "expectedFiles": 1552,
+    "availableFiles": 1540,
     "missingFiles": 12,
     "errorFiles": 0,
-    "totalBytes": 1929111373
+    "totalBytes": 1933386357
   },
   "characters": [
     {
@@ -17689,6 +17689,55 @@
           "height": 206,
           "path": "Unbound Knight Arowell/face_su.png",
           "sourceUrl": "https://e7codex.com/assets/c4004/face_c4004_su.png"
+        }
+      }
+    },
+    {
+      "name": "Uncharted Pioneer Politis",
+      "code": "c5112",
+      "assetCode": "c5112",
+      "slug": "uncharted-pioneer-politis",
+      "folder": "Uncharted Pioneer Politis",
+      "files": {
+        "pose": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c5112_1/pose.png",
+          "bytes": 4224631,
+          "sha256": "ffc44c2885229dc81cc2acc4ff8e7e4d2686d29a319cab7c6a4237674f9c0e1b",
+          "width": 2125,
+          "height": 3120,
+          "path": "Uncharted Pioneer Politis/pose.png"
+        },
+        "face_l": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c5112_1/face_c5112_l.png",
+          "bytes": 11433,
+          "sha256": "51fdb37dd94e6ea352c529a614e483eba4172452be428cec5f6d841e5989e086",
+          "width": 189,
+          "height": 89,
+          "path": "Uncharted Pioneer Politis/face_l.png"
+        },
+        "face_s": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c5112_1/face_c5112_s.png",
+          "bytes": 8872,
+          "sha256": "32b4f9a1c66c48fcfb055effded4bf95a6da39fad220b316c32f05dc08aa89b2",
+          "width": 112,
+          "height": 112,
+          "path": "Uncharted Pioneer Politis/face_s.png"
+        },
+        "face_su": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c5112_1/face_c5112_su.png",
+          "bytes": 30048,
+          "sha256": "f382e7be5377e76220301414801fe10baf3ee2050197a917d351f352a27a6bd8",
+          "width": 368,
+          "height": 206,
+          "path": "Uncharted Pioneer Politis/face_su.png"
         }
       }
     },

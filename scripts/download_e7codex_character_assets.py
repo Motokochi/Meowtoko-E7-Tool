@@ -67,6 +67,10 @@ WINDOWS_RESERVED_NAMES = {
 }
 
 
+def _normalized_text_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 @dataclass(frozen=True, slots=True)
 class Character:
     code: str
@@ -455,7 +459,7 @@ def run(arguments: argparse.Namespace) -> int:
             "catalogPath": catalog_path.relative_to(REPOSITORY_ROOT).as_posix(),
             "catalogSha256": catalog_hash,
             "manualHeroesPath": manual_heroes_path.relative_to(REPOSITORY_ROOT).as_posix(),
-            "manualHeroesSha256": hashlib.sha256(manual_heroes_path.read_bytes()).hexdigest(),
+            "manualHeroesSha256": _normalized_text_sha256(manual_heroes_path),
         },
         "summary": {
             "characters": len(character_entries),

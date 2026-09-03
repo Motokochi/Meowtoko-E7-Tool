@@ -14,6 +14,7 @@ from scripts.download_e7codex_character_assets import (
     PNG_SIGNATURE,
     _catalog_characters,
     _download_task,
+    _normalized_text_sha256,
 )
 
 
@@ -23,15 +24,26 @@ class CharacterAssetPipelineTests(unittest.TestCase):
 
         self.assertEqual(manifest_sha256(lf), manifest_sha256(lf.replace(b"\n", b"\r\n")))
 
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "manifest.json"
+            path.write_bytes(lf.replace(b"\n", b"\r\n"))
+            self.assertEqual(manifest_sha256(lf), _normalized_text_sha256(path))
+
     def test_manual_heroes_are_part_of_the_asset_catalog(self) -> None:
         root = Path(__file__).resolve().parents[1]
         characters = _catalog_characters(
             root / "src/optimizer/data/character_data/character-source-v1.json",
             root / "src/optimizer/data/character_data/manual-heroes-v1.json",
-            {"c2186"},
+            {"c2186", "c5112"},
         )
 
-        self.assertEqual([("c2186", "Lisette")], [(item.code, item.name) for item in characters])
+        self.assertEqual(
+            [
+                ("c2186", "Lisette"),
+                ("c5112", "Uncharted Pioneer Politis"),
+            ],
+            [(item.code, item.name) for item in characters],
+        )
 
     def test_revisioned_asset_falls_back_to_the_base_asset_on_404(self) -> None:
         character = Character("c1234", "c1234", "Example", "example", "Example")

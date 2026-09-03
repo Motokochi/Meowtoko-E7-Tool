@@ -43,12 +43,11 @@ Those sources retain raw integer Crit Chance and Crit Damage, then use at most
 legacy Fribbels optimizer limit predicates compare raw values.
 
 The accepted E7 P03-T03 contract requires game caps to be data-driven and raw
-values to remain available for diagnostics. Therefore this layer evaluates
-user primary-stat bounds against the effective gameplay value. This is an
-intentional difference from the legacy raw Fribbels limit predicate, and both
-views are explicit so later UI or scoring work cannot confuse them. For
-example, raw Crit Chance 127 remains visible in `raw_final_stats`, has effective
-value 100, and satisfies an inclusive minimum of 100.
+values to remain available for diagnostics. User Crit Chance bounds use the
+raw displayed value, matching result filtering, sorting, detail cards, and
+exports. Other primary-stat bounds use the effective gameplay value. For
+example, raw Crit Chance 127 is rejected by a maximum of 106 while damage and
+CP calculations still use its effective value of 100.
 
 ## Inclusive and blank-aware evaluation
 
@@ -61,8 +60,8 @@ order by the domain layer. P03-T03 preserves these distinctions:
 - zero is a real minimum or maximum;
 - values equal to a supplied minimum or maximum pass;
 - values below a minimum or above a maximum fail on that exact side;
-- a requested minimum above a finite cap is
-  `minimum-above-cap`, regardless of the raw over-cap total.
+- a requested minimum above a finite cap is `minimum-above-cap`, except for
+  Crit Chance because its bounds deliberately use the raw displayed value.
 
 Every result contains eight `PrimaryStatBoundEvaluation` records in canonical
 order. Each record contains the raw value, effective value, optional upper cap,
