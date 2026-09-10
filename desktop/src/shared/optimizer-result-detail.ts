@@ -12,6 +12,10 @@ export interface OptimizerResultDetailRequest {
   rowKey: string;
 }
 
+export interface OptimizerResultEquipRequest extends OptimizerResultDetailRequest {
+  heroKey?: string;
+}
+
 export interface OptimizerResultEquipResult {
   state: 'equipped';
   heroName: string;
@@ -93,6 +97,7 @@ export interface OptimizerResultBuildDetail {
   sets: OptimizerDetailSet[];
   gear: OptimizerOwnedGearDetail[];
   guidance: OptimizerReplacementGuidance;
+  equipTargets: { heroKey: string; label: string }[];
 }
 
 export type OptimizerResultDetailState = 'idle' | 'loading' | 'completed' | 'failed';
@@ -210,6 +215,13 @@ export function isOptimizerResultDetailRequest(value: unknown): value is Optimiz
     && text(value.runId) && text(value.queryId) && text(value.rowKey);
 }
 
+export function isOptimizerResultEquipRequest(value: unknown): value is OptimizerResultEquipRequest {
+  if (isOptimizerResultDetailRequest(value)) return true;
+  if (!record(value) || !exact(value, ['runId', 'queryId', 'rowKey', 'heroKey'])) return false;
+  return isOptimizerResultDetailRequest({ runId: value.runId, queryId: value.queryId, rowKey: value.rowKey })
+    && typeof value.heroKey === 'string' && /^[0-9a-f]{64}$/.test(value.heroKey);
+}
+
 export function isOptimizerResultEquipResult(value: unknown): value is OptimizerResultEquipResult {
   if (!record(value) || !exact(value, [
     'state', 'heroName', 'equippedCount', 'alreadyEquipped',
@@ -235,7 +247,7 @@ export function isOptimizerResultEquipResult(value: unknown): value is Optimizer
 export function isOptimizerResultBuildDetail(value: unknown): value is OptimizerResultBuildDetail {
   if (!record(value) || !exact(value, [
     'category', 'replacementCount', 'equippedCount', 'priorityScore', 'constraintDistance',
-    'primaryStats', 'derivedMetrics', 'constraints', 'sets', 'gear', 'guidance',
+    'primaryStats', 'derivedMetrics', 'constraints', 'sets', 'gear', 'guidance', 'equipTargets',
   ])) return false;
   const category = String(value.category);
   const primaryKeys = OPTIMIZER_PRIMARY_STATS.map(({ key }) => key);
@@ -257,6 +269,11 @@ export function isOptimizerResultBuildDetail(value: unknown): value is Optimizer
     && Array.isArray(constraints.derived) && constraints.derived.length === 15
     && constraints.derived.every((item, index) => isConstraintAxis(item, derivedKeys[index]))
     && Array.isArray(value.sets) && value.sets.length <= 24 && value.sets.every(isDetailSet)
+    && Array.isArray(value.equipTargets) && value.equipTargets.every((target) => (
+      record(target) && exact(target, ['heroKey', 'label'])
+      && typeof target.heroKey === 'string' && /^[0-9a-f]{64}$/.test(target.heroKey) && text(target.label)
+    ))
+    && new Set(value.equipTargets.map((target) => target.heroKey)).size === value.equipTargets.length
     && gearKeys.size === 6 && isGuidance(value.guidance);
 }
 

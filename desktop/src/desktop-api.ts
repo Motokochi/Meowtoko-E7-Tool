@@ -62,6 +62,7 @@ import {
   isOptimizerResultDetailRequest,
   isOptimizerResultDetailSnapshot,
   isOptimizerResultEquipResult,
+  isOptimizerResultEquipRequest,
 } from './shared/optimizer-result-detail';
 import {
   isOptimizerResultExportRequest,
@@ -366,7 +367,7 @@ export function createDesktopApi(
       return requireOptimizerResultDetail(await invoke('optimizer:results:detail', request));
     },
     equipOptimizerResultBuild: async (request) => {
-      if (!isOptimizerResultDetailRequest(request)) throw new Error('Unsupported optimizer build equip selection.');
+      if (!isOptimizerResultEquipRequest(request)) throw new Error('Unsupported optimizer build equip selection.');
       return requireOptimizerResultEquip(await invoke('optimizer:results:equip', request));
     },
     onOptimizerResultDetailUpdated: (listener) => subscribe('optimizer:results:detail-updated', (payload) => {

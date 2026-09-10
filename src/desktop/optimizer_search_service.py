@@ -207,12 +207,13 @@ class OptimizerSearchService:
                 request.skill_contexts,
             )
             pattern = compile_set_pattern(request.set_pattern)
-            selected_name = profile.hero.name.strip().casefold()
             selected_hero_alias_ids = tuple(
                 hero.hero_id
                 for hero in imported_heroes
-                if hero.name is not None
-                and hero.name.strip().casefold() == selected_name
+                if (canonical := (
+                    self.profile_service.characters.find_exact(hero.raw.get("code"))
+                    or self.profile_service.characters.find_exact(hero.name)
+                )) is not None and canonical.hero_id == request.hero_id
             )
             slot_arrays = prepare_search_slot_arrays(
                 request,

@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import math
 import hashlib
-from collections.abc import Callable, Mapping
+from collections import Counter
+from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
@@ -19,6 +20,8 @@ from src.optimizer.data import (
     BUNDLED_SOURCE_FILENAME,
     CharacterRepository,
     DenseInventorySnapshot,
+    FribbelsInventoryItem,
+    ImportedHeroReference,
     InventoryRepository,
     load_bundled_character_repository,
 )
@@ -444,7 +447,9 @@ def _public_gear(
             if isinstance(stored_owner_name, str) and stored_owner_name.strip()
             else stored.equipped_by_name
         )
-        canonical_owner = characters.find_exact(imported_owner_name)
+        canonical_owner = (
+            characters.find_exact(owner.raw.get("code")) if owner is not None else None
+        ) or characters.find_exact(imported_owner_name)
         selected_owner = (
             gear.equipped_hero_id is not None
             and (
@@ -505,6 +510,32 @@ def _public_gear(
             ],
         })
     return result
+
+
+def _equip_targets(
+    characters: CharacterRepository,
+    hero_id: str,
+    imported_heroes: Iterable[ImportedHeroReference],
+    inventory: tuple[FribbelsInventoryItem, ...],
+    query_id: str,
+) -> dict[str, tuple[ImportedHeroReference, str]]:
+    targets = {}
+    for hero in imported_heroes:
+        canonical = characters.find_exact(hero.raw.get("code")) or characters.find_exact(hero.name)
+        if canonical is None or canonical.hero_id != hero_id:
+            continue
+        equipped = [item.gear_item for item in inventory if item.gear_item.equipped_hero_id == hero.hero_id]
+        sets = Counter(gear.gear_set for gear in equipped)
+        parts = [f"Copy {len(targets) + 1}"]
+        if hero.stars is not None:
+            parts.append(f"{hero.stars} stars")
+        if hero.awaken is not None:
+            parts.append(f"{hero.awaken} awakened")
+        parts.append(f"Equipped: {len(equipped)}")
+        parts.extend(f"{SET_CATALOG[gear_set].display_name} x{count}" for gear_set, count in sets.items())
+        key = hashlib.sha256(f"{query_id}\0{hero.hero_id}".encode()).hexdigest()
+        targets[key] = (hero, ", ".join(parts))
+    return targets
 
 
 def _public_guidance() -> dict[str, Any]:
@@ -730,6 +761,12 @@ class OptimizerResultService:
             "sets": _public_sets(prepared, detail.row),
             "gear": gear,
             "guidance": guidance,
+            "equipTargets": [
+                {"heroKey": key, "label": label}
+                for key, (_hero, label) in _equip_targets(
+                    self.characters, prepared.request.hero_id, owners_by_id.values(), stored, query_id,
+                ).items()
+            ],
         }
 
     def _resolve_detail_row(
@@ -777,6 +814,7 @@ class OptimizerResultService:
         run_id: str,
         query_id: str,
         row_key: str,
+        hero_key: str | None = None,
     ) -> dict[str, Any]:
         """Apply one visible exact build to local imported ownership state."""
 
@@ -800,20 +838,23 @@ class OptimizerResultService:
                 self.characters,
             )
             selected_hero = self.characters.get(prepared.request.hero_id)
-            matching_owners = [
-                hero
-                for hero in imported_heroes
-                if isinstance(hero.name, str)
-                and (canonical := self.characters.find_exact(hero.name)) is not None
-                and canonical.hero_id == selected_hero.hero_id
-            ]
-            if len(matching_owners) != 1:
+            targets = _equip_targets(
+                self.characters, selected_hero.hero_id, imported_heroes, stored, query_id,
+            )
+            if not targets:
                 raise OptimizerResultServiceError(
                     "equip-hero-unavailable",
-                    "The selected character is not uniquely present in the imported gear.txt. Import current game data before equipping this build locally.",
+                    "The selected character is absent from the imported gear.txt. Import current game data before equipping this build locally.",
+                )
+            if hero_key is None and len(targets) == 1:
+                hero_key = next(iter(targets))
+            if hero_key not in targets:
+                raise OptimizerResultServiceError(
+                    "equip-hero-selection-required",
+                    "Choose which imported copy of this character should receive the build. Reopen the gear cards if the import has changed.",
                 )
             assignment = repository.assign_equipment_build(
-                matching_owners[0].hero_id,
+                targets[hero_key][0].hero_id,
                 selected_hero.name,
                 tuple(item.stable_item_id for item in detail.row.owned_items),
             )

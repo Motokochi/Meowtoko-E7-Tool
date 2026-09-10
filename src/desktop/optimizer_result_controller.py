@@ -349,13 +349,20 @@ class OptimizerResultController:
         return snapshot
 
     def equip(self, payload: Mapping[str, object]) -> dict[str, Any]:
-        if not isinstance(payload, Mapping) or set(payload) != {"runId", "queryId", "rowKey"}:
+        if not isinstance(payload, Mapping) or set(payload) not in (
+            {"runId", "queryId", "rowKey"}, {"runId", "queryId", "rowKey", "heroKey"},
+        ):
             raise OptimizerResultEquipUnavailableError(
                 "Choose a build from the active visible result page."
             )
         run_id = payload.get("runId")
         query_id = payload.get("queryId")
         row_key = payload.get("rowKey")
+        if "heroKey" in payload and (
+            not isinstance(payload["heroKey"], str) or len(payload["heroKey"]) != 64
+            or any(character not in "0123456789abcdef" for character in payload["heroKey"])
+        ):
+            raise OptimizerResultEquipUnavailableError("Choose a valid imported character copy.")
         if not all(isinstance(value, str) and value for value in (run_id, query_id, row_key)):
             raise OptimizerResultEquipUnavailableError(
                 "Choose a build from the active visible result page."
@@ -379,6 +386,7 @@ class OptimizerResultController:
                     run_id,
                     query_id,
                     row_key,
+                    payload.get("heroKey"),
                 )
         except OptimizerResultServiceError as error:
             raise OptimizerResultEquipUnavailableError(str(error)) from error

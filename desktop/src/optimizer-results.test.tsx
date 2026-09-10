@@ -34,6 +34,7 @@ import {
   isOptimizerResultDetailRequest,
   isOptimizerResultDetailSnapshot,
   isOptimizerResultEquipResult,
+  isOptimizerResultEquipRequest,
   type OptimizerOwnedGearDetail,
   type OptimizerResultBuildDetail,
   type OptimizerResultDetailSnapshot,
@@ -152,6 +153,7 @@ const EXACT_DETAIL: OptimizerResultBuildDetail = {
   ],
   gear: GEAR,
   guidance: { kind: 'set-complete', message: 'The selected set pattern is complete. No future replacement is needed.' },
+  equipTargets: [{ heroKey: 'a'.repeat(64), label: 'Copy 1, 6 stars, 6 awakened, 1 pieces equipped' }],
 };
 
 const DETAIL_SNAPSHOT: OptimizerResultDetailSnapshot = {
@@ -222,6 +224,30 @@ test('strict selected-build contracts reject forged identities, private fields, 
   assert.equal(isOptimizerResultDetailSnapshot({ ...DETAIL_SNAPSHOT, resultPath: 'C:\\private' }), false);
   assert.equal(isOptimizerResultEquipResult({ ...EQUIP_RESULT, stableItemIds: ['private'] }), false);
   assert.equal(isOptimizerResultEquipResult({ ...EQUIP_RESULT, newlyEquipped: 5 }), false);
+});
+
+test('equip contracts allow explicit copy keys without exposing imported ownership IDs', async () => {
+  const selection = { runId: 'run-8', queryId: 'query-8', rowKey: 'query.0', heroKey: 'b'.repeat(64) };
+  assert.equal(isOptimizerResultEquipRequest(selection), true);
+  assert.equal(isOptimizerResultDetailRequest(selection), false);
+  for (const heroKey of [null, '', 'private-owner-id', 0, 'z'.repeat(64)]) {
+    assert.equal(isOptimizerResultEquipRequest({ ...selection, heroKey }), false);
+  }
+  const duplicate = { ...EXACT_DETAIL, equipTargets: [
+    ...EXACT_DETAIL.equipTargets,
+    { heroKey: selection.heroKey, label: 'Copy 2, 3 stars, 0 awakened, 0 pieces equipped' },
+  ] };
+  assert.equal(isOptimizerResultBuildDetail(duplicate), true);
+  assert.equal(isOptimizerResultBuildDetail({ ...duplicate, equipTargets: [
+    duplicate.equipTargets[0], duplicate.equipTargets[0],
+  ] }), false);
+  const calls: unknown[] = [];
+  const api = createDesktopApi(
+    async (channel, request) => { calls.push({ channel, request }); return EQUIP_RESULT; },
+    () => () => undefined,
+  );
+  assert.deepEqual(await api.equipOptimizerResultBuild(selection), EQUIP_RESULT);
+  assert.deepEqual(calls, [{ channel: 'optimizer:results:equip', request: selection }]);
 });
 
 test('detail reducer rejects stale completion and closing does not let a late event reopen the panel', () => {

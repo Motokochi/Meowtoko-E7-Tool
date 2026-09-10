@@ -15,7 +15,7 @@ import {
   type OptimizerResultQuery,
   type OptimizerResultSnapshot,
 } from './shared/optimizer-results';
-import type { OptimizerResultDetailRequest } from './shared/optimizer-result-detail';
+import type { OptimizerResultDetailRequest, OptimizerResultEquipRequest } from './shared/optimizer-result-detail';
 import type {
   OptimizerResultExportFormat,
   OptimizerResultExportSnapshot,
@@ -41,7 +41,7 @@ interface OptimizerResultExplorerProps {
   onInspect?(request: OptimizerResultDetailRequest): void;
   heroName?: string;
   equipping?: boolean;
-  onEquip?(request: OptimizerResultDetailRequest): void;
+  onEquip?(request: OptimizerResultEquipRequest): void;
   onCloseDetail?(): void;
   exportSnapshot?: OptimizerResultExportSnapshot | null;
   onExport?(runId: string, queryId: string, format: OptimizerResultExportFormat): void;

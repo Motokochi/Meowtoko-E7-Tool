@@ -449,14 +449,17 @@ def dispatch_message(
             return _failure(request_id, "optimizer_result_detail_unavailable", str(error))
 
     if method == "optimizer.results.equip":
-        if set(params) != {"runId", "queryId", "rowKey"} or not all(
+        if set(params) not in ({"runId", "queryId", "rowKey"}, {"runId", "queryId", "rowKey", "heroKey"}) or not all(
             isinstance(params.get(field), str) and params[field]
             for field in ("runId", "queryId", "rowKey")
-        ):
+        ) or ("heroKey" in params and (
+            not isinstance(params["heroKey"], str) or len(params["heroKey"]) != 64
+            or any(character not in "0123456789abcdef" for character in params["heroKey"])
+        )):
             return _failure(
                 request_id,
                 "invalid_params",
-                "Optimizer build equip requires only runId, queryId, and rowKey.",
+                "Optimizer build equip requires runId, queryId, rowKey, and an optional character copy key.",
             )
         try:
             return _success(request_id, optimizer_result_controller.equip(params))

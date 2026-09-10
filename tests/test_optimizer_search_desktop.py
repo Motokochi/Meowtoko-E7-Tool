@@ -82,6 +82,27 @@ class _CudaLease:
 
 
 class OptimizerSearchServiceTests(unittest.TestCase):
+    def test_character_codes_keep_selected_hero_gear_eligible_when_other_equipped_gear_is_excluded(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            _import_one_exact_build(root)
+            source = root / "private-gear.txt"
+            imported = json.loads(source.read_text(encoding="utf-8"))
+            for row in imported["items"]:
+                row["ingameEquippedId"] = "owned-ras"
+            imported["heroes"] = [{"id": "owned-ras", "name": "Localized Ras", "code": "c1001"}]
+            source.write_text(json.dumps(imported), encoding="utf-8")
+            OptimizerInventoryService(root).import_file(source)
+            profiles = OptimizerProfileService(root)
+            hero_id = profiles.search_heroes("Ras", 1)["results"][0]["heroId"]
+            draft = profiles.load_draft(hero_id)["draft"]
+            draft["includeEquipped"] = False
+            service = OptimizerSearchService(root, profile_service=profiles,
+                cuda_diagnostic=lambda: diagnose_cuda_runtime(disabled=True))
+            prepared = service.prepare(draft, "request.hero-code", lambda: False)
+            self.assertEqual(1, prepared.total_permutations)
+            self.assertEqual((1, 0, 0), service.run(prepared, "run-hero-code", lambda: False, lambda *_: None).category_counts)
+
     def test_real_cpu_search_publishes_only_a_completed_result_handle(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

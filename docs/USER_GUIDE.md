@@ -234,7 +234,10 @@ The selected-build cards include **Equip** beside **Close cards**. Like
 Fribbels, this action changes equipment ownership only inside Meowtoko E7 Tool: it
 reassigns the six selected pieces to the imported instance of the selected
 hero and releases that hero's previous local build. It does not tap or change
-Epic Seven. Import a fresh `gear.txt` after equipping in the game to replace
+Epic Seven. If the import contains multiple copies of that hero, choose the
+intended **Character copy** in the Equip dialog. Each copy lists its stars,
+awakening, and currently equipped gear to help identify it.
+Import a fresh `gear.txt` after equipping in the game to replace
 the local assignment with current game state. A successful local equip keeps
 the current results and selected gear cards visible so they can be used as an
 in-game equipment checklist. Results are cleared when another character is

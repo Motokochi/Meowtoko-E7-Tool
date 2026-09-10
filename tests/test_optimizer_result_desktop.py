@@ -114,6 +114,8 @@ class OptimizerResultDesktopTests(unittest.TestCase):
         equipped_owners: bool = False,
         overflowing_crit: bool = False,
         source_order: bool = False,
+        hero_rows: list[dict] | None = None,
+        spare_helmet: bool = False,
     ):
         temporary = tempfile.TemporaryDirectory(prefix="e7-result-desktop-")
         self.addCleanup(temporary.cleanup)
@@ -154,6 +156,13 @@ class OptimizerResultDesktopTests(unittest.TestCase):
                 {"id": "inventory-hero-alencia", "name": "Alencia"},
             ]
         source = root / "private" / "gear.txt"
+        if hero_rows is not None:
+            heroes = hero_rows
+        if spare_helmet:
+            spare = _gear_row("spare-helmet", GEAR_SLOT_ORDER[1], GearSet.HEALTH)
+            spare["enhance"] = 0
+            spare["ingameEquippedId"] = "inventory-hero-ras"
+            rows.append(spare)
         source.parent.mkdir()
         source.write_text(json.dumps({"items": rows, "heroes": heroes}), encoding="utf-8")
         OptimizerInventoryService(root).import_file(source)
@@ -433,7 +442,7 @@ class OptimizerResultDesktopTests(unittest.TestCase):
         before = InventoryRepository(root / "optimizer.db").dense_snapshot()
         with self.assertRaisesRegex(
             OptimizerResultEquipUnavailableError,
-            "not uniquely present",
+            "absent from the imported",
         ):
             controller.equip({
                 "runId": run_id,
@@ -442,6 +451,62 @@ class OptimizerResultDesktopTests(unittest.TestCase):
             })
         self.assertEqual(before, InventoryRepository(root / "optimizer.db").dense_snapshot())
         self.assertEqual("completed", controller.get_snapshot()["state"])
+
+    def test_equip_selects_an_explicit_duplicate_copy_without_guessing(self) -> None:
+        root, run_id, controller, _events = self._fixture(equipped_owners=True, spare_helmet=True, hero_rows=[
+            {"id": "inventory-hero-ras", "name": "Ras", "stars": 6, "awaken": 6},
+            {"id": "inventory-hero-ras-spare", "name": "Ras", "stars": 3, "awaken": 0},
+            {"id": "inventory-hero-alencia", "name": "Alencia"},
+        ])
+        controller.query(_query(run_id))
+        page = _wait(controller)
+        selection = {"runId": run_id, "queryId": page["queryId"], "rowKey": page["rows"][0]["rowKey"]}
+        controller.detail(selection)
+        targets = _wait_detail(controller)["detail"]["equipTargets"]
+        self.assertEqual(2, len(targets))
+        self.assertIn("6 stars", targets[0]["label"])
+        self.assertIn("3 stars", targets[1]["label"])
+        self.assertNotIn("inventory-hero", json.dumps(targets))
+        repository = InventoryRepository(root / "optimizer.db")
+        before = repository.load_inventory()
+        untouched = next(item for item in before if item.gear_item.enhance == 0)
+        for extra in ({}, {"heroKey": "f" * 64}):
+            with self.assertRaisesRegex(OptimizerResultEquipUnavailableError, "Choose which imported copy"):
+                controller.equip({**selection, **extra})
+            self.assertEqual(before, repository.load_inventory())
+        result = controller.equip({**selection, "heroKey": targets[1]["heroKey"]})
+        self.assertEqual("equipped", result["state"])
+        self.assertTrue(all(
+            item.gear_item.equipped_hero_id == "inventory-hero-ras-spare"
+            for item in repository.load_inventory() if item.gear_item.enhance == 15
+        ))
+        self.assertIn(untouched, repository.load_inventory())
+        self.assertEqual("completed", controller.get_snapshot()["state"])
+        controller.query(_query(run_id, direction="ascending"))
+        page = _wait(controller)
+        with self.assertRaisesRegex(OptimizerResultEquipUnavailableError, "Choose which imported copy"):
+            controller.equip({**selection, "queryId": page["queryId"], "rowKey": page["rows"][0]["rowKey"], "heroKey": targets[1]["heroKey"]})
+
+    def test_equip_resolves_imported_character_code_with_a_missing_or_localized_name(self) -> None:
+        for name in (None, "Localized Ras", "c1001"):
+            with self.subTest(name=name):
+                root, run_id, controller, _events = self._fixture(equipped_owners=True, hero_rows=[
+                    {"id": "inventory-hero-ras", "name": name, "code": "c1001"},
+                    {"id": "inventory-hero-alencia", "name": "Alencia"},
+                ])
+                controller.query(_query(run_id))
+                page = _wait(controller)
+                selection = {"runId": run_id, "queryId": page["queryId"], "rowKey": page["rows"][0]["rowKey"]}
+                controller.detail(selection)
+                detail = _wait_detail(controller)["detail"]
+                self.assertEqual(1, len(detail["equipTargets"]))
+                self.assertEqual("selected-hero", detail["gear"][0]["equippedStatus"])
+                result = controller.equip(selection)
+                self.assertEqual("Ras", result["heroName"])
+                self.assertTrue(all(
+                    item.gear_item.equipped_hero_id == "inventory-hero-ras"
+                    for item in InventoryRepository(root / "optimizer.db").load_inventory()
+                ))
 
     def test_latest_detail_selection_wins_when_an_older_resolution_finishes_late(self) -> None:
         _root, run_id, controller, _events = self._fixture()
@@ -495,6 +560,11 @@ class OptimizerResultDesktopTests(unittest.TestCase):
         self.assertTrue(request("optimizer.results.cancel", {"queryId": "query"})["ok"])
         self.assertTrue(request("optimizer.results.detail", {"runId": "run", "queryId": "query", "rowKey": "row"})["ok"])
         self.assertTrue(request("optimizer.results.equip", {"runId": "run", "queryId": "query", "rowKey": "row"})["ok"])
+        self.assertTrue(request("optimizer.results.equip", {"runId": "run", "queryId": "query", "rowKey": "row", "heroKey": "a" * 64})["ok"])
+        for key in (None, "", "private-owner-id", 0, "z" * 64):
+            self.assertEqual("invalid_params", request("optimizer.results.equip", {
+                "runId": "run", "queryId": "query", "rowKey": "row", "heroKey": key,
+            })["error"]["code"])
         self.assertTrue(request("optimizer.results.export.get")["ok"])
         self.assertTrue(request("optimizer.results.export.start", {
             "runId": "run", "queryId": "query", "format": "csv", "destination": "private",

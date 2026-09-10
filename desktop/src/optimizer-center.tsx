@@ -6,7 +6,7 @@ import {
   type OptimizerResultDetailWorkspaceState,
 } from './optimizer-result-detail-workspace';
 import type { OptimizerResultQuery } from './shared/optimizer-results';
-import type { OptimizerResultDetailRequest } from './shared/optimizer-result-detail';
+import type { OptimizerResultDetailRequest, OptimizerResultEquipRequest } from './shared/optimizer-result-detail';
 import type {
   OptimizerResultExportFormat,
   OptimizerResultExportSnapshot,
@@ -39,7 +39,7 @@ interface OptimizerCenterProps {
   resultDetail?: OptimizerResultDetailWorkspaceState;
   onInspectResult?(request: OptimizerResultDetailRequest): void;
   optimizerEquipping?: boolean;
-  onEquipResult?(request: OptimizerResultDetailRequest): void;
+  onEquipResult?(request: OptimizerResultEquipRequest): void;
   onCloseResultDetail?(): void;
   resultExport?: OptimizerResultExportSnapshot | null;
   onExportResults?(runId: string, queryId: string, format: OptimizerResultExportFormat): void;

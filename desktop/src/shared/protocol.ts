@@ -39,6 +39,7 @@ import type {
   OptimizerResultDetailRequest,
   OptimizerResultDetailSnapshot,
   OptimizerResultEquipResult,
+  OptimizerResultEquipRequest,
 } from './optimizer-result-detail';
 import type {
   OptimizerResultExportRequest,
@@ -192,7 +193,7 @@ export interface E7DesktopApi {
   cancelOptimizerResults(queryId: string): Promise<OptimizerResultSnapshot>;
   onOptimizerResultsUpdated(listener: (snapshot: OptimizerResultSnapshot) => void): () => void;
   selectOptimizerResultDetail(request: OptimizerResultDetailRequest): Promise<OptimizerResultDetailSnapshot>;
-  equipOptimizerResultBuild(request: OptimizerResultDetailRequest): Promise<OptimizerResultEquipResult>;
+  equipOptimizerResultBuild(request: OptimizerResultEquipRequest): Promise<OptimizerResultEquipResult>;
   onOptimizerResultDetailUpdated(listener: (snapshot: OptimizerResultDetailSnapshot) => void): () => void;
   getOptimizerResultExport(): Promise<OptimizerResultExportSnapshot>;
   selectOptimizerResultExport(request: OptimizerResultExportRequest): Promise<OptimizerResultExportSelection>;

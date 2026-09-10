@@ -198,6 +198,7 @@ def _substat_roll_counts(
 
 def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
     owners = {hero.hero_id: hero.name for hero in repository.load_heroes()}
+    characters = load_bundled_character_repository()
     result = []
     for stored in repository.load_inventory():
         gear = stored.gear_item
@@ -211,6 +212,9 @@ def _public_gear(repository: InventoryRepository) -> list[dict[str, Any]]:
             if gear.equipped_hero_id is not None
             else None
         ) or stored.equipped_by_name
+        canonical_owner = characters.find_exact(owner_name)
+        if canonical_owner is not None:
+            owner_name = canonical_owner.name
         result.append({
             "gearKey": f"gear-{len(result) + 1}",
             "slotId": gear.slot.value,

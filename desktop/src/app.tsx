@@ -26,7 +26,7 @@ import {
   optimizerResultDetailWorkspaceReducer,
 } from './optimizer-result-detail-workspace';
 import type { OptimizerResultQuery } from './shared/optimizer-results';
-import type { OptimizerResultDetailRequest } from './shared/optimizer-result-detail';
+import type { OptimizerResultDetailRequest, OptimizerResultEquipRequest } from './shared/optimizer-result-detail';
 import type {
   OptimizerResultExportFormat,
   OptimizerResultExportSnapshot,
@@ -982,7 +982,7 @@ export function App(): React.JSX.Element {
     dispatchOptimizerResultDetail({ type: 'closed' });
   }, []);
 
-  const equipOptimizerResultBuild = useCallback(async (request: OptimizerResultDetailRequest) => {
+  const equipOptimizerResultBuild = useCallback(async (request: OptimizerResultEquipRequest) => {
     if (optimizerEquipping) return;
     const generation = ++optimizerEquipGeneration.current;
     setOptimizerEquipping(true);

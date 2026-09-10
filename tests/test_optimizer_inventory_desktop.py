@@ -76,6 +76,21 @@ class OptimizerInventoryDesktopServiceTests(unittest.TestCase):
             self.assertNotIn(source.name, encoded)
             self.assertNotIn("fixture-item-enriched", encoded)
 
+    def test_gear_snapshot_resolves_packet_hero_code_to_name(self) -> None:
+        payload = json.loads(
+            (FIXTURES / "valid-enriched-export-utf8.txt").read_text(encoding="utf-8")
+        )
+        payload["items"][0]["equippedByName"] = "c5112"
+        payload["heroes"][0]["name"] = "c5112"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "gear.txt"
+            source.write_text(json.dumps(payload), encoding="utf-8")
+
+            gear = self._service(root / "data").import_file(source)["inventory"]["gear"][0]
+
+        self.assertEqual("Uncharted Pioneer Politis", gear["equippedHeroName"])
+
     def test_recoverable_warning_is_sanitized_and_successfully_committed(self) -> None:
         payload = json.loads((FIXTURES / "valid-enriched-export-utf8.txt").read_text(encoding="utf-8"))
         payload["items"][0]["locked"] = "private-invalid-value"

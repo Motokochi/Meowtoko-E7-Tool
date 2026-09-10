@@ -74,6 +74,8 @@ import {
   isOptimizerResultDetailRequest,
   isOptimizerResultDetailSnapshot,
   isOptimizerResultEquipResult,
+  isOptimizerResultEquipRequest,
+  type OptimizerResultEquipRequest,
   type OptimizerResultDetailRequest,
   type OptimizerResultDetailSnapshot,
   type OptimizerResultEquipResult,
@@ -695,14 +697,17 @@ export class BackendClient {
     ));
   }
 
-  async equipOptimizerResultBuild(request: OptimizerResultDetailRequest): Promise<OptimizerResultEquipResult> {
-    if (!isOptimizerResultDetailRequest(request)) {
+  async equipOptimizerResultBuild(request: OptimizerResultEquipRequest): Promise<OptimizerResultEquipResult> {
+    if (!isOptimizerResultEquipRequest(request)) {
       throw new BackendClientError('protocol_error', 'Optimizer build equip selection is invalid.');
     }
     await this.start();
     return this.requireOptimizerResultEquip(await this.sendRequest<unknown>(
       'optimizer.results.equip',
-      { runId: request.runId, queryId: request.queryId, rowKey: request.rowKey },
+      {
+        runId: request.runId, queryId: request.queryId, rowKey: request.rowKey,
+        ...(request.heroKey === undefined ? {} : { heroKey: request.heroKey }),
+      },
       this.requestTimeoutMs,
       'request_timeout',
     ));

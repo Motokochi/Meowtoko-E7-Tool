@@ -802,7 +802,7 @@ test('validates the bounded optimizer build equip request and response', async (
     else normalHandler(request, child);
   });
   const { client } = createClient([process]);
-  const request = { runId: 'run-8', queryId: 'query-8', rowKey: 'query.0' };
+  const request = { runId: 'run-8', queryId: 'query-8', rowKey: 'query.0', heroKey: 'a'.repeat(64) };
 
   assert.deepEqual(await client.equipOptimizerResultBuild(request), equipResult);
   assert.deepEqual(

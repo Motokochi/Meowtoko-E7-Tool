@@ -12,7 +12,7 @@ import type { OptimizerResultDetailWorkspaceState } from './optimizer-result-det
 import type {
   OptimizerOwnedGearDetail,
   OptimizerResultBuildDetail,
-  OptimizerResultDetailRequest,
+  OptimizerResultEquipRequest,
 } from './shared/optimizer-result-detail';
 import { Alert, Badge, Button, Card, Dialog } from './ui';
 
@@ -21,7 +21,7 @@ interface OptimizerResultDetailProps {
   heroName?: string;
   equipping?: boolean;
   onClose(): void;
-  onEquip?(request: OptimizerResultDetailRequest): void;
+  onEquip?(request: OptimizerResultEquipRequest): void;
 }
 
 function formatGearValue(statId: string, value: number): string {
@@ -171,6 +171,7 @@ export function OptimizerResultDetail({
 }: OptimizerResultDetailProps): React.JSX.Element | null {
   const panelRef = useRef<HTMLElement | null>(null);
   const [confirmEquip, setConfirmEquip] = useState(false);
+  const [heroKey, setHeroKey] = useState('');
   useEffect(() => {
     if (!workspace.open) return undefined;
     const frame = window.requestAnimationFrame(() => panelRef.current?.focus());
@@ -178,9 +179,12 @@ export function OptimizerResultDetail({
   }, [workspace.open]);
   useEffect(() => {
     setConfirmEquip(false);
+    setHeroKey('');
   }, [workspace.open, workspace.snapshot?.rowKey]);
   if (!workspace.open) return null;
   const snapshot = workspace.snapshot;
+  const equipTargets = snapshot?.detail?.equipTargets ?? [];
+  const selectedHeroKey = equipTargets.length === 1 ? equipTargets[0].heroKey : heroKey;
   const equipRequest = snapshot?.state === 'completed' && snapshot.runId && snapshot.queryId && snapshot.rowKey
     ? { runId: snapshot.runId, queryId: snapshot.queryId, rowKey: snapshot.rowKey }
     : null;
@@ -217,10 +221,11 @@ export function OptimizerResultDetail({
               <Button disabled={equipping} onClick={() => setConfirmEquip(false)} type="button" variant="secondary">Cancel</Button>
               <Button
                 busy={equipping}
+                disabled={!equipTargets.some((target) => target.heroKey === selectedHeroKey)}
                 onClick={() => {
-                  if (!equipRequest) return;
+                  if (!equipRequest || !equipTargets.some((target) => target.heroKey === selectedHeroKey)) return;
                   setConfirmEquip(false);
-                  onEquip(equipRequest);
+                  onEquip({ ...equipRequest, heroKey: selectedHeroKey });
                 }}
                 type="button"
               >
@@ -234,6 +239,25 @@ export function OptimizerResultDetail({
           open={confirmEquip && equipRequest !== null}
           title="Equip this build locally?"
         >
+          {equipTargets.length > 1 && (
+            <div className="field">
+              <label htmlFor="optimizer-equip-copy">Character copy</label>
+              <select
+                id="optimizer-equip-copy"
+                value={heroKey}
+                onChange={(event) => setHeroKey(event.currentTarget.value)}
+                disabled={equipping}
+              >
+                <option value="">Choose which copy to equip</option>
+                {equipTargets.map((target) => <option key={target.heroKey} value={target.heroKey}>{target.label}</option>)}
+              </select>
+            </div>
+          )}
+          {equipTargets.length === 0 && (
+            <Alert tone="warning" title="Character missing from import">
+              Import current game data before equipping this character locally.
+            </Alert>
+          )}
           <p>
             Meowtoko E7 Tool will unequip the character&apos;s current local build and move any
             selected pieces assigned to other heroes. This does not tap or change

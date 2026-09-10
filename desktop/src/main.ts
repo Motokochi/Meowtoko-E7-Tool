@@ -61,6 +61,7 @@ import {
 } from './shared/optimizer-results';
 import {
   isOptimizerResultDetailRequest,
+  isOptimizerResultEquipRequest,
   isOptimizerResultDetailSnapshot,
   type OptimizerResultDetailSnapshot,
   type OptimizerResultEquipResult,
@@ -446,7 +447,7 @@ function runDesktopApplication(): void {
     return backend.selectOptimizerResultDetail(request);
   });
   ipcMain.handle('optimizer:results:equip', async (_event, request: unknown): Promise<OptimizerResultEquipResult> => {
-    if (!isOptimizerResultDetailRequest(request)) throw new Error('Invalid optimizer build equip selection.');
+    if (!isOptimizerResultEquipRequest(request)) throw new Error('Invalid optimizer build equip selection.');
     return backend.equipOptimizerResultBuild(request);
   });
   ipcMain.handle('optimizer:results:export:get', async (): Promise<OptimizerResultExportSnapshot> => (
