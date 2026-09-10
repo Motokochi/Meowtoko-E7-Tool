@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.48] - 2026-09-10
+
+- Fix local Equip for duplicate heroes and imported owner names.
+
 ## [0.1.47] - 2026-09-03
 
 - Add Uncharted Pioneer Politis and optimizer fixes.
