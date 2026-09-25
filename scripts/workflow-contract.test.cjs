@@ -39,6 +39,21 @@ test('release workflow is tag-only, non-cancelling, draft-first, and publishes o
   assert.match(workflow, /verify_frozen_backend\.py/);
   assert.match(workflow, /smoke:package/);
   assert.match(workflow, /smoke:single-instance/);
+  for (const command of [
+    'python -m pytest -q',
+    'pnpm --dir desktop test',
+    'pnpm --dir desktop typecheck',
+    'python scripts/verify_cuda_installer.py dist/cuda-installer',
+    'python scripts/smoke_setup_flows.py',
+    'python scripts/verify_frozen_backend.py dist/backend/e7-core.exe',
+    'pnpm --dir desktop smoke:package',
+    'pnpm --dir desktop smoke:single-instance',
+  ]) {
+    assert.ok(
+      workflow.replaceAll('\r\n', '\n').includes(`${command}\n          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }`),
+      `Release verification must stop when ${command} fails.`,
+    );
+  }
   assert.match(workflow, /Meowtoko\.E7\.Tool-win32-x64-/);
   assert.doesNotMatch(workflow, /\$releaseRoot\/Meowtoko E7 Tool-win32-x64-/);
   assert.match(workflow, /gh release edit .*--draft=false --latest/);

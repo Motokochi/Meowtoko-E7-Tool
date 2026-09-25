@@ -62,8 +62,12 @@ for (const required of [
   'resources/characters/asset-manifest.json',
   'resources/characters/aube/pose.webp',
   'resources/characters/setsuka/pose.webp',
+  'resources/characters/haru/pose.webp',
+  'resources/characters/renoa/pose.webp',
   "resources/characters/archdemon's shadow/pose.webp",
   'resources/backend/_internal/src/optimizer/data/character_data/character-catalog-v1.json',
+  'resources/backend/_internal/src/optimizer/data/character_data/manual-heroes-v1.json',
+  'resources/backend/_internal/src/optimizer/data/character_data/manual-artifacts-v1.json',
   'resources/backend/_internal/src/optimizer/data/character_data/source/artifactdata.json',
 ]) {
   assert.match(packageListing, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
@@ -71,7 +75,7 @@ for (const required of [
 const characterWebpEntries = packageListing
   .split(/\r?\n/)
   .filter((line) => line.startsWith('path = ') && /\/resources\/characters\/.*\.webp$/.test(line));
-assert.equal(characterWebpEntries.length, 1540, 'Installer character artwork count drifted.');
+assert.equal(characterWebpEntries.length, 1548, 'Installer character artwork count drifted.');
 assert.doesNotMatch(packageListing, /\/resources\/characters\/.*\.png$/m);
 for (const missing of [
   '/resources/characters/desert jewel basar/',
