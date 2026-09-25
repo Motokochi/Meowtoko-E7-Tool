@@ -54,9 +54,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          node scripts/release-contract.cjs --tag "$env:GITHUB_REF_NAME" --notes-file ".build/release-notes.md"
           gh release create "$env:GITHUB_REF_NAME" --draft --verify-tag `
             --title "Meowtoko E7 Tool $($env:GITHUB_REF_NAME.TrimStart('v'))" `
-            --notes-file "docs/releases/$env:GITHUB_REF_NAME.md"
+            --notes-file ".build/release-notes.md"
 
       - name: Install exact dependencies
         shell: pwsh

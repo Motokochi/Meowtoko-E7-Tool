@@ -65,12 +65,12 @@ for (const source of supportedPythonSources) {
 }
 
 const readme = fs.readFileSync(path.join(repositoryRoot, 'README.md'), 'utf8');
-const installing = fs.readFileSync(path.join(repositoryRoot, 'docs', 'INSTALLING.md'), 'utf8');
-const development = fs.readFileSync(path.join(repositoryRoot, 'docs', 'development', 'DESKTOP.md'), 'utf8');
+const guide = fs.readFileSync(path.join(repositoryRoot, 'docs', 'USER_GUIDE.md'), 'utf8');
+const development = fs.readFileSync(path.join(repositoryRoot, 'docs', 'DEVELOPMENT.md'), 'utf8');
 assert.match(readme, /installed Meowtoko E7 Tool shortcut/i, 'README must identify the supported release entry point.');
-assert.match(installing, /desktop or Start menu shortcut/i, 'Installer guide must identify icon launch.');
+assert.match(guide, /desktop or Start menu shortcut/i, 'User guide must identify icon launch.');
 assert.match(development, /pnpm start/i, 'Developer guide must identify the Electron Forge entry point.');
-for (const [name, content] of [['README.md', readme], ['docs/INSTALLING.md', installing], ['docs/development/DESKTOP.md', development]]) {
+for (const [name, content] of [['README.md', readme], ['docs/USER_GUIDE.md', guide], ['docs/DEVELOPMENT.md', development]]) {
   assert.doesNotMatch(content, /Run_E7_Admin|Setup_E7_Tool|python\s+main\.py/i, `Unsupported launcher documented in ${name}`);
 }
 

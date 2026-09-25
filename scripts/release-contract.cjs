@@ -55,18 +55,16 @@ function verifyReleaseContract({
   }
 
   const changelog = fs.readFileSync(path.join(root, 'CHANGELOG.md'), 'utf8');
-  assert.match(
-    changelog,
-    new RegExp(`^## \\[${version.replaceAll('.', '\\.')}\\] - \\d{4}-\\d{2}-\\d{2}$`, 'm'),
+  const heading = changelog.match(
+    new RegExp(`^## \\[${version.replaceAll('.', '\\.')}\\] - \\d{4}-\\d{2}-\\d{2}\\r?\\n`, 'm'),
+  );
+  assert.ok(
+    heading,
     `CHANGELOG.md has no release section for ${version}.`,
   );
-  const notesPath = path.join(root, 'docs', 'releases', `v${version}.md`);
-  assert.ok(
-    fs.existsSync(notesPath) && fs.statSync(notesPath).isFile(),
-    `Release notes are missing: ${notesPath}`,
-  );
-  const notes = fs.readFileSync(notesPath, 'utf8');
-  assert.match(notes, new RegExp(`^# Meowtoko E7 Tool ${version.replaceAll('.', '\\.')}$`, 'm'));
+  const changes = changelog.slice(heading.index + heading[0].length).split(/^## /m, 1)[0].trim();
+  assert.ok(changes.length > 0, `CHANGELOG.md has no release notes for ${version}.`);
+  const notes = `# Meowtoko E7 Tool ${version}\n\n${changes}\n`;
 
   if (requireClean) {
     assert.equal(
@@ -82,7 +80,7 @@ function verifyReleaseContract({
       `Release tag already exists: ${expectedTag}`,
     );
   }
-  return { notesPath, tag: expectedTag, version };
+  return { notes, tag: expectedTag, version };
 }
 
 if (require.main === module) {
@@ -94,6 +92,13 @@ if (require.main === module) {
     requireClean: process.argv.includes('--require-clean'),
     requireTagAbsent: process.argv.includes('--require-tag-absent'),
   });
+  const notesIndex = process.argv.indexOf('--notes-file');
+  if (notesIndex >= 0) {
+    assert.ok(process.argv[notesIndex + 1], '--notes-file requires an output path.');
+    const notesPath = path.resolve(root, process.argv[notesIndex + 1]);
+    fs.mkdirSync(path.dirname(notesPath), { recursive: true });
+    fs.writeFileSync(notesPath, result.notes, 'utf8');
+  }
   console.log(`E7_RELEASE_CONTRACT_OK version=${result.version} tag=${result.tag}`);
 }
 

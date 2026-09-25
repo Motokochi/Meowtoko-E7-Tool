@@ -33,6 +33,8 @@ test('release workflow is tag-only, non-cancelling, draft-first, and publishes o
   assert.match(workflow, /runs-on: windows-2025/);
   assert.match(workflow, /cancel-in-progress: false/);
   assert.match(workflow, /gh release create .*--draft/);
+  assert.match(workflow, /node scripts\/release-contract\.cjs --tag .*--notes-file "\.build\/release-notes\.md"/);
+  assert.doesNotMatch(workflow, /docs\/releases/);
   assert.match(workflow, /pnpm --dir desktop make/);
   assert.match(workflow, /verify_frozen_backend\.py/);
   assert.match(workflow, /smoke:package/);

@@ -76,7 +76,7 @@ function stageGitHubRelease({
       assert.equal(digest, sha256(input.source), `Release input changed while copying: ${input.name}`);
       checksums.push(`${digest}  ${input.name}`);
     }
-    fs.copyFileSync(contract.notesPath, path.join(temporary, 'release-notes.md'), fs.constants.COPYFILE_EXCL);
+    fs.writeFileSync(path.join(temporary, 'release-notes.md'), contract.notes, { encoding: 'utf8', flag: 'wx' });
     fs.writeFileSync(
       path.join(temporary, 'SHA256SUMS.txt'),
       `${checksums.join('\n')}\n`,

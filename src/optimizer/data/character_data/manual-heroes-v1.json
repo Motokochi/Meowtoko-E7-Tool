@@ -1,7 +1,7 @@
 {
   "schemaId": "meowtoko.manual-hero-source",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T00:00:00Z",
+  "generatedAt": "2026-09-25T00:00:00Z",
   "records": {
     "Lisette": {
       "_id": "lisette",
@@ -195,6 +195,185 @@
         }
       },
       "zodiac": "fish"
+    },
+    "Haru": {
+      "_id": "haru",
+      "name": "Haru",
+      "code": "c1192",
+      "attribute": "ice",
+      "role": "warrior",
+      "rarity": 5,
+      "zodiac": "goat",
+      "assets": {
+        "icon": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c1192_s.png",
+        "thumbnail": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c1192_s.png",
+        "image": "https://e7codex.com/assets/c1192/pose.png"
+      },
+      "calculatedStatus": {
+        "lv50FiveStarFullyAwakened": {
+          "atk": 775,
+          "hp": 5551,
+          "def": 530,
+          "spd": 102,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        },
+        "lv60SixStarFullyAwakened": {
+          "atk": 966,
+          "hp": 7323,
+          "def": 657,
+          "spd": 102,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        }
+      },
+      "self_devotion": {
+        "type": "cri",
+        "grades": {
+          "B": 0.06,
+          "A": 0.09,
+          "S": 0.12,
+          "SS": 0.15,
+          "SSS": 0.18
+        }
+      },
+      "skills": {
+        "S1": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "options": [],
+          "note": "Attacks the enemy with an anchor, and grants a barrier to all allies for 1 turn. Damage dealt and barrier strength increase proportional to the caster's max Health. At the start of the turn, when Focus is full, changes to Power Strike.\nPower Strike (Consumes 5 Focus): Attacks the enemy, and grants an extra turn to the caster. Penetrates the target's Defense. Unaffected by elemental disadvantage. Damage dealt increases proportional to the caster's max Health. The changed attack does not trigger a Dual Attack.\nPreview uses the standard attack; Power Strike is not included.",
+          "rate": 1.0,
+          "pow": 1.0,
+          "targets": 1,
+          "selfHpScaling": 0.12
+        },
+        "S2": {
+          "hitTypes": [],
+          "options": [],
+          "note": "At the start of battle, gains 3 Focus, and has a {per(ps_refer)}% chance to grant indomitable to all allies for 1 turn. At the start of the turn, when the caster has a buff, dispels all debuffs from the caster and resets skill cooldown of Anchor Shot."
+        },
+        "S3": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "options": [],
+          "note": "Attacks the enemy with an anchor, and grants morale to all allies for 2 turns. When the target is granted a barrier, penetrates the target's Defense by 70%. Damage dealt increases proportional to the caster's max Health. Damage dealt increases every time this skill is used, stacking up to 5 times.\nPreview uses the first cast without a target barrier; later-cast damage increases and conditional penetration are not applied automatically.",
+          "rate": 1.0,
+          "pow": 1.0,
+          "targets": 1,
+          "selfHpScaling": 0.25
+        }
+      },
+      "ex_equip": [],
+      "manual_source": {
+        "reviewedAt": "2026-09-25",
+        "gameVersion": "1.0.974",
+        "identity": "Installed game character_player, dic_data, and English text tables; Journal show=y.",
+        "baseStats": "Calculated from installed game FORMULA.List and zodiac_stone_2, with base and final integer flooring.",
+        "selfImprint": "Installed game devotion_skill table.",
+        "skillMultipliers": "Installed game skill_player and cs_player tables. Base skill damage only; focus, bullets, and use-count variants are documented separately.",
+        "buildData": "Intentionally omitted pending Hero Journal build evidence.",
+        "artwork": "Face PNGs match the installed game byte-for-byte. Rendered poses retrieved through the existing E7 Codex artwork workflow; dimensions, transparency, and appearance reviewed."
+      }
+    },
+    "Renoa": {
+      "_id": "renoa",
+      "name": "Renoa",
+      "code": "c1193",
+      "attribute": "dark",
+      "role": "ranger",
+      "rarity": 5,
+      "zodiac": "waterbearer",
+      "assets": {
+        "icon": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c1193_s.png",
+        "thumbnail": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c1193_s.png",
+        "image": "https://e7codex.com/assets/c1193_1/pose.png"
+      },
+      "calculatedStatus": {
+        "lv50FiveStarFullyAwakened": {
+          "atk": 778,
+          "hp": 4221,
+          "def": 486,
+          "spd": 122,
+          "chc": 0.19,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        },
+        "lv60SixStarFullyAwakened": {
+          "atk": 970,
+          "hp": 5299,
+          "def": 603,
+          "spd": 122,
+          "chc": 0.27,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        }
+      },
+      "self_devotion": {
+        "type": "def_rate",
+        "grades": {
+          "B": 0.07,
+          "A": 0.11,
+          "S": 0.15,
+          "SS": 0.18,
+          "SSS": 0.21
+        }
+      },
+      "skills": {
+        "S1": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "options": [],
+          "note": "Attacks the enemy with a pistol. Damage dealt increases proportional to the caster's Defense. At the start of the turn, when Focus is full, changes to Black Thorn.\nBlack Thorn (Consumes 5 Focus): Attacks the enemy with thorns, and grants the maximum number of Dirge Bullets to the caster. Damage dealt increases proportional to the caster's Defense. The changed attack does not trigger a Dual Attack.\nPreview uses the standard attack; Black Thorn and Dirge Bullet follow-up attacks are not included.",
+          "rate": 0.8,
+          "pow": 0.85,
+          "targets": 1,
+          "selfDefScaling": 1.5
+        },
+        "S2": {
+          "hitTypes": [],
+          "options": [],
+          "note": "Buffs and debuffs applied to the caster are changed to Dirge Bullets. After using a skill on the caster's turn, when the caster has a Dirge Bullet, uses Dirge Bullet on a random enemy.\nDirge Bullet (Gains 1 Focus): Attacks the enemy with a pistol. Damage dealt increases proportional to the caster's Defense. Damage dealt and attack count increase proportional to the number of Dirge Bullets granted."
+        },
+        "S3": {
+          "hitTypes": [],
+          "options": [],
+          "note": "Increases Combat Readiness of all allies by {per(sk_eff_value1)}%, and grants two Dirge Bullets to the caster."
+        }
+      },
+      "ex_equip": [],
+      "manual_source": {
+        "reviewedAt": "2026-09-25",
+        "gameVersion": "1.0.974",
+        "identity": "Installed game character_player, dic_data, and English text tables; Journal show=y.",
+        "baseStats": "Calculated from installed game FORMULA.List and zodiac_stone_2, with base and final integer flooring.",
+        "selfImprint": "Installed game devotion_skill table.",
+        "skillMultipliers": "Installed game skill_player and cs_player tables. Base skill damage only; focus, bullets, and use-count variants are documented separately.",
+        "buildData": "Intentionally omitted pending Hero Journal build evidence.",
+        "artwork": "Face PNGs match the installed game byte-for-byte. Rendered poses retrieved through the existing E7 Codex artwork workflow; dimensions, transparency, and appearance reviewed."
+      }
     }
   }
 }

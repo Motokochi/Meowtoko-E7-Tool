@@ -51,12 +51,12 @@ class CharacterRepositoryTests(unittest.TestCase):
         ):
             repository = load_bundled_character_repository()
 
-        self.assertEqual(388, len(repository))
-        self.assertEqual(388, len(repository.heroes))
-        self.assertEqual(776, sum(len(hero.base_profiles) for hero in repository.heroes))
+        self.assertEqual(390, len(repository))
+        self.assertEqual(390, len(repository.heroes))
+        self.assertEqual(780, sum(len(hero.base_profiles) for hero in repository.heroes))
         self.assertEqual(
             {hero.hero_id for hero in self.catalog.heroes}
-            | {"hero.fribbels.lisette", "hero.fribbels.uncharted-pioneer-politis"},
+            | {"hero.fribbels.lisette", "hero.fribbels.uncharted-pioneer-politis", "hero.fribbels.haru", "hero.fribbels.renoa"},
             {hero.hero_id for hero in repository.heroes},
         )
 
@@ -90,6 +90,25 @@ class CharacterRepositoryTests(unittest.TestCase):
             },
             thaw_json(politis.self_devotion),
         )
+
+    def test_september_game_heroes_have_both_awakened_profiles_and_self_imprints(self) -> None:
+        repository = load_bundled_character_repository()
+        for code, name, expected, imprint_type, imprint_value in (
+            ("c1192", "Haru", ((775, 530, 5551, 102, 15), (966, 657, 7323, 102, 15)), "cri", 0.18),
+            ("c1193", "Renoa", ((778, 486, 4221, 122, 19), (970, 603, 5299, 122, 27)), "def_rate", 0.21),
+        ):
+            with self.subTest(hero=name):
+                hero = repository.find_exact(code)
+                self.assertEqual(name, hero.name)
+                self.assertIs(hero, repository.find_exact(name))
+                for level, values in zip((50, 60), expected):
+                    profile = next(profile for profile in hero.base_profiles if profile.level == level)
+                    stats = dict(profile.final_stats)
+                    self.assertEqual(values, tuple(stats[stat] for stat in (
+                        FinalStat.ATTACK, FinalStat.DEFENSE, FinalStat.HEALTH, FinalStat.SPEED, FinalStat.CRITICAL_HIT_CHANCE,
+                    )))
+                self.assertEqual(imprint_type, hero.self_devotion["type"])
+                self.assertEqual(imprint_value, hero.self_devotion["grades"]["SSS"])
 
     def test_public_exports_and_exact_lookups_use_stable_evidence(self) -> None:
         expected = self.repository.get("hero.fribbels.aube")

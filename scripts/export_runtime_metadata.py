@@ -14,7 +14,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME_TEMPLATE = ROOT / "desktop" / "resources" / "runtime"
-THIRD_PARTY_NOTICES = ROOT / "docs" / "legal" / "THIRD_PARTY_NOTICES.md"
+THIRD_PARTY_NOTICES = ROOT / "docs" / "legal" / "THIRD_PARTY_NOTICES.txt"
 CHARACTER_DATA = ROOT / "src" / "optimizer" / "data" / "character_data"
 CUDA_INSTALLER = ROOT / "dist" / "cuda-installer"
 CUDA_INSTALLER_MANIFEST = CUDA_INSTALLER / "asset-manifest.json"
@@ -46,6 +46,7 @@ CHARACTER_FILES = (
     "character-source-v1.json",
     "character-validation-v1.json",
     "manual-heroes-v1.json",
+    "manual-artifacts-v1.json",
     "manifest-v1.json",
     "source/artifactdata.json",
     "source/herodata.json",

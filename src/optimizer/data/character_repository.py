@@ -630,7 +630,9 @@ def load_bundled_character_repository(
 
 
 def load_bundled_runtime_character_catalog() -> CharacterCatalogDocument:
-    """Return the frozen catalog with reviewed manual hero additions appended."""
+    """Return the frozen catalog with reviewed hero and artifact additions."""
+
+    from src.optimizer.data.artifact_repository import load_bundled_artifact_repository
 
     catalog = load_bundled_character_catalog()
     repository = load_bundled_character_repository()
@@ -639,7 +641,7 @@ def load_bundled_runtime_character_catalog() -> CharacterCatalogDocument:
         generated_at=catalog.generated_at,
         source=catalog.source,
         heroes=tuple(record.definition for record in repository.heroes),
-        artifacts=catalog.artifacts,
+        artifacts=tuple(record.definition for record in load_bundled_artifact_repository().artifacts),
     )
 
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import math
 import re
 import unicodedata
@@ -15,15 +16,18 @@ from types import MappingProxyType
 from src.optimizer.data.character_repository import normalize_character_search_text
 from src.optimizer.data.character_snapshot import (
     CharacterSourceSnapshotDocument,
+    _normalize_artifact,
+    bundled_character_data_path,
     load_bundled_character_catalog,
     load_bundled_character_source_snapshot,
 )
-from src.optimizer.data.schema_common import FrozenJsonObject, required_text
+from src.optimizer.data.schema_common import FrozenJsonObject, freeze_json_object, required_text
 from src.optimizer.data.schemas import CharacterCatalogDocument
 from src.optimizer.domain import ArtifactDefinition, HeroModifiers
 
 
 ARTIFACT_MAX_LEVEL = 30
+MANUAL_ARTIFACT_SOURCE_FILENAME = "manual-artifacts-v1.json"
 ARTIFACT_MAX_STAT_MULTIPLIER = 13
 ARTIFACT_LEVEL_DIVISOR = 30
 ARTIFACT_LEVEL_ROUNDING_DIGITS = 1
@@ -440,6 +444,8 @@ class ArtifactRepository:
         self,
         catalog: CharacterCatalogDocument,
         source_snapshot: CharacterSourceSnapshotDocument,
+        *,
+        manual_artifacts: Mapping[str, object] | None = None,
     ) -> None:
         if not isinstance(catalog, CharacterCatalogDocument):
             raise ArtifactRepositoryError("invalid-catalog", "catalog", "Expected CharacterCatalogDocument.")
@@ -504,6 +510,14 @@ class ArtifactRepository:
                 f"Canonical artifacts have no source records: {', '.join(unmatched)}.",
             )
 
+        for offset, source_key in enumerate(sorted(manual_artifacts or {})):
+            value = manual_artifacts[source_key]
+            raw_source = freeze_json_object(value, f"manualArtifacts[{source_key!r}]")
+            definition = _normalize_artifact(
+                source_key, value, dense_id=len(catalog.artifacts) + offset,
+            )
+            records.append(_artifact_record(definition, source_key, raw_source))
+
         by_id: dict[str, ArtifactRecord] = {}
         by_source_code: dict[str, list[ArtifactRecord]] = defaultdict(list)
         for record in records:
@@ -530,9 +544,13 @@ class ArtifactRepository:
 
     @classmethod
     def from_bundled(cls) -> "ArtifactRepository":
+        manual_document = json.loads(
+            bundled_character_data_path(MANUAL_ARTIFACT_SOURCE_FILENAME).read_text(encoding="utf-8")
+        )
         return cls(
             load_bundled_character_catalog(),
             load_bundled_character_source_snapshot(),
+            manual_artifacts=manual_document["records"],
         )
 
     def __len__(self) -> int:

@@ -30,10 +30,8 @@ from src.optimizer.data import (
     SkillContextRepository,
     SkillContextRepositoryError,
     SourceMetadata,
-    load_bundled_character_catalog,
     load_bundled_character_repository,
     load_bundled_runtime_character_catalog,
-    load_bundled_character_source_snapshot,
     load_optimizer_profile,
 )
 from src.optimizer.data.character_repository import CharacterNotFoundError, normalize_character_search_text
@@ -249,10 +247,7 @@ class OptimizerProfileService:
         self.catalog = load_bundled_runtime_character_catalog()
         self.characters = load_bundled_character_repository()
         self.profiles = CharacterProfileSelector(self.characters)
-        self.artifacts = ArtifactRepository(
-            load_bundled_character_catalog(),
-            load_bundled_character_source_snapshot(),
-        )
+        self.artifacts = ArtifactRepository.from_bundled()
         self.hero_modifiers = HeroModifierRepository(self.characters)
         self.skill_contexts = SkillContextRepository(self.characters)
 

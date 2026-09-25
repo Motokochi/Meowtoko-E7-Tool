@@ -25,7 +25,7 @@ class RepositoryLayoutTests(unittest.TestCase):
         self.assertTrue(spec.is_file())
         self.assertIn("ROOT = Path(SPECPATH).resolve().parent", spec.read_text(encoding="utf-8"))
         self.assertIn("'packaging', 'e7-core.spec'", build_script)
-        self.assertIn('ROOT / "docs" / "legal" / "THIRD_PARTY_NOTICES.md"', runtime_export)
+        self.assertIn('ROOT / "docs" / "legal" / "THIRD_PARTY_NOTICES.txt"', runtime_export)
         self.assertIn('destination / "THIRD_PARTY_NOTICES.md"', runtime_export)
         self.assertIn(
             'requirements_pins(ROOT / "requirements-core.txt")',
@@ -109,7 +109,7 @@ class RepositoryLayoutTests(unittest.TestCase):
         artwork = list(character_root.rglob("*.webp"))
 
         self.assertTrue(raw_manifest.is_file())
-        self.assertEqual(len(artwork), 1540)
+        self.assertEqual(len(artwork), 1548)
         self.assertFalse(any(character_root.rglob("*.png")))
         self.assertIn('"format": "webp"', manifest)
         self.assertIn('"sourceManifestSha256"', manifest)

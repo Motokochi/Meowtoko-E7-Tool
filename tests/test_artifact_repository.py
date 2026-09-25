@@ -97,11 +97,11 @@ class ArtifactRepositoryTests(unittest.TestCase):
         ):
             repository = load_bundled_artifact_repository()
 
-        self.assertEqual(283, len(repository))
-        self.assertEqual(283, len(repository.artifacts))
-        self.assertEqual(
-            {artifact.artifact_id for artifact in self.catalog.artifacts},
-            {artifact.artifact_id for artifact in repository.artifacts},
+        self.assertEqual(287, len(repository))
+        self.assertEqual(287, len(repository.artifacts))
+        self.assertTrue(
+            {artifact.artifact_id for artifact in self.catalog.artifacts}
+            <= {artifact.artifact_id for artifact in repository.artifacts}
         )
         self.assertEqual(
             tuple(sorted(
@@ -120,6 +120,31 @@ class ArtifactRepositoryTests(unittest.TestCase):
                     artifact_stable_id(artifact.source_code, artifact.name),
                 )
                 self.assertIs(artifact, repository.get(artifact.artifact_id.upper()))
+
+    def test_manual_artifacts_preserve_frozen_records_and_defense_scaling(self) -> None:
+        repository = load_bundled_artifact_repository()
+        self.assertEqual(283, len(self.repository))
+        for original in self.repository.artifacts:
+            self.assertEqual(original, repository.get(original.artifact_id))
+        expected = {
+            "efw42": ("Custom-Made Power Anchor", ArtifactFlatStats(0, 988, 65)),
+            "ef511": ("Land of Lingering Light", ArtifactFlatStats(195, 702, 0)),
+            "efr34": ("Light and Darkness", ArtifactFlatStats(117, 988, 0)),
+            "efr35": ("Sorrow of the Rose", ArtifactFlatStats(117, 988, 0)),
+        }
+        for code, (name, stats) in expected.items():
+            with self.subTest(artifact=name):
+                artifact, = repository.source_code_matches(code)
+                self.assertEqual(name, artifact.name)
+                self.assertEqual(stats, repository.select(artifact.artifact_id, level=30).flat_stats)
+        for excluded in ("ef323", "ef416", "ef500", "ef512", "est6f"):
+            self.assertEqual((), repository.source_code_matches(excluded))
+
+    def test_manual_artifact_cannot_replace_a_frozen_identity(self) -> None:
+        original = self._artifact("3F")
+        with self.assertRaises(ArtifactRepositoryError) as error:
+            ArtifactRepository(self.catalog, self.source, manual_artifacts={"3F": thaw_json(original.raw_source)})
+        self.assertEqual("duplicate-artifact-id", error.exception.code)
 
     def test_pinned_formula_evidence_and_level_calculation_are_exact(self) -> None:
         self.assertEqual(40, len(FRIBBELS_CHARACTER_SOURCE_REVISION))

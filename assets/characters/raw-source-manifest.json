@@ -1,22 +1,22 @@
 {
   "schemaId": "e7hub.e7codex-character-assets",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T13:40:18Z",
+  "generatedAt": "2026-09-25T15:50:58Z",
   "source": {
     "site": "https://e7codex.com/",
     "assetBaseUrl": "https://e7codex.com/assets",
     "catalogPath": "src/optimizer/data/character_data/character-source-v1.json",
     "catalogSha256": "b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa",
     "manualHeroesPath": "src/optimizer/data/character_data/manual-heroes-v1.json",
-    "manualHeroesSha256": "9f72aac8a6efda731c1ec896bbd422e5e5f7e3b77ef7aaf2435bf2c92fa70352"
+    "manualHeroesSha256": "a305edb64a833bf7d66dd0c3394867fe08b2ecaa30833e0553588d4e351921a8"
   },
   "summary": {
-    "characters": 388,
-    "expectedFiles": 1552,
-    "availableFiles": 1540,
+    "characters": 390,
+    "expectedFiles": 1560,
+    "availableFiles": 1548,
     "missingFiles": 12,
     "errorFiles": 0,
-    "totalBytes": 1933386357
+    "totalBytes": 1943304359
   },
   "characters": [
     {
@@ -7803,6 +7803,55 @@
       }
     },
     {
+      "name": "Haru",
+      "code": "c1192",
+      "assetCode": "c1192",
+      "slug": "haru",
+      "folder": "Haru",
+      "files": {
+        "pose": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1192/pose.png",
+          "bytes": 7566606,
+          "sha256": "d6a468140cc72351c4c8013358c2dac5db9e537fc2d7c1b7217442bef23868bf",
+          "width": 2770,
+          "height": 3120,
+          "path": "Haru/pose.png"
+        },
+        "face_l": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1192/face_c1192_l.png",
+          "bytes": 11031,
+          "sha256": "424f52d3ce5636874ecbe69caed861d1ea12ecf22d1c9054b32fc1631495405a",
+          "width": 189,
+          "height": 89,
+          "path": "Haru/face_l.png"
+        },
+        "face_s": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1192/face_c1192_s.png",
+          "bytes": 9716,
+          "sha256": "ccc9a66597dd4996dff09469576d06ba3e2ccdc6eceb5e3b850d44855d5f3889",
+          "width": 112,
+          "height": 112,
+          "path": "Haru/face_s.png"
+        },
+        "face_su": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1192/face_c1192_su.png",
+          "bytes": 24075,
+          "sha256": "641b36c86361d266940d95e2de1b7556405ecc410de658bb48794f22630f39ea",
+          "width": 320,
+          "height": 206,
+          "path": "Haru/face_su.png"
+        }
+      }
+    },
+    {
       "name": "Hasol",
       "code": "c3135",
       "assetCode": "c3135",
@@ -13622,6 +13671,55 @@
           "height": 206,
           "path": "Remnant Violet/face_su.png",
           "sourceUrl": "https://e7codex.com/assets/c2074/face_c2074_su.png"
+        }
+      }
+    },
+    {
+      "name": "Renoa",
+      "code": "c1193",
+      "assetCode": "c1193",
+      "slug": "renoa",
+      "folder": "Renoa",
+      "files": {
+        "pose": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/pose.png",
+          "bytes": 2265638,
+          "sha256": "df30b089de9363a2573025dfe4d7e483b6f6c04e5b0a32bb344c1053e3fb2cae",
+          "width": 1137,
+          "height": 3120,
+          "path": "Renoa/pose.png"
+        },
+        "face_l": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/face_c1193_l.png",
+          "bytes": 10879,
+          "sha256": "1918a1fa9dd4209517e7f3519766cb465249f6a48a54342fab81ac32b2baee3e",
+          "width": 177,
+          "height": 89,
+          "path": "Renoa/face_l.png"
+        },
+        "face_s": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/face_c1193_s.png",
+          "bytes": 9847,
+          "sha256": "3004271e646f0f034b228cddb47b982b1ec36ec806675e2b51baa86092d5b88b",
+          "width": 112,
+          "height": 112,
+          "path": "Renoa/face_s.png"
+        },
+        "face_su": {
+          "status": "available",
+          "reused": false,
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/face_c1193_su.png",
+          "bytes": 20210,
+          "sha256": "da8baa206a0557a0a5822e912813e028d341cb316dff93b1b58e3f738bbd9479",
+          "width": 253,
+          "height": 206,
+          "path": "Renoa/face_su.png"
         }
       }
     },

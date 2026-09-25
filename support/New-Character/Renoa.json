@@ -1,0 +1,101 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "label": "Installed Epic Seven 1.0.974 game tables, extracted with PacketSniffer tools",
+      "url": null,
+      "collectedAt": "2026-09-25"
+    }
+  ],
+  "character": {
+    "name": "Renoa",
+    "gameCode": "c1193",
+    "releaseDate": null,
+    "rarity": 5,
+    "element": "Dark",
+    "class": "Ranger",
+    "zodiac": "Aquarius",
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": 778,
+        "health": 4221,
+        "defense": 486,
+        "speed": 122,
+        "criticalHitChance": 19.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": 970,
+        "health": 5299,
+        "defense": 603,
+        "speed": 122,
+        "criticalHitChance": 27.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      }
+    },
+    "selfImprint": {
+      "stat": "Defense %",
+      "grades": {
+        "B": 7.0,
+        "A": 11.0,
+        "S": 15.0,
+        "SS": 18.0,
+        "SSS": 21.0
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 0.8,
+        "power": 0.85,
+        "healthScaling": null,
+        "defenseScaling": 1.5,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Attacks the enemy with a pistol. Damage dealt increases proportional to the caster's Defense. At the start of the turn, when Focus is full, changes to Black Thorn.\nBlack Thorn (Consumes 5 Focus): Attacks the enemy with thorns, and grants the maximum number of Dirge Bullets to the caster. Damage dealt increases proportional to the caster's Defense. The changed attack does not trigger a Dual Attack.\nPreview uses the standard attack; Black Thorn and Dirge Bullet follow-up attacks are not included."
+      },
+      "s2": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Buffs and debuffs applied to the caster are changed to Dirge Bullets. After using a skill on the caster's turn, when the caster has a Dirge Bullet, uses Dirge Bullet on a random enemy.\nDirge Bullet (Gains 1 Focus): Attacks the enemy with a pistol. Damage dealt increases proportional to the caster's Defense. Damage dealt and attack count increase proportional to the number of Dirge Bullets granted."
+      },
+      "s3": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Increases Combat Readiness of all allies by {per(sk_eff_value1)}%, and grants two Dirge Bullets to the caster."
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/Renoa",
+    "files": {
+      "pose": "pose.png",
+      "faceLarge": "face_l.png",
+      "faceSmall": "face_s.png",
+      "faceAlternate": "face_su.png"
+    }
+  },
+  "notes": "Release date not encoded in the extracted Journal row. Both base profiles and self imprint verified from game data. No build archetype assigned."
+}

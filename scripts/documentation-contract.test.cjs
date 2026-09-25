@@ -20,6 +20,10 @@ test('documentation validator accepts local files and ignores external URLs and 
       '[GitHub](https://github.com/Motokochi/Meowtoko-E7-Tool)',
     ].join('\n'));
     fs.writeFileSync(path.join(root, 'docs', 'guide.md'), '# Guide\n');
+    for (const directory of ['.local', 'phases', 'benchmarks']) {
+      fs.mkdirSync(path.join(root, directory));
+      fs.writeFileSync(path.join(root, directory, 'context.md'), '[historical link](missing.md)\n');
+    }
     assert.deepEqual(validateDocumentation(root).failures, []);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -54,16 +58,15 @@ test('public guide contract rejects stale installers, retired launchers, and old
       path.join(root, 'README.md'),
       'Download the latest release at https://github.com/Motokochi/Meowtoko-E7-Tool/releases/latest\n',
     );
-    fs.writeFileSync(path.join(root, 'docs', 'INSTALLING.md'), 'Run Meowtoko-E7-Tool-0.1.5-Setup.exe\n');
     fs.writeFileSync(
       path.join(root, 'docs', 'USER_GUIDE.md'),
-      'Open **Optimizer** and choose gear.txt. Then run launch.ps1.\n',
+      'Run Meowtoko-E7-Tool-0.1.5-Setup.exe\nOpen **Optimizer** and choose gear.txt. Then run launch.ps1.\n',
     );
     for (const name of ['overview.png', 'analyzer.png', 'enhancer.png', 'optimizer.png']) {
       fs.writeFileSync(path.join(root, 'assets', 'readme', name), Buffer.alloc(20_000));
     }
     assert.deepEqual(validatePublicGuide(root), [
-      { file: 'docs/INSTALLING.md', target: 'stale hard-coded installer version' },
+      { file: 'docs/USER_GUIDE.md', target: 'stale hard-coded installer version' },
       { file: 'docs/USER_GUIDE.md', target: 'retired launcher instruction' },
       { file: 'docs/USER_GUIDE.md', target: 'obsolete Optimizer import instruction' },
     ]);

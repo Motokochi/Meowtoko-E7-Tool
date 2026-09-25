@@ -208,8 +208,8 @@ assert.equal(
   'Packaged artwork manifest drifted from the repository-optimized source.',
 );
 assert.deepEqual(characterArtworkManifest, repositoryArtworkManifest);
-assert.equal(characterArtworkManifest.summary.characters, 388);
-assert.equal(characterArtworkManifest.summary.availableFiles, 1540);
+assert.equal(characterArtworkManifest.summary.characters, 390);
+assert.equal(characterArtworkManifest.summary.availableFiles, 1548);
 assert.equal(characterArtworkManifest.summary.missingFiles, 12);
 assert.equal(characterArtworkManifest.summary.errorFiles, 0);
 assert.equal(
@@ -288,11 +288,11 @@ for (const entry of asarEntries) {
   assert.ok(!/\/assets\/fribbels\//.test(entry), `Retired asset layout leaked into app.asar: ${entry}`);
 }
 assert.match(
-  fs.readFileSync(path.join(gearSlotAssetRoot, 'SOURCE.md'), 'utf8'),
+  fs.readFileSync(path.join(gearSlotAssetRoot, 'SOURCE.txt'), 'utf8'),
   /b291cbbc415f11abede146859edc7b67d26e9c4b/,
 );
 assert.match(
-  fs.readFileSync(path.join(setAssetRoot, 'SOURCE.md'), 'utf8'),
+  fs.readFileSync(path.join(setAssetRoot, 'SOURCE.txt'), 'utf8'),
   /b291cbbc415f11abede146859edc7b67d26e9c4b/,
 );
 const expectedGearSlotIcons = new Map([
@@ -533,7 +533,9 @@ const expectedDataHashes = new Map([
     '697d31bfcbe6c398dc2bcd7422eb46051aa1ccca4ffbba688345ded51d1600f9',
     '3eb128a0100c9776124486108bbddc366156fa338542068b1413655849406e87',
     '9f72aac8a6efda731c1ec896bbd422e5e5f7e3b77ef7aaf2435bf2c92fa70352',
+    'a305edb64a833bf7d66dd0c3394867fe08b2ecaa30833e0553588d4e351921a8',
   ])],
+  ['manual-artifacts-v1.json', new Set(['a490354f900f48084af8724fcfa8ef4632c387e9f35da8b2dac5ca8658004894'])],
   ['manifest-v1.json', new Set(['5dd39b4fae32380bb3c5345a8590b7e5ac7b78abd6e5272b2bde6211624947ae'])],
   ['source/artifactdata.json', new Set(['ed1bb666ae7465560fbc1a163000966821174b0a48be826b28da16021f463ac0'])],
   ['source/herodata.json', new Set(['a5ed0b641e578a2b290b75d6f75a866a93b91e40c1064a4f1a264630a745c349'])],

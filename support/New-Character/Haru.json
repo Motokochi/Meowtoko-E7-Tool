@@ -1,0 +1,101 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "label": "Installed Epic Seven 1.0.974 game tables, extracted with PacketSniffer tools",
+      "url": null,
+      "collectedAt": "2026-09-25"
+    }
+  ],
+  "character": {
+    "name": "Haru",
+    "gameCode": "c1192",
+    "releaseDate": null,
+    "rarity": 5,
+    "element": "Ice",
+    "class": "Warrior",
+    "zodiac": "Capricorn",
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": 775,
+        "health": 5551,
+        "defense": 530,
+        "speed": 102,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": 966,
+        "health": 7323,
+        "defense": 657,
+        "speed": 102,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      }
+    },
+    "selfImprint": {
+      "stat": "Critical Hit Chance",
+      "grades": {
+        "B": 6.0,
+        "A": 9.0,
+        "S": 12.0,
+        "SS": 15.0,
+        "SSS": 18.0
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 1.0,
+        "power": 1.0,
+        "healthScaling": 0.12,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Attacks the enemy with an anchor, and grants a barrier to all allies for 1 turn. Damage dealt and barrier strength increase proportional to the caster's max Health. At the start of the turn, when Focus is full, changes to Power Strike.\nPower Strike (Consumes 5 Focus): Attacks the enemy, and grants an extra turn to the caster. Penetrates the target's Defense. Unaffected by elemental disadvantage. Damage dealt increases proportional to the caster's max Health. The changed attack does not trigger a Dual Attack.\nPreview uses the standard attack; Power Strike is not included."
+      },
+      "s2": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "At the start of battle, gains 3 Focus, and has a {per(ps_refer)}% chance to grant indomitable to all allies for 1 turn. At the start of the turn, when the caster has a buff, dispels all debuffs from the caster and resets skill cooldown of Anchor Shot."
+      },
+      "s3": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 1.0,
+        "power": 1.0,
+        "healthScaling": 0.25,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Attacks the enemy with an anchor, and grants morale to all allies for 2 turns. When the target is granted a barrier, penetrates the target's Defense by 70%. Damage dealt increases proportional to the caster's max Health. Damage dealt increases every time this skill is used, stacking up to 5 times.\nPreview uses the first cast without a target barrier; later-cast damage increases and conditional penetration are not applied automatically."
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/Haru",
+    "files": {
+      "pose": "pose.png",
+      "faceLarge": "face_l.png",
+      "faceSmall": "face_s.png",
+      "faceAlternate": "face_su.png"
+    }
+  },
+  "notes": "Release date not encoded in the extracted Journal row. Both base profiles and self imprint verified from game data. No build archetype assigned."
+}

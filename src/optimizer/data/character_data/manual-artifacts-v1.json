@@ -1,0 +1,75 @@
+{
+  "schemaId": "meowtoko.manual-artifact-source",
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-25T00:00:00Z",
+  "records": {
+    "Custom-Made Power Anchor": {
+      "name": "Custom-Made Power Anchor",
+      "code": "efw42",
+      "rarity": 5,
+      "role": "warrior",
+      "stats": {
+        "attack": 0,
+        "health": 76,
+        "defense": 5
+      },
+      "manual_source": {
+        "reviewedAt": "2026-09-25",
+        "gameVersion": "1.0.974",
+        "identity": "Installed game equip_item, dic_data (show=y), and English text tables.",
+        "baseStats": "Installed game equip_stat main_stat and main_stat2 rows, rarity 1."
+      }
+    },
+    "Land of Lingering Light": {
+      "name": "Land of Lingering Light",
+      "code": "ef511",
+      "rarity": 5,
+      "role": "",
+      "stats": {
+        "attack": 15,
+        "health": 54,
+        "defense": 0
+      },
+      "manual_source": {
+        "reviewedAt": "2026-09-25",
+        "gameVersion": "1.0.974",
+        "identity": "Installed game equip_item, dic_data (show=y), and English text tables.",
+        "baseStats": "Installed game equip_stat main_stat and main_stat2 rows, rarity 1."
+      }
+    },
+    "Light and Darkness": {
+      "name": "Light and Darkness",
+      "code": "efr34",
+      "rarity": 5,
+      "role": "ranger",
+      "stats": {
+        "attack": 9,
+        "health": 76,
+        "defense": 0
+      },
+      "manual_source": {
+        "reviewedAt": "2026-09-25",
+        "gameVersion": "1.0.974",
+        "identity": "Installed game equip_item, dic_data (show=y), and English text tables.",
+        "baseStats": "Installed game equip_stat main_stat and main_stat2 rows, rarity 1."
+      }
+    },
+    "Sorrow of the Rose": {
+      "name": "Sorrow of the Rose",
+      "code": "efr35",
+      "rarity": 5,
+      "role": "ranger",
+      "stats": {
+        "attack": 9,
+        "health": 76,
+        "defense": 0
+      },
+      "manual_source": {
+        "reviewedAt": "2026-09-25",
+        "gameVersion": "1.0.974",
+        "identity": "Installed game equip_item, dic_data (show=y), and English text tables.",
+        "baseStats": "Installed game equip_stat main_stat and main_stat2 rows, rarity 1."
+      }
+    }
+  }
+}

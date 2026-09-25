@@ -1,23 +1,23 @@
 {
   "schemaId": "e7hub.e7codex-character-assets",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T13:40:18Z",
+  "generatedAt": "2026-09-25T15:50:58Z",
   "source": {
     "site": "https://e7codex.com/",
     "assetBaseUrl": "https://e7codex.com/assets",
     "catalogPath": "src/optimizer/data/character_data/character-source-v1.json",
     "catalogSha256": "b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa",
     "manualHeroesPath": "src/optimizer/data/character_data/manual-heroes-v1.json",
-    "manualHeroesSha256": "9f72aac8a6efda731c1ec896bbd422e5e5f7e3b77ef7aaf2435bf2c92fa70352"
+    "manualHeroesSha256": "a305edb64a833bf7d66dd0c3394867fe08b2ecaa30833e0553588d4e351921a8"
   },
   "summary": {
-    "characters": 388,
-    "expectedFiles": 1552,
-    "availableFiles": 1540,
+    "characters": 390,
+    "expectedFiles": 1560,
+    "availableFiles": 1548,
     "missingFiles": 12,
     "errorFiles": 0,
-    "totalBytes": 108161806,
-    "sourceTotalBytes": 1933386357
+    "totalBytes": 108590916,
+    "sourceTotalBytes": 1943304359
   },
   "characters": [
     {
@@ -11596,6 +11596,79 @@
       }
     },
     {
+      "name": "Haru",
+      "code": "c1192",
+      "assetCode": "c1192",
+      "slug": "haru",
+      "folder": "Haru",
+      "files": {
+        "pose": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1192/pose.png",
+          "bytes": 259622,
+          "sha256": "005d1a63287f691f04edf551320535f9bfa9bc1416ab20fdeb4b9dcf2516ae39",
+          "width": 1421,
+          "height": 1600,
+          "path": "Haru/pose.webp",
+          "sourceFile": {
+            "path": "Haru/pose.png",
+            "bytes": 7566606,
+            "sha256": "d6a468140cc72351c4c8013358c2dac5db9e537fc2d7c1b7217442bef23868bf",
+            "width": 2770,
+            "height": 3120
+          }
+        },
+        "face_l": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1192/face_c1192_l.png",
+          "bytes": 7792,
+          "sha256": "6a7265a30ebd423ade72ef54efc60cca45135598c157ea21ab594d85ee54925f",
+          "width": 189,
+          "height": 89,
+          "path": "Haru/face_l.webp",
+          "sourceFile": {
+            "path": "Haru/face_l.png",
+            "bytes": 11031,
+            "sha256": "424f52d3ce5636874ecbe69caed861d1ea12ecf22d1c9054b32fc1631495405a",
+            "width": 189,
+            "height": 89
+          }
+        },
+        "face_s": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1192/face_c1192_s.png",
+          "bytes": 6382,
+          "sha256": "42b5a547f09a69f4b06ce9d9da42915348d90340587404d7d7c33c72da1f3d9e",
+          "width": 112,
+          "height": 112,
+          "path": "Haru/face_s.webp",
+          "sourceFile": {
+            "path": "Haru/face_s.png",
+            "bytes": 9716,
+            "sha256": "ccc9a66597dd4996dff09469576d06ba3e2ccdc6eceb5e3b850d44855d5f3889",
+            "width": 112,
+            "height": 112
+          }
+        },
+        "face_su": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1192/face_c1192_su.png",
+          "bytes": 21250,
+          "sha256": "2b9967b50de9092b585185a187cd3b876957e0b629def8561f195bc236aee254",
+          "width": 320,
+          "height": 206,
+          "path": "Haru/face_su.webp",
+          "sourceFile": {
+            "path": "Haru/face_su.png",
+            "bytes": 24075,
+            "sha256": "641b36c86361d266940d95e2de1b7556405ecc410de658bb48794f22630f39ea",
+            "width": 320,
+            "height": 206
+          }
+        }
+      }
+    },
+    {
       "name": "Hasol",
       "code": "c3135",
       "assetCode": "c3135",
@@ -20251,6 +20324,79 @@
       }
     },
     {
+      "name": "Renoa",
+      "code": "c1193",
+      "assetCode": "c1193",
+      "slug": "renoa",
+      "folder": "Renoa",
+      "files": {
+        "pose": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/pose.png",
+          "bytes": 108094,
+          "sha256": "305d76190b5ec8a71ec806b9751a4e4717590ffa949d8f9627654e7bdbbca634",
+          "width": 583,
+          "height": 1600,
+          "path": "Renoa/pose.webp",
+          "sourceFile": {
+            "path": "Renoa/pose.png",
+            "bytes": 2265638,
+            "sha256": "df30b089de9363a2573025dfe4d7e483b6f6c04e5b0a32bb344c1053e3fb2cae",
+            "width": 1137,
+            "height": 3120
+          }
+        },
+        "face_l": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/face_c1193_l.png",
+          "bytes": 6702,
+          "sha256": "80ff402f9b0c489dba8f1e28144824dc006f542eb9cbc02054abde65353f166d",
+          "width": 177,
+          "height": 89,
+          "path": "Renoa/face_l.webp",
+          "sourceFile": {
+            "path": "Renoa/face_l.png",
+            "bytes": 10879,
+            "sha256": "1918a1fa9dd4209517e7f3519766cb465249f6a48a54342fab81ac32b2baee3e",
+            "width": 177,
+            "height": 89
+          }
+        },
+        "face_s": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/face_c1193_s.png",
+          "bytes": 6146,
+          "sha256": "31a1ccdc2cd90d0ba62eadc17c8ad34e151bc997e5cb404a8fabf91fb2b75bbb",
+          "width": 112,
+          "height": 112,
+          "path": "Renoa/face_s.webp",
+          "sourceFile": {
+            "path": "Renoa/face_s.png",
+            "bytes": 9847,
+            "sha256": "3004271e646f0f034b228cddb47b982b1ec36ec806675e2b51baa86092d5b88b",
+            "width": 112,
+            "height": 112
+          }
+        },
+        "face_su": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1193_1/face_c1193_su.png",
+          "bytes": 13122,
+          "sha256": "65059afdee5ef30abab51b3cb95d57ce87bdc77e1af047b218d6af6f99fbcd4a",
+          "width": 253,
+          "height": 206,
+          "path": "Renoa/face_su.webp",
+          "sourceFile": {
+            "path": "Renoa/face_su.png",
+            "bytes": 20210,
+            "sha256": "da8baa206a0557a0a5822e912813e028d341cb316dff93b1b58e3f738bbd9479",
+            "width": 253,
+            "height": 206
+          }
+        }
+      }
+    },
+    {
       "name": "Requiem Roana",
       "code": "c2102",
       "assetCode": "c2102",
@@ -28254,6 +28400,6 @@
     "quality": 90,
     "method": 6,
     "poseMaxDimension": 1600,
-    "sourceManifestSha256": "d82fcb032ea82d72ac6492b95f6e0cd586920d6bf6c6325c1ba98e5ad77bd398"
+    "sourceManifestSha256": "8a3929ed3ba7042f66454785f2209c17c1d3137a230138ca58d2d95a99980112"
   }
 }

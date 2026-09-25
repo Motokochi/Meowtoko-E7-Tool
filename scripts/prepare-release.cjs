@@ -37,43 +37,21 @@ function prepareRelease({ root, version, title, date, dryRun = false }) {
 
   const packagePath = path.join(root, 'desktop', 'package.json');
   const changelogPath = path.join(root, 'CHANGELOG.md');
-  const notesPath = path.join(root, 'docs', 'releases', `v${version}.md`);
-  assert.ok(!fs.existsSync(notesPath), `Release notes already exist: ${notesPath}`);
+  const changelog = fs.readFileSync(changelogPath, 'utf8');
+  assert.match(changelog, /^# Changelog\r?\n\r?\n/, 'CHANGELOG.md must start with its title and a blank line.');
+  assert.ok(!changelog.includes(`## [${version}]`), `Changelog already contains ${version}.`);
 
   if (dryRun) {
-    return { current, notesPath, version };
+    return { current, changelogPath, version };
   }
 
   const metadata = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
   metadata.version = version;
   fs.writeFileSync(packagePath, `${JSON.stringify(metadata, null, 2)}\n`, 'utf8');
 
-  const changelog = fs.readFileSync(changelogPath, 'utf8');
   const section = `## [${version}] - ${date}\n\n- ${title.trim()}.\n\n`;
   fs.writeFileSync(changelogPath, changelog.replace(/^# Changelog\r?\n\r?\n/, `# Changelog\n\n${section}`), 'utf8');
-
-  const notes = [
-    `# Meowtoko E7 Tool ${version}`,
-    '',
-    title.trim(),
-    '',
-    '## Highlights',
-    '',
-    '- Replace this line with user-facing changes before tagging.',
-    '',
-    '## Install',
-    '',
-    `Download \`Meowtoko-E7-Tool-${version}-Setup.exe\` from this release. Close Meowtoko E7 Tool,`,
-    'run the installer, and accept the expected unsigned-publisher warning only',
-    'when your own Windows or organization policy allows it.',
-    '',
-    '## Integrity',
-    '',
-    'Verify downloaded files against `SHA256SUMS.txt` attached to this release.',
-    '',
-  ].join('\n');
-  fs.writeFileSync(notesPath, notes, { encoding: 'utf8', flag: 'wx' });
-  return { current, notesPath, version };
+  return { current, changelogPath, version };
 }
 
 if (require.main === module) {

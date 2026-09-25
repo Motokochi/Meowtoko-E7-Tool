@@ -9,7 +9,7 @@ from typing import Any
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIRECTORY = REPOSITORY_ROOT / "tests" / "fixtures" / "fribbels"
 MANIFEST_PATH = FIXTURE_DIRECTORY / "manifest.json"
-CONTRACT_PATH = REPOSITORY_ROOT / "src" / "optimizer" / "data" / "FRIBBELS_GEAR_TXT.md"
+CONTRACT_PATH = REPOSITORY_ROOT / "docs" / "DEVELOPMENT.md"
 SOURCE_REVISION = "f49b0676c27d893ae4aa1b69920e4c98f37eb3fb"
 UTF8_BOM = b"\xef\xbb\xbf"
 
@@ -226,7 +226,8 @@ class FribbelsGearTxtFixtureContractTests(unittest.TestCase):
     def test_documentation_pins_provenance_and_contract_boundaries(self) -> None:
         contract = CONTRACT_PATH.read_text(encoding="utf-8")
 
-        self.assertIn(SOURCE_REVISION, contract)
+        attribution = (REPOSITORY_ROOT / "docs" / "legal" / "ATTRIBUTION.txt").read_text(encoding="utf-8")
+        self.assertIn(SOURCE_REVISION, attribution)
         for source_name in (
             "scanner.js",
             "importer.js",
@@ -239,14 +240,13 @@ class FribbelsGearTxtFixtureContractTests(unittest.TestCase):
             "ItemsRequestHandler.java",
             "saves.js",
         ):
-            self.assertIn(source_name, contract)
+            self.assertIn(source_name, attribution)
         for boundary in (
             "UTF-8 with the byte sequence `EF BB BF`",
             "`items` is required",
             "`heroes` is optional",
             "raw `l` is **not** interpreted",
             "Unknown root, item, stat, and hero keys",
-            "P01-T02",
         ):
             self.assertIn(boundary, contract)
 

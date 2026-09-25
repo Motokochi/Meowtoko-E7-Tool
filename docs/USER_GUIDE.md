@@ -4,6 +4,16 @@ Meowtoko E7 Tool is a free, unofficial Windows desktop companion for Epic Seven.
 use starts from the **Meowtoko E7 Tool** icon—there is no PowerShell window, system
 Python setup, or separately launched backend.
 
+- [Install and start](#1-install-and-start)
+- [Import owned gear](#2-import-owned-gear)
+- [Configure a build](#4-select-a-hero-and-fixed-configuration)
+- [Search and results](#6-run-the-local-search)
+- [Enhancement](#8-enhance-gear)
+- [GPU setup](#9-cpu-and-optional-gpu-setup)
+- [Troubleshooting](#10-troubleshooting)
+- [Updates and reinstalling](#updates-and-reinstalling)
+- [Data recovery](#data-recovery)
+
 ## 1. Install and start
 
 1. Open the project's
@@ -16,7 +26,7 @@ Python setup, or separately launched backend.
    Windows Application Control.
 3. Open **Meowtoko E7 Tool** from its desktop or Start menu shortcut.
 4. Open **Health Center**. The packaged local backend should be ready. Optional
-   packet capture, Ollama, Tesseract, ADB, and GPU capabilities are reported
+   ADB, GPU, and other tool capabilities are reported
    separately, so a missing optional tool does not disable CPU optimization,
    manual Analyzer input, or unrelated pages.
 
@@ -24,73 +34,45 @@ Updates, uninstall/reinstall, and ordinary repair preserve app-owned data under
 the compatibility path `%APPDATA%\E7 Hub`. This preserves data from E7 Hub
 installations. Do not delete that whole folder as routine troubleshooting:
 it contains settings, imported inventory, hero profiles, results, and any
-optional GPU component. See the focused
-[`RECOVERY.md`](RECOVERY.md) instructions before restoring data.
+optional GPU component. See [Data recovery](#data-recovery) before restoring data.
 
-### ADB handles screenshots and taps; Npcap handles game data
+### Configure ADB
 
-Every in-app game screenshot is captured through Android Debug Bridge (ADB).
-This includes Analyzer auto-detect, every Settings coordinate preview, and
-Enhancement automation. Enhancement taps also use ADB; Meowtoko E7 Tool never captures
-or clicks a visible Windows game window. Use **Browse for adb.exe** in Settings
-and, when more than one device is connected, configure its serial. Confirm
-that **ADB automation** is ready in **Health Center** before using these
-features. Manual Analyzer input and CPU/GPU optimization do not require ADB.
-
-Live inventory import and exact Enhancer stat reads require **Game packet
-capture** to be ready in Health Center. On Windows this uses the bundled Scapy
-runtime with a separately installed Npcap driver. Meowtoko E7 Tool opens the official
-Npcap download page; it does not redistribute or silently install Npcap.
-Restart Meowtoko E7 Tool after installing it.
+Use **Browse for adb.exe** in Settings and, when more than one device is
+connected, configure its serial. Confirm that **ADB automation** is ready in
+**Health Center** before using previews or enhancement taps. Manual Analyzer
+input and CPU/GPU optimization do not require ADB.
 
 ### Compact Analyzer workflow
 
-The Analyzer keeps the complete single-piece workflow in one compact
-workspace. Gear identity and the four substats are entered in the left panel;
-the latest Gear Score and archetype matches remain visible on the right.
-**Auto-detect gear** fills the same fields from the configured ADB device.
-The full Gear Score explanation remains available under **Calculation
-details**, and OCR evidence remains available through **Debug** after a
-successful automatic capture. Narrow windows stack the result cards below the
-inputs without horizontal scrolling.
+Enter gear identity and the four substats in the left panel. The latest Gear
+Score and archetype matches remain visible on the right. The scoring explanation
+is available under **Calculation details**. Narrow windows stack the result
+cards below the inputs without horizontal scrolling.
+
+![Analyzer workspace](../assets/readme/analyzer.png)
 
 ## 2. Import owned gear
 
-Choose either import path:
+Open **Importer** and choose **Select gear.txt** (or **Import another
+gear.txt** after an import), then choose your inventory file in the native
+Windows file picker. The app reads a file only after you select it.
 
-- **Capture from game:** make sure Game packet capture is ready, choose
-  **Start capturing from game**, fully exit Epic Seven (do not only minimize
-  it), reopen it to the main screen, and wait until it fully loads. Choose
-  **Done Capturing** to send bounded opaque game-response candidates over HTTPS
-  to Meowtoko E7 Tool's stateless AWS service. The service identifies and normalizes the
-  account snapshot, then Meowtoko E7 Tool saves it as
-  `Documents\MeowtokoE7Hub\gear.txt` and imports it. The AWS service does not
-  store the capture.
-  Recognized gear is imported at every enhancement level; heroes are included
-  only when their current grade is 5★ or 6★.
-- **Fribbels file:** choose **Select gear.txt** (or **Import another gear.txt**
-  after an import), then choose Fribbels' `gear.txt` in the native Windows file
-  picker. Meowtoko E7 Tool neither searches for nor reads a file until you choose it.
-
-Review **Import outcome** after either path. Valid rows are committed even when
-other rows produce warnings, rejections, or stable-identity conflicts. A
-structurally invalid document is rejected before an inventory database is
-created.
+Review **Import outcome**. Valid rows are committed even when other rows produce
+warnings, rejections, or stable-identity conflicts. A structurally invalid
+document is rejected before an inventory database is created.
 
 The reader accepts strict JSON in UTF-8 with or without a UTF-8 BOM. It
-supports the Fribbels scanner form, items-only form, and enriched records used
-by the pinned offline format. Unknown or inconsistent row data is reported
+supports items-and-heroes, items-only, and enriched records. Unknown or inconsistent row data is reported
 instead of silently guessed.
 
 Re-import is a stable merge: matching gear is updated, new gear is added,
 previously imported gear that is absent from the new source is retained, and
 Meowtoko E7 Tool-owned metadata is preserved. Equipped/locked state is retained when
 the source supplies it. A lock is metadata—not an optimizer exclusion.
-Reports and history do not retain the source path, raw `gear.txt` contents, or
-raw packet traffic; the normalized inventory stays local. Live packet import
-transmits only bounded response candidates from the two supported game ports
-to the stateless service. Importing gear below `+15` lets Enhancer resolve a piece's set by exact
-item ID, while Optimizer continues to search only `+15` gear.
+Reports and history do not retain the source path or raw `gear.txt` contents;
+the normalized inventory stays local. Importing gear below `+15` lets Enhancer
+resolve a piece by exact item ID, while Optimizer searches only `+15` gear.
 
 ## 3. Browse +15 gear
 
@@ -103,7 +85,7 @@ required substats, level, lock state, and minimum score.
 Select any row to inspect the complete current item card. The three sortable
 scores always use the piece's reforged projection:
 
-- **RGS** is Fribbels Gear Score across every substat.
+- **RGS** is Gear Score across every substat.
 - **CGS** excludes Effectiveness and Effect Resistance.
 - **SGS** counts Health, Defense, Effect Resistance, and Speed.
 
@@ -150,9 +132,9 @@ offending field; an invalid or newer profile file is not overwritten.
 For each of the eight primary stats, enter an inclusive minimum, maximum, both,
 or neither. Blank means **do not care about that boundary**; `0` is a real
 value. Set each priority from `-1` through `3`: `3` favors more most strongly,
-`0` is neutral, and `-1` makes more of that stat rank lower. `Prio` uses the
-Fribbels item-scoring model: each piece includes its main stat, is independently
-rounded to a whole number, and the six whole-number scores are added. All 15
+`0` is neutral, and `-1` makes more of that stat rank lower. `Prio` scores each
+piece including its main stat, rounds it independently to a whole number, and
+adds the six whole-number scores. All 15
 derived metrics have independent inclusive min/max
 filters and can also be filtered/sorted in results; they do not have priority
 sliders. Every definition is in the [metric reference](METRICS.md).
@@ -196,6 +178,8 @@ can contain any set, and stats are calculated from the sets that each candidate
 actually completes. Primary and derived stat boundaries are hard requirements;
 leaving a boundary blank is the only way to make it unrestricted.
 
+![Optimizer workspace](../assets/readme/optimizer.png)
+
 ## 6. Run the local search
 
 Choose **Start search**. The current desktop request uses **Auto** execution:
@@ -230,8 +214,8 @@ count, and page size to form an active view. Ordering is stable. Tightening
 filters can reuse the completed run. Pages contain at most 1,000 rows and
 detail loads only the selected visible row.
 
-The selected-build cards include **Equip** beside **Close cards**. Like
-Fribbels, this action changes equipment ownership only inside Meowtoko E7 Tool: it
+The selected-build cards include **Equip** beside **Close cards**. This action
+changes equipment ownership only inside Meowtoko E7 Tool: it
 reassigns the six selected pieces to the imported instance of the selected
 hero and releases that hero's previous local build. It does not tap or change
 Epic Seven. If the import contains multiple copies of that hero, choose the
@@ -252,23 +236,15 @@ publishes a partial final file.
 
 ## 8. Enhance gear
 
-Import a fresh `gear.txt`, prepare a piece below `+15` on Epic Seven's
-enhancement screen, and confirm both **Game packet capture** and **ADB
-automation** are ready. Enhancer performs taps through ADB while Meowtoko E7 Tool's
-stateless AWS service privately identifies and normalizes the matching game
-response. Captured responses are not stored there. The item ID must exist in imported inventory so Meowtoko E7 Tool can obtain the
-piece's previous enhancement level, rarity, and set. Missing or inconsistent
-metadata stops the run; the Enhancer does not use OCR or AI as a fallback.
+Import a fresh `gear.txt`, prepare a piece below `+15` on the enhancement
+screen, and confirm readiness in **Health Center**. The item must exist in your
+imported inventory with a consistent enhancement level, rarity, and set.
+Missing or inconsistent metadata stops the run.
 
-Enhancer spends one basic powder on each newly opened piece to obtain its exact
-item ID and packet history. It then raises the piece to its next `+3`
-checkpoint. If that one-powder identification already crossed a checkpoint,
-Meowtoko E7 Tool uses the resulting roll and does not click the same target again. At
-each of `+3`, `+6`, `+9`, `+12`, and `+15`, the newest `op` entry is counted as
-that checkpoint's event. Earlier events are reconstructed from the same packet
-using the imported rarity and previous enhancement level. Original substats
-never enter the five-event count, so Heroic and other non-Epic starting layouts
-are handled without pretending their initial substats were enhancement events.
+Enhancer spends one basic powder on each newly opened piece, then raises it
+toward the next `+3` checkpoint. If the first powder already crosses a checkpoint,
+it does not repeat that upgrade. Only enhancement rolls count toward the five
+events; original substats do not.
 
 There are two ways for a piece to survive:
 
@@ -276,15 +252,16 @@ There are two ways for a piece to survive:
 - At least four of the five enhancement rolls land on Speed.
 
 The second rule applies to every piece, including one that misses the GS path.
-Enhancer stops spending as soon as neither outcome can still be reached. If a
-checkpoint packet does not arrive within two seconds, it continues waiting
-without repeating the enhancement clicks or reading approximate screen values.
+Enhancer stops spending as soon as neither outcome can still be reached. It
+waits for a confirmed checkpoint before continuing.
 
 **Allow destroy clicks** is off on first use. Its checkbox persists after you
 change it and becomes off again only when you manually untick it. Starting a
 run with destruction enabled still shows the destructive confirmation. With
 destruction disabled, a rejected piece stops the run without tapping destroy.
 Safe stop is checked before every automation action.
+
+![Enhancer workspace](../assets/readme/enhancer.png)
 
 ## 9. CPU and optional GPU setup
 
@@ -300,32 +277,19 @@ Installation can be cancelled. A failed/cancelled install leaves CPU available.
 If an installed component cannot pass readiness, use **Repair GPU components**.
 Meowtoko E7 Tool does not modify the display driver. An RTX/NVIDIA name alone is not a
 readiness guarantee: the pinned component must load, query a device, and pass
-the bounded allocation probe.
+the bounded allocation probe. Close and reopen the app after repairing a loaded
+GPU component before checking its final status.
 
 ## 10. Troubleshooting
 
 - **Backend or Health Center unavailable:** close and reopen Meowtoko E7 Tool. If it
   persists, use the recovery guide; do not start old Python/Tk scripts.
-- **Ollama unavailable:** automatic Analyzer interpretation is isolated; manual
-  evaluation and the optimizer remain available. Install/start Ollama from
-  Health Center and refresh.
-- **Tesseract unavailable:** manual Analyzer input remains available. Install a
-  trusted Windows build, configure it in Settings if needed, then refresh.
-- **ADB capture or automation unavailable:** use **Browse for adb.exe** under
-  Settings > Android connection, then save and refresh Health Center. Analyzer
-  auto-detect, coordinate previews, and enhancement automation require a ready configured ADB device.
-  Manual Analyzer input and optimization remain available. Never continue
-  destructive taps when the ADB preview is wrong.
-- **Game packet capture unavailable:** install Npcap from the official page
-  opened by Health Center, restart Meowtoko E7 Tool, then refresh health.
-- **Live import has no account packet:** fully reopen Epic Seven to the main
-  screen, then choose **Start capturing from game** and retry.
-- **Enhancer cannot confirm a checkpoint:** leave the game on the enhancement
-  screen and verify packet capture. The app retries the same enhancement target
-  and stops safely instead of falling back to approximate stat OCR.
-- **File import rejected:** confirm you selected Fribbels `gear.txt`, not an export
-  from another tool, and review row-specific warnings/rejections. Re-import is
-  safe and does not delete unseen existing gear.
+- **ADB automation unavailable:** use **Browse for adb.exe** under Settings >
+  Android connection, then save and refresh Health Center. Check the preview
+  before starting enhancement automation. Manual Analyzer input and optimization
+  remain available.
+- **File import rejected:** select a supported `gear.txt` and review row-specific
+  warnings or rejections. Re-import does not delete unseen existing gear.
 - **Profile cannot save/search cannot start:** correct the field-level message;
   make sure each slot has eligible gear after equipped, enhancement, main-stat,
   and projection filters.
@@ -340,8 +304,49 @@ the bounded allocation probe.
   official release you intended to install. If Windows policy blocks the app,
   respect that policy—do not disable or bypass Application Control.
 - **After reinstall:** data should still be present because uninstall preserves
-  `%APPDATA%\E7 Hub`. Follow `RECOVERY.md` if a validated backup is needed.
+  `%APPDATA%\E7 Hub`. Follow [Data recovery](#data-recovery) if a validated backup is needed.
 
-For source identity, legal context, and third-party terms, see
-[Attribution](legal/ATTRIBUTION.md). For installer-specific details, see
-[`INSTALLING.md`](INSTALLING.md).
+For third-party credits and terms, see
+[Attribution](legal/ATTRIBUTION.txt).
+
+## Updates and reinstalling
+
+The installed app checks public release metadata at startup and periodically.
+When an update is available, it shows the version, release notes, and download
+size. Nothing downloads until you choose **Download and restart**. Save your work
+first: accepting the update stops active searches, exports, and enhancement jobs.
+**Later** dismisses that release; manual checks remain available in Settings.
+Offline operation or a failed update check does not disable the installed app.
+
+Uninstall through Windows **Installed apps**. Uninstall removes the application
+and shortcuts while preserving `%APPDATA%\E7 Hub` for reinstall. The same location
+holds optional GPU components and their cache. Delete it only when you explicitly
+want to reset all application data. Reinstalling from the official release does
+not require a separate Python or Node.js setup.
+
+## Data recovery
+
+Exit Meowtoko E7 Tool and confirm `e7-core.exe` has stopped before restoring files.
+Copy the entire `%APPDATA%\E7 Hub` directory to a separate backup first. Keep the
+original backup and restore only the affected component; never copy or replace a
+running SQLite database.
+
+| Data | Location | Recovery |
+|---|---|---|
+| Settings | `settings.json` | Preserve the damaged file under another name, copy the validated `settings.json.bak` to `settings.json`, and restart. |
+| Inventory | `optimizer.db` | Preserve the failed database, copy the integrity-checked `optimizer.db.backup-*` created for that migration into place, and restart. |
+| Hero profiles | `optimizer_profiles` | Restore only the affected profile from a known-good backup. Ambiguous or newer profiles remain read-only. |
+| Results | `optimizer_results\runs` | Preserve completed runs. The app validates them and retains corrupt runs for diagnosis; do not delete unknown folders. |
+| GPU component | `components` | Use **Repair GPU components** in Health Center instead of deleting the app-data directory. |
+
+Settings are upgraded in memory and saved explicitly. Before replacing a valid
+settings file, the app preserves its previous bytes as `.bak`; damaged settings
+can also be preserved as `.corrupt`. Inventory migrations create a separate
+SQLite backup and commit all changes together. Restarting after a restore
+validates and migrates the database again with a new backup. Compare inventory
+totals before importing anything else.
+
+An inventory or profile from a newer app must be opened with the matching or a
+newer release. Do not force schema-version numbers or delete every profile to
+repair one. Result sort caches are regenerable, but unknown files and completed
+results should be preserved. A cancelled GPU repair leaves CPU mode available.

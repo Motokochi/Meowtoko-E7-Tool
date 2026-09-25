@@ -27,7 +27,6 @@ test('permanent desktop visuals resolve from the repository asset root', () => {
     'characters/asset-manifest.json',
     'characters/raw-source-manifest.json',
     'characters/index.csv',
-    'characters/README.md',
   ]) {
     assert.ok(
       statSync(path.join(repositoryAssets, ...relative.split('/'))).isFile(),

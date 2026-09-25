@@ -260,11 +260,11 @@ class CharacterSnapshotTests(unittest.TestCase):
         readme = (root / "README.md").read_text(encoding="utf-8")
         guide = (root / "docs" / "USER_GUIDE.md").read_text(encoding="utf-8")
         metrics = (root / "docs" / "METRICS.md").read_text(encoding="utf-8")
-        attribution = (root / "docs" / "legal" / "ATTRIBUTION.md").read_text(encoding="utf-8")
-        notices = (root / "docs" / "legal" / "THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8")
+        attribution = (root / "docs" / "legal" / "ATTRIBUTION.txt").read_text(encoding="utf-8")
+        notices = (root / "docs" / "legal" / "THIRD_PARTY_NOTICES.txt").read_text(encoding="utf-8")
         runtime_export = (root / "scripts" / "export_runtime_metadata.py").read_text(encoding="utf-8")
         self.assertIn("docs/USER_GUIDE.md", readme)
-        self.assertIn('ROOT / "docs" / "legal" / "THIRD_PARTY_NOTICES.md"', runtime_export)
+        self.assertIn('ROOT / "docs" / "legal" / "THIRD_PARTY_NOTICES.txt"', runtime_export)
         self.assertIn('destination / "THIRD_PARTY_NOTICES.md"', runtime_export)
         for label in (
             "Select gear.txt", "Include equipped", "4+2", "2+2+2", "Export full view",

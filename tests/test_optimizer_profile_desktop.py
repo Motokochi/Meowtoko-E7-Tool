@@ -119,8 +119,8 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
     def test_bounded_catalog_projection_exposes_every_choice_without_raw_records(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             service = self._service(Path(directory))
-            self.assertEqual(388, len(service.characters.heroes))
-            self.assertEqual(283, len(service.artifacts.artifacts))
+            self.assertEqual(390, len(service.characters.heroes))
+            self.assertEqual(287, len(service.artifacts.artifacts))
             self.assertEqual(50, len(service.search_heroes("", 50)["results"]))
             self.assertEqual(50, len(service.search_artifacts("", 50)["results"]))
             for hero in service.characters.heroes:
@@ -148,6 +148,8 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
                 "Tidal Rift Elvira",
                 "Lisette",
                 "Uncharted Pioneer Politis",
+                "Haru",
+                "Renoa",
             ):
                 hero_id = service.search_heroes(name, 1)["results"][0]["heroId"]
                 details = service.get_hero_details(hero_id)
@@ -189,6 +191,19 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
             self.assertEqual(draft, reopened["draft"])
             payload = json.loads(service._profile_path(hero_id).read_text(encoding="utf-8"))
             self.assertEqual(service.catalog.catalog_id, payload["characterCatalogId"])
+
+    def test_new_hero_and_manual_artifact_drafts_survive_restart(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            user_data = Path(directory)
+            service = self._service(user_data)
+            for name, artifact_name in (("Haru", "Custom-Made Power Anchor"), ("Renoa", "Sorrow of the Rose")):
+                with self.subTest(hero=name):
+                    hero_id = service.search_heroes(name, 1)["results"][0]["heroId"]
+                    artifact = service.search_artifacts(artifact_name, 1)["results"][0]
+                    draft = service.load_draft(hero_id)["draft"]
+                    draft["artifact"].update(artifactId=artifact["artifactId"], level=30)
+                    self.assertEqual("saved", service.save_draft(draft)["state"])
+                    self.assertEqual(draft, self._service(user_data).load_draft(hero_id)["draft"])
 
     def test_view_and_default_load_do_not_create_storage(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

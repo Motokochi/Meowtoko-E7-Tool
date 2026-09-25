@@ -10,10 +10,12 @@ const SKIPPED_DIRECTORIES = new Set([
   '.pytest_cache',
   '.test-dist',
   '.webpack',
+  'benchmarks',
   'build',
   'dist',
   'node_modules',
   'out',
+  'phases',
   'releases',
   'user_data',
 ]);
@@ -89,7 +91,7 @@ function validateDocumentation(root) {
 
 function validatePublicGuide(root) {
   const failures = [];
-  const guideFiles = ['README.md', 'docs/INSTALLING.md', 'docs/USER_GUIDE.md'];
+  const guideFiles = ['README.md', 'docs/USER_GUIDE.md'];
   const sources = new Map();
   for (const relative of guideFiles) {
     const absolute = path.join(root, relative.replaceAll('/', path.sep));
