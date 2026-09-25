@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.49] - 2026-09-25
+
+- Add Haru and Renoa with awakened level 50/60 stats, self imprints, skill
+  preview data, and character artwork.
+- Add Custom-Made Power Anchor, Land of Lingering Light, Light and Darkness,
+  and Sorrow of the Rose to the artifact catalog.
+- Consolidate project documentation into five public guides and references.
+
 ## [0.1.48] - 2026-09-10
 
 - Fix local Equip failing when the imported roster contains multiple copies
