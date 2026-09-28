@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.50] - 2026-09-28
+
+- Add It's Senya's for Young Senya (Health 7-14%), Wake of Courage for Argent
+  Waves Hwayoung (Attack 7-14%), Solar Blessing for Desert Jewel Basar
+  (Effect Resistance 8-16%), and Trace of Dawn for Monarch of the Sword Iseria
+  (Attack 7-14%).
+- Support the correct single skill option for Solar Blessing and Trace of Dawn,
+  alongside the three options for It's Senya's and Wake of Courage.
+- Show names and skill descriptions for the new equipment, and preserve their
+  selected rolls and skill options in saved profiles. Stat bonuses apply to
+  optimizer calculations; skill descriptions are informational.
+
 ## [0.1.49] - 2026-09-25
 
 - Add Haru and Renoa with awakened level 50/60 stats, self imprints, skill
