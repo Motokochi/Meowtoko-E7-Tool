@@ -102,12 +102,14 @@ export const HERO_DETAILS: OptimizerHeroDetails = {
   ],
   exclusiveEquipment: {
     equipmentId: 'exclusive-equipment.fribbels.achates.0.proof',
+    name: null,
     statType: 'hero_modifier.health_percent',
     rolls: [7, 8, 9, 10, 11, 12, 13, 14],
     skillOptions: [1, 2, 3].map((ordinal) => ({
       optionId: `exclusive-equipment.fribbels.achates.0.proof.skill-option.${ordinal}`,
       label: `Skill slot ${ordinal}`,
       effectDataState: 'unavailable-in-snapshot' as const,
+      description: null,
     })),
   },
   customBonusFields,

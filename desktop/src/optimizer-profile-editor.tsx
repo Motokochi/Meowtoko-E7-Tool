@@ -192,6 +192,9 @@ export function OptimizerBonusConfiguration({
   onChooseArtifact,
   onUpdate,
 }: BonusConfigurationProps): React.JSX.Element {
+  const selectedEeSkill = details.exclusiveEquipment?.skillOptions.find(
+    (option) => option.optionId === draft.exclusiveEquipment.skillOptionId,
+  );
   const updateSkill = (index: number, next: OptimizerSkillDraft): void => {
     const skills = draft.skills.map((skill, skillIndex) => skillIndex === index ? next : skill);
     onUpdate({ ...draft, skills });
@@ -317,7 +320,9 @@ export function OptimizerBonusConfiguration({
                 >
                   <option value="">No exclusive equipment</option>
                   <option value={details.exclusiveEquipment.equipmentId}>
-                    {statLabel(details.exclusiveEquipment.statType)}
+                    {details.exclusiveEquipment.name
+                      ? `${details.exclusiveEquipment.name} · ${statLabel(details.exclusiveEquipment.statType)}`
+                      : statLabel(details.exclusiveEquipment.statType)}
                   </option>
                 </select>
               </div>
@@ -345,6 +350,7 @@ export function OptimizerBonusConfiguration({
                     <label htmlFor="optimizer-ee-skill">Independent EE skill slot</label>
                     <select
                       id="optimizer-ee-skill"
+                      aria-describedby={selectedEeSkill?.description ? 'optimizer-ee-skill-description' : undefined}
                       onChange={(event) => onUpdate({
                         ...draft,
                         exclusiveEquipment: {
@@ -357,10 +363,15 @@ export function OptimizerBonusConfiguration({
                       <option value="">No EE skill slot</option>
                       {details.exclusiveEquipment.skillOptions.map((option) => (
                         <option key={option.optionId} value={option.optionId}>
-                          {option.label} · effect unavailable
+                          {option.label}{option.description === null ? ' · effect unavailable' : ''}
                         </option>
                       ))}
                     </select>
+                    {selectedEeSkill?.description && (
+                      <p className="field-description" id="optimizer-ee-skill-description">
+                        {selectedEeSkill.description} Skill effects are not applied to the stat preview.
+                      </p>
+                    )}
                   </div>
                 </>
               )}

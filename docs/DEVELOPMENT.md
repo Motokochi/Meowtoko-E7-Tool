@@ -109,6 +109,8 @@ Reviewed additions belong in `manual-heroes-v1.json` and `manual-artifacts-v1.js
 under [`character_data`](../src/optimizer/data/character_data). Artifact records
 include code, name, rarity, class restriction, and level-zero Attack/Health/Defense.
 Keep runtime metadata, package hashes, and catalog tests aligned with both overlays.
+Exclusive equipment updates use the `exclusiveEquipment` section in
+`manual-heroes-v1.json`, keyed by character code, with stats and skill descriptions.
 
 Each character folder uses `pose.webp`, `face_l.webp`, `face_s.webp`, and
 `face_su.webp`. Validate image dimensions and transparency; the packaging pipeline

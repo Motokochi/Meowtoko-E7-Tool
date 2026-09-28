@@ -25,6 +25,7 @@ from src.optimizer.data.schema_common import (
     FrozenJsonObject,
     freeze_json_object,
     required_text,
+    thaw_json,
 )
 from src.optimizer.data.schemas import CharacterCatalogDocument
 from src.optimizer.domain import HeroBaseProfile, HeroDefinition
@@ -437,6 +438,7 @@ class CharacterRepository:
         source_snapshot: CharacterSourceSnapshotDocument,
         *,
         manual_heroes: Mapping[str, object] | None = None,
+        exclusive_equipment: Mapping[str, object] | None = None,
         usable_asset_reference: Callable[[str], bool] | None = None,
     ) -> None:
         if not isinstance(catalog, CharacterCatalogDocument):
@@ -513,7 +515,15 @@ class CharacterRepository:
 
         hero_id_index: dict[str, CharacterHeroRecord] = {}
         alias_claims: dict[str, set[str]] = defaultdict(set)
+        equipment_updates = dict(exclusive_equipment or {})
         for record in records:
+            if record.source_code in equipment_updates:
+                raw_source = thaw_json(record.raw_source)
+                raw_source["ex_equip"] = equipment_updates.pop(record.source_code)
+                record = _hero_record(
+                    record.definition, record.source_key,
+                    freeze_json_object(raw_source), usable_asset_reference,
+                )
             folded_id = record.hero_id.casefold()
             if folded_id in hero_id_index:
                 raise CharacterRepositoryError(
@@ -522,6 +532,12 @@ class CharacterRepository:
             hero_id_index[folded_id] = record
             for alias in record.aliases:
                 alias_claims[alias.normalized].add(record.hero_id)
+        if equipment_updates:
+            raise CharacterRepositoryError(
+                "unknown-ee-hero", "exclusiveEquipment",
+                f"Unknown character codes: {', '.join(sorted(equipment_updates))}.",
+            )
+        records = list(hero_id_index.values())
         collisions = sorted(
             (alias, tuple(sorted(ids))) for alias, ids in alias_claims.items() if len(ids) > 1
         )
@@ -556,6 +572,7 @@ class CharacterRepository:
             load_bundled_character_catalog(),
             load_bundled_character_source_snapshot(),
             manual_heroes=manual_document["records"],
+            exclusive_equipment=manual_document.get("exclusiveEquipment"),
             usable_asset_reference=usable_asset_reference,
         )
 

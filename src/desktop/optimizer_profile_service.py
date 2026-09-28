@@ -312,12 +312,14 @@ class OptimizerProfileService:
             ],
             "exclusiveEquipment": None if equipment is None else {
                 "equipmentId": equipment.equipment_id,
+                "name": equipment.name,
                 "statType": equipment.base_contribution.stat_type.value,
                 "rolls": list(equipment.roll_display_values),
                 "skillOptions": [
                     {
                         "optionId": option.option_id,
-                        "label": f"Skill slot {option.ordinal}",
+                        "label": f"Skill slot {option.ordinal}" if option.skill is None else f"Skill {option.skill} · Option {option.ordinal}",
+                        "description": option.description,
                         "effectDataState": option.effect_data_state.value,
                     }
                     for option in equipment.skill_options

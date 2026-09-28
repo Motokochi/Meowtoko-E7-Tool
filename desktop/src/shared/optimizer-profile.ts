@@ -133,12 +133,14 @@ export interface OptimizerImprintOption {
 
 export interface OptimizerExclusiveEquipmentOption {
   equipmentId: string;
+  name: string | null;
   statType: string;
   rolls: number[];
   skillOptions: Array<{
     optionId: string;
     label: string;
-    effectDataState: 'unavailable-in-snapshot';
+    description: string | null;
+    effectDataState: 'unavailable-in-snapshot' | 'description-only';
   }>;
 }
 
@@ -338,19 +340,21 @@ function isImprint(value: unknown): value is OptimizerImprintOption {
 
 function isExclusiveEquipment(value: unknown): value is OptimizerExclusiveEquipmentOption {
   if (!isRecord(value)
-    || !hasExactKeys(value, ['equipmentId', 'statType', 'rolls', 'skillOptions'])
+    || !hasExactKeys(value, ['equipmentId', 'name', 'statType', 'rolls', 'skillOptions'])
     || !isText(value.equipmentId)
+    || !(value.name === null || isText(value.name))
     || !isText(value.statType)
     || !Array.isArray(value.rolls)
     || value.rolls.length === 0
     || !value.rolls.every((item) => Number.isInteger(item) && isFiniteNumber(item))
     || !Array.isArray(value.skillOptions)
-    || value.skillOptions.length !== 3) return false;
+    || ![1, 3].includes(value.skillOptions.length)) return false;
   return value.skillOptions.every((item) => isRecord(item)
-    && hasExactKeys(item, ['optionId', 'label', 'effectDataState'])
+    && hasExactKeys(item, ['optionId', 'label', 'description', 'effectDataState'])
     && isText(item.optionId)
     && isText(item.label)
-    && item.effectDataState === 'unavailable-in-snapshot');
+    && ((item.effectDataState === 'unavailable-in-snapshot' && item.description === null)
+      || (item.effectDataState === 'description-only' && isText(item.description))));
 }
 
 function isCustomField(value: unknown): value is OptimizerCustomBonusField {

@@ -8,6 +8,7 @@ import {
 } from './optimizer-profile-editor';
 import { HERO_DETAILS, HERO_DRAFT, HERO_SEARCH } from './optimizer-profile-fixtures';
 import { initialOptimizerProfileWorkspaceState } from './optimizer-profile-workspace';
+import { isOptimizerHeroDetails } from './shared/optimizer-profile';
 
 const noop = (): void => undefined;
 const props = {
@@ -99,6 +100,38 @@ test('renders every bonus-stat source and independent skill context in the modal
   assert.match(markup, /non-damaging/);
   assert.match(markup, /Limit-break effects are unavailable/);
   assert.equal((markup.match(/<details/g) ?? []).length, 3);
+});
+
+test('renders named single-option equipment and keeps its skill effect informational', () => {
+  const details = structuredClone(HERO_DETAILS);
+  assert.ok(details.exclusiveEquipment);
+  details.exclusiveEquipment.name = 'Solar Blessing';
+  details.exclusiveEquipment.skillOptions = [{
+    optionId: details.exclusiveEquipment.skillOptions[0].optionId,
+    label: 'Skill 3 · Option 1',
+    description: 'When using Bastet Roar, grants indomitable to all allies for 2 turns.',
+    effectDataState: 'description-only',
+  }];
+  assert.equal(isOptimizerHeroDetails(details), true);
+  const markup = renderToStaticMarkup(<OptimizerBonusConfiguration
+    busy={false}
+    details={details}
+    draft={HERO_DRAFT.draft}
+    onArtifactSearch={noop}
+    onChooseArtifact={noop}
+    onUpdate={noop}
+    profile={profileWithHero()}
+  />);
+  assert.match(markup, /Solar Blessing/);
+  assert.match(markup, /Skill 3 · Option 1/);
+  assert.match(markup, /Bastet Roar/);
+  assert.match(markup, /Skill effects are not applied to the stat preview/);
+  assert.doesNotMatch(markup, /effect unavailable|Skill slot 2|Skill slot 3/);
+  const option = details.exclusiveEquipment.skillOptions[0];
+  details.exclusiveEquipment.skillOptions = [option, option];
+  assert.equal(isOptimizerHeroDetails(details), false);
+  details.exclusiveEquipment.skillOptions = [{ ...option, description: null }];
+  assert.equal(isOptimizerHeroDetails(details), false);
 });
 
 test('associates an invalid repeated set with its selector and blocks saving', () => {

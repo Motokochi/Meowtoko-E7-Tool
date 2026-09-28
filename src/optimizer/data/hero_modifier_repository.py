@@ -1,8 +1,7 @@
 """Offline self-imprint and exclusive-equipment selection.
 
-Only self-concentration data from the pinned Fribbels hero snapshot is used.
-The snapshot carries EE stat metadata but no skill-enhancement descriptions or
-effects, so those choices are represented as scoped opaque slots.
+Reviewed additions extend the frozen catalog. Skill descriptions are informational;
+only the equipment's stat bonus contributes to optimizer calculations.
 """
 
 from __future__ import annotations
@@ -66,6 +65,7 @@ class HeroModifierRepositoryError(ValueError):
 
 class ExclusiveEquipmentEffectDataState(StrEnum):
     UNAVAILABLE_IN_SNAPSHOT = "unavailable-in-snapshot"
+    DESCRIPTION_ONLY = "description-only"
 
 
 def _source_object(value: object, path: str) -> FrozenJsonObject:
@@ -242,9 +242,8 @@ class ExclusiveEquipmentSkillOption:
     option_id: str
     equipment_id: str
     ordinal: int
-    effect_data_state: ExclusiveEquipmentEffectDataState = (
-        ExclusiveEquipmentEffectDataState.UNAVAILABLE_IN_SNAPSHOT
-    )
+    description: str | None = None
+    skill: int | None = None
 
     def __post_init__(self) -> None:
         equipment_id = _stable_text(self.equipment_id, "skillOption.equipmentId")
@@ -263,10 +262,22 @@ class ExclusiveEquipmentSkillOption:
             )
         object.__setattr__(self, "equipment_id", equipment_id)
         object.__setattr__(self, "ordinal", ordinal)
+        if self.description is not None:
+            _source_text(self.description, "skillOption.description")
+            _integer(self.skill, "skillOption.skill", minimum=1, maximum=3)
+        elif self.skill is not None:
+            raise HeroModifierRepositoryError(
+                "missing-skill-description", "skillOption.description",
+                "A named skill option requires its description.",
+            )
 
     @property
-    def description(self) -> None:
-        return None
+    def effect_data_state(self) -> ExclusiveEquipmentEffectDataState:
+        return (
+            ExclusiveEquipmentEffectDataState.DESCRIPTION_ONLY
+            if self.description is not None
+            else ExclusiveEquipmentEffectDataState.UNAVAILABLE_IN_SNAPSHOT
+        )
 
     @property
     def effect_value(self) -> None:
@@ -329,11 +340,11 @@ class ExclusiveEquipmentRecord:
                 equipment_id,
                 "The last EE roll must be exactly twice the converted source base.",
             )
-        if len(self.skill_options) != EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT:
+        if len(self.skill_options) not in (1, EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT):
             raise HeroModifierRepositoryError(
                 "invalid-ee-skill-options",
                 equipment_id,
-                f"Expected {EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT} scoped opaque skill slots.",
+                "Expected one or three scoped skill options.",
             )
         if any(option.equipment_id != equipment_id for option in self.skill_options):
             raise HeroModifierRepositoryError(
@@ -355,7 +366,12 @@ class ExclusiveEquipmentRecord:
 
     @property
     def effect_data_state(self) -> ExclusiveEquipmentEffectDataState:
-        return ExclusiveEquipmentEffectDataState.UNAVAILABLE_IN_SNAPSHOT
+        return self.skill_options[0].effect_data_state
+
+    @property
+    def name(self) -> str | None:
+        value = self.raw_source.get("name")
+        return None if value is None else _source_text(value, "exclusiveEquipment.name")
 
 
 @dataclass(frozen=True, slots=True)
@@ -593,13 +609,23 @@ class HeroModifierRepository:
                 source_type,
                 source_value,
             )
+            source_options = item.get("skillOptions")
+            if source_options is None:
+                option_records = (FrozenJsonObject(),) * EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT
+            else:
+                option_records = tuple(
+                    _source_object(option, f"{path}.skillOptions[{i}]")
+                    for i, option in enumerate(_source_array(source_options, f"{path}.skillOptions"))
+                )
             skill_options = tuple(
                 ExclusiveEquipmentSkillOption(
                     option_id=f"{equipment_id}.skill-option.{ordinal}",
                     equipment_id=equipment_id,
                     ordinal=ordinal,
+                    description=option.get("description"),
+                    skill=option.get("skill"),
                 )
-                for ordinal in range(1, EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT + 1)
+                for ordinal, option in enumerate(option_records, 1)
             )
             result.append(
                 ExclusiveEquipmentRecord(

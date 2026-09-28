@@ -205,6 +205,44 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
                     self.assertEqual("saved", service.save_draft(draft)["state"])
                     self.assertEqual(draft, self._service(user_data).load_draft(hero_id)["draft"])
 
+    def test_new_exclusive_equipment_stats_and_skill_choices_survive_restart(self) -> None:
+        expected = (
+            ("Young Senya", "It's Senya's", "health_percent", 7, 14, 3),
+            ("Argent Waves Hwayoung", "Wake of Courage", "attack_percent", 7, 14, 3),
+            ("Desert Jewel Basar", "Solar Blessing", "effect_resistance_percent", 8, 16, 1),
+            ("Monarch of the Sword Iseria", "Trace of Dawn", "attack_percent", 7, 14, 1),
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            user_data = Path(directory)
+            service = self._service(user_data)
+            for hero_name, name, stat, minimum, maximum, count in expected:
+                with self.subTest(hero=hero_name):
+                    hero_id = service.characters.find_exact(hero_name).hero_id
+                    equipment = service.get_hero_details(hero_id)["exclusiveEquipment"]
+                    self.assertEqual(name, equipment["name"])
+                    self.assertEqual(f"hero_modifier.{stat}", equipment["statType"])
+                    self.assertEqual(list(range(minimum, maximum + 1)), equipment["rolls"])
+                    self.assertEqual(count, len(equipment["skillOptions"]))
+                    draft = service.load_draft(hero_id)["draft"]
+                    for option in equipment["skillOptions"]:
+                        self.assertEqual("description-only", option["effectDataState"])
+                        self.assertTrue(option["description"])
+                        for roll in (minimum, maximum):
+                            draft["exclusiveEquipment"] = {
+                                "equipmentId": equipment["equipmentId"],
+                                "statValue": roll,
+                                "skillOptionId": option["optionId"],
+                            }
+                            modifiers = service.create_request(draft, "request.ee-test").modifiers
+                            self.assertEqual(equipment["statType"], modifiers.exclusive_equipment_contribution.stat_type.value)
+                            self.assertEqual(roll / 100, modifiers.exclusive_equipment_contribution.value)
+                            self.assertEqual("saved", service.save_draft(draft)["state"])
+                            self.assertEqual(draft, self._service(user_data).load_draft(hero_id)["draft"])
+                    draft["exclusiveEquipment"]["skillOptionId"] = f"{equipment['equipmentId']}.skill-option.{count + 1}"
+                    with self.assertRaises(OptimizerProfileServiceError) as invalid:
+                        service.create_request(draft, "request.invalid-ee")
+                    self.assertEqual("unknown-ee-skill-option-id", invalid.exception.code)
+
     def test_view_and_default_load_do_not_create_storage(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             user_data = Path(directory) / "not-created"

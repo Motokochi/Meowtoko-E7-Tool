@@ -1,7 +1,7 @@
 {
   "schemaId": "meowtoko.manual-hero-source",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-25T00:00:00Z",
+  "generatedAt": "2026-09-28T00:00:00Z",
   "records": {
     "Lisette": {
       "_id": "lisette",
@@ -375,5 +375,87 @@
         "artwork": "Face PNGs match the installed game byte-for-byte. Rendered poses retrieved through the existing E7 Codex artwork workflow; dimensions, transparency, and appearance reviewed."
       }
     }
+  },
+  "exclusiveEquipment": {
+    "c1162": [
+      {
+        "code": "exc116201",
+        "name": "It's Senya's",
+        "stat": {
+          "type": "max_hp_rate",
+          "value": 0.07
+        },
+        "skillOptions": [
+          {
+            "skill": 2,
+            "description": "Additional damage from Special Friendship is dealt regardless of the bearer's turn."
+          },
+          {
+            "skill": 2,
+            "description": "When using Help!, additional damage increases to 20% of max Health."
+          },
+          {
+            "skill": 3,
+            "description": "When using Snack Time!, grants a barrier (proportional to the caster's max Health) to all allies for 2 turns."
+          }
+        ]
+      }
+    ],
+    "c2053": [
+      {
+        "code": "exc205301",
+        "name": "Solar Blessing",
+        "stat": {
+          "type": "res",
+          "value": 0.08
+        },
+        "skillOptions": [
+          {
+            "skill": 3,
+            "description": "When using Bastet Roar, grants indomitable to all allies for 2 turns."
+          }
+        ]
+      }
+    ],
+    "c5128": [
+      {
+        "code": "exc512801",
+        "name": "Wake of Courage",
+        "stat": {
+          "type": "att_rate",
+          "value": 0.07
+        },
+        "skillOptions": [
+          {
+            "skill": 2,
+            "description": "Before attacking, grants increased Hit Chance to the caster for 2 turns when using Swallow Kick."
+          },
+          {
+            "skill": 2,
+            "description": "With Swallow Kick's effect, increases Combat Readiness by an additional 10%."
+          },
+          {
+            "skill": 3,
+            "description": "Increases damage dealt by Argent Flash by 10%."
+          }
+        ]
+      }
+    ],
+    "c6024": [
+      {
+        "code": "exc602401",
+        "name": "Trace of Dawn",
+        "stat": {
+          "type": "att_rate",
+          "value": 0.07
+        },
+        "skillOptions": [
+          {
+            "skill": 2,
+            "description": "Increases the amount of Hit Chance and Penetration Resistance increased by Elbris's Successor by 30%."
+          }
+        ]
+      }
+    ]
   }
 }

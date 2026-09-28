@@ -243,6 +243,22 @@ class CharacterRepositoryTests(unittest.TestCase):
                 self.assertEqual("invalid-rich-field", caught.exception.code)
                 self.assertIn(path_fragment, caught.exception.path)
 
+    def test_equipment_updates_preserve_baseline_and_reject_unknown_owners(self) -> None:
+        updated = load_bundled_character_repository()
+        for hero in self.repository.heroes:
+            if hero.exclusive_equipment:
+                self.assertEqual(hero, updated.get(hero.hero_id))
+        self.assertFalse(self.repository.find_exact("c6024").exclusive_equipment)
+        self.assertTrue(updated.find_exact("c6024").exclusive_equipment)
+        self.assertEqual(
+            updated.find_exact("c6024").raw_source["ex_equip"],
+            updated.find_exact("c6024").exclusive_equipment,
+        )
+        with self.assertRaisesRegex(CharacterRepositoryError, "unknown-ee-hero"):
+            CharacterRepository(self.catalog, self.source, exclusive_equipment={"unknown": []})
+        with self.assertRaisesRegex(CharacterRepositoryError, "invalid-rich-field"):
+            CharacterRepository(self.catalog, self.source, exclusive_equipment={"c6024": [{"stat": {"type": "att_rate", "value": "bad"}}]})
+
     def test_unsupported_source_and_catalog_versions_fail_before_repository_use(self) -> None:
         for payload in (self.source.to_dict(), self.catalog.to_dict()):
             with self.subTest(schema=payload["schemaId"]):

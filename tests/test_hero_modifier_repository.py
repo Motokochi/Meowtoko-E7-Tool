@@ -79,13 +79,13 @@ class HeroModifierRepositoryTests(unittest.TestCase):
         with patch.object(socket, "create_connection", side_effect=AssertionError("network forbidden")):
             repository = load_bundled_hero_modifier_repository()
         self.assertEqual(390, len(repository.character_repository.heroes))
-        self.assertEqual(133, len(repository.exclusive_equipment))
+        self.assertEqual(137, len(repository.exclusive_equipment))
         self.assertEqual(
             tuple(sorted(item.equipment_id for item in repository.exclusive_equipment)),
             tuple(item.equipment_id for item in repository.exclusive_equipment),
         )
         self.assertEqual(
-            133,
+            137,
             len({item.equipment_id.casefold() for item in repository.exclusive_equipment}),
         )
 
@@ -102,7 +102,8 @@ class HeroModifierRepositoryTests(unittest.TestCase):
             if equipment is not None:
                 ee_types[equipment.source_stat_type] += 1
                 self.assertEqual(hero.hero_id, equipment.hero_id)
-                self.assertEqual(EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT, len(equipment.skill_options))
+                expected_options = 1 if hero.name in {"Desert Jewel Basar", "Monarch of the Sword Iseria"} else EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT
+                self.assertEqual(expected_options, len(equipment.skill_options))
         self.assertEqual(
             {
                 "acc": 82,
@@ -127,7 +128,7 @@ class HeroModifierRepositoryTests(unittest.TestCase):
             dict(grade_shapes),
         )
         self.assertEqual(
-            {"acc": 25, "att_rate": 31, "cri": 21, "def_rate": 3, "max_hp_rate": 18, "res": 5, "speed": 30},
+            {"acc": 25, "att_rate": 33, "cri": 21, "def_rate": 3, "max_hp_rate": 19, "res": 6, "speed": 30},
             dict(ee_types),
         )
 
