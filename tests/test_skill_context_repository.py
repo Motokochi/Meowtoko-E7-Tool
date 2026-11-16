@@ -112,7 +112,7 @@ class SkillContextRepositoryTests(unittest.TestCase):
     def test_all_skill_records_and_source_options_map_offline_with_stable_identity(self) -> None:
         with patch.object(socket, "create_connection", side_effect=AssertionError("network forbidden")):
             repository = load_bundled_skill_context_repository()
-        self.assertEqual(1170, len(repository.records))
+        self.assertEqual(1179, len(repository.records))
         self.assertEqual(211, len(repository.source_options))
         self.assertEqual(
             211,
@@ -146,21 +146,21 @@ class SkillContextRepositoryTests(unittest.TestCase):
             for option in record.options:
                 heroes_with_options.add(option.hero_id)
                 option_field_counts.update(option.raw_source.keys())
-        self.assertEqual(1170, field_counts["hitTypes"])
-        self.assertEqual(1170, field_counts["options"])
-        self.assertEqual(845, field_counts["rate"])
-        self.assertEqual(845, field_counts["pow"])
-        self.assertEqual(841, field_counts["targets"])
-        self.assertEqual(61, field_counts["penetration"])
-        self.assertEqual(84, field_counts["note"])
-        self.assertEqual(143, field_counts["selfHpScaling"])
+        self.assertEqual(1179, field_counts["hitTypes"])
+        self.assertEqual(1179, field_counts["options"])
+        self.assertEqual(850, field_counts["rate"])
+        self.assertEqual(850, field_counts["pow"])
+        self.assertEqual(846, field_counts["targets"])
+        self.assertEqual(62, field_counts["penetration"])
+        self.assertEqual(93, field_counts["note"])
+        self.assertEqual(144, field_counts["selfHpScaling"])
         self.assertEqual(40, field_counts["selfDefScaling"])
         self.assertEqual(47, field_counts["selfSpdScaling"])
         self.assertEqual(2, field_counts["extraSelfAtkScaling"])
         self.assertEqual(1, field_counts["extraSelfDefScaling"])
         self.assertEqual(2, field_counts["increasedValue"])
         self.assertEqual(1, field_counts["cdmgIncrease"])
-        self.assertEqual({1: 636, 2: 9, 3: 196}, dict(target_counts))
+        self.assertEqual({1: 641, 2: 9, 3: 196}, dict(target_counts))
         self.assertEqual({0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 1}, set(penetration_values))
         self.assertEqual(
             {"hit.critical", "hit.crushing", "hit.normal", "hit.miss"},
@@ -176,6 +176,24 @@ class SkillContextRepositoryTests(unittest.TestCase):
         self.assertEqual(39, option_field_counts["selfAtkScaling"])
         self.assertEqual(8, option_field_counts["selfDefScaling"])
         self.assertTrue(all(not option.is_damaging for option in self.repository.source_options))
+
+    def test_new_hero_skill_hit_types_scaling_and_limitations_are_explicit(self) -> None:
+        mei = self.repository.skills_for(self._hero_id("Mei Lin"))
+        self.assertEqual((SkillHitType.CRITICAL, SkillHitType.MISS), mei[0].hit_types)
+        self.assertEqual((0.9, 1), (mei[0].rate, mei[1].rate))
+        self.assertIn("without Zeal", mei[1].raw_source["note"])
+        self.assertFalse(mei[2].is_damaging)
+        yufine = self.repository.skills_for(self._hero_id("Bunny Girl Mafia Yufine"))
+        self.assertNotIn(SkillHitType.CRITICAL, yufine[0].hit_types)
+        self.assertEqual(1, yufine[0].penetration)
+        self.assertEqual(0.05, yufine[0].raw_source["selfHpScaling"])
+        self.assertFalse(yufine[1].is_damaging)
+        self.assertFalse(yufine[2].is_damaging)
+        moro = self.repository.skills_for(self._hero_id("Bunny Girl Great Detective Moro"))
+        self.assertEqual((1, 1.5), (moro[0].rate, moro[2].rate))
+        self.assertFalse(moro[1].is_damaging)
+        for skill in (*mei, *yufine, *moro):
+            self.assertNotIn("{", skill.raw_source["note"])
 
     def test_sparse_non_damaging_and_missing_target_records_remain_explicit(self) -> None:
         achates_s2 = self.repository.get(self._hero_id("Achates"), SkillSlot.S2)

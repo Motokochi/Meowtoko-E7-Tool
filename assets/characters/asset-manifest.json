@@ -1,23 +1,23 @@
 {
   "schemaId": "e7hub.e7codex-character-assets",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-25T15:50:58Z",
+  "generatedAt": "2026-11-16T22:07:30Z",
   "source": {
     "site": "https://e7codex.com/",
     "assetBaseUrl": "https://e7codex.com/assets",
     "catalogPath": "src/optimizer/data/character_data/character-source-v1.json",
     "catalogSha256": "b41a7b8ab2805f1be42d15f53deac777deb83ee732bf9d56010ef2072846a7aa",
     "manualHeroesPath": "src/optimizer/data/character_data/manual-heroes-v1.json",
-    "manualHeroesSha256": "a305edb64a833bf7d66dd0c3394867fe08b2ecaa30833e0553588d4e351921a8"
+    "manualHeroesSha256": "bb8fa3e72c4fd9a01bcacafcb4d95b4d1adc2a1370af1020d95233a837cdef95"
   },
   "summary": {
-    "characters": 390,
-    "expectedFiles": 1560,
-    "availableFiles": 1548,
+    "characters": 393,
+    "expectedFiles": 1572,
+    "availableFiles": 1560,
     "missingFiles": 12,
     "errorFiles": 0,
-    "totalBytes": 108590916,
-    "sourceTotalBytes": 1943304359
+    "totalBytes": 109380988,
+    "sourceTotalBytes": 1959412654
   },
   "characters": [
     {
@@ -4906,6 +4906,152 @@
             "bytes": 32446,
             "sha256": "c2ed3b1b73c3aa93d63ff9fa908228c6314d81e99a66ce635076f43cbaae366d",
             "width": 436,
+            "height": 206
+          }
+        }
+      }
+    },
+    {
+      "name": "Bunny Girl Great Detective Moro",
+      "code": "c2187",
+      "assetCode": "c2187",
+      "slug": "bunny-girl-great-detective-moro",
+      "folder": "Bunny Girl Great Detective Moro",
+      "files": {
+        "pose": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2187_1/pose.png",
+          "bytes": 236554,
+          "sha256": "0039af7ee54c61f8787016b2f8f035f6c60225b5cc74da6bd420f2ecf39274d6",
+          "width": 1314,
+          "height": 1600,
+          "path": "Bunny Girl Great Detective Moro/pose.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Great Detective Moro/pose.png",
+            "bytes": 6574978,
+            "sha256": "1703d609c083750677208654a699ec4ae9faffb549d99bc1dc998768953a2286",
+            "width": 2563,
+            "height": 3120
+          }
+        },
+        "face_l": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2187_1/face_c2187_l.png",
+          "bytes": 8322,
+          "sha256": "ab23edfca1cdf4a158d80f16173466301337ef6563d4f66c01262ed8a1dacd72",
+          "width": 154,
+          "height": 89,
+          "path": "Bunny Girl Great Detective Moro/face_l.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Great Detective Moro/face_l.png",
+            "bytes": 12140,
+            "sha256": "8490758fc58e222b51f186db3b269b34772974a89a9c5d4e0e04804a70e1548f",
+            "width": 154,
+            "height": 89
+          }
+        },
+        "face_s": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2187_1/face_c2187_s.png",
+          "bytes": 7124,
+          "sha256": "3f8e6a434e09d3e932599cb1eabddce9f9acde2999d4c759bf66a8f69e9bca10",
+          "width": 112,
+          "height": 112,
+          "path": "Bunny Girl Great Detective Moro/face_s.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Great Detective Moro/face_s.png",
+            "bytes": 10526,
+            "sha256": "95286b9ba9d8bc33c3787acc0a8ea23c23b5ba79ca6a75593008460a9cd6f088",
+            "width": 112,
+            "height": 112
+          }
+        },
+        "face_su": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c2187_1/face_c2187_su.png",
+          "bytes": 23326,
+          "sha256": "3c6383413611c85274609055dc3bab5b546bed1ef060073a9da1f6d47654849e",
+          "width": 283,
+          "height": 206,
+          "path": "Bunny Girl Great Detective Moro/face_su.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Great Detective Moro/face_su.png",
+            "bytes": 28710,
+            "sha256": "64ed254bfbb7d3f8068dd393eee8d3284987bacf452f9c0effcdef89fd41b1e8",
+            "width": 283,
+            "height": 206
+          }
+        }
+      }
+    },
+    {
+      "name": "Bunny Girl Mafia Yufine",
+      "code": "c7016",
+      "assetCode": "c7016",
+      "slug": "bunny-girl-mafia-yufine",
+      "folder": "Bunny Girl Mafia Yufine",
+      "files": {
+        "pose": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c7016_1/pose.png",
+          "bytes": 229824,
+          "sha256": "8cdaa638fac4b3970afd08134cb0fd52c3fb9ee503a87201bef814e795e55255",
+          "width": 1135,
+          "height": 1600,
+          "path": "Bunny Girl Mafia Yufine/pose.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Mafia Yufine/pose.png",
+            "bytes": 5316224,
+            "sha256": "8e34d50f8d6192c66cea63a21c3b7c7cec271f8f152361277162a02075e73ccb",
+            "width": 2214,
+            "height": 3120
+          }
+        },
+        "face_l": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c7016_1/face_c7016_l.png",
+          "bytes": 8586,
+          "sha256": "801262ee9e9ace6ca589337eab0f559aa496d6f7cf8048ead0aa73607f7f86c0",
+          "width": 180,
+          "height": 89,
+          "path": "Bunny Girl Mafia Yufine/face_l.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Mafia Yufine/face_l.png",
+            "bytes": 12322,
+            "sha256": "8e3d4b9a350e6ac2a3a8dd0d20dd81fa4205d5602935ef1fffba9b15ed642864",
+            "width": 180,
+            "height": 89
+          }
+        },
+        "face_s": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c7016_1/face_c7016_s.png",
+          "bytes": 6562,
+          "sha256": "77483b81e3f9a54568457a4243dd12d3a1c5a5976f7296f2e1a6e82de0782f8d",
+          "width": 112,
+          "height": 112,
+          "path": "Bunny Girl Mafia Yufine/face_s.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Mafia Yufine/face_s.png",
+            "bytes": 10154,
+            "sha256": "82af54e4cc1186cfb952ca4494b70870e82757326c70be5b5533d3e04ed40c24",
+            "width": 112,
+            "height": 112
+          }
+        },
+        "face_su": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c7016_1/face_c7016_su.png",
+          "bytes": 20418,
+          "sha256": "9d3d7098c032d27a27ffe011c996e59dfac0b288730afd0f31c51bb4f2ec12a0",
+          "width": 256,
+          "height": 206,
+          "path": "Bunny Girl Mafia Yufine/face_su.webp",
+          "sourceFile": {
+            "path": "Bunny Girl Mafia Yufine/face_su.png",
+            "bytes": 26961,
+            "sha256": "01d97779fe6887cc019850f6faf85123a775db30a7047ef67805f1f3a1a65b80",
+            "width": 256,
             "height": 206
           }
         }
@@ -16998,6 +17144,79 @@
       }
     },
     {
+      "name": "Mei Lin",
+      "code": "c1191",
+      "assetCode": "c1191",
+      "slug": "mei-lin",
+      "folder": "Mei Lin",
+      "files": {
+        "pose": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1191_1/pose.png",
+          "bytes": 212766,
+          "sha256": "c1a0883e97b36605d20851202577575fd36c472183bdb95826f639acc97f515b",
+          "width": 1457,
+          "height": 1600,
+          "path": "Mei Lin/pose.webp",
+          "sourceFile": {
+            "path": "Mei Lin/pose.png",
+            "bytes": 4066856,
+            "sha256": "ca3f5aceac599bb2489c4a09ef04c07559e1ca773ebc7597f23e981b65285e96",
+            "width": 2842,
+            "height": 3120
+          }
+        },
+        "face_l": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1191_1/face_c1191_l.png",
+          "bytes": 8920,
+          "sha256": "5c7aaec8c49f0cd621ee5b22c01b155e03d9da568c2c96b9179f5856e3b7dfee",
+          "width": 200,
+          "height": 89,
+          "path": "Mei Lin/face_l.webp",
+          "sourceFile": {
+            "path": "Mei Lin/face_l.png",
+            "bytes": 12104,
+            "sha256": "5f5a00e9775b56c4b98dad2f94211c4e91df92f9085f18ab4575717c4b46dd81",
+            "width": 200,
+            "height": 89
+          }
+        },
+        "face_s": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1191_1/face_c1191_s.png",
+          "bytes": 6606,
+          "sha256": "021d764dcf3722c3ef98fc4d286a419369ee335037bec7774b0a33a6a4cbda70",
+          "width": 112,
+          "height": 112,
+          "path": "Mei Lin/face_s.webp",
+          "sourceFile": {
+            "path": "Mei Lin/face_s.png",
+            "bytes": 9803,
+            "sha256": "545e85896562d0a996db03f32b64fc026602fbbd11b3920a774bcbe3efa349f1",
+            "width": 112,
+            "height": 112
+          }
+        },
+        "face_su": {
+          "status": "available",
+          "sourceUrl": "https://e7codex.com/assets/c1191_1/face_c1191_su.png",
+          "bytes": 21064,
+          "sha256": "6587997b9e1de4b1882bb38b3204da30c66255b02c134917fc19a8a06196e3ee",
+          "width": 340,
+          "height": 206,
+          "path": "Mei Lin/face_su.webp",
+          "sourceFile": {
+            "path": "Mei Lin/face_su.png",
+            "bytes": 27517,
+            "sha256": "03f9fd2b6fb254c568cb51281d081b60512cfd248cbd79ab63b9a3c922b2ff84",
+            "width": 340,
+            "height": 206
+          }
+        }
+      }
+    },
+    {
       "name": "Melany",
       "code": "c3121",
       "assetCode": "c3121",
@@ -28400,6 +28619,6 @@
     "quality": 90,
     "method": 6,
     "poseMaxDimension": 1600,
-    "sourceManifestSha256": "8a3929ed3ba7042f66454785f2209c17c1d3137a230138ca58d2d95a99980112"
+    "sourceManifestSha256": "7f80d9a19ba81a5139fbc6389d146a0e1fb5e362e49f7e9fbae229151202e870"
   }
 }

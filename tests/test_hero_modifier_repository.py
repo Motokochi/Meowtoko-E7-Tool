@@ -78,14 +78,14 @@ class HeroModifierRepositoryTests(unittest.TestCase):
     def test_all_bundled_records_map_offline_with_stable_identity_and_complete_type_coverage(self) -> None:
         with patch.object(socket, "create_connection", side_effect=AssertionError("network forbidden")):
             repository = load_bundled_hero_modifier_repository()
-        self.assertEqual(390, len(repository.character_repository.heroes))
-        self.assertEqual(137, len(repository.exclusive_equipment))
+        self.assertEqual(393, len(repository.character_repository.heroes))
+        self.assertEqual(139, len(repository.exclusive_equipment))
         self.assertEqual(
             tuple(sorted(item.equipment_id for item in repository.exclusive_equipment)),
             tuple(item.equipment_id for item in repository.exclusive_equipment),
         )
         self.assertEqual(
-            137,
+            139,
             len({item.equipment_id.casefold() for item in repository.exclusive_equipment}),
         )
 
@@ -106,29 +106,29 @@ class HeroModifierRepositoryTests(unittest.TestCase):
                 self.assertEqual(expected_options, len(equipment.skill_options))
         self.assertEqual(
             {
-                "acc": 82,
+                "acc": 83,
                 "att": 37,
-                "att_rate": 73,
+                "att_rate": 74,
                 "coop": 2,
                 "cri": 69,
                 "def": 9,
                 "def_rate": 14,
                 "max_hp": 22,
                 "max_hp_rate": 56,
-                "res": 26,
+                "res": 27,
             },
             dict(devotion_types),
         )
         self.assertEqual(
             {
-                ("B", "A", "S", "SS", "SSS"): 212,
+                ("B", "A", "S", "SS", "SSS"): 215,
                 ("C", "B", "A", "S", "SS", "SSS"): 71,
                 ("D", "C", "B", "A", "S", "SS", "SSS"): 107,
             },
             dict(grade_shapes),
         )
         self.assertEqual(
-            {"acc": 25, "att_rate": 33, "cri": 21, "def_rate": 3, "max_hp_rate": 19, "res": 6, "speed": 30},
+            {"acc": 25, "att_rate": 34, "cri": 21, "def_rate": 3, "max_hp_rate": 19, "res": 6, "speed": 31},
             dict(ee_types),
         )
 
@@ -226,6 +226,30 @@ class HeroModifierRepositoryTests(unittest.TestCase):
         self.assertEqual(((FinalStat.SPEED, 8),), modifiers.exclusive_equipment_bonuses)
         self.assertEqual(equipment.skill_options[1].option_id, modifiers.exclusive_equipment_skill_option_id)
         self.assertEqual(modifiers, HeroModifiers.from_dict(modifiers.to_dict()))
+
+    def test_explicit_ee_maximum_round_trips_and_rejects_out_of_range_rolls(self) -> None:
+        hero_id = self._hero_id("Midnight Gala Lilias")
+        equipment = self.repository.exclusive_equipment_for(hero_id)
+        self.assertEqual((6, 7, 8, 9, 10), equipment.roll_display_values)
+        for value in equipment.roll_display_values:
+            selected = self.repository.select(hero_id, equipment_id=equipment.equipment_id, ee_stat_display_value=value)
+            document = self._profile_document(hero_id, selected.apply_to_modifiers())
+            reloaded = load_optimizer_profile_json(document.to_json(), character_catalog=self.catalog)
+            self.assertEqual(selected, self.repository.select_from_modifiers(hero_id, reloaded.create_request("request.restored").modifiers))
+        for value in (5, 11, 12):
+            with self.subTest(value=value), self.assertRaisesRegex(HeroModifierRepositoryError, "invalid-ee-stat-value"):
+                self.repository.select_exclusive_equipment(hero_id, equipment.equipment_id, stat_display_value=value)
+        with self.assertRaisesRegex(HeroModifierRepositoryError, "ee-maximum-roll-drift"):
+            replace(equipment, roll_display_values=tuple(range(6, 13)))
+
+    def test_invalid_explicit_ee_maximum_is_rejected(self) -> None:
+        hero = self.characters.get(self._hero_id("Midnight Gala Lilias"))
+        for maximum in (5, 10.5, True, "10", None):
+            with self.subTest(maximum=maximum):
+                raw = {"stat": {"type": "speed", "value": 6, "maxDisplayValue": maximum}}
+                malformed = replace(hero, exclusive_equipment=freeze_json([raw]))
+                with self.assertRaisesRegex(HeroModifierRepositoryError, "invalid-integer"):
+                    HeroModifierRepository._build_exclusive_equipment(malformed)
 
     def test_no_ee_is_distinct_and_incompatible_configuration_fails(self) -> None:
         ras_id = self._hero_id("Ras")

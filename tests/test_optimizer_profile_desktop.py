@@ -119,8 +119,8 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
     def test_bounded_catalog_projection_exposes_every_choice_without_raw_records(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             service = self._service(Path(directory))
-            self.assertEqual(390, len(service.characters.heroes))
-            self.assertEqual(287, len(service.artifacts.artifacts))
+            self.assertEqual(393, len(service.characters.heroes))
+            self.assertEqual(289, len(service.artifacts.artifacts))
             self.assertEqual(50, len(service.search_heroes("", 50)["results"]))
             self.assertEqual(50, len(service.search_artifacts("", 50)["results"]))
             for hero in service.characters.heroes:
@@ -211,6 +211,8 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
             ("Argent Waves Hwayoung", "Wake of Courage", "attack_percent", 7, 14, 3),
             ("Desert Jewel Basar", "Solar Blessing", "effect_resistance_percent", 8, 16, 1),
             ("Monarch of the Sword Iseria", "Trace of Dawn", "attack_percent", 7, 14, 1),
+            ("Aki", "Thermal Runaway Suppression Kit", "attack_percent", 7, 14, 3),
+            ("Midnight Gala Lilias", "Control and Unity", "speed", 6, 10, 3),
         )
         with tempfile.TemporaryDirectory() as directory:
             user_data = Path(directory)
@@ -235,7 +237,7 @@ class OptimizerProfileDesktopServiceTests(unittest.TestCase):
                             }
                             modifiers = service.create_request(draft, "request.ee-test").modifiers
                             self.assertEqual(equipment["statType"], modifiers.exclusive_equipment_contribution.stat_type.value)
-                            self.assertEqual(roll / 100, modifiers.exclusive_equipment_contribution.value)
+                            self.assertEqual(roll if stat == "speed" else roll / 100, modifiers.exclusive_equipment_contribution.value)
                             self.assertEqual("saved", service.save_draft(draft)["state"])
                             self.assertEqual(draft, self._service(user_data).load_draft(hero_id)["draft"])
                     draft["exclusiveEquipment"]["skillOptionId"] = f"{equipment['equipmentId']}.skill-option.{count + 1}"

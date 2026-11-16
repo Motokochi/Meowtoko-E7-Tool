@@ -1,0 +1,101 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "label": "Installed Epic Seven 1.0.1030 catalog",
+      "url": null,
+      "collectedAt": "2026-11-16"
+    }
+  ],
+  "character": {
+    "name": "Mei Lin",
+    "gameCode": "c1191",
+    "releaseDate": "2026-10-08",
+    "rarity": 5,
+    "element": "Fire",
+    "class": "Thief",
+    "zodiac": "Libra",
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": 968,
+        "health": 4124,
+        "defense": 409,
+        "speed": 121,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 155.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": 1208,
+        "health": 5178,
+        "defense": 508,
+        "speed": 121,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 165.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      }
+    },
+    "selfImprint": {
+      "stat": "Attack %",
+      "grades": {
+        "B": 7.0,
+        "A": 11.0,
+        "S": 15.0,
+        "SS": 18.0,
+        "SSS": 21.0
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 0.9,
+        "power": 1.0,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Attacks the enemy with a fist, before increasing Combat Readiness of the caster by 20% and decreasing skill cooldowns by 1 turn. A successful attack always results in a critical hit.\nPreview uses base stats; Attack/Defense equalization and extra attacks are not applied automatically."
+      },
+      "s2": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 1.0,
+        "power": 0.95,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "After granting increased Attack to the caster for 2 turns, attacks the enemy with a kick, and when the enemy is defeated, inflicts extinction. A successful attack always results in a critical hit. When a Fire elemental ally uses a skill, grants zeal, which enhances Rising Dragon Spire.\nPreview uses the base skill without Zeal, increased Attack, Attack/Defense equalization, or an extra attack."
+      },
+      "s3": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Fully recovers Health of the caster. On the next attack, grants an extra attack with the same skill. Begins the first battle with full skill cooldown count, and the lower stat between Attack and Defense becomes equal to the higher stat.\nAttack/Defense equalization and extra attacks are not applied to the stat preview."
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/Mei Lin",
+    "files": {
+      "pose": "pose.webp",
+      "faceLarge": "face_l.webp",
+      "faceSmall": "face_s.webp",
+      "faceAlternate": "face_su.webp"
+    }
+  },
+  "notes": "Both awakened profiles and self imprint verified. Conditional skill limitations appear in each skill note. No build archetype assigned."
+}

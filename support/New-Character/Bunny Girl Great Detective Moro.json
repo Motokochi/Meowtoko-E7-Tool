@@ -1,0 +1,101 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "label": "Installed Epic Seven 1.0.1030 catalog",
+      "url": null,
+      "collectedAt": "2026-11-16"
+    }
+  ],
+  "character": {
+    "name": "Bunny Girl Great Detective Moro",
+    "gameCode": "c2187",
+    "releaseDate": "2026-10-29",
+    "rarity": 5,
+    "element": "Light",
+    "class": "Thief",
+    "zodiac": "Virgo",
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": 862,
+        "health": 4429,
+        "defense": 393,
+        "speed": 128,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 6.0,
+        "effectResistance": 0
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": 1075,
+        "health": 5562,
+        "defense": 487,
+        "speed": 128,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 18.0,
+        "effectResistance": 0
+      }
+    },
+    "selfImprint": {
+      "stat": "Effectiveness",
+      "grades": {
+        "B": 9.0,
+        "A": 14.0,
+        "S": 19.0,
+        "SS": 23.0,
+        "SSS": 27.0
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 1.0,
+        "power": 1.0,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Attacks the enemy with a bag, and has a 75% chance to grant stealth to the caster for 1 turn."
+      },
+      "s2": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Analyzes the enemy, granting secret plan buff to all allies based on the target's class and granting immunity to all allies for 2 turns before increasing Combat Readiness by 20%."
+      },
+      "s3": {
+        "canCrit": true,
+        "targets": 1,
+        "attackRate": 1.5,
+        "power": 1.0,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Attacks the enemy with agile movements, inflicting restrict, bind, and silence for 2 turns. Increases Combat Readiness of the caster by 50%."
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/Bunny Girl Great Detective Moro",
+    "files": {
+      "pose": "pose.webp",
+      "faceLarge": "face_l.webp",
+      "faceSmall": "face_s.webp",
+      "faceAlternate": "face_su.webp"
+    }
+  },
+  "notes": "Both awakened profiles and self imprint verified. Conditional skill limitations appear in each skill note. No build archetype assigned."
+}

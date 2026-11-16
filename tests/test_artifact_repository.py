@@ -97,8 +97,8 @@ class ArtifactRepositoryTests(unittest.TestCase):
         ):
             repository = load_bundled_artifact_repository()
 
-        self.assertEqual(287, len(repository))
-        self.assertEqual(287, len(repository.artifacts))
+        self.assertEqual(289, len(repository))
+        self.assertEqual(289, len(repository.artifacts))
         self.assertTrue(
             {artifact.artifact_id for artifact in self.catalog.artifacts}
             <= {artifact.artifact_id for artifact in repository.artifacts}
@@ -131,6 +131,8 @@ class ArtifactRepositoryTests(unittest.TestCase):
             "ef511": ("Land of Lingering Light", ArtifactFlatStats(195, 702, 0)),
             "efr34": ("Light and Darkness", ArtifactFlatStats(117, 988, 0)),
             "efr35": ("Sorrow of the Rose", ArtifactFlatStats(117, 988, 0)),
+            "efa34": ("Flame Dragon's Jewel", ArtifactFlatStats(273, 416, 0)),
+            "efk26": ("A Boss's Dignity", ArtifactFlatStats(117, 988, 0)),
         }
         for code, (name, stats) in expected.items():
             with self.subTest(artifact=name):

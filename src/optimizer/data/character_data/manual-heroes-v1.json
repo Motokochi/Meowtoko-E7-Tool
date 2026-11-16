@@ -1,7 +1,7 @@
 {
   "schemaId": "meowtoko.manual-hero-source",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-28T00:00:00Z",
+  "generatedAt": "2026-11-16T00:00:00Z",
   "records": {
     "Lisette": {
       "_id": "lisette",
@@ -374,6 +374,271 @@
         "buildData": "Intentionally omitted pending Hero Journal build evidence.",
         "artwork": "Face PNGs match the installed game byte-for-byte. Rendered poses retrieved through the existing E7 Codex artwork workflow; dimensions, transparency, and appearance reviewed."
       }
+    },
+    "Mei Lin": {
+      "_id": "mei-lin",
+      "name": "Mei Lin",
+      "code": "c1191",
+      "attribute": "fire",
+      "role": "assassin",
+      "rarity": 5,
+      "zodiac": "scales",
+      "assets": {
+        "icon": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c1191_s.png",
+        "thumbnail": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c1191_s.png",
+        "image": "https://e7codex.com/assets/c1191_1/pose.png"
+      },
+      "calculatedStatus": {
+        "lv50FiveStarFullyAwakened": {
+          "atk": 968,
+          "hp": 4124,
+          "def": 409,
+          "spd": 121,
+          "chc": 0.15,
+          "chd": 1.55,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        },
+        "lv60SixStarFullyAwakened": {
+          "atk": 1208,
+          "hp": 5178,
+          "def": 508,
+          "spd": 121,
+          "chc": 0.15,
+          "chd": 1.65,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        }
+      },
+      "self_devotion": {
+        "type": "att_rate",
+        "grades": {
+          "B": 0.07,
+          "A": 0.11,
+          "S": 0.15,
+          "SS": 0.18,
+          "SSS": 0.21
+        }
+      },
+      "skills": {
+        "S1": {
+          "hitTypes": [
+            "crit",
+            "miss"
+          ],
+          "options": [],
+          "note": "Attacks the enemy with a fist, before increasing Combat Readiness of the caster by 20% and decreasing skill cooldowns by 1 turn. A successful attack always results in a critical hit.\nPreview uses base stats; Attack/Defense equalization and extra attacks are not applied automatically.",
+          "rate": 0.9,
+          "pow": 1.0,
+          "targets": 1
+        },
+        "S2": {
+          "hitTypes": [
+            "crit",
+            "miss"
+          ],
+          "options": [],
+          "note": "After granting increased Attack to the caster for 2 turns, attacks the enemy with a kick, and when the enemy is defeated, inflicts extinction. A successful attack always results in a critical hit. When a Fire elemental ally uses a skill, grants zeal, which enhances Rising Dragon Spire.\nPreview uses the base skill without Zeal, increased Attack, Attack/Defense equalization, or an extra attack.",
+          "rate": 1.0,
+          "pow": 0.95,
+          "targets": 1
+        },
+        "S3": {
+          "hitTypes": [],
+          "options": [],
+          "note": "Fully recovers Health of the caster. On the next attack, grants an extra attack with the same skill. Begins the first battle with full skill cooldown count, and the lower stat between Attack and Defense becomes equal to the higher stat.\nAttack/Defense equalization and extra attacks are not applied to the stat preview."
+        }
+      },
+      "ex_equip": [],
+      "manual_source": {
+        "reviewedAt": "2026-11-16",
+        "gameVersion": "1.0.1030",
+        "identity": "Installed game character_player, dic_data, and English text tables; Journal show=y.",
+        "baseStats": "Existing game-stat formula with current zodiac_stone_2; both profiles cross-checked against the existing additions.",
+        "selfImprint": "Installed game devotion_skill table.",
+        "skillMultipliers": "Installed game skill_player and cs_player tables. Base skill damage only; conditional effects are documented separately.",
+        "buildData": "Intentionally omitted pending reviewed build evidence.",
+        "artwork": "Face PNGs match the installed game byte-for-byte. Rendered poses retrieved through the existing E7 Codex artwork workflow; dimensions, transparency, and appearance reviewed."
+      }
+    },
+    "Bunny Girl Great Detective Moro": {
+      "_id": "bunny-girl-great-detective-moro",
+      "name": "Bunny Girl Great Detective Moro",
+      "code": "c2187",
+      "attribute": "light",
+      "role": "assassin",
+      "rarity": 5,
+      "zodiac": "maiden",
+      "assets": {
+        "icon": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c2187_s.png",
+        "thumbnail": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c2187_s.png",
+        "image": "https://e7codex.com/assets/c2187_1/pose.png"
+      },
+      "calculatedStatus": {
+        "lv50FiveStarFullyAwakened": {
+          "atk": 862,
+          "hp": 4429,
+          "def": 393,
+          "spd": 128,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0.06,
+          "efr": 0
+        },
+        "lv60SixStarFullyAwakened": {
+          "atk": 1075,
+          "hp": 5562,
+          "def": 487,
+          "spd": 128,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0.18,
+          "efr": 0
+        }
+      },
+      "self_devotion": {
+        "type": "acc",
+        "grades": {
+          "B": 0.09,
+          "A": 0.14,
+          "S": 0.19,
+          "SS": 0.23,
+          "SSS": 0.27
+        }
+      },
+      "skills": {
+        "S1": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "options": [],
+          "note": "Attacks the enemy with a bag, and has a 75% chance to grant stealth to the caster for 1 turn.",
+          "rate": 1.0,
+          "pow": 1.0,
+          "targets": 1
+        },
+        "S2": {
+          "hitTypes": [],
+          "options": [],
+          "note": "Analyzes the enemy, granting secret plan buff to all allies based on the target's class and granting immunity to all allies for 2 turns before increasing Combat Readiness by 20%."
+        },
+        "S3": {
+          "hitTypes": [
+            "crit",
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "options": [],
+          "note": "Attacks the enemy with agile movements, inflicting restrict, bind, and silence for 2 turns. Increases Combat Readiness of the caster by 50%.",
+          "rate": 1.5,
+          "pow": 1.0,
+          "targets": 1
+        }
+      },
+      "ex_equip": [],
+      "manual_source": {
+        "reviewedAt": "2026-11-16",
+        "gameVersion": "1.0.1030",
+        "identity": "Installed game character_player, dic_data, and English text tables; Journal show=y.",
+        "baseStats": "Existing game-stat formula with current zodiac_stone_2; both profiles cross-checked against the existing additions.",
+        "selfImprint": "Installed game devotion_skill table.",
+        "skillMultipliers": "Installed game skill_player and cs_player tables. Base skill damage only; conditional effects are documented separately.",
+        "buildData": "Intentionally omitted pending reviewed build evidence.",
+        "artwork": "Face PNGs match the installed game byte-for-byte. Rendered poses retrieved through the existing E7 Codex artwork workflow; dimensions, transparency, and appearance reviewed."
+      }
+    },
+    "Bunny Girl Mafia Yufine": {
+      "_id": "bunny-girl-mafia-yufine",
+      "name": "Bunny Girl Mafia Yufine",
+      "code": "c7016",
+      "attribute": "ice",
+      "role": "knight",
+      "rarity": 5,
+      "zodiac": "archer",
+      "assets": {
+        "icon": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c7016_s.png",
+        "thumbnail": "https://static-pubcomm.onstove.com/event/live/epic7/guide/images/hero/c7016_s.png",
+        "image": "https://e7codex.com/assets/c7016_1/pose.png"
+      },
+      "calculatedStatus": {
+        "lv50FiveStarFullyAwakened": {
+          "atk": 716,
+          "hp": 5446,
+          "def": 559,
+          "spd": 100,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        },
+        "lv60SixStarFullyAwakened": {
+          "atk": 894,
+          "hp": 6840,
+          "def": 694,
+          "spd": 104,
+          "chc": 0.15,
+          "chd": 1.5,
+          "dac": 0.03,
+          "eff": 0,
+          "efr": 0
+        }
+      },
+      "self_devotion": {
+        "type": "res",
+        "grades": {
+          "B": 0.09,
+          "A": 0.14,
+          "S": 0.19,
+          "SS": 0.23,
+          "SSS": 0.27
+        }
+      },
+      "skills": {
+        "S1": {
+          "hitTypes": [
+            "crushing",
+            "normal",
+            "miss"
+          ],
+          "options": [],
+          "note": "Attacks the enemy by continuously firing a gun. Damage dealt increases proportional to the caster's max Health. Penetrates the target's Defense, and cannot trigger a critical hit or a heavy blow. When used on the caster's turn, if the caster is granted determination, activates Settlement as an extra attack.\nSettlement: Draws a hidden weapon and attacks all enemies. Damage dealt increases proportional to the caster's max Health. Penetrates the target's Defense, and cannot trigger a critical hit or a heavy blow.\nPreview uses the standard attack; Settlement and Soulburn extra attacks are not included.",
+          "rate": 0.5,
+          "pow": 1.0,
+          "targets": 1,
+          "penetration": 1.0,
+          "selfHpScaling": 0.05
+        },
+        "S2": {
+          "hitTypes": [],
+          "options": [],
+          "note": "At the start of the first battle, gains 40 Fighting Spirit. When an ally is attacked, if expected damage suffered is equivalent to 20% or more of max Health, consumes 10 Fighting Spirit, granting 50% damage reduction. When an ally dies, grants determination to the caster and increases Combat Readiness by 50%."
+        },
+        "S3": {
+          "hitTypes": [],
+          "options": [],
+          "note": "Dispels two debuffs from an ally and the caster, and grants increased Attack for 2 turns. Increases Combat Readiness of the ally by 30%."
+        }
+      },
+      "ex_equip": [],
+      "manual_source": {
+        "reviewedAt": "2026-11-16",
+        "gameVersion": "1.0.1030",
+        "identity": "Installed game character_player, dic_data, and English text tables; Journal show=y.",
+        "baseStats": "Existing game-stat formula with current zodiac_stone_2; both profiles cross-checked against the existing additions.",
+        "selfImprint": "Installed game devotion_skill table.",
+        "skillMultipliers": "Installed game skill_player and cs_player tables. Base skill damage only; conditional effects are documented separately.",
+        "buildData": "Intentionally omitted pending reviewed build evidence.",
+        "artwork": "Face PNGs match the installed game byte-for-byte. Rendered poses retrieved through the existing E7 Codex artwork workflow; dimensions, transparency, and appearance reviewed."
+      }
     }
   },
   "exclusiveEquipment": {
@@ -453,6 +718,55 @@
           {
             "skill": 2,
             "description": "Increases the amount of Hit Chance and Penetration Resistance increased by Elbris's Successor by 30%."
+          }
+        ]
+      }
+    ],
+    "c1179": [
+      {
+        "code": "exc117901",
+        "name": "Thermal Runaway Suppression Kit",
+        "stat": {
+          "type": "att_rate",
+          "value": 0.07
+        },
+        "skillOptions": [
+          {
+            "skill": 1,
+            "description": "Increases detonation damage of Baptism of Fire by 10%."
+          },
+          {
+            "skill": 1,
+            "description": "When using Soulburn for Baptism of Fire, the extended duration of burn decreases by 1 turn, and attacks all enemies."
+          },
+          {
+            "skill": 3,
+            "description": "Cannot trigger a counterattack from the enemy when using Karmic Flame."
+          }
+        ]
+      }
+    ],
+    "c5089": [
+      {
+        "code": "exc508901",
+        "name": "Control and Unity",
+        "stat": {
+          "type": "speed",
+          "value": 6,
+          "maxDisplayValue": 10
+        },
+        "skillOptions": [
+          {
+            "skill": 1,
+            "description": "Grants increased Speed to the caster for 1 turn, when using Go, Kyla!."
+          },
+          {
+            "skill": 1,
+            "description": "Damage dealt is increased by 10% when using Go, Kyla!."
+          },
+          {
+            "skill": 2,
+            "description": "At the start of battle and at the end of the turn, grants counterattack to the caster for 1 turn."
           }
         ]
       }

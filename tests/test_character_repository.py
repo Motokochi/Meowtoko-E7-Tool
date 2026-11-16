@@ -51,12 +51,13 @@ class CharacterRepositoryTests(unittest.TestCase):
         ):
             repository = load_bundled_character_repository()
 
-        self.assertEqual(390, len(repository))
-        self.assertEqual(390, len(repository.heroes))
-        self.assertEqual(780, sum(len(hero.base_profiles) for hero in repository.heroes))
+        self.assertEqual(393, len(repository))
+        self.assertEqual(393, len(repository.heroes))
+        self.assertEqual(786, sum(len(hero.base_profiles) for hero in repository.heroes))
         self.assertEqual(
             {hero.hero_id for hero in self.catalog.heroes}
-            | {"hero.fribbels.lisette", "hero.fribbels.uncharted-pioneer-politis", "hero.fribbels.haru", "hero.fribbels.renoa"},
+            | {"hero.fribbels.lisette", "hero.fribbels.uncharted-pioneer-politis", "hero.fribbels.haru", "hero.fribbels.renoa",
+               "hero.fribbels.mei-lin", "hero.fribbels.bunny-girl-great-detective-moro", "hero.fribbels.bunny-girl-mafia-yufine"},
             {hero.hero_id for hero in repository.heroes},
         )
 
@@ -91,11 +92,14 @@ class CharacterRepositoryTests(unittest.TestCase):
             thaw_json(politis.self_devotion),
         )
 
-    def test_september_game_heroes_have_both_awakened_profiles_and_self_imprints(self) -> None:
+    def test_recent_heroes_have_both_awakened_profiles_and_self_imprints(self) -> None:
         repository = load_bundled_character_repository()
         for code, name, expected, imprint_type, imprint_value in (
             ("c1192", "Haru", ((775, 530, 5551, 102, 15), (966, 657, 7323, 102, 15)), "cri", 0.18),
             ("c1193", "Renoa", ((778, 486, 4221, 122, 19), (970, 603, 5299, 122, 27)), "def_rate", 0.21),
+            ("c1191", "Mei Lin", ((968, 409, 4124, 121, 15), (1208, 508, 5178, 121, 15)), "att_rate", 0.21),
+            ("c2187", "Bunny Girl Great Detective Moro", ((862, 393, 4429, 128, 15), (1075, 487, 5562, 128, 15)), "acc", 0.27),
+            ("c7016", "Bunny Girl Mafia Yufine", ((716, 559, 5446, 100, 15), (894, 694, 6840, 104, 15)), "res", 0.27),
         ):
             with self.subTest(hero=name):
                 hero = repository.find_exact(code)

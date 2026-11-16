@@ -334,11 +334,17 @@ class ExclusiveEquipmentRecord:
                 equipment_id,
                 "The first EE roll does not match the converted source base contribution.",
             )
-        if self.maximum_display_value != self.base_display_value * 2:
+        source_stat = _source_object(self.raw_source.get("stat"), f"{equipment_id}.stat")
+        maximum = _integer(
+            source_stat.get("maxDisplayValue", self.base_display_value * 2),
+            f"{equipment_id}.stat.maxDisplayValue",
+            minimum=self.base_display_value,
+        )
+        if self.maximum_display_value != maximum:
             raise HeroModifierRepositoryError(
                 "ee-maximum-roll-drift",
                 equipment_id,
-                "The last EE roll must be exactly twice the converted source base.",
+                "The last EE roll does not match the source maximum.",
             )
         if len(self.skill_options) not in (1, EXCLUSIVE_EQUIPMENT_SKILL_OPTION_COUNT):
             raise HeroModifierRepositoryError(
@@ -603,6 +609,11 @@ class HeroModifierRepository:
                     f"{path}.stat.value",
                     "Pinned Fribbels EE roll generation requires a positive base value.",
                 )
+            maximum_display = _integer(
+                stat.get("maxDisplayValue", base_display * 2),
+                f"{path}.stat.maxDisplayValue",
+                minimum=base_display,
+            )
             equipment_id = exclusive_equipment_stable_id(
                 hero,
                 index,
@@ -634,7 +645,7 @@ class HeroModifierRepository:
                     source_index=index,
                     source_stat_type=source_type,
                     base_contribution=contribution,
-                    roll_display_values=tuple(range(base_display, base_display * 2 + 1)),
+                    roll_display_values=tuple(range(base_display, maximum_display + 1)),
                     skill_options=skill_options,
                     raw_source=item,
                 )

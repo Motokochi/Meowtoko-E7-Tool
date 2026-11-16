@@ -34,13 +34,16 @@ class CharacterAssetPipelineTests(unittest.TestCase):
         characters = _catalog_characters(
             root / "src/optimizer/data/character_data/character-source-v1.json",
             root / "src/optimizer/data/character_data/manual-heroes-v1.json",
-            {"c2186", "c5112", "c1192", "c1193"},
+            {"c2186", "c5112", "c1192", "c1193", "c1191", "c2187", "c7016"},
         )
 
         self.assertEqual(
             [
+                ("c2187", "Bunny Girl Great Detective Moro"),
+                ("c7016", "Bunny Girl Mafia Yufine"),
                 ("c1192", "Haru"),
                 ("c2186", "Lisette"),
+                ("c1191", "Mei Lin"),
                 ("c1193", "Renoa"),
                 ("c5112", "Uncharted Pioneer Politis"),
             ],

@@ -1,0 +1,101 @@
+{
+  "schemaId": "meowtoko.manual-character-intake",
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "label": "Installed Epic Seven 1.0.1030 catalog",
+      "url": null,
+      "collectedAt": "2026-11-16"
+    }
+  ],
+  "character": {
+    "name": "Bunny Girl Mafia Yufine",
+    "gameCode": "c7016",
+    "releaseDate": "2026-11-05",
+    "rarity": 5,
+    "element": "Ice",
+    "class": "Knight",
+    "zodiac": "Sagittarius",
+    "baseStats": {
+      "level50FiveStarFullyAwakened": {
+        "attack": 716,
+        "health": 5446,
+        "defense": 559,
+        "speed": 100,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      },
+      "level60SixStarFullyAwakened": {
+        "attack": 894,
+        "health": 6840,
+        "defense": 694,
+        "speed": 104,
+        "criticalHitChance": 15.0,
+        "criticalHitDamage": 150.0,
+        "dualAttackChance": 3.0,
+        "effectiveness": 0,
+        "effectResistance": 0
+      }
+    },
+    "selfImprint": {
+      "stat": "Effect Resistance",
+      "grades": {
+        "B": 9.0,
+        "A": 14.0,
+        "S": 19.0,
+        "SS": 23.0,
+        "SSS": 27.0
+      }
+    },
+    "skills": {
+      "s1": {
+        "canCrit": false,
+        "targets": 1,
+        "attackRate": 0.5,
+        "power": 1.0,
+        "healthScaling": 0.05,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": 100.0,
+        "notes": "Attacks the enemy by continuously firing a gun. Damage dealt increases proportional to the caster's max Health. Penetrates the target's Defense, and cannot trigger a critical hit or a heavy blow. When used on the caster's turn, if the caster is granted determination, activates Settlement as an extra attack.\nSettlement: Draws a hidden weapon and attacks all enemies. Damage dealt increases proportional to the caster's max Health. Penetrates the target's Defense, and cannot trigger a critical hit or a heavy blow.\nPreview uses the standard attack; Settlement and Soulburn extra attacks are not included."
+      },
+      "s2": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "At the start of the first battle, gains 40 Fighting Spirit. When an ally is attacked, if expected damage suffered is equivalent to 20% or more of max Health, consumes 10 Fighting Spirit, granting 50% damage reduction. When an ally dies, grants determination to the caster and increases Combat Readiness by 50%."
+      },
+      "s3": {
+        "canCrit": false,
+        "targets": 0,
+        "attackRate": null,
+        "power": null,
+        "healthScaling": null,
+        "defenseScaling": null,
+        "speedScaling": null,
+        "penetrationPercent": null,
+        "notes": "Dispels two debuffs from an ally and the caster, and grants increased Attack for 2 turns. Increases Combat Readiness of the ally by 30%."
+      }
+    },
+    "exclusiveEquipment": []
+  },
+  "artwork": {
+    "folder": "assets/characters/Bunny Girl Mafia Yufine",
+    "files": {
+      "pose": "pose.webp",
+      "faceLarge": "face_l.webp",
+      "faceSmall": "face_s.webp",
+      "faceAlternate": "face_su.webp"
+    }
+  },
+  "notes": "Both awakened profiles and self imprint verified. Conditional skill limitations appear in each skill note. No build archetype assigned."
+}

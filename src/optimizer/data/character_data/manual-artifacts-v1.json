@@ -1,8 +1,25 @@
 {
   "schemaId": "meowtoko.manual-artifact-source",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-25T00:00:00Z",
+  "generatedAt": "2026-11-16T00:00:00Z",
   "records": {
+    "A Boss's Dignity": {
+      "name": "A Boss's Dignity",
+      "code": "efk26",
+      "rarity": 5,
+      "role": "knight",
+      "stats": {
+        "attack": 9,
+        "health": 76,
+        "defense": 0
+      },
+      "manual_source": {
+        "reviewedAt": "2026-11-16",
+        "gameVersion": "1.0.1030",
+        "identity": "Installed game equip_item, dic_data (show=y), and English text tables.",
+        "baseStats": "Installed game equip_stat main_stat and main_stat2 rows, rarity 1."
+      }
+    },
     "Custom-Made Power Anchor": {
       "name": "Custom-Made Power Anchor",
       "code": "efw42",
@@ -16,6 +33,23 @@
       "manual_source": {
         "reviewedAt": "2026-09-25",
         "gameVersion": "1.0.974",
+        "identity": "Installed game equip_item, dic_data (show=y), and English text tables.",
+        "baseStats": "Installed game equip_stat main_stat and main_stat2 rows, rarity 1."
+      }
+    },
+    "Flame Dragon's Jewel": {
+      "name": "Flame Dragon's Jewel",
+      "code": "efa34",
+      "rarity": 5,
+      "role": "assassin",
+      "stats": {
+        "attack": 21,
+        "health": 32,
+        "defense": 0
+      },
+      "manual_source": {
+        "reviewedAt": "2026-11-16",
+        "gameVersion": "1.0.1030",
         "identity": "Installed game equip_item, dic_data (show=y), and English text tables.",
         "baseStats": "Installed game equip_stat main_stat and main_stat2 rows, rarity 1."
       }
