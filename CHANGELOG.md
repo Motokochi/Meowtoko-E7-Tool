@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.51] - 2026-11-16
+
+- Add Mei Lin, Bunny Girl Great Detective Moro, and Bunny Girl Mafia Yufine
+  with awakened level 50/60 stats, self imprints, skill preview data, and artwork.
+- Add Flame Dragon's Jewel and A Boss's Dignity to the artifact catalog.
+- Add Thermal Runaway Suppression Kit for Aki (Attack 7-14%) and Control and
+  Unity for Midnight Gala Lilias (Speed 6-10), including all three skill options.
+- Preserve exact equipment roll ranges and saved selections. Equipment skill
+  descriptions are informational; conditional character effects are documented
+  in the skill previews.
+
 ## [0.1.50] - 2026-09-28
 
 - Add It's Senya's for Young Senya (Health 7-14%), Wake of Courage for Argent
